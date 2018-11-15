@@ -1,0 +1,40 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-style {
+  height: 130px;
+  padding: 5px 50px;
+
+  -webkit-box-shadow: 0px 6px 24px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 6px 24px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 6px 24px 0px rgba(0,0,0,0.75);
+}
+
+.img-header-class {
+  width: 120px;
+  height: 120px;
+}
+
+.img-tecnm {
+  height: 120px;
+}
+
+.title-style {
+  text-align: center;
+  margin-right: 60px;
+}
+
+.title-line {
+  font-size: 1.4rem;
+  font-family: 'PT Sans';
+  font-weight: bold;
+  color: #707070;
+}
+
+.subtitle-line {
+  font-size: 1rem;
+  font-family: 'PT Sans';
+  color: #707070;
+}

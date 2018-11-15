@@ -1,0 +1,184 @@
+<div class="container">
+  <br>
+  <p class="text-center">
+    <b>SOLICITUD DE INSCRIPCIÓN</b>
+  </p>
+  <br>
+  <form>
+    <div class="form-group">
+      <label for="txtNombre">NOMBRE</label>
+      <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="NOMBRE" [(ngModel)]="fieldName">
+      <p class="text-center">
+        <b>(apellido paterno, apellido materno, nombre(s))</b>
+      </p>
+    </div>
+
+    <br>
+    <div class="form-group">
+      <label for="txtLugarNacimiento">LUGAR DE NACIMIENTO</label>
+      <input type="text" class="form-control" id="txtLugarNacimiento" name="txtLugarNacimiento" placeholder="LUGAR DE NACIMIENTO">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="txtFecha">FECHA DE NACIMIENTO</label>
+        <input type="date" class="form-control" id="txtFecha" name="txtFecha" placeholder="FECHA DE NACIMIENTO">
+      </div>
+
+
+        <div class="form-group col-md-6">
+          <label for="selectEstadoCivil">ESTADO CIVIL</label>
+          <select class="custom-select mr-sm-2" id="selectEstadoCivil">
+            <option selected value="0">Soltero/a</option>
+            <option value="1">Comprometido/a</option>
+            <option value="2">Casado/a</option>
+            <option value="3">Divorsiado/a</option>
+            <option value="4">Viudo/a</option>
+
+          </select>
+        </div>
+
+    </div>
+
+    <br>
+    <p>
+      <b>DIRECCIÓN:</b>
+    </p>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="txtCalle">CALLE</label>
+        <input type="text" class="form-control" id="txtCalle" name="txtCalle" placeholder="CALLE">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="txtColonia">COLONIA</label>
+        <input type="text" class="form-control" id="txtColonia" name="txtColonia" placeholder="COLONIA">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="txtCiudad">CIUDAD</label>
+        <input type="text" class="form-control" id="txtCiudad" name="txtCiudad" placeholder="CIUDAD">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="txtEstado">ESTADO</label>
+        <input type="text" class="form-control" id="txtEstado" name="txtEstado" placeholder="ESTADO">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="txtCodigoPostal">CÓDIGO POSTAL</label>
+        <input type="number" class="form-control" id="txtCodigoPostal" name="txtCodigoPostal" placeholder="CÓDIGO POSTAL">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="txtTelefono">TELÉFONO</label>
+        <input type="number" class="form-control" id="txtTelefono" name="txtTelefono" placeholder="TELÉFONO">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="txtEmail">CORREO ELECTRÓNICO</label>
+      <input type="email" class="form-control" id="txtEmail" name="txtEmail" aria-describedby="emailHelp" placeholder="Enter email">
+
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="selectEtnia">¿PERTENECES A ALGUNA ETNIA?</label>
+        <select class="custom-select mr-sm-2" id="selectEtnia">
+          <option selected>SI</option>
+          <option value="1">NO</option>
+
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="txtCualEtnia">¿CUÁL?</label>
+        <input type="text" class="form-control" id="txtCualEtnia" placeholder="Introducir ETNIA">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="selectDiscapacidad">¿TIENES ALGUNA DISCAPACIDAD?</label>
+        <select class="custom-select mr-sm-2" id="selectDiscapacidad">
+          <option selected>SI</option>
+          <option value="1">NO</option>
+
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="txtDiscapacidad">¿CUÁL?</label>
+        <input type="text" class="form-control" id="txtDiscapacidad" placeholder="Introducir DISCAPACIDAD">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="selectEscuelaDeProcedencia">ESCUELA DE PROCEDENCIA</label>
+        <select class="custom-select mr-sm-2" id="selectEscuelaDeProcedencia">
+          <option selected value="0">CONALEP</option>
+          <option value="1">CETIS</option>
+          <option value="2">CBTIS</option>
+          <option value="3">CBTa</option>
+          <option value="4">COBACH</option>
+          <option value="5">Cecyte</option>
+          <option value="6">Preparatoria</option>
+          <option value="7">Sistema Abierto</option>
+          <option value="8">Otra</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="txtOtraEscuela">OTRA</label>
+        <input type="text" class="form-control" id="txtOtraEscuela" placeholder="Introducir Escuela">
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <div class="form-group col-xs-12 col-md-8">
+        <label for="txtNombreEscuela">NOMBRE DE LA ESCUELA</label>
+        <input type="text" class="form-control" id="txtNombreEscuela" placeholder="ESCUELA">
+      </div>
+      <div class="form-group col-xs-6 col-md-4">
+        <label for="txtPromedio">PROMEDIO</label>
+        <input type="number" class="form-control" id="txtPromedio" placeholder="PROMEDIO">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="selectCarrera">
+        <b>CARRERA A CURSAR</b>
+      </label>
+      <select id="selectCarrera" class="form-control">
+        <option selected value="0">Arquitectura</option>
+        <option value="1">Ingeniería Bioquímica</option>
+        <option value="2">Ingeniería Civil</option>
+        <option value="3">Ingeniería Eléctrica</option>
+        <option value="4">Ingeniería en Gestión Empresarial</option>
+        <option value="5">Ingeniería Industrial</option>
+        <option value="6">Ingeniería Mecatrónica</option>
+        <option value="7">Ingeniería Química</option>
+        <option value="8">Ingeniería en Sistemas Computacionales</option>
+        <option value="9">Ingeniería en Tecnología de la Información y Comunicaciones</option>
+        <option value="10">Licenciatura en Administración</option>
+        <option value="11">Maestría en Ciencias en Alimentos</option>
+        <option value="12">Doctorado en Ciencias en Alimentos</option>
+
+      </select>
+
+    </div>
+
+    <br>
+    <button type="button" (click)="insertAlumno()" class="btn btn-primary btn-block  form-control">Guardar Campos</button>
+    <br>
+    <button type="button" (click)="getAlumnos()" class="btn btn-primary btn-block  form-control">Mostrar alumnos</button>
+    <br>
+    <br>
+    <div class="text-center">
+      <small id="passwordHelpBlock">
+        AV. TECNOLÓGICO # 2595, COL. LAGOS DEL COUNTRY. TEPIC, NAYARIT. MÉXICO. C.P. 63175. TEL: (311) 211 94 00. DIRECCION@ITTEPIC.EDU.MX
+      </small>
+    </div>
+
+
+  </form>
+</div>

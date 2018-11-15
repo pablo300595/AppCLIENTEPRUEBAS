@@ -2,13 +2,38 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { FormularioRegistroAlumnoComponent } from './components/formulario-registro-alumno/formulario-registro-alumno.component';
+import { CargaDocumentosComponent } from './components/carga-documentos/carga-documentos.component';
+import { HomeInscripcionesComponent } from './components/home-inscripciones/home-inscripciones.component';
+
+// modulos
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+
+const appRoutes: Routes = [
+  {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
+  {path: 'cargaDocumentos', component: CargaDocumentosComponent},
+  {path: '', component: HomeInscripcionesComponent}
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    MenuComponent,
+    FormularioRegistroAlumnoComponent,
+    CargaDocumentosComponent,
+    HomeInscripcionesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
