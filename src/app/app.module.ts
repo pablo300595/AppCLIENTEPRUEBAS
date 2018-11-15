@@ -12,6 +12,7 @@ import { HomeInscripcionesComponent } from './components/home-inscripciones/home
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { DetalleAlumnoComponent } from './components/detalle-alumno/detalle-alumno.component';
 
 
 const appRoutes: Routes = [
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     MenuComponent,
     FormularioRegistroAlumnoComponent,
     CargaDocumentosComponent,
-    HomeInscripcionesComponent
+    HomeInscripcionesComponent,
+    DetalleAlumnoComponent
   ],
   imports: [
     BrowserModule,
