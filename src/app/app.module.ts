@@ -13,13 +13,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DetalleAlumnoComponent } from './components/detalle-alumno/detalle-alumno.component';
+import { LoginComponent } from './components/login/login.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
   {path: 'cargaDocumentos', component: CargaDocumentosComponent},
-  {path: '', component: HomeInscripcionesComponent}
-];
+  {path: '', component: HomeInscripcionesComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'detalleAlumno', component: DetalleAlumnoComponent },
+  {path: 'perfil', component: PerfilComponent}
+    ];
 
 @NgModule({
   declarations: [
@@ -29,7 +34,9 @@ const appRoutes: Routes = [
     FormularioRegistroAlumnoComponent,
     CargaDocumentosComponent,
     HomeInscripcionesComponent,
-    DetalleAlumnoComponent
+    DetalleAlumnoComponent,
+    LoginComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
