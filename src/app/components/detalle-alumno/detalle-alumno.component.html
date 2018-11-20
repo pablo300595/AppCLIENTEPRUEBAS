@@ -1,3 +1,39 @@
-<p>
-  detalle-alumno works!
-</p>
+<div class="container">
+  <div class="form">
+    <br>
+    <div>
+      <button type="button" (click)="getAlumnos()" class="btn btn-primary btn-block  form-control">Mostrar alumnos</button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <th>
+            Nombre
+          </th>
+          <th>
+            Correo
+          </th>
+          <th>
+            Carrera
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let alumno of alumnos; let i=index">
+            <td>{{this.alumno.name}}</td>
+            <td>{{this.alumno.email}}</td>
+            <td>{{this.alumno.career}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <footer class="page-footer font-small blue pt-4">
+        <div class=" footer-copyright text-center py-3">
+          <small id="">
+            AV. TECNOLÓGICO # 2595, COL. LAGOS DEL COUNTRY. TEPIC, NAYARIT. MÉXICO. C.P. 63175. TEL: (311) 211 94 00. DIRECCION@ITTEPIC.EDU.MX
+          </small>
+        </div>
+      </footer>
+  </div>
