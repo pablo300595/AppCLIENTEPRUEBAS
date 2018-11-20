@@ -8,6 +8,7 @@ import { Alumno } from './../models/alumno';
 export class AlumnoService {
   selectedAlumno: Alumno;
   alumnos: Alumno[];
+  sesionType: String = 'guest';
 
   readonly URL = 'http://localhost:3000/alumnos';
 
@@ -24,8 +25,8 @@ export class AlumnoService {
     return this.http.get(this.URL);
    }
 
-   putAlumno(alumno: Alumno ) {
-      return this.http.put(this.URL + `/${alumno.name}`, alumno);
+   putAlumno(alumno: Alumno , id) {
+      return this.http.put(this.URL + `/${id}`, alumno);
    }
 
    deleteAlumno(_id: string) {

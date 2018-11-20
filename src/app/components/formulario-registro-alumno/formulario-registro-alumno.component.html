@@ -7,7 +7,7 @@
   <form>
     <div class="form-group">
       <label for="txtNombre">NOMBRE</label>
-      <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="NOMBRE" [(ngModel)]="fieldName">
+      <input type="text" class="form-control" id="txtNombre" placeholder="NOMBRE" [(ngModel)]="fieldName" name="fieldName">
       <p class="text-center">
         <b>(apellido paterno, apellido materno, nombre(s))</b>
       </p>
@@ -16,19 +16,19 @@
     <br>
     <div class="form-group">
       <label for="txtLugarNacimiento">LUGAR DE NACIMIENTO</label>
-      <input type="text" class="form-control" id="txtLugarNacimiento" name="txtLugarNacimiento" placeholder="LUGAR DE NACIMIENTO">
+      <input type="text" class="form-control" id="txtLugarNacimiento" placeholder="LUGAR DE NACIMIENTO" [(ngModel)]="fieldPlaceBirth" name="fieldPlaceBirth">
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="txtFecha">FECHA DE NACIMIENTO</label>
-        <input type="date" class="form-control" id="txtFecha" name="txtFecha" placeholder="FECHA DE NACIMIENTO">
+        <input type="date" class="form-control" id="txtFecha" placeholder="FECHA DE NACIMIENTO" [(ngModel)]="fieldDateBirth" name="fieldDateBirth">
       </div>
 
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6" >
           <label for="selectEstadoCivil">ESTADO CIVIL</label>
-          <select class="custom-select mr-sm-2" id="selectEstadoCivil">
+          <select class="custom-select mr-sm-2" id="selectEstadoCivil" [(ngModel)]="fieldStatusCivil" name="fieldStatusCivil">
             <option selected value="0">Soltero/a</option>
             <option value="1">Comprometido/a</option>
             <option value="2">Casado/a</option>
@@ -47,59 +47,58 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="txtCalle">CALLE</label>
-        <input type="text" class="form-control" id="txtCalle" name="txtCalle" placeholder="CALLE">
+        <input type="text" class="form-control" id="txtCalle"  placeholder="CALLE" [(ngModel)]="fieldStreet" name="fieldStreet" >
       </div>
       <div class="form-group col-md-6">
         <label for="txtColonia">COLONIA</label>
-        <input type="text" class="form-control" id="txtColonia" name="txtColonia" placeholder="COLONIA">
+        <input type="text" class="form-control" id="txtColonia"  placeholder="COLONIA" [(ngModel)]="fieldColony" name="fieldColony">
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="txtCiudad">CIUDAD</label>
-        <input type="text" class="form-control" id="txtCiudad" name="txtCiudad" placeholder="CIUDAD">
+        <input type="text" class="form-control" id="txtCiudad" placeholder="CIUDAD" [(ngModel)]="fieldCity" name="fieldCity">
       </div>
       <div class="form-group col-md-6">
         <label for="txtEstado">ESTADO</label>
-        <input type="text" class="form-control" id="txtEstado" name="txtEstado" placeholder="ESTADO">
+        <input type="text" class="form-control" id="txtEstado" placeholder="ESTADO" [(ngModel)]="fieldState" name="fieldState">
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="txtCodigoPostal">CÓDIGO POSTAL</label>
-        <input type="number" class="form-control" id="txtCodigoPostal" name="txtCodigoPostal" placeholder="CÓDIGO POSTAL">
+        <input type="number" class="form-control" id="txtCodigoPostal" placeholder="CÓDIGO POSTAL" [(ngModel)]="fieldPostalCode" name="fieldPostalCode">
       </div>
       <div class="form-group col-md-6">
         <label for="txtTelefono">TELÉFONO</label>
-        <input type="number" class="form-control" id="txtTelefono" name="txtTelefono" placeholder="TELÉFONO">
+        <input type="number" class="form-control" id="txtTelefono"  placeholder="TELÉFONO" [(ngModel)]="fieldPhone" name="fieldPhone">
       </div>
     </div>
 
     <div class="form-group">
       <label for="txtEmail">CORREO ELECTRÓNICO</label>
-      <input type="email" class="form-control" id="txtEmail" name="txtEmail" aria-describedby="emailHelp" placeholder="Enter email">
-
+      <input type="email" class="form-control" placeholder="Ingrese Correo" [(ngModel)]="fieldEmail" name="fieldEmail">
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="selectEtnia">¿PERTENECES A ALGUNA ETNIA?</label>
-        <select class="custom-select mr-sm-2" id="selectEtnia">
+        <select class="custom-select mr-sm-2" id="selectEtnia" [(ngModel)]="fieldEtnia" name="fieldEtnia">
           <option selected>SI</option>
-          <option value="1">NO</option>
+          <option>NO</option>
 
         </select>
       </div>
       <div class="form-group col-md-6">
         <label for="txtCualEtnia">¿CUÁL?</label>
-        <input type="text" class="form-control" id="txtCualEtnia" placeholder="Introducir ETNIA">
+        <input type="text" class="form-control" id="txtCualEtnia" placeholder="Introducir ETNIA" [(ngModel)]="fieldOtherEtnia" name="fieldOtherEtnia">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="selectDiscapacidad">¿TIENES ALGUNA DISCAPACIDAD?</label>
-        <select class="custom-select mr-sm-2" id="selectDiscapacidad">
+        <select class="custom-select mr-sm-2" id="selectDiscapacidad" [(ngModel)]="fieldDisability" name="fieldDisability">
           <option selected>SI</option>
           <option value="1">NO</option>
 
@@ -107,14 +106,14 @@
       </div>
       <div class="form-group col-md-6">
         <label for="txtDiscapacidad">¿CUÁL?</label>
-        <input type="text" class="form-control" id="txtDiscapacidad" placeholder="Introducir DISCAPACIDAD">
+        <input type="text" class="form-control" id="txtDiscapacidad" placeholder="Introducir DISCAPACIDAD" [(ngModel)]="fieldWhichDisability" name="fieldWhichDisability" >
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="selectEscuelaDeProcedencia">ESCUELA DE PROCEDENCIA</label>
-        <select class="custom-select mr-sm-2" id="selectEscuelaDeProcedencia">
+        <select class="custom-select mr-sm-2" id="selectEscuelaDeProcedencia"  [(ngModel)]="fieldSchool" name="fieldSchool">
           <option selected value="0">CONALEP</option>
           <option value="1">CETIS</option>
           <option value="2">CBTIS</option>
@@ -128,7 +127,7 @@
       </div>
       <div class="form-group col-md-6">
         <label for="txtOtraEscuela">OTRA</label>
-        <input type="text" class="form-control" id="txtOtraEscuela" placeholder="Introducir Escuela">
+        <input type="text" class="form-control" id="txtOtraEscuela" placeholder="Introducir Escuela" [(ngModel)]="fieldOtherSchool" name="fieldOtherSchool" >
       </div>
     </div>
 
@@ -136,11 +135,11 @@
     <div class="form-row">
       <div class="form-group col-xs-12 col-md-8">
         <label for="txtNombreEscuela">NOMBRE DE LA ESCUELA</label>
-        <input type="text" class="form-control" id="txtNombreEscuela" placeholder="ESCUELA">
+        <input type="text" class="form-control" id="txtNombreEscuela" placeholder="ESCUELA" [(ngModel)]="fieldNameSchool" name="fieldNameSchool" >
       </div>
       <div class="form-group col-xs-6 col-md-4">
         <label for="txtPromedio">PROMEDIO</label>
-        <input type="number" class="form-control" id="txtPromedio" placeholder="PROMEDIO">
+        <input type="number" class="form-control" id="txtPromedio" placeholder="PROMEDIO" [(ngModel)]="fieldAverage" name="fieldAverage" >
       </div>
     </div>
 
@@ -148,7 +147,7 @@
       <label for="selectCarrera">
         <b>CARRERA A CURSAR</b>
       </label>
-      <select id="selectCarrera" class="form-control">
+      <select id="selectCarrera" class="form-control" [(ngModel)]="fieldCareer" name="fieldCareer" >
         <option selected value="0">Arquitectura</option>
         <option value="1">Ingeniería Bioquímica</option>
         <option value="2">Ingeniería Civil</option>
@@ -168,9 +167,7 @@
     </div>
 
     <br>
-    <button type="button" (click)="insertAlumno()" class="btn btn-primary btn-block  form-control">Guardar Campos</button>
-    <br>
-    <button type="button" (click)="getAlumnos()" class="btn btn-primary btn-block  form-control">Mostrar alumnos</button>
+    <button type="button" (click)="updateAlumno()" class="btn btn-primary btn-block  form-control">Actualizar información</button>
     <br>
     <br>
     <div class="text-center">

@@ -16,6 +16,13 @@ import { DetalleAlumnoComponent } from './components/detalle-alumno/detalle-alum
 import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 
+// import { Subject } from 'rxjs';
+
+// servicios
+import { MenuService } from './services/menu.service';
+import { LoginService } from './services/login.service';
+import { AlumnoService } from './services/alumno.service';
+import { FileService } from './services/file.service';
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -44,7 +51,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [MenuService, AlumnoService, LoginService, FileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

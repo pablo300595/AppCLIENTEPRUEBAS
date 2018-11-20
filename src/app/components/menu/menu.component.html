@@ -9,19 +9,19 @@
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
         <li class="nav-item active">
-          <a class="nav-link" href="#">Credenciales
+          <a class="nav-link" [routerLink]="['/']">Credenciales
             <span class="sr-only">(current)</span>
           </a>
         </li>
 
         <li class="nav-item dropdown active">
 
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false" *ngIf="sessionType!='guest'">
             Inscripcciones
           </a>
 
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
             <a class="dropdown-item" [routerLink]="['/formularioDatos']">Solicitud de Inscripcción</a>
             <a class="dropdown-item" [routerLink]="['/cargaDocumentos']">Solicitud de Documentos</a>
             <div class="dropdown-divider"></div>
@@ -34,7 +34,7 @@
 
       </ul>
 
-      <form class="form-inline my-2 my-lg-0">
+      <form class="form-inline my-2 my-lg-0" *ngIf="isLogged==false">
         <a class="dropdown-item" [routerLink]="['/login']">
           <svg id="i-signin" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"
             stroke-width="2">
@@ -43,7 +43,7 @@
           Login
         </a>
       </form>
-        
+
     </div>
   </nav>
 </div>
