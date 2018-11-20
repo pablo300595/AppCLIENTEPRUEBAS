@@ -13,6 +13,8 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   alumno: Alumno;
   alumnos: any;
 
+
+
   constructor(private alumnoService: AlumnoService) {
 
   }

@@ -20,8 +20,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
   {path: 'cargaDocumentos', component: CargaDocumentosComponent},
-  {path: '', component: HomeInscripcionesComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomeInscripcionesComponent},
+  {path: '', component: LoginComponent},
   {path: 'detalleAlumno', component: DetalleAlumnoComponent },
   {path: 'perfil', component: PerfilComponent}
     ];
