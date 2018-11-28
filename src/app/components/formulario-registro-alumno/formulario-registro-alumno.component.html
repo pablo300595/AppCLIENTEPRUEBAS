@@ -5,9 +5,24 @@
   </p>
   <br>
   <form>
+    <div class="form-row">
+      <div class="form-group col-xs-6 col-md-4">
+          <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
+          <input type="text" class="form-control" id="txtApellidoPaterno" name="txtApellidoPaterno" placeholder="APELLIDO PATERNO">
+      </div>
+      <div class="form-group col-xs-6 col-md-4">
+          <label for="txtApellidoMaterno">APELLIDO MATERNO</label>
+          <input type="text" class="form-control" id="txtApellidoMaterno" name="txtApellidoMaterno" placeholder="APELLIDO MATERNO">
+      </div>
+      <div class="form-group col-xs-6 col-md-4">
+          <label for="txtNombre">NOMBRE(S)</label>
+          <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="NOMBRE(S)">
+      </div>
+    </div>
     <div class="form-group">
       <label for="txtNombre">NOMBRE</label>
-      <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="NOMBRE" [(ngModel)]="fieldName">
+      <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="(apellido paterno, apellido materno, nombre(s))"
+        [(ngModel)]="fieldName">
       <p class="text-center">
         <b>(apellido paterno, apellido materno, nombre(s))</b>
       </p>
@@ -29,11 +44,12 @@
       <div class="form-group col-md-6">
         <label for="selectEstadoCivil">ESTADO CIVIL</label>
         <select class="custom-select mr-sm-2" id="selectEstadoCivil">
-          <option selected value="0">Soltero/a</option>
-          <option value="1">Comprometido/a</option>
-          <option value="2">Casado/a</option>
-          <option value="3">Divorsiado/a</option>
-          <option value="4">Viudo/a</option>
+          <option selected value="0">Seleccionar Estado Civil</option>
+          <option value="1">Soltero/a</option>
+          <option value="2">Comprometido/a</option>
+          <option value="3">Casado/a</option>
+          <option value="4">Divorsiado/a</option>
+          <option value="5">Viudo/a</option>
 
         </select>
       </div>
@@ -61,7 +77,42 @@
       </div>
       <div class="form-group col-md-6">
         <label for="txtEstado">ESTADO</label>
-        <input type="text" class="form-control" id="txtEstado" name="txtEstado" placeholder="ESTADO">
+        <select class="form-control" id="selectEstado">
+          <option selected>Seleccionar Estado</option>
+          <option value="1">Aguascalientes</option>
+          <option value="2">Baja California</option>
+          <option value="3">Baja California Sur</option>
+          <option value="4">Campeche</option>
+          <option value="5">Chiapas</option>
+          <option value="6">Chihuahua</option>
+          <option value="7">Coahuila de Zaragoza</option>
+          <option value="8">Colima</option>
+          <option value="9">Durango</option>
+          <option value="10">Estado de México</option>
+          <option value="11">Guanajuato</option>
+          <option value="12">Guerrero</option>
+          <option value="13">Hidalgo</option>
+          <option value="14">Jalisco</option>
+          <option value="15">Michoacán</option>
+          <option value="16">Morelos</option>
+          <option value="17">Nayarit</option>
+          <option value="18">Nuevo León</option>
+          <option value="19">Oaxaca</option>
+          <option value="20">Puebla</option>
+          <option value="21">Querétaro</option>
+          <option value="22">Quintana Roo</option>
+          <option value="23">San Luis Potosí</option>
+          <option value="24">Sinaloa</option>
+          <option value="25">Sonora</option>
+          <option value="26">Tabasco</option>
+          <option value="27">Tamaulipas</option>
+          <option value="28">Tlaxcala</option>
+          <option value="29">Veracruz</option>
+          <option value="30">Yucatán</option>
+          <option value="31">Zacatecas</option>
+
+        </select>
+
       </div>
     </div>
     <div class="form-row">
@@ -84,9 +135,10 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="selectEtnia">¿PERTENECES A ALGUNA ETNIA?</label>
-        <select class="custom-select mr-sm-2" id="selectEtnia">
-          <option selected>SI</option>
-          <option value="1">NO</option>
+        <select class="form-control" id="selectEtnia">
+          <option selected>Seleccionar Etnia</option>
+          <option value="1">SI</option>
+          <option value="2">NO</option>
 
         </select>
       </div>
@@ -99,9 +151,10 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="selectDiscapacidad">¿TIENES ALGUNA DISCAPACIDAD?</label>
-        <select class="custom-select mr-sm-2" id="selectDiscapacidad">
-          <option selected>SI</option>
-          <option value="1">NO</option>
+        <select class="form-control" id="selectDiscapacidad">
+          <option selected>Seleccionar Discapacidad</option>
+          <option value="1">SI</option>
+          <option value="2">NO</option>
 
         </select>
       </div>
@@ -114,7 +167,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="selectEscuelaDeProcedencia">ESCUELA DE PROCEDENCIA</label>
-        <select class="custom-select mr-sm-2" id="selectEscuelaDeProcedencia">
+        <select class="form-control" id="selectEscuelaDeProcedencia">
           <option selected value="0">CONALEP</option>
           <option value="1">CETIS</option>
           <option value="2">CBTIS</option>
@@ -160,8 +213,9 @@
         <option value="8">Ingeniería en Sistemas Computacionales</option>
         <option value="9">Ingeniería en Tecnología de la Información y Comunicaciones</option>
         <option value="10">Licenciatura en Administración</option>
-        <option value="11">Maestría en Ciencias en Alimentos</option>
-        <option value="12">Doctorado en Ciencias en Alimentos</option>
+        <option value="11">Maestría en Tecnologías de la Información</option>
+        <option value="12">Maestría en Ciencias en Alimentos</option>
+        <option value="13">Doctorado en Ciencias en Alimentos</option>
 
       </select>
 
