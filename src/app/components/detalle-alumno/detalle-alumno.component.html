@@ -5,35 +5,53 @@
       <button type="button" (click)="getAlumnos()" class="btn btn-primary btn-block  form-control">Mostrar alumnos</button>
     </div>
 
+    <br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" id="txtSearch" name="txtSearch" placeholder="Buscar un Alumno">
+      </div>
+    </div>
+    
     <div class="table-responsive">
-      <table class="table">
+      <table class="table table-striped">
         <thead>
           <th>
             Nombre
           </th>
+
           <th>
-            Número de Control
+            Correo
+
           </th>
           <th>
             Carrera
+          </th>
+          <th>
+            Actions
           </th>
         </thead>
         <tbody>
           <tr *ngFor="let alumno of alumnos; let i=index">
             <td>{{this.alumno.name}}</td>
 
+            <td>{{this.alumno.email}}</td>
+            <td>{{this.alumno.career}}</td>
+            <td>
+              <button type="button" class="btn btn-primary">Update</button>
+              <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+
           </tr>
         </tbody>
       </table>
-      
+
+
     </div>
     <footer class="page-footer font-small blue pt-4">
-        <div class=" footer-copyright text-center py-3">
-          <small id="">
-            AV. TECNOLÓGICO # 2595, COL. LAGOS DEL COUNTRY. TEPIC, NAYARIT. MÉXICO. C.P. 63175. TEL: (311) 211 94 00. DIRECCION@ITTEPIC.EDU.MX
-          </small>
-        </div>
-      </footer>
+      <div class=" footer-copyright text-center py-3">
+        <small id="">
+          AV. TECNOLÓGICO # 2595, COL. LAGOS DEL COUNTRY. TEPIC, NAYARIT. MÉXICO. C.P. 63175. TEL: (311) 211 94 00. DIRECCION@ITTEPIC.EDU.MX
+        </small>
+      </div>
+    </footer>
   </div>
-  
-  

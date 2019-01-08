@@ -28,6 +28,7 @@ export class DetalleAlumnoComponent implements OnInit {
         console.log(this.alumnos);
       });
   }
+
   
 
 }
