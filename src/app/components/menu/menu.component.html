@@ -9,14 +9,15 @@
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
         <li class="nav-item active">
-          <a class="nav-link" href="#">Credenciales
+          <a class="nav-link" [routerLink]="['/']">Credenciales
             <span class="sr-only">(current)</span>
           </a>
         </li>
 
         <li class="nav-item dropdown active">
 
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            *ngIf="sessionType!='guest'">
             Inscripcciones
           </a>
 
@@ -24,17 +25,30 @@
             <a class="dropdown-item" [routerLink]="['/formularioDatos']">Solicitud de Inscripcción</a>
             <a class="dropdown-item" [routerLink]="['/cargaDocumentos']">Solicitud de Documentos</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" [routerLink]="['/']">Información de Inscripcciones</a>
+            <a class="dropdown-item" [routerLink]="['/home']">Inicio</a>
+            <a class="dropdown-item" [routerLink]="['/detalleAlumno']">Detalle Alumno</a>
+            <a class="dropdown-item" [routerLink]="['/perfil']">Perfil</a>
           </div>
 
         </li>
 
       </ul>
 
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      </form>
 
+      <form class="form-inline my-2 my-lg-0">
+        <a class="dropdown-item" [routerLink]="['/']"></a>
+
+          <form class="form-inline my-2 my-lg-0" *ngIf="isLogged==false">
+            <a class="dropdown-item" [routerLink]="['/login']">
+
+              <svg id="i-signin" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2">
+                <path d="M3 16 L23 16 M15 8 L23 16 15 24 M21 4 L29 4 29 28 21 28" />
+              </svg>
+              Login
+            </a>
+          </form>
+      </form>
     </div>
   </nav>
 </div>

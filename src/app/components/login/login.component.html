@@ -1,0 +1,29 @@
+<section class="login-block">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-4 login-sec">
+        <h2 class="text-center">Login</h2>
+        <form class="login-form">
+          <div class="form-group">
+            <label for="exampleInputEmail1"><b>Username</b></label>
+            <input type="text" class="form-control" placeholder="Ingrese Usuario" [(ngModel)]="user" name="usr">
+
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1"><b>Password</b></label>
+            <input type="password" class="form-control" placeholder="Ingrese Contraseña" [(ngModel)]="pass" name="pwd">
+          </div>
+
+
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input">
+              <small>Remember Me</small>
+            </label>
+            <button type="submit" class="btn btn-login float-right" (click)="changeSession()">Ingresar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </section>

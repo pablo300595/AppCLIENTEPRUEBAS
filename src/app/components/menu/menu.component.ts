@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MenuService } from './../../services/menu.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  sessionType: string;
+  isLogged: boolean;
 
-  constructor() { }
+  constructor(private menuService: MenuService) {
+
+  }
 
   ngOnInit() {
+    this.menuService.currentSession.subscribe(session => this.sessionType = session);
+    this.menuService.currentIsLogged.subscribe(status => this.isLogged = status);
   }
+
 
 }
