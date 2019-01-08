@@ -25,9 +25,10 @@ export class LoginComponent implements OnInit {
   user: string;
   pass: string;
   // Flags
+  hasAuthFailed: boolean;
 
   constructor(private menuService: MenuService, private router: Router, private loginService: LoginService) {
-
+    this.hasAuthFailed = false;
   }
 
   ngOnInit() {
@@ -69,6 +70,7 @@ export class LoginComponent implements OnInit {
           this.changeProfileStatus(this.usuarios.credential, this.usuarios.user, this.usuarios.alumno);
           this.router.navigateByUrl('/perfil');
         } else {
+          this.hasAuthFailed = true;
           console.log('El usuario NO existe');
         }
       });
