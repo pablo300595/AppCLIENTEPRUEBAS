@@ -27,8 +27,8 @@ import { FileService } from './services/file.service';
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
   {path: 'cargaDocumentos', component: CargaDocumentosComponent},
-  {path: 'home', component: HomeInscripcionesComponent},
-  {path: '', component: LoginComponent},
+  {path: '', component: HomeInscripcionesComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'detalleAlumno', component: DetalleAlumnoComponent },
   {path: 'perfil', component: PerfilComponent}
     ];

@@ -14,6 +14,10 @@
             <input type="password" class="form-control" placeholder="Ingrese Contraseña" [(ngModel)]="pass" name="pwd">
           </div>
 
+          <div class="form-group">
+            <p id="msgErrorAuth" *ngIf="hasAuthFailed">Contraseña y/o Usuario incorrectos</p>
+          </div>
+
 
           <div class="form-check">
             <label class="form-check-label">
