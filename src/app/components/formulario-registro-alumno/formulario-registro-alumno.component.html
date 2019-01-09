@@ -5,231 +5,253 @@
   </p>
   <br>
   <form>
-    <div class="form-row">
-      <div class="form-group col-xs-6 col-md-4">
-        <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
-        <input type="text" class="form-control" id="txtApellidoPaterno" name="txtApellidoPaterno" placeholder="APELLIDO PATERNO">
-      </div>
-      <div class="form-group col-xs-6 col-md-4">
-        <label for="txtApellidoMaterno">APELLIDO MATERNO</label>
-        <input type="text" class="form-control" id="txtApellidoMaterno" name="txtApellidoMaterno" placeholder="APELLIDO MATERNO">
-      </div>
-      <div class="form-group col-xs-6 col-md-4">
-        <label for="txtNombre">NOMBRE(S)</label>
-        <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="NOMBRE(S)">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="txtNombre">NOMBRE</label>
+    <div class="card">
+      <div class="card-body">
+        <p>
+          <b>DATOS GENERALES</b>
+        </p>
+        <div class="form-row">
+          <div class="form-group col-xs-6 col-md-4">
+            <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
+            <input type="text" class="form-control" id="txtApellidoPaterno" name="fieldLastNameFather" placeholder="APELLIDO PATERNO"
+              [(ngModel)]="fieldLastNameFather">
+          </div>
+          <div class="form-group col-xs-6 col-md-4">
+            <label for="txtApellidoMaterno">APELLIDO MATERNO</label>
+            <input type="text" class="form-control" id="txtApellidoMaterno" name="fieldLastNameMother" placeholder="APELLIDO MATERNO"
+              [(ngModel)]="fieldLastNameMother">
+          </div>
+          <div class="form-group col-xs-6 col-md-4">
+            <label for="txtNombre">NOMBRE(S)</label>
+            <input type="text" class="form-control" id="txtNombre" name="fieldFirstName" placeholder="NOMBRE(S)"
+              [(ngModel)]="fieldFirstName">
+          </div>
+        </div>
 
-      <input type="text" class="form-control" id="txtNombre" placeholder="(apellido paterno, apellido materno, nombre(s))" [(ngModel)]="fieldName"
-        name="fieldName">
 
-      <p class="text-center">
-        <b>(apellido paterno, apellido materno, nombre(s))</b>
-      </p>
+        <br>
+        <div class="form-group">
+          <label for="txtLugarNacimiento">LUGAR DE NACIMIENTO</label>
+          <input type="text" class="form-control" id="txtLugarNacimiento" placeholder="LUGAR DE NACIMIENTO" [(ngModel)]="fieldPlaceBirth"
+            name="fieldPlaceBirth">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="txtFecha">FECHA DE NACIMIENTO</label>
+            <input type="date" class="form-control" id="txtFecha" placeholder="FECHA DE NACIMIENTO" [(ngModel)]="fieldDateBirth"
+              name="fieldDateBirth">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="selectEstadoCivil">ESTADO CIVIL</label>
+            <select class="custom-select mr-sm-2" id="selectEstadoCivil" [(ngModel)]="fieldStatusCivil" name="fieldStatusCivil">
+              <option selected value="0">Seleccionar Estado Civil</option>
+              <option value="1">Soltero/a</option>
+              <option value="2">Comprometido/a</option>
+              <option value="3">Casado/a</option>
+              <option value="4">Divorsiado/a</option>
+              <option value="5">Viudo/a</option>
+
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="txtEmail">CORREO ELECTRÓNICO</label>
+          <input type="email" class="form-control" placeholder="Ingrese Correo" [(ngModel)]="fieldEmail" name="fieldEmail">
+        </div>
+      </div>
     </div>
 
     <br>
-    <div class="form-group">
-      <label for="txtLugarNacimiento">LUGAR DE NACIMIENTO</label>
-      <input type="text" class="form-control" id="txtLugarNacimiento" placeholder="LUGAR DE NACIMIENTO" [(ngModel)]="fieldPlaceBirth"
-        name="fieldPlaceBirth">
-    </div>
+    <div class="card">
+      <div class="card-body">
+        <p>
+          <b>DIRECCIÓN</b>
+        </p>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="txtCalle">CALLE</label>
+            <input type="text" class="form-control" id="txtCalle" placeholder="CALLE" [(ngModel)]="fieldStreet" name="fieldStreet">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="txtColonia">COLONIA</label>
+            <input type="text" class="form-control" id="txtColonia" placeholder="COLONIA" [(ngModel)]="fieldColony"
+              name="fieldColony">
+          </div>
+        </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="txtFecha">FECHA DE NACIMIENTO</label>
-        <input type="date" class="form-control" id="txtFecha" placeholder="FECHA DE NACIMIENTO" [(ngModel)]="fieldDateBirth" name="fieldDateBirth">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="txtCiudad">CIUDAD</label>
+            <input type="text" class="form-control" id="txtCiudad" placeholder="CIUDAD" [(ngModel)]="fieldCity" name="fieldCity">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="txtEstado">ESTADO</label>
+            <select class="form-control" id="selectEstado" [(ngModel)]="fieldState" name="fieldState">
+              <option selected>Seleccionar Estado</option>
+              <option value="1">Aguascalientes</option>
+              <option value="2">Baja California</option>
+              <option value="3">Baja California Sur</option>
+              <option value="4">Campeche</option>
+              <option value="5">Chiapas</option>
+              <option value="6">Chihuahua</option>
+              <option value="7">Coahuila de Zaragoza</option>
+              <option value="8">Colima</option>
+              <option value="9">Durango</option>
+              <option value="10">Estado de México</option>
+              <option value="11">Guanajuato</option>
+              <option value="12">Guerrero</option>
+              <option value="13">Hidalgo</option>
+              <option value="14">Jalisco</option>
+              <option value="15">Michoacán</option>
+              <option value="16">Morelos</option>
+              <option value="17">Nayarit</option>
+              <option value="18">Nuevo León</option>
+              <option value="19">Oaxaca</option>
+              <option value="20">Puebla</option>
+              <option value="21">Querétaro</option>
+              <option value="22">Quintana Roo</option>
+              <option value="23">San Luis Potosí</option>
+              <option value="24">Sinaloa</option>
+              <option value="25">Sonora</option>
+              <option value="26">Tabasco</option>
+              <option value="27">Tamaulipas</option>
+              <option value="28">Tlaxcala</option>
+              <option value="29">Veracruz</option>
+              <option value="30">Yucatán</option>
+              <option value="31">Zacatecas</option>
+
+            </select>
+
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="txtCodigoPostal">CÓDIGO POSTAL</label>
+            <input type="number" class="form-control" id="txtCodigoPostal" placeholder="CÓDIGO POSTAL" [(ngModel)]="fieldPostalCode"
+              name="fieldPostalCode">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="txtTelefono">TELÉFONO</label>
+            <input type="number" class="form-control" id="txtTelefono" placeholder="TELÉFONO" [(ngModel)]="fieldPhone"
+              name="fieldPhone">
+          </div>
+        </div>
       </div>
-
-      <div class="form-group col-md-6">
-        <label for="selectEstadoCivil">ESTADO CIVIL</label>
-        <select class="custom-select mr-sm-2" id="selectEstadoCivil" [(ngModel)]="fieldStatusCivil" name="fieldStatusCivil">
-          <option selected value="0">Seleccionar Estado Civil</option>
-          <option value="1">Soltero/a</option>
-          <option value="2">Comprometido/a</option>
-          <option value="3">Casado/a</option>
-          <option value="4">Divorsiado/a</option>
-          <option value="5">Viudo/a</option>
-
-        </select>
-      </div>
     </div>
-
     <br>
-    <p>
-      <b>DIRECCIÓN:</b>
-    </p>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="txtCalle">CALLE</label>
-        <input type="text" class="form-control" id="txtCalle" placeholder="CALLE" [(ngModel)]="fieldStreet" name="fieldStreet">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="txtColonia">COLONIA</label>
-        <input type="text" class="form-control" id="txtColonia" placeholder="COLONIA" [(ngModel)]="fieldColony" name="fieldColony">
-      </div>
-    </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="txtCiudad">CIUDAD</label>
-        <input type="text" class="form-control" id="txtCiudad" placeholder="CIUDAD" [(ngModel)]="fieldCity" name="fieldCity">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="txtEstado">ESTADO</label>
-        <select class="form-control" id="selectEstado" [(ngModel)]="fieldState" name="fieldState">
-          <option selected>Seleccionar Estado</option>
-          <option value="1">Aguascalientes</option>
-          <option value="2">Baja California</option>
-          <option value="3">Baja California Sur</option>
-          <option value="4">Campeche</option>
-          <option value="5">Chiapas</option>
-          <option value="6">Chihuahua</option>
-          <option value="7">Coahuila de Zaragoza</option>
-          <option value="8">Colima</option>
-          <option value="9">Durango</option>
-          <option value="10">Estado de México</option>
-          <option value="11">Guanajuato</option>
-          <option value="12">Guerrero</option>
-          <option value="13">Hidalgo</option>
-          <option value="14">Jalisco</option>
-          <option value="15">Michoacán</option>
-          <option value="16">Morelos</option>
-          <option value="17">Nayarit</option>
-          <option value="18">Nuevo León</option>
-          <option value="19">Oaxaca</option>
-          <option value="20">Puebla</option>
-          <option value="21">Querétaro</option>
-          <option value="22">Quintana Roo</option>
-          <option value="23">San Luis Potosí</option>
-          <option value="24">Sinaloa</option>
-          <option value="25">Sonora</option>
-          <option value="26">Tabasco</option>
-          <option value="27">Tamaulipas</option>
-          <option value="28">Tlaxcala</option>
-          <option value="29">Veracruz</option>
-          <option value="30">Yucatán</option>
-          <option value="31">Zacatecas</option>
+    <div class="card">
+      <div class="card-body">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="selectEtnia">¿PERTENECES A ALGUNA ETNIA?</label>
 
-        </select>
+            <select class="form-control" id="selectEtnia" [(ngModel)]="fieldEtnia" name="fieldEtnia">
+              <option selected>Seleccionar Etnia</option>
+              <option value="1">SI</option>
+              <option value="2">NO</option>
+
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="txtCualEtnia">¿CUÁL?</label>
+            <input type="text" class="form-control" id="txtCualEtnia" placeholder="Introducir ETNIA" [(ngModel)]="fieldOtherEtnia"
+              name="fieldOtherEtnia">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="selectDiscapacidad">¿TIENES ALGUNA DISCAPACIDAD?</label>
+
+            <select class="form-control" id="selectDiscapacidad" [(ngModel)]="fieldDisability" name="fieldDisability">
+              <option selected>Seleccionar Discapacidad</option>
+              <option value="1">SI</option>
+              <option value="2">NO</option>
+
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="txtDiscapacidad">¿CUÁL?</label>
+            <input type="text" class="form-control" id="txtDiscapacidad" placeholder="Introducir DISCAPACIDAD"
+              [(ngModel)]="fieldWhichDisability" name="fieldWhichDisability">
+          </div>
+        </div>
 
       </div>
     </div>
+    <br>
+    <div class="card">
+      <div class="card-body">
+        <p>
+          <b>DATOS ACADÉMICOS:</b>
+        </p>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="selectEscuelaDeProcedencia">ESCUELA DE PROCEDENCIA</label>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="txtCodigoPostal">CÓDIGO POSTAL</label>
-        <input type="number" class="form-control" id="txtCodigoPostal" placeholder="CÓDIGO POSTAL" [(ngModel)]="fieldPostalCode"
-          name="fieldPostalCode">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="txtTelefono">TELÉFONO</label>
-        <input type="number" class="form-control" id="txtTelefono" placeholder="TELÉFONO" [(ngModel)]="fieldPhone" name="fieldPhone">
-      </div>
-    </div>
+            <select class="custom-select mr-sm-2" id="selectEscuelaDeProcedencia" [(ngModel)]="fieldSchool" name="fieldSchool">
 
-    <div class="form-group">
-      <label for="txtEmail">CORREO ELECTRÓNICO</label>
-      <input type="email" class="form-control" placeholder="Ingrese Correo" [(ngModel)]="fieldEmail" name="fieldEmail">
-    </div>
+              <option selected value="0">CONALEP</option>
+              <option value="1">CETIS</option>
+              <option value="2">CBTIS</option>
+              <option value="3">CBTa</option>
+              <option value="4">COBACH</option>
+              <option value="5">Cecyte</option>
+              <option value="6">Preparatoria</option>
+              <option value="7">Sistema Abierto</option>
+              <option value="8">Otra</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="txtOtraEscuela">OTRA</label>
+            <input type="text" class="form-control" id="txtOtraEscuela" placeholder="Introducir Escuela" [(ngModel)]="fieldOtherSchool"
+              name="fieldOtherSchool">
+          </div>
+        </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="selectEtnia">¿PERTENECES A ALGUNA ETNIA?</label>
 
-        <select class="form-control" id="selectEtnia" [(ngModel)]="fieldEtnia" name="fieldEtnia">
-          <option selected>Seleccionar Etnia</option>
-          <option value="1">SI</option>
-          <option value="2">NO</option>
+        <div class="form-row">
+          <div class="form-group col-xs-12 col-md-8">
+            <label for="txtNombreEscuela">NOMBRE DE LA ESCUELA</label>
+            <input type="text" class="form-control" id="txtNombreEscuela" placeholder="ESCUELA" [(ngModel)]="fieldNameSchool"
+              name="fieldNameSchool">
+          </div>
+          <div class="form-group col-xs-6 col-md-4">
+            <label for="txtPromedio">PROMEDIO</label>
+            <input type="number" class="form-control" id="txtPromedio" placeholder="PROMEDIO" [(ngModel)]="fieldAverage"
+              name="fieldAverage">
+          </div>
+        </div>
 
-        </select>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="txtCualEtnia">¿CUÁL?</label>
-        <input type="text" class="form-control" id="txtCualEtnia" placeholder="Introducir ETNIA" [(ngModel)]="fieldOtherEtnia" name="fieldOtherEtnia">
-      </div>
-    </div>
+        <div class="form-group">
+          <label for="selectCarrera">
+            <b>CARRERA A CURSAR</b>
+          </label>
+          <select id="selectCarrera" class="form-control" [(ngModel)]="fieldCareer" name="fieldCareer">
+            <option selected value="0">Arquitectura</option>
+            <option value="1">Ingeniería Bioquímica</option>
+            <option value="2">Ingeniería Civil</option>
+            <option value="3">Ingeniería Eléctrica</option>
+            <option value="4">Ingeniería en Gestión Empresarial</option>
+            <option value="5">Ingeniería Industrial</option>
+            <option value="6">Ingeniería Mecatrónica</option>
+            <option value="7">Ingeniería Química</option>
+            <option value="8">Ingeniería en Sistemas Computacionales</option>
+            <option value="9">Ingeniería en Tecnología de la Información y Comunicaciones</option>
+            <option value="10">Licenciatura en Administración</option>
+            <option value="11">Maestría en Tecnologías de la Información</option>
+            <option value="12">Maestría en Ciencias en Alimentos</option>
+            <option value="13">Doctorado en Ciencias en Alimentos</option>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="selectDiscapacidad">¿TIENES ALGUNA DISCAPACIDAD?</label>
+          </select>
 
-        <select class="form-control" id="selectDiscapacidad" [(ngModel)]="fieldDisability" name="fieldDisability">
-          <option selected>Seleccionar Discapacidad</option>
-          <option value="1">SI</option>
-          <option value="2">NO</option>
-
-        </select>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="txtDiscapacidad">¿CUÁL?</label>
-        <input type="text" class="form-control" id="txtDiscapacidad" placeholder="Introducir DISCAPACIDAD" [(ngModel)]="fieldWhichDisability"
-          name="fieldWhichDisability">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="selectEscuelaDeProcedencia">ESCUELA DE PROCEDENCIA</label>
-
-        <select class="custom-select mr-sm-2" id="selectEscuelaDeProcedencia" [(ngModel)]="fieldSchool" name="fieldSchool">
-
-          <option selected value="0">CONALEP</option>
-          <option value="1">CETIS</option>
-          <option value="2">CBTIS</option>
-          <option value="3">CBTa</option>
-          <option value="4">COBACH</option>
-          <option value="5">Cecyte</option>
-          <option value="6">Preparatoria</option>
-          <option value="7">Sistema Abierto</option>
-          <option value="8">Otra</option>
-        </select>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="txtOtraEscuela">OTRA</label>
-        <input type="text" class="form-control" id="txtOtraEscuela" placeholder="Introducir Escuela" [(ngModel)]="fieldOtherSchool"
-          name="fieldOtherSchool">
+        </div>
       </div>
     </div>
-
-
-    <div class="form-row">
-      <div class="form-group col-xs-12 col-md-8">
-        <label for="txtNombreEscuela">NOMBRE DE LA ESCUELA</label>
-        <input type="text" class="form-control" id="txtNombreEscuela" placeholder="ESCUELA" [(ngModel)]="fieldNameSchool" name="fieldNameSchool">
-      </div>
-      <div class="form-group col-xs-6 col-md-4">
-        <label for="txtPromedio">PROMEDIO</label>
-        <input type="number" class="form-control" id="txtPromedio" placeholder="PROMEDIO" [(ngModel)]="fieldAverage" name="fieldAverage">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="selectCarrera">
-        <b>CARRERA A CURSAR</b>
-      </label>
-      <select id="selectCarrera" class="form-control" [(ngModel)]="fieldCareer" name="fieldCareer">
-        <option selected value="0">Arquitectura</option>
-        <option value="1">Ingeniería Bioquímica</option>
-        <option value="2">Ingeniería Civil</option>
-        <option value="3">Ingeniería Eléctrica</option>
-        <option value="4">Ingeniería en Gestión Empresarial</option>
-        <option value="5">Ingeniería Industrial</option>
-        <option value="6">Ingeniería Mecatrónica</option>
-        <option value="7">Ingeniería Química</option>
-        <option value="8">Ingeniería en Sistemas Computacionales</option>
-        <option value="9">Ingeniería en Tecnología de la Información y Comunicaciones</option>
-        <option value="10">Licenciatura en Administración</option>
-        <option value="11">Maestría en Tecnologías de la Información</option>
-        <option value="12">Maestría en Ciencias en Alimentos</option>
-        <option value="13">Doctorado en Ciencias en Alimentos</option>
-
-      </select>
-
-    </div>
-
     <br>
 
     <button type="button" (click)="insertAlumno()" class="btn btn-primary btn-block  form-control">Guardar Campos</button>
@@ -237,14 +259,16 @@
 
 
 
-    <button type="button" (click)="updateAlumno()" class="btn btn-primary btn-block  form-control">Actualizar información</button>
+    <button type="button" (click)="updateAlumno()" class="btn btn-primary btn-block  form-control">Actualizar
+      información</button>
     <br>
 
     <br>
     <footer class="page-footer font-small blue pt-4">
       <div class=" footer-copyright text-center py-3">
         <small id="">
-          AV. TECNOLÓGICO # 2595, COL. LAGOS DEL COUNTRY. TEPIC, NAYARIT. MÉXICO. C.P. 63175. TEL: (311) 211 94 00. DIRECCION@ITTEPIC.EDU.MX
+          AV. TECNOLÓGICO # 2595, COL. LAGOS DEL COUNTRY. TEPIC, NAYARIT. MÉXICO. C.P. 63175. TEL: (311) 211 94 00.
+          DIRECCION@ITTEPIC.EDU.MX
         </small>
       </div>
     </footer>

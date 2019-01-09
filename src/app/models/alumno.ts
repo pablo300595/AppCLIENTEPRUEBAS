@@ -1,11 +1,13 @@
 export class Alumno {
-  constructor(name= '', placeBirth= '', dateBirth= '', statusCivil= '',
+  constructor(lastNameFather='', lastNameMother='', firstName= '', placeBirth= '', dateBirth= '', statusCivil= '',
               street= '', colony= '', city= '', state= '', postalCode= '',
               phone= '', email= '', etnia= '', otherEtnia= '', disability= '',
               whichDisability= '', school= '', otherSchool= '', nameSchool= '',
               average= '', career= '', documents= [] ) {
     // this._id = _id;
-    this.name = name;
+    this.lastNameFather = lastNameFather;
+    this.lastNameMother = lastNameMother;
+    this.firstName = firstName;
     this.placeBirth = placeBirth;
     this.dateBirth = dateBirth;
     this.statusCivil = statusCivil;
@@ -29,7 +31,9 @@ export class Alumno {
   }
 
   //_id: string;
-  name: String;
+  lastNameFather: String;
+  lastNameMother: String;
+  firstName: String;
   placeBirth: String;
   dateBirth: String;
   statusCivil: String;
