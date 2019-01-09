@@ -10,7 +10,9 @@ import { NgForm} from '@angular/forms';
   styleUrls: ['./formulario-registro-alumno.component.css']
 })
 export class FormularioRegistroAlumnoComponent implements OnInit {
-  fieldName: String = '';
+  fieldLastNameFather: String = '';
+  fieldLastNameMother: String = '';
+  fieldFirstName: String = '';
   fieldPlaceBirth: String = '';
   fieldDateBirth: String = '';
   fieldStatusCivil: String = '';
@@ -53,7 +55,9 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
 
   getAlumnos() {
     this.alumno = {
-      name: this.fieldName,
+      lastNameFather: this.fieldLastNameFather,
+      lastNameMother: this.fieldLastNameMother,
+      firstName: this.fieldFirstName,
       placeBirth: this.fieldPlaceBirth,
       dateBirth: this.fieldDateBirth,
       statusCivil: this.fieldStatusCivil,
@@ -81,7 +85,9 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
 
   updateAlumno() {
     this.alumno = {
-      name: this.fieldName,
+      lastNameFather: this.fieldLastNameFather,
+      lastNameMother: this.fieldLastNameMother,
+      firstName: this.fieldFirstName,
       placeBirth: this.fieldPlaceBirth,
       dateBirth: this.fieldDateBirth,
       statusCivil: this.fieldStatusCivil,
