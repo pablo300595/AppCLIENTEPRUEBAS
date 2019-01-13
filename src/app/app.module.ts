@@ -24,6 +24,16 @@ import { LoginService } from './services/login.service';
 import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
 
+//import Table with paginator
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
+
+
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
   {path: 'cargaDocumentos', component: CargaDocumentosComponent},
@@ -49,7 +59,16 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule
+
+
+
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService],
   bootstrap: [AppComponent]
