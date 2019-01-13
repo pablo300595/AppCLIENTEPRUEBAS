@@ -24,6 +24,22 @@ import { LoginService } from './services/login.service';
 import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
 
+//enable animations support
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+//import for implement to table
+            
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule} from  '@angular/material';
+
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+
+
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
   {path: 'cargaDocumentos', component: CargaDocumentosComponent},
@@ -49,7 +65,19 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    DragDropModule,
+    ScrollingModule,
+    CdkTableModule,
+    CdkTreeModule
+
+
+
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService],
   bootstrap: [AppComponent]
