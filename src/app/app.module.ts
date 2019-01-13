@@ -24,6 +24,9 @@ import { LoginService } from './services/login.service';
 import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
 
+// Librerias
+import { FileSelectDirective } from 'ng2-file-upload';
+
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
   {path: 'cargaDocumentos', component: CargaDocumentosComponent},
@@ -43,7 +46,8 @@ const appRoutes: Routes = [
     HomeInscripcionesComponent,
     DetalleAlumnoComponent,
     LoginComponent,
-    PerfilComponent
+    PerfilComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
