@@ -1,110 +1,124 @@
-<div class="container">
-  <br>
-  <p class="text-center">
-    <b>SOLICITUD DE DOCUMENTOS</b>
-  </p>
-  <br>
-  <br>
-  <br>
-  <form ref='uploadForm'
-      id='uploadForm'
-      action='http://localhost:3000/upload'
-      method='post'
-      encType="multipart/form-data">
-        <input type="file" name="sampleFile" />
-        <input type='submit' value='Upload!' />
-    </form>
-  <hr>
-  <form>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="lblCertificado"><b>CERTIFICADO DE BACHILLERATO O EQUIVALENTE</b></label>
-        <p class="help-block">(Entregar Carta Compromiso de NO tener Certificado)</p>
-      </div>
+<div class='login-block'>
+    <div class="container">
 
-        <div class="form-group col-md-6">
-        <label for="FormControlFileCertificado"><b>Adjuntar un archivo</b></label>
-        <input type="file" class="form-control-file" id="FormControlFileCertificado">
-        <br>
-        <button type="button" class="btn btn-primary" (click)="uploadFile()"
-        action='http://localhost:3000/upload'
-        method='post'
-        encType="multipart/form-data">Enviar</button>
-      </div>
-    </div>
-
-    <br>
-    <br>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="lblActaNacimiento"><b>ACTA DE NACIMIENTO</b></label>
-
-      </div>
-
-      <div class="form-group col-md-6">
-        <label for="FormControlFileActaNacimiento"><b>Adjuntar un archivo</b></label>
-        <input type="file" class="form-control-file" id="FormControlFileActaNacimiento" name="sampleFile">
-        <br>
-        <button type="button" class="btn btn-primary">Enviar</button>
-      </div>
-    </div>
-
-    <br>
-    <br>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="lblCURP"><b>CURP</b></label>
-
-      </div>
-
-      <div class="form-group col-md-6">
-        <label for="FormControlFileCURP"><b>Adjuntar un archivo</b></label>
-        <input type="file" class="form-control-file" id="FormControlFileCURP">
-        <br>
-        <button type="button" class="btn btn-primary">Enviar</button>
-      </div>
-    </div>
-
-    <br>
-    <br>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="lblComprobante"><b>COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN</b></label>
-
-      </div>
-
-      <div class="form-group col-md-6">
-        <label for="FormControlFileComprobante"><b>Adjuntar un archivo</b></label>
-        <input type="file" class="form-control-file" id="FormControlFileComprobante">
-        <br>
-        <button type="button" class="btn btn-primary">Enviar</button>
-      </div>
-    </div>
-
-    <br>
-    <br>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="lblAnalisis"><b>RESULTADOS DE ANÁLISIS CLÍNICOS</b></label>
-
-      </div>
-
-      <div class="form-group col-md-6">
-        <label for="FormControlFileAnalisis"><b>Adjuntar un archivo</b></label>
-        <input type="file" class="form-control-file" id="FormControlFileAnalisis">
-        <br>
-        <button type="button" class="btn btn-primary">Enviar</button>
-      </div>
-    </div>
-
-    <footer class="page-footer font-small blue pt-4">
-        <div class=" footer-copyright text-center py-3">
-          <small id="">
-            AV. TECNOLÓGICO # 2595, COL. LAGOS DEL COUNTRY. TEPIC, NAYARIT. MÉXICO. C.P. 63175. TEL: (311) 211 94 00. DIRECCION@ITTEPIC.EDU.MX
-          </small>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 login-sec">
+                <h2 class="text-center">
+                    Solicitud de documentos
+                  </h2>
+            </div>
         </div>
-      </footer>
 
-  </form>
+        <div class='row'>
+          <div class='col-md-6'>
+              <div class='card'>
+                <div class='card-header'>
+                    <label for="lblCertificado"><b>CERTIFICADO DE BACHILLERATO O EQUIVALENTE</b></label>
+                </div>
+                <div class='card-body'>
+                    <label><b>Adjuntar un archivo</b></label><br>
+                    <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-primary btn-s"
+                      (click)="uploader.uploadAll()"
+                      [disabled]="!uploader.getNotUploadedItems().length" >
+                      Enviar
+                    </button>
+                </div>
+              </div>
+          </div>
 
+          <div class='col-md-6'>
+              <div class='card'>
+                <div class='card-header'>
+                    <label for="lblCertificado"><b>ACTA DE NACIMIENTO</b></label>
+                </div>
+                <div class='card-body'>
+                    <label><b>Adjuntar un archivo</b></label><br>
+                    <input type="file" name="photo" ng2FileSelect [uploader]="uploaderBirthCertificate" />
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-primary btn-s"
+                      (click)="uploaderBirthCertificate.uploadAll()"
+                      [disabled]="!uploaderBirthCertificate.getNotUploadedItems().length" >
+                      Enviar
+                    </button>
+                </div>
+              </div>
+          </div>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-md-6'>
+                <div class='card'>
+                  <div class='card-header'>
+                      <label for="lblCertificado"><b>CURP</b></label>
+                  </div>
+                  <div class='card-body'>
+                      <label><b>Adjuntar un archivo</b></label><br>
+                      <input type="file" name="photo" ng2FileSelect [uploader]="uploaderBirthCURP" />
+                      <br>
+                      <br>
+                      <button type="button" class="btn btn-primary btn-s"
+                        (click)="uploaderBirthCURP.uploadAll()"
+                        [disabled]="!uploaderBirthCURP.getNotUploadedItems().length" >
+                        Enviar
+                      </button>
+                  </div>
+                </div>
+            </div>
+
+            <div class='col-md-6'>
+                <div class='card'>
+                  <div class='card-header'>
+                      <label for="lblCertificado"><b>COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN</b></label>
+                  </div>
+                  <div class='card-body'>
+                      <label><b>Adjuntar un archivo</b></label><br>
+                      <input type="file" name="photo" ng2FileSelect [uploader]="uploaderProofCopy" />
+                      <br>
+                      <br>
+                      <button type="button" class="btn btn-primary btn-s"
+                        (click)="uploaderProofCopy.uploadAll()"
+                        [disabled]="!uploaderProofCopy.getNotUploadedItems().length" >
+                        Enviar
+                      </button>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <br>
+          <div class='row'>
+              <div class='col-md-12'>
+                  <div class='card'>
+                    <div class='card-header'>
+                        <label for="lblCertificado"><b>RESULTADO DE ANÁLISIS CLÍNICOS</b></label>
+                    </div>
+                    <div class='card-body'>
+                        <label><b>Adjuntar un archivo</b></label><br>
+                        <input type="file" name="photo" ng2FileSelect [uploader]="uploaderClinicAnalysis" />
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-s"
+                          (click)="uploaderClinicAnalysis.uploadAll()"
+                          [disabled]="!uploaderClinicAnalysis.getNotUploadedItems().length" >
+                          Enviar
+                        </button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <br>
+      </div>
 </div>
+
+<br>
+<footer class="page-footer font-small blue pt-4">
+  <div class=" footer-copyright text-center py-3">
+    <small id="">
+          AV. TECNOLÓGICO # 2595, COL. LAGOS DEL COUNTRY. TEPIC, NAYARIT. MÉXICO. C.P. 63175. TEL: (311) 211 94 00.
+          DIRECCION@ITTEPIC.EDU.MX
+    </small>
+  </div>
+</footer>
