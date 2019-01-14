@@ -32,8 +32,8 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
 })
 
 export class DetalleAlumnoComponent implements OnInit {
-  displayedColumns: string[] = ['lastNameFather', 'lastNameMother', 'firstName', 'email', 'career'];
-  dataSource: MatTableDataSource<Alumno>;
+  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
+  dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -45,10 +45,10 @@ export class DetalleAlumnoComponent implements OnInit {
   
   constructor(private alumnoService: AlumnoService) { 
     // Create 100 users
-    //const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(this.alumnos);
+    this.dataSource = new MatTableDataSource(users);
     
   }
 
