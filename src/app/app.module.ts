@@ -24,6 +24,7 @@ import { LoginService } from './services/login.service';
 import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
 
+
 //enable animations support
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -38,6 +39,10 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
+
+
+// Librerias
+import { FileSelectDirective } from 'ng2-file-upload';
 
 
 const appRoutes: Routes = [
@@ -59,7 +64,8 @@ const appRoutes: Routes = [
     HomeInscripcionesComponent,
     DetalleAlumnoComponent,
     LoginComponent,
-    PerfilComponent
+    PerfilComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
