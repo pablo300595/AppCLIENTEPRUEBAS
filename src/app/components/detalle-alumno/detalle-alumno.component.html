@@ -1,15 +1,12 @@
 <div>
   <button type="button" (click)="getAlumnos()" class="btn btn-primary btn-block  form-control">Mostrar alumnos</button>
 </div>
-
 <br>
-
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 
 <div class="mat-elevation-z8">
-
 
   <table class="table table-striped">
     <thead>

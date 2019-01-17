@@ -34,12 +34,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 
 
-
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 
+
+// Librerias
+import { FileSelectDirective } from 'ng2-file-upload';
 
 
 const appRoutes: Routes = [
@@ -61,7 +63,8 @@ const appRoutes: Routes = [
     HomeInscripcionesComponent,
     DetalleAlumnoComponent,
     LoginComponent,
-    PerfilComponent
+    PerfilComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,6 @@ const appRoutes: Routes = [
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
@@ -84,9 +86,6 @@ const appRoutes: Routes = [
     ScrollingModule,
     CdkTableModule,
     CdkTreeModule
-
-
-
 
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService],
