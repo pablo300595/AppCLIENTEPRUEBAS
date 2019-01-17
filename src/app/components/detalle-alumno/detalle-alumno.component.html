@@ -1,47 +1,50 @@
 <div>
   <button type="button" (click)="getAlumnos()" class="btn btn-primary btn-block  form-control">Mostrar alumnos</button>
 </div>
+<br>
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort >
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="lastNameFather">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido Paterno </th>
-      <td mat-cell *matCellDef="let row"> {{row.lastNameFather}} </td>
-    </ng-container>
+  <table class="table table-striped">
+    <thead>
+      <th>
+        Apellido paterno
+      </th>
+      <th>
+        Apellido materno
+      </th>
+      <th>
+        Nombre
+      </th>
+      <th>
+        Email
+      </th>
+      <th>
+        Carrera
+      </th>
+      <th>
+        Actions
+      </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alumno of alumnos; let i=index">
+        <td>{{this.alumno.lastNameFather}}</td>
+        <td>{{this.alumno.lastNameMother}}</td>
+        <td>{{this.alumno.firstName}}</td>
+        <td>{{this.alumno.email}}</td>
+        <td>{{this.alumno.career}}</td>
+        <td>
+          <button type="button" class="btn btn-primary">Update</button>
+          <button type="button" class="btn btn-danger">Delete</button>
+        </td>
 
-    <!-- Progress Column -->
-    <ng-container matColumnDef="lastNameMother">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido Materno </th>
-      <td mat-cell *matCellDef="let row"> {{row.lastNameMother}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre(s) </th>
-      <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
-    </ng-container>
-
-    <!-- Color Column -->
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-      <td mat-cell *matCellDef="let row" > {{row.email}} </td>
-    </ng-container>
-
-     <!-- Color Column -->
-     <ng-container matColumnDef="career">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Carrera </th>
-      <td mat-cell *matCellDef="let row" > {{row.career}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-    </tr>
+      </tr>
+    </tbody>
   </table>
+
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>

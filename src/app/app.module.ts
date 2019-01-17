@@ -25,15 +25,14 @@ import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
 
 
-//enable animations support
+//import Table with paginator
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-//import for implement to table
-            
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule} from  '@angular/material';
+import {MatInputModule} from '@angular/material/input';
+
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ScrollingModule} from '@angular/cdk/scrolling';
@@ -72,6 +71,12 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
@@ -81,8 +86,6 @@ const appRoutes: Routes = [
     ScrollingModule,
     CdkTableModule,
     CdkTreeModule
-
-
 
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService],

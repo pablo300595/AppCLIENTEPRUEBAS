@@ -9,10 +9,11 @@ import { NgForm} from '@angular/forms';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
+  lastNameFather: string;
+  lastNameMother: string;
+  firstName: string;
+  email: string;
+  career: string;
 }
 
 /** Constants used to fill up our data base. */
@@ -33,19 +34,21 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
 
 export class DetalleAlumnoComponent implements OnInit {
   displayedColumns: string[] = ['lastNameFather', 'lastNameMother', 'firstName', 'email', 'career'];
-  dataSource: MatTableDataSource<Alumno>;
+
+  dataSource:  MatTableDataSource<Alumno>;
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
 
+ 
   alumno: Alumno;
   alumnos: any;
-
   
   constructor(private alumnoService: AlumnoService) { 
     // Create 100 users
-    //const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    //const users = Array.from({length: 100}, (_, k) => this.getAlumnos());
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.alumnos);
@@ -75,8 +78,12 @@ export class DetalleAlumnoComponent implements OnInit {
   }
 }
 
+function parametros(): any {
+  return this.getAlumnos();
+}
 
-/** Builds and returns a new User. */
+
+/** Builds and returns a new User. 
 function createNewUser(id: number): UserData {
   const name =
       NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
@@ -89,3 +96,4 @@ function createNewUser(id: number): UserData {
     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
   };
 }
+*/

@@ -60,6 +60,19 @@
           <label for="txtEmail">CORREO ELECTRÓNICO</label>
           <input type="email" class="form-control" placeholder="Ingrese Correo" [(ngModel)]="fieldEmail" name="fieldEmail">
         </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="txtCurp">CURP</label>
+            <input type="text" class="form-control" id="txtCURP" placeholder="CURP" [(ngModel)]="fieldCURP"
+              name="fieldCURP">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="txtNSS">NSS(NÚMERO DE SEGURO SOCIAL)</label>
+            <input type="number" class="form-control" id="txtNSS" placeholder="NSS(NÚMERO DE SEGURO SOCIAL)" [(ngModel)]="fieldNSS"
+              name="fieldNSS">
+          </div>
+        </div>
       </div>
     </div>
 
@@ -89,7 +102,7 @@
           <div class="form-group col-md-6">
             <label for="txtEstado">ESTADO</label>
             <select class="form-control" id="selectEstado" [(ngModel)]="fieldState" name="fieldState">
-              <option selected>Seleccionar Estado</option>
+              <option selected value="0">Seleccionar Estado</option>
               <option value="1">Aguascalientes</option>
               <option value="2">Baja California</option>
               <option value="3">Baja California Sur</option>

@@ -3,6 +3,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
+import 'hammerjs';
+
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
