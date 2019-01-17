@@ -11,11 +11,11 @@ import { HomeInscripcionesComponent } from './components/home-inscripciones/home
 // modulos
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetalleAlumnoComponent } from './components/detalle-alumno/detalle-alumno.component';
 import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import { Subject } from 'rxjs';
 
 // servicios
@@ -25,8 +25,7 @@ import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
 
 
-//import Table with paginator
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// import Table with paginator
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
@@ -42,6 +41,11 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 
 // Librerias
 import { FileSelectDirective } from 'ng2-file-upload';
+import { InscripcionWizardComponent } from './components/inscripcion-wizard/inscripcion-wizard.component';
+
+// Material
+import { MaterialModule } from './material';
+import { SuccessWizardComponent } from './components/success-wizard/success-wizard.component';
 
 
 const appRoutes: Routes = [
@@ -50,7 +54,9 @@ const appRoutes: Routes = [
   {path: '', component: HomeInscripcionesComponent},
   {path: 'login', component: LoginComponent},
   {path: 'detalleAlumno', component: DetalleAlumnoComponent },
-  {path: 'perfil', component: PerfilComponent}
+  {path: 'perfil', component: PerfilComponent},
+  {path: 'wizard', component: InscripcionWizardComponent},
+  {path: 'wizard-success', component: SuccessWizardComponent}
     ];
 
 @NgModule({
@@ -64,29 +70,27 @@ const appRoutes: Routes = [
     DetalleAlumnoComponent,
     LoginComponent,
     PerfilComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    InscripcionWizardComponent,
+    SuccessWizardComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
-
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatFormFieldModule,
-    MatInputModule,
     DragDropModule,
     ScrollingModule,
     CdkTableModule,
-    CdkTreeModule
-
+    CdkTreeModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService],
   bootstrap: [AppComponent]
