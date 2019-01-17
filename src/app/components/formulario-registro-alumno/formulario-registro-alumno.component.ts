@@ -33,6 +33,8 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   fieldAverage: String = '';
   fieldCareer: String = '';
   fieldDocuments: String[] = [];
+  fieldCURP: String = '';
+  fieldNSS: String = '';
 
   alumno: Alumno;
   alumnos: any;

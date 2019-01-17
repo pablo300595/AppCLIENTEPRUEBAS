@@ -24,6 +24,7 @@ import { LoginService } from './services/login.service';
 import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
 
+
 //import Table with paginator
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
@@ -34,11 +35,18 @@ import {MatInputModule} from '@angular/material/input';
 
 
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+
+
+
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
   {path: 'cargaDocumentos', component: CargaDocumentosComponent},
-  {path: 'home', component: HomeInscripcionesComponent},
-  {path: '', component: LoginComponent},
+  {path: '', component: HomeInscripcionesComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'detalleAlumno', component: DetalleAlumnoComponent },
   {path: 'perfil', component: PerfilComponent}
     ];
@@ -60,12 +68,23 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    DragDropModule,
+    ScrollingModule,
+    CdkTableModule,
+    CdkTreeModule
+
 
 
 
