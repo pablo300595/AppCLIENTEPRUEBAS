@@ -9,6 +9,7 @@ export class AlumnoService {
   selectedAlumno: Alumno;
   alumnos: Alumno[];
   sesionType: String = 'guest';
+  statusInscripcion: String = 'No status';
 
   readonly URL = 'http://localhost:3000/alumnos';
 
@@ -25,11 +26,19 @@ export class AlumnoService {
     return this.http.get(this.URL);
    }
 
+   getAlumnoStatusInscripcion(idAlumno) {
+    return this.http.get(this.URL + `/status/${idAlumno}`);
+   }
+
    putAlumno(alumno: Alumno , id) {
       return this.http.put(this.URL + `/${id}`, alumno);
    }
 
+   putStatusAlumno(alumno: Object , id) {
+    return this.http.put(this.URL + `/status/${id}`, alumno);
+ }
+
    deleteAlumno(_id: string) {
-      //return this.http.delete(this.URL + `/${_id}`);
+      // return this.http.delete(this.URL + `/${_id}`);
    }
 }

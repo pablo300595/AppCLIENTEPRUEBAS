@@ -1,38 +1,36 @@
 <mat-horizontal-stepper [linear]='true' #stepper>
-  <mat-step editable='false' [completed]='true'>
+  <mat-step editable='false' [completed]='stepOneCompleted'>
     <ng-template matStepLabel>Paso 1</ng-template>
     <h2>Paso 1.- Formulario.</h2>
     <app-formulario-registro-alumno></app-formulario-registro-alumno>
-    <div>
-      <button mat-button matStepperNext class='btn btn-primary'>Siguiente</button>
+    <br>
+    <div class='card'>
+      <div class='card-body'>
+          <button mat-button matStepperNext class='btn btn-outline-primary btn-lg'>Siguiente</button>
+      </div>
     </div>
-  </mat-step>
+    </mat-step>
 
-  <mat-step editable='false'>
+  <mat-step editable='false' [completed]='stepTwoCompleted'>
     <ng-template matStepLabel>Paso 2</ng-template>
     <h2>Paso 2.- Documentos.</h2>
     <app-carga-documentos></app-carga-documentos>
-    <div>
-      <button mat-button matStepperNext class='btn btn-primary'>Siguiente</button>
-    </div>
+    <br>
+    <button mat-button matStepperNext class='btn btn-outline-primary btn-lg'>Siguiente</button>
   </mat-step>
 
-  <mat-step editable='false'>
+  <mat-step editable='false' >
     <ng-template matStepLabel>Paso 3</ng-template>
     <h2>Paso 3.- Contrato con el estudiante.</h2>
-
-    <div>
-      <button mat-button matStepperNext class='btn btn-primary'>Siguiente</button>
-    </div>
+    <br>
+    <button mat-button matStepperNext class='btn btn-outline-primary btn-lg'>Siguiente</button>
   </mat-step>
 
-  <mat-step editable='false'>
+  <mat-step editable='false' >
     <ng-template matStepLabel>Paso 4</ng-template>
     <h2>Paso 4.- Confirmación.</h2>
-
-    <div>
-      <button class='btn btn-primary' (click)="stepper.reset()">Regresar</button>
-      <button class='btn btn-primary' [routerLink]="['/wizard-success']">Terminar</button>
-    </div>
+    <br>
+    <button class='btn btn-outline-primary btn-lg' (click)="stepper.reset()">Regresar</button>
+    <button class='btn btn-outline-primary btn-lg' [routerLink]="['/wizard-success']">Terminar</button>
   </mat-step>
 </mat-horizontal-stepper>

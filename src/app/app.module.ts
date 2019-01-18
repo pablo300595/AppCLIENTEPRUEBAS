@@ -23,6 +23,7 @@ import { MenuService } from './services/menu.service';
 import { LoginService } from './services/login.service';
 import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
+import { WizardService } from './services/wizard.service';
 
 
 // import Table with paginator
@@ -46,6 +47,7 @@ import { InscripcionWizardComponent } from './components/inscripcion-wizard/insc
 // Material
 import { MaterialModule } from './material';
 import { SuccessWizardComponent } from './components/success-wizard/success-wizard.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 const appRoutes: Routes = [
@@ -72,7 +74,8 @@ const appRoutes: Routes = [
     PerfilComponent,
     FileSelectDirective,
     InscripcionWizardComponent,
-    SuccessWizardComponent
+    SuccessWizardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +95,7 @@ const appRoutes: Routes = [
     MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [MenuService, AlumnoService, LoginService, FileService],
+  providers: [MenuService, AlumnoService, LoginService, FileService, WizardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

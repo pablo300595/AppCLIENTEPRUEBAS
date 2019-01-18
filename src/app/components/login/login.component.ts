@@ -3,7 +3,7 @@ import { MenuService } from './../../services/menu.service';
 import { LoginService } from './../../services/login.service';
 import { Router } from '@angular/router';
 import { Usuario } from './../../models/usuario';
-import { NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   sendCredential: string;
   sendUser: string;
   sendIdAlumno: string;
+  sendStatusInscripcion: string;
   // Model values
   usuario: Usuario;
   usuarios: any;
@@ -68,12 +69,13 @@ export class LoginComponent implements OnInit {
           console.log(this.usuarios);
           this.changeLoginStatus(this.usuarios.credential, true);
           this.changeProfileStatus(this.usuarios.credential, this.usuarios.user, this.usuarios.alumno);
-          this.router.navigateByUrl('/perfil');
+          this.router.navigateByUrl('/wizard');
         } else {
           this.hasAuthFailed = true;
           console.log('El usuario NO existe');
         }
       });
+
     console.log('Autenticando');
   }
 
