@@ -8,9 +8,10 @@ import { LoginService } from './../../services/login.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  // Menu service
   sessionType: string;
   isLogged: boolean;
-
+  // Login service
   sendUser: string;
 
   constructor(private menuService: MenuService, private loginService: LoginService) {

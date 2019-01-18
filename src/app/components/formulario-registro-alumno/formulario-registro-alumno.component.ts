@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlumnoService} from './../../services/alumno.service';
 import { LoginService } from './../../services/login.service';
+import { WizardService } from './../../services/wizard.service';
 import { Alumno } from './../../models/alumno';
 import { NgForm} from '@angular/forms';
 
@@ -16,13 +17,15 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   fieldPlaceBirth: String = '';
   fieldDateBirth: String = '';
   fieldStatusCivil: String = '';
+  fieldEmail: String = '';
+  fieldCURP: String = '';
+  fieldNSS: String = '';
   fieldStreet: String = '';
   fieldColony: String = '';
   fieldCity: String = '';
   fieldState: String = '';
   fieldPostalCode: String = '';
   fieldPhone: String = '';
-  fieldEmail: String = '';
   fieldEtnia: String = '';
   fieldOtherEtnia: String = '';
   fieldDisability: String = '';
@@ -30,59 +33,44 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   fieldSchool: String = '';
   fieldOtherSchool: String = '';
   fieldNameSchool: String = '';
-  fieldAverage: String = '';
+  fieldAverage: Number = 0;
   fieldCareer: String = '';
   fieldDocuments: String[] = [];
-  fieldCURP: String = '';
-  fieldNSS: String = '';
+  statusInscripcion: String = '';
 
+  // Services variables
   alumno: Alumno;
   alumnos: any;
 
-
   idAlumnoLoged: String;
+  statusInscripcionAlumno: string;
+  // Error messages
 
-  constructor(private alumnoService: AlumnoService, private loginService: LoginService) {
+  // Flags
+  stepOneCompleted: boolean;
+  firstTryGivenValues: boolean;
 
-
+  constructor(private alumnoService: AlumnoService, private loginService: LoginService, private wizardService: WizardService) {
+    this.stepOneCompleted = false;
+    this.firstTryGivenValues = false;
   }
 
   ngOnInit() {
     this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
+    this.getAlumnoStatus();
+    this.wizardService.currentStepOne.subscribe(status => this.stepOneCompleted = status);
   }
 
-  insertAlumno() {
+  getAlumnoStatus() {
+    this.alumnoService.getAlumnoStatusInscripcion(this.idAlumnoLoged)
+    .subscribe(res => {
+      let newres: any = res;
+      newres = newres.statusInscripcion;
+      const status = (newres).toString();
 
-  }
-
-  getAlumnos() {
-    this.alumno = {
-      lastNameFather: this.fieldLastNameFather,
-      lastNameMother: this.fieldLastNameMother,
-      firstName: this.fieldFirstName,
-      placeBirth: this.fieldPlaceBirth,
-      dateBirth: this.fieldDateBirth,
-      statusCivil: this.fieldStatusCivil,
-      street: this.fieldStreet,
-      colony: this.fieldColony,
-      city: this.fieldCity,
-      state: this.fieldState,
-      postalCode: this.fieldPostalCode,
-      phone: this.fieldPhone,
-      email: this.fieldEmail,
-      etnia: this.fieldEtnia,
-      otherEtnia: this.fieldOtherEtnia,
-      disability: this.fieldDisability,
-      whichDisability: this.fieldWhichDisability,
-      school: this.fieldSchool,
-      otherSchool: this.fieldOtherSchool,
-      nameSchool: this.fieldNameSchool,
-      average: this.fieldAverage,
-      career: this.fieldCareer,
-      documents: this.fieldDocuments
-    };
-      console.log('Datos del formulario');
-      console.log(this.alumno);
+      this.loginService.changeStatusInscripcion(status);
+      this.loginService.currentStatusInscripcionSource.subscribe(stat => this.statusInscripcionAlumno = stat);
+    });
   }
 
   updateAlumno() {
@@ -93,13 +81,15 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
       placeBirth: this.fieldPlaceBirth,
       dateBirth: this.fieldDateBirth,
       statusCivil: this.fieldStatusCivil,
+      email: this.fieldEmail,
+      curp: this.fieldCURP,
+      nss: this.fieldNSS,
       street: this.fieldStreet,
       colony: this.fieldColony,
       city: this.fieldCity,
       state: this.fieldState,
       postalCode: this.fieldPostalCode,
       phone: this.fieldPhone,
-      email: this.fieldEmail,
       etnia: this.fieldEtnia,
       otherEtnia: this.fieldOtherEtnia,
       disability: this.fieldDisability,
@@ -109,11 +99,24 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
       nameSchool: this.fieldNameSchool,
       average: this.fieldAverage,
       career: this.fieldCareer,
-      documents: this.fieldDocuments
+      documents: this.fieldDocuments,
+      statusInscripcion: this.statusInscripcionAlumno
     };
     this.alumnoService.putAlumno(this.alumno, this.idAlumnoLoged)
         .subscribe();
-        console.log('Alumno actualizado con exito!!!');
+        alert('Alumno actualizado con exito!!!');
+  }
+
+  evaluateIfStepOneCompleted() {
+    this.firstTryGivenValues = true;
+    this.stepOneCompleted =  (this.fieldLastNameFather.length > 1);
+
+    if (this.stepOneCompleted) {
+      this.updateAlumno();
+      this.wizardService.changeStepOneStatus(true);
+    } else {
+      alert('hay campos no váldos');
+    }
   }
 
 }

@@ -16,10 +16,14 @@ export class LoginService {
   private idAlumnoSource = new BehaviorSubject('NO ID');
   currentIdAlumnoSource = this.idAlumnoSource.asObservable();
 
+  private statusInscripcionSource = new BehaviorSubject('No status');
+  currentStatusInscripcionSource = this.statusInscripcionSource.asObservable();
+
   selectedUsuario: Usuario;
   usuarios: Usuario[];
 
   readonly URL = 'http://localhost:3000/login/auth';
+
   constructor(private http: HttpClient) {
     this.selectedUsuario = new Usuario();
   }
@@ -36,7 +40,11 @@ export class LoginService {
     this.userSource.next(user);
   }
 
-  changeIdAlumnoLoged(alumno: string){
+  changeIdAlumnoLoged(alumno: string) {
     this.idAlumnoSource.next(alumno);
+  }
+
+  changeStatusInscripcion(status: string) {
+    this.statusInscripcionSource.next(status);
   }
 }
