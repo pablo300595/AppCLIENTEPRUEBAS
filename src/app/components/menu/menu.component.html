@@ -21,6 +21,17 @@
             Inscripcciones
           </a>
 
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/formularioDatos']">Solicitud de Inscripcción</a>
+            <a class="dropdown-item" [routerLink]="['/cargaDocumentos']">Solicitud de Documentos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['/home']">Inicio</a>
+            <a class="dropdown-item" [routerLink]="['/detalleAlumno']">Detalle Alumno</a>
+            <a class="dropdown-item" [routerLink]="['/perfil']">Perfil</a>
+            <a class="dropdown-item" [routerLink]="['/contrato']">Contrato</a>
+          </div>
+
+
         </li>
 
         <li class="nav-item active" *ngIf="sessionType!= 'guest'">

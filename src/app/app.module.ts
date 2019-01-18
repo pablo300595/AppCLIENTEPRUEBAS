@@ -42,12 +42,19 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 
 // Librerias
 import { FileSelectDirective } from 'ng2-file-upload';
+
 import { InscripcionWizardComponent } from './components/inscripcion-wizard/inscripcion-wizard.component';
 
 // Material
 import { MaterialModule } from './material';
 import { SuccessWizardComponent } from './components/success-wizard/success-wizard.component';
 import { FooterComponent } from './components/footer/footer.component';
+
+import { ContratoComponent } from './components/contrato/contrato.component';
+
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
+
 
 
 const appRoutes: Routes = [
@@ -58,7 +65,9 @@ const appRoutes: Routes = [
   {path: 'detalleAlumno', component: DetalleAlumnoComponent },
   {path: 'perfil', component: PerfilComponent},
   {path: 'wizard', component: InscripcionWizardComponent},
-  {path: 'wizard-success', component: SuccessWizardComponent}
+  {path: 'wizard-success', component: SuccessWizardComponent},
+  {path: 'contrato', component: ContratoComponent}
+
     ];
 
 @NgModule({
@@ -75,7 +84,10 @@ const appRoutes: Routes = [
     FileSelectDirective,
     InscripcionWizardComponent,
     SuccessWizardComponent,
-    FooterComponent
+    FooterComponent,
+    ContratoComponent,
+    ConfirmacionComponent
+
   ],
   imports: [
     BrowserModule,
@@ -93,7 +105,9 @@ const appRoutes: Routes = [
     CdkTreeModule,
     ReactiveFormsModule,
     MaterialModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatCheckboxModule
+
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService, WizardService],
   bootstrap: [AppComponent]
