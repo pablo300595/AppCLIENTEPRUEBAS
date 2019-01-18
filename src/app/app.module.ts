@@ -42,6 +42,10 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 
 // Librerias
 import { FileSelectDirective } from 'ng2-file-upload';
+import { ContratoComponent } from './components/contrato/contrato.component';
+
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 
 
 const appRoutes: Routes = [
@@ -50,7 +54,8 @@ const appRoutes: Routes = [
   {path: '', component: HomeInscripcionesComponent},
   {path: 'login', component: LoginComponent},
   {path: 'detalleAlumno', component: DetalleAlumnoComponent },
-  {path: 'perfil', component: PerfilComponent}
+  {path: 'perfil', component: PerfilComponent},
+  {path: 'contrato', component: ContratoComponent}
     ];
 
 @NgModule({
@@ -64,7 +69,9 @@ const appRoutes: Routes = [
     DetalleAlumnoComponent,
     LoginComponent,
     PerfilComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    ContratoComponent,
+    ConfirmacionComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +92,8 @@ const appRoutes: Routes = [
     DragDropModule,
     ScrollingModule,
     CdkTableModule,
-    CdkTreeModule
+    CdkTreeModule,
+    MatCheckboxModule
 
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService],
