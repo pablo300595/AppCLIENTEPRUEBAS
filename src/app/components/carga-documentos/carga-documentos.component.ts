@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FileService } from './../../services/file.service';
 import { LoginService } from './../../services/login.service';
+import { MessagesService } from './../../services/messages.service';
 import { Archivo } from './../../models/archivo';
 import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import { WizardService } from './../../services/wizard.service';
@@ -31,7 +32,8 @@ export class CargaDocumentosComponent implements OnInit {
   public uploaderProofCopy: FileUploader = new FileUploader({url: URL, itemAlias: 'sampleFile'});
   public uploaderClinicAnalysis: FileUploader = new FileUploader({url: URL, itemAlias: 'sampleFile'});
 
-  constructor(private fileService: FileService, private loginService: LoginService, private wizardService: WizardService) {
+  constructor(private fileService: FileService, private loginService: LoginService, private wizardService: WizardService,
+    private messagesService: MessagesService) {
     this.fileOK = false;
     this.stepTwoCompleted = false;
   }
@@ -49,18 +51,18 @@ export class CargaDocumentosComponent implements OnInit {
       console.log('ImageUpload:uploaded:', item, status, response);
       // check status
       if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Invalid format') {
-        alert('Formato de archivo no válido solo se acepta pdf!');
+        this.messagesService.warning('Formato de archivo no válido solo se acepta pdf!');
         this.fileOK = false;
         return;
       } else if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Too Big') {
-        alert('Archivo muy pesado el límite es 1 MB!');
+        this.messagesService.warning('Archivo muy pesado el límite es 1 MB!');
         this.fileOK = false;
         return;
       } else {
         this.fileOK = true;
         this.file1 = true;
         this.checkIfFilesCompleted();
-        alert('Exito');
+        this.messagesService.success('Archivo cargado con exito!!!');
       }
     };
     this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
@@ -76,18 +78,18 @@ export class CargaDocumentosComponent implements OnInit {
       console.log('ImageUpload:uploaded:', item, status, response);
       // check status
       if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Invalid format') {
-        alert('Formato de archivo no válido solo se acepta pdf!');
+        this.messagesService.warning('Formato de archivo no válido solo se acepta pdf!');
         this.fileOK = false;
         return;
       } else if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Too Big') {
-        alert('Archivo muy pesado el límite es 1 MB!');
+        this.messagesService.warning('Archivo muy pesado el límite es 1 MB!');
         this.fileOK = false;
         return;
       } else {
         this.fileOK = true;
         this.file2 = true;
         this.checkIfFilesCompleted();
-        alert('Exito');
+        this.messagesService.success('Archivo cargado con exito!!!');
       }
     };
     this.uploaderBirthCertificate.onBuildItemForm = (fileItem: any, form: any) => {
@@ -103,18 +105,18 @@ export class CargaDocumentosComponent implements OnInit {
       console.log('ImageUpload:uploaded:', item, status, response);
       // check status
       if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Invalid format') {
-        alert('Formato de archivo no válido solo se acepta pdf!');
+        this.messagesService.warning('Formato de archivo no válido solo se acepta pdf!');
         this.fileOK = false;
         return;
       } else if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Too Big') {
-        alert('Archivo muy pesado el límite es 1 MB!');
+        this.messagesService.warning('Archivo muy pesado el límite es 1 MB!');
         this.fileOK = false;
         return;
       } else {
         this.fileOK = true;
         this.file3 = true;
         this.checkIfFilesCompleted();
-        alert('Exito');
+        this.messagesService.success('Archivo cargado con exito!!!');
       }
     };
     this.uploaderBirthCURP.onBuildItemForm = (fileItem: any, form: any) => {
@@ -130,18 +132,18 @@ export class CargaDocumentosComponent implements OnInit {
       console.log('ImageUpload:uploaded:', item, status, response);
       // check status
       if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Invalid format') {
-        alert('Formato de archivo no válido solo se acepta pdf!');
+        this.messagesService.warning('Formato de archivo no válido solo se acepta pdf!');
         this.fileOK = false;
         return;
       } else if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Too Big') {
-        alert('Archivo muy pesado el límite es 1 MB!');
+        this.messagesService.warning('Archivo muy pesado el límite es 1 MB!');
         this.fileOK = false;
         return;
       } else {
         this.fileOK = true;
         this.file4 = true;
         this.checkIfFilesCompleted();
-        alert('Exito');
+        this.messagesService.success('Archivo cargado con exito!!!');
       }
     };
     this.uploaderProofCopy.onBuildItemForm = (fileItem: any, form: any) => {
@@ -157,18 +159,18 @@ export class CargaDocumentosComponent implements OnInit {
      console.log('ImageUpload:uploaded:', item, status, response);
      // check status
      if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Invalid format') {
-       alert('Formato de archivo no válido solo se acepta pdf!');
+      this.messagesService.warning('Formato de archivo no válido solo se acepta pdf!');
        this.fileOK = false;
        return;
      } else if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Too Big') {
-       alert('Archivo muy pesado el límite es 1 MB!');
+      this.messagesService.warning('Archivo muy pesado el límite es 1 MB!');
        this.fileOK = false;
        return;
      } else {
        this.fileOK = true;
        this.file5 = true;
        this.checkIfFilesCompleted();
-       alert('Exito');
+       this.messagesService.success('Archivo cargado con exito!!!');
      }
    };
    this.uploaderClinicAnalysis.onBuildItemForm = (fileItem: any, form: any) => {
@@ -180,8 +182,6 @@ export class CargaDocumentosComponent implements OnInit {
     if (this.fileOK === true) {
       alert('Archivo cargado exitosamente!');
     }
-
-
   }
 
   checkIfFilesCompleted() {

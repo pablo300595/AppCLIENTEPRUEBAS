@@ -6,7 +6,7 @@
     <br>
     <div class='card'>
       <div class='card-body'>
-          <button mat-button matStepperNext class='btn btn-outline-primary btn-lg'>Siguiente</button>
+          <button mat-button matStepperNext class='btn btn-outline-primary btn-lg' (click)='updateAlumno()'>Siguiente</button>
       </div>
     </div>
     </mat-step>
@@ -22,13 +22,21 @@
   <mat-step editable='false' >
     <ng-template matStepLabel>Paso 3</ng-template>
     <h2>Paso 3.- Contrato con el estudiante.</h2>
+    <app-contrato></app-contrato>
     <br>
     <button mat-button matStepperNext class='btn btn-outline-primary btn-lg'>Siguiente</button>
   </mat-step>
 
   <mat-step editable='false' >
     <ng-template matStepLabel>Paso 4</ng-template>
-    <h2>Paso 4.- Confirmación.</h2>
+    <h2>Paso 4.- Resumen.</h2>
+    <br>
+    <button mat-button matStepperNext class='btn btn-outline-primary btn-lg'>Siguiente</button>
+  </mat-step>
+
+  <mat-step editable='false' >
+    <ng-template matStepLabel>Paso 5</ng-template>
+    <h2>Paso 5.- Confirmación.</h2>
     <br>
     <button class='btn btn-outline-primary btn-lg' (click)="stepper.reset()">Regresar</button>
     <button class='btn btn-outline-primary btn-lg' [routerLink]="['/wizard-success']">Terminar</button>

@@ -30,6 +30,7 @@ import { LoginService } from './services/login.service';
 import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
 import { WizardService } from './services/wizard.service';
+import { FormularioRegistroService } from './services/formulario-registro.service';
 
 // Angular material
 import { MaterialModule } from './material';
@@ -77,7 +78,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService,
-    WizardService],
+    WizardService, FormularioRegistroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

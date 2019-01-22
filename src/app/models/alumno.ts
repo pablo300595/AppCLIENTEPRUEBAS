@@ -1,9 +1,9 @@
 export class Alumno {
-  constructor(lastNameFather= '', lastNameMother= '', firstName= '', placeBirth= '', dateBirth= '', statusCivil= '',
-              email= '', curp= '', nss= '', street= '', colony= '', city= '', state= '', postalCode= '',
-              phone= '', etnia= '', otherEtnia= '', disability= '',
+  constructor(lastNameFather= '', lastNameMother= '', firstName= '', placeBirth= '', dateBirth= '', statusCivil= 'Soltero/a',
+              email= '', curp= '', nss= 0, sex= 'H', street= '', colony= '', city= '', state= 'Nayarit', postalCode= 0,
+              phone= 0, etnia= '', otherEtnia= '', disability= '',
               whichDisability= '', school= '', otherSchool= '', nameSchool= '',
-              average= 0, career= '', documents= [], statusInscripcion= '' ) {
+              average= 1, career= 'Ingeniería en Sistemas Computacionales', documents= [], statusInscripcion= '' ) {
 
     this.lastNameFather = lastNameFather;
     this.lastNameMother = lastNameMother;
@@ -14,6 +14,7 @@ export class Alumno {
     this.email = email;
     this.curp = curp;
     this.nss = nss;
+    this.sex = sex;
     this.street = street;
     this.colony = colony;
     this.city = city;
@@ -41,13 +42,14 @@ export class Alumno {
   statusCivil: String;
   email: String;
   curp: String;
-  nss: String;
+  nss: Number;
+  sex: String;
   street: String;
   colony: String;
   city: String;
   state: String;
-  postalCode: String;
-  phone: String;
+  postalCode: Number;
+  phone: Number;
   etnia: String;
   otherEtnia: String;
   disability: String;
