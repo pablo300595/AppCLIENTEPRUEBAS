@@ -49,11 +49,14 @@ import { InscripcionWizardComponent } from './components/inscripcion-wizard/insc
 import { MaterialModule } from './material';
 import { SuccessWizardComponent } from './components/success-wizard/success-wizard.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { ContratoComponent } from './components/contrato/contrato.component';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
+import { ResumenComponent } from './components/resumen/resumen.component';
+
 
 
 
@@ -66,8 +69,8 @@ const appRoutes: Routes = [
   {path: 'perfil', component: PerfilComponent},
   {path: 'wizard', component: InscripcionWizardComponent},
   {path: 'wizard-success', component: SuccessWizardComponent},
-  {path: 'contrato', component: ContratoComponent}
-
+  {path: 'contrato', component: ContratoComponent},
+  {path: 'resumen', component: ResumenComponent}
     ];
 
 @NgModule({
@@ -86,7 +89,8 @@ const appRoutes: Routes = [
     SuccessWizardComponent,
     FooterComponent,
     ContratoComponent,
-    ConfirmacionComponent
+    ConfirmacionComponent,
+    ResumenComponent
 
   ],
   imports: [
@@ -106,7 +110,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MaterialModule,
     RouterModule.forRoot(appRoutes),
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
 
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService, WizardService],
