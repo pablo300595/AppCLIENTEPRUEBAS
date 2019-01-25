@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FileService } from './../../services/file.service';
 import { LoginService } from './../../services/login.service';
 import { MessagesService } from './../../services/messages.service';
 import { Archivo } from './../../models/archivo';
 import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import { WizardService } from './../../services/wizard.service';
+import { DropzoneComponent , DropzoneDirective,
+  DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 const URL = 'http://localhost:3000/upload';
 
@@ -32,10 +34,22 @@ export class CargaDocumentosComponent implements OnInit {
   public uploaderProofCopy: FileUploader = new FileUploader({url: URL, itemAlias: 'sampleFile'});
   public uploaderClinicAnalysis: FileUploader = new FileUploader({url: URL, itemAlias: 'sampleFile'});
 
+  /* Dropzone conf */
+  public type = 'component';
+  public disabled = false;
+  public config: DropzoneConfigInterface;
+  @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
+  @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
+
+  filePhotoIsUploaded: boolean;
+  dropzoneA: any;
+
   constructor(private fileService: FileService, private loginService: LoginService, private wizardService: WizardService,
     private messagesService: MessagesService) {
     this.fileOK = false;
     this.stepTwoCompleted = false;
+    /* Dropzone */
+    this.filePhotoIsUploaded = false;
   }
 
   ngOnInit() {
@@ -182,11 +196,77 @@ export class CargaDocumentosComponent implements OnInit {
     if (this.fileOK === true) {
       alert('Archivo cargado exitosamente!');
     }
+
+    /*Dropzone*/
+    this.config = {
+      clickable: true,
+      maxFiles: 2,
+      autoReset: null,
+      errorReset: null,
+      cancelReset: null,
+      params: {
+        'usuario': this.userLoged,
+        'filename': 'documento.pdf'
+      }
+    };
   }
 
   checkIfFilesCompleted() {
     if ( this.file1 && this.file2 && this.file3 && this.file3 && this.file4) {
       this.wizardService.changeStepTwoStatus(true);
     }
+  }
+
+  /*  DROPZONE METHODS  */
+  public toggleType(): void {
+    this.type = (this.type === 'component') ? 'directive' : 'component';
+  }
+
+  public toggleDisabled(): void {
+    this.disabled = !this.disabled;
+  }
+
+  public toggleAutoReset(): void {
+    this.config.autoReset = this.config.autoReset ? null : 5000;
+    this.config.errorReset = this.config.errorReset ? null : 5000;
+    this.config.cancelReset = this.config.cancelReset ? null : 5000;
+  }
+
+  public toggleMultiUpload(): void {
+    this.config.maxFiles = this.config.maxFiles ? 0 : 1;
+  }
+
+  public toggleClickAction(): void {
+    this.config.clickable = !this.config.clickable;
+  }
+
+  public resetDropzoneUploads(): void {
+    if (this.type === 'directive' && this.directiveRef) {
+      this.directiveRef.reset();
+    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
+      this.componentRef.directiveRef.reset();
+    }
+  }
+
+  public onUploadInit(args: any): void {
+    console.log('onUploadInit:', args);
+    this.dropzoneA = args;
+    console.log(typeof(this.dropzoneA));
+    console.log((this.dropzoneA));
+  }
+
+  public onUploadError(args: any): void {
+    console.log('onUploadError:', args);
+  }
+
+  public onUploadSuccess(args: any): void {
+    console.log('pre onUploadSuccess:', args);
+    args.files.pop();
+    console.log(('dropzoneA= ' + this.dropzoneA));
+    console.log('post onUploadSuccess:', args);
+  }
+
+  removeFiles() {
+    // this.dropzoneA
   }
 }

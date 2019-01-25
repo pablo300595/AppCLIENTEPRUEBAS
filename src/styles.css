@@ -2,6 +2,7 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~dropzone/dist/min/dropzone.min.css';
 
 body {
   font-family: Roboto, Arial, sans-serif;

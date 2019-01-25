@@ -43,6 +43,9 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 
 // ng2
 import { FileSelectDirective } from 'ng2-file-upload';
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -55,6 +58,14 @@ const appRoutes: Routes = [
   {path: 'wizard-success', component: SuccessWizardComponent},
   {path: 'contrato', component: ContratoComponent}
 ];
+
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+   url: 'http://localhost:3000/upload',
+   maxFilesize: 100,
+   acceptedFiles: '.pdf',
+   createImageThumbnails: true
+ };
 
 @NgModule({
   declarations: [
@@ -75,10 +86,16 @@ const appRoutes: Routes = [
     CdkTreeModule,
     ReactiveFormsModule,
     MaterialModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    DropzoneModule
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService,
-    WizardService, FormularioRegistroService],
+    WizardService, FormularioRegistroService,
+    {
+      provide: DROPZONE_CONFIG,
+      useValue: DEFAULT_DROPZONE_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
