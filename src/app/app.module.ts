@@ -62,9 +62,14 @@ const appRoutes: Routes = [
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
    url: 'http://localhost:3000/upload',
-   maxFilesize: 100,
-   acceptedFiles: '.pdf',
-   createImageThumbnails: true
+   maxFilesize: 3,
+   acceptedFiles: '.pdf,.png,.jpg',
+   createImageThumbnails: true,
+   maxThumbnailFilesize: 10,
+   thumbnailWidth: 800,
+   thumbnailHeight: 800,
+   dictDefaultMessage: 'Arrastre los archivos o de click para su carga',
+   clickable: false
  };
 
 @NgModule({

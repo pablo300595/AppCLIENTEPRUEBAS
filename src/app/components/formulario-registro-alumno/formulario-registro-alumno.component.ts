@@ -14,26 +14,26 @@ import { stringify } from '@angular/core/src/render3/util';
   styleUrls: ['./formulario-registro-alumno.component.css']
 })
 export class FormularioRegistroAlumnoComponent implements OnInit {
-  fieldLastNameFather: String = '';
-  fieldLastNameMother: String = '';
-  fieldFirstName: String = '';
-  fieldPlaceBirth: String = '';
+  fieldLastNameFather: String = 'Valenzuela';
+  fieldLastNameMother: String = 'Miramontes';
+  fieldFirstName: String = 'Jose Pablo';
+  fieldPlaceBirth: String = 'Tepic, Nayarit';
   fieldDateBirth: String = '';
   fieldStatusCivil: String = 'Soltero/a';
-  fieldEmail: String = '';
-  fieldCURP: String = '';
-  fieldNSS: Number = 0;
-  fieldStreet: String = '';
-  fieldColony: String = '';
-  fieldCity: String = '';
+  fieldEmail: String = 'pabloeng05@gmail.com';
+  fieldCURP: String = 'VAMP950530HNTLRB09';
+  fieldNSS: Number = 86169562542;
+  fieldStreet: String = 'Calcio';
+  fieldColony: String = '10 de Mayo';
+  fieldCity: String = 'Xalisco';
   fieldState: String = 'Nayarit';
-  fieldPostalCode: Number = 0;
-  fieldPhone: Number = 0;
+  fieldPostalCode: Number = 63780;
+  fieldPhone: Number = 3112617945;
   fieldEtnia: String = 'NO';
   fieldOtherEtnia: String = '';
   fieldDisability: String = 'NO';
   fieldWhichDisability: String = '';
-  fieldSchool: String = 'CONALEP';
+  fieldSchool: String = 'CETIS';
   fieldOtherSchool: String = '';
   fieldNameSchool: String = '';
   fieldAverage: Number = 100;
@@ -79,41 +79,6 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
       this.loginService.currentStatusInscripcionSource.subscribe(stat => this.statusInscripcionAlumno = stat);
     });
   }
-
-  /*updateAlumno() {
-    this.alumno = {
-      lastNameFather: this.fieldLastNameFather,
-      lastNameMother: this.fieldLastNameMother,
-      firstName: this.fieldFirstName,
-      placeBirth: this.fieldPlaceBirth,
-      dateBirth: this.extractBirthFromCURP(this.fieldCURP.substring(4, 10)),
-      statusCivil: this.fieldStatusCivil,
-      email: this.fieldEmail,
-      curp: this.fieldCURP,
-      nss: this.fieldNSS,
-      sex: this.fieldCURP.substring(10, 11),
-      street: this.fieldStreet,
-      colony: this.fieldColony,
-      city: this.fieldCity,
-      state: this.fieldState,
-      postalCode: this.fieldPostalCode,
-      phone: this.fieldPhone,
-      etnia: this.fieldEtnia,
-      otherEtnia: this.fieldOtherEtnia,
-      disability: this.fieldDisability,
-      whichDisability: this.fieldWhichDisability,
-      school: this.fieldSchool,
-      otherSchool: this.fieldOtherSchool,
-      nameSchool: this.fieldNameSchool,
-      average: this.fieldAverage,
-      career: this.fieldCareer,
-      documents: this.fieldDocuments,
-      statusInscripcion: this.statusInscripcionAlumno
-    };
-    this.alumnoService.putAlumno(this.alumno, this.idAlumnoLoged)
-        .subscribe();
-    this.messagesService.success('Alumno actualizado con exito!!!');
-  }*/
 
   evaluateIfallFieldsAreValid() {
     this.allFieldsAreValid =  (this.fieldLastNameFather.length > 1 &&

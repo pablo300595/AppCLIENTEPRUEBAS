@@ -5,7 +5,7 @@
             <div class="col-md-4 login-sec">
                 <h2 class="text-center">
                     Solicitud de Documentos
-                  </h2>
+                </h2>
             </div>
         </div>
 
@@ -96,8 +96,18 @@
                         <label for="lblCertificado"><b>FOTO</b></label>
                     </div>
                     <div class='card-body'>
-                      <dropzone *ngIf="type === 'component'" class="dropzone-container" [config]="config" [disabled]="disabled" fxLayout="row" fxLayoutAlign="start strech" fxFlex="auto" [message]="'Seleccione o arrastre imagen'" (init)="onUploadInit($event)" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
-                      <button (click)='removeFiles()'></button>
+                      <label><b>Nombre original de archivo: </b>{{dropzoneFileName}}</label>
+                      <dropzone [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+                      (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+                      (click)="dropzoneClicked()" matTooltip="Remover archivo"
+                      [matTooltipDisabled]="this.dropzoneFileName==''"></dropzone>
+
+                      <!--<div id='cursorDropzoneFoto' class="dropzone" [dropzone]="config"
+                      (error)="onUploadError($event)"
+                      (success)="onUploadSuccess($event)"
+                      (drop)="onDrop($event)"
+                      (click)="dropzoneClicked()">
+                      </div>-->
                     </div>
                   </div>
               </div>
