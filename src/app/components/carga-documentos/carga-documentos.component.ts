@@ -1,9 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { FileService } from './../../services/file.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from './../../services/login.service';
-import { Archivo } from './../../models/archivo';
-import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+import { MessagesService } from './../../services/messages.service';
 import { WizardService } from './../../services/wizard.service';
+import { DropzoneTemplatesService } from './../../services/dropzone-templates.service';
+
+import { PdfTemplatePhotoComponent } from './../subcomponents/pdf-template-photo/pdf-template-photo.component';
+import { PdfTemplateNssComponent } from './../subcomponents/pdf-template-nss/pdf-template-nss.component';
+import { PdfTemplateComprobanteComponent } from './../subcomponents/pdf-template-comprobante/pdf-template-comprobante.component';
+import { PdfTemplateCurpComponent } from './../subcomponents/pdf-template-curp/pdf-template-curp.component';
+import { PdfTemplateClinicosComponent } from './../subcomponents/pdf-template-clinicos/pdf-template-clinicos.component';
+import { PdfTemplateCertificadoComponent } from './../subcomponents/pdf-template-certificado/pdf-template-certificado.component';
+import { PdfTemplateActaComponent } from './../subcomponents/pdf-template-acta/pdf-template-acta.component';
+
+
+
+import { DropzoneComponent , DropzoneDirective,
+  DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 const URL = 'http://localhost:3000/upload';
 
@@ -15,24 +27,39 @@ const URL = 'http://localhost:3000/upload';
 export class CargaDocumentosComponent implements OnInit {
   idAlumnoLoged: String;
   userLoged: String;
-  archivoAlumno: Archivo;
 
-  fileOK: boolean;
   file1: boolean;
   file2: boolean;
   file3: boolean;
   file4: boolean;
   file5: boolean;
+  file6: boolean;
+  file7: boolean;
   stepTwoCompleted: boolean;
 
-  public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'sampleFile'});
-  public uploaderBirthCertificate: FileUploader = new FileUploader({url: URL, itemAlias: 'sampleFile'});
-  public uploaderBirthCURP: FileUploader = new FileUploader({url: URL, itemAlias: 'sampleFile'});
-  public uploaderProofCopy: FileUploader = new FileUploader({url: URL, itemAlias: 'sampleFile'});
-  public uploaderClinicAnalysis: FileUploader = new FileUploader({url: URL, itemAlias: 'sampleFile'});
 
-  constructor(private fileService: FileService, private loginService: LoginService, private wizardService: WizardService) {
-    this.fileOK = false;
+  /* Dropzone conf */
+  public type = 'component';
+  public config: DropzoneConfigInterface;
+  @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
+
+  public config1: DropzoneConfigInterface;
+  public config2: DropzoneConfigInterface;
+  public config3: DropzoneConfigInterface;
+  public config4: DropzoneConfigInterface;
+  public config5: DropzoneConfigInterface;
+  public config6: DropzoneConfigInterface;
+
+  dropzoneFileNameCERTIFICADO: any;
+  dropzoneFileNameACTA: any;
+  dropzoneFileNameCURP: any;
+  dropzoneFileNameCOMPROBANTE: any;
+  dropzoneFileNameANALISIS: any;
+  dropzoneFileNamePhoto: any;
+  dropzoneFileNameNSS: any;
+
+  constructor(private loginService: LoginService, private wizardService: WizardService,
+    private messagesService: MessagesService, private dropzoneTemplatesService: DropzoneTemplatesService) {
     this.stepTwoCompleted = false;
   }
 
@@ -41,152 +68,102 @@ export class CargaDocumentosComponent implements OnInit {
     this.loginService.currentUser.subscribe(user => this.userLoged = user);
 
     this.wizardService.currentStepTwo.subscribe(status => this.stepTwoCompleted = status);
-    /*
-      school uploader
-    */
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
-      // check status
-      if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Invalid format') {
-        alert('Formato de archivo no válido solo se acepta pdf!');
-        this.fileOK = false;
-        return;
-      } else if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Too Big') {
-        alert('Archivo muy pesado el límite es 1 MB!');
-        this.fileOK = false;
-        return;
-      } else {
-        this.fileOK = true;
-        this.file1 = true;
-        this.checkIfFilesCompleted();
-        alert('Exito');
-      }
-    };
-    this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
-      form.append('usuario' , this.userLoged);
-      form.append('filename' , 'certificadoPrepa.pdf');
-     };
-    this.uploader.uploadAll();
-     /*
-      birth certificate uploader
-    */
-    this.uploaderBirthCertificate.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploaderBirthCertificate.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
-      // check status
-      if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Invalid format') {
-        alert('Formato de archivo no válido solo se acepta pdf!');
-        this.fileOK = false;
-        return;
-      } else if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Too Big') {
-        alert('Archivo muy pesado el límite es 1 MB!');
-        this.fileOK = false;
-        return;
-      } else {
-        this.fileOK = true;
-        this.file2 = true;
-        this.checkIfFilesCompleted();
-        alert('Exito');
-      }
-    };
-    this.uploaderBirthCertificate.onBuildItemForm = (fileItem: any, form: any) => {
-      form.append('usuario' , this.userLoged);
-      form.append('filename' , 'certificadoNacimiento.pdf');
-     };
-    this.uploaderBirthCertificate.uploadAll();
-    /*
-      CURP uploader
-    */
-   this.uploaderBirthCURP.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploaderBirthCURP.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
-      // check status
-      if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Invalid format') {
-        alert('Formato de archivo no válido solo se acepta pdf!');
-        this.fileOK = false;
-        return;
-      } else if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Too Big') {
-        alert('Archivo muy pesado el límite es 1 MB!');
-        this.fileOK = false;
-        return;
-      } else {
-        this.fileOK = true;
-        this.file3 = true;
-        this.checkIfFilesCompleted();
-        alert('Exito');
-      }
-    };
-    this.uploaderBirthCURP.onBuildItemForm = (fileItem: any, form: any) => {
-      form.append('usuario' , this.userLoged);
-      form.append('filename' , 'CURP.pdf');
-     };
-    this.uploaderBirthCURP.uploadAll();
-    /*
-      Proof Copy uploader
-    */
-   this.uploaderProofCopy.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploaderProofCopy.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
-      // check status
-      if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Invalid format') {
-        alert('Formato de archivo no válido solo se acepta pdf!');
-        this.fileOK = false;
-        return;
-      } else if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Too Big') {
-        alert('Archivo muy pesado el límite es 1 MB!');
-        this.fileOK = false;
-        return;
-      } else {
-        this.fileOK = true;
-        this.file4 = true;
-        this.checkIfFilesCompleted();
-        alert('Exito');
-      }
-    };
-    this.uploaderProofCopy.onBuildItemForm = (fileItem: any, form: any) => {
-      form.append('usuario' , this.userLoged);
-      form.append('filename' , 'comprobantePago.pdf');
-     };
-    this.uploaderProofCopy.uploadAll();
-    /*
-      Clinic uploader
-    */
-   this.uploaderClinicAnalysis.onAfterAddingFile = (file) => { file.withCredentials = false; };
-   this.uploaderClinicAnalysis.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-     console.log('ImageUpload:uploaded:', item, status, response);
-     // check status
-     if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Invalid format') {
-       alert('Formato de archivo no válido solo se acepta pdf!');
-       this.fileOK = false;
-       return;
-     } else if ((response.substring((response.indexOf('/') + 1), (response.indexOf('$')))) === 'Too Big') {
-       alert('Archivo muy pesado el límite es 1 MB!');
-       this.fileOK = false;
-       return;
-     } else {
-       this.fileOK = true;
-       this.file5 = true;
-       this.checkIfFilesCompleted();
-       alert('Exito');
-     }
-   };
-   this.uploaderClinicAnalysis.onBuildItemForm = (fileItem: any, form: any) => {
-     form.append('usuario' , this.userLoged);
-     form.append('filename' , 'analsisClinicos.pdf');
-    };
-   this.uploaderClinicAnalysis.uploadAll();
 
-    if (this.fileOK === true) {
-      alert('Archivo cargado exitosamente!');
-    }
+    /*Dropzone*/
+    this.config = {
+      clickable: true, maxFiles: 2,
+      params: {'usuario': this.userLoged, 'filename': 'CERTIFICADO.pdf'},
+      accept: (file, done) => {this.dropzoneFileNameCERTIFICADO = file.name; this.file1 = true; done(); },
+      autoReset: 1,
+      errorReset: 1
+    };
 
+    this.config1 = {
+      clickable: true, maxFiles: 2,
+      params: {'usuario': this.userLoged, 'filename': 'ACTA.pdf'},
+      accept: (file, done) => {this.dropzoneFileNameACTA = file.name; this.file2 = true; done(); },
+      autoReset: 1,
+      errorReset: 1
+    };
 
+    this.config2 = {
+      clickable: true, maxFiles: 2,
+      params: {'usuario': this.userLoged, 'filename': 'CURP.pdf'},
+      accept: (file, done) => {this.dropzoneFileNameCURP = file.name; this.file3 = true; done(); },
+      autoReset: 1,
+      errorReset: 1
+    };
+
+    this.config3 = {
+      clickable: true, maxFiles: 2,
+      params: {'usuario': this.userLoged, 'filename': 'COMPROBANTE.pdf'},
+      accept: (file, done) => {this.dropzoneFileNameCOMPROBANTE = file.name; this.file4 = true; done(); },
+      autoReset: 1,
+      errorReset: 1
+    };
+
+    this.config4 = {
+      clickable: true, maxFiles: 2,
+      params: {'usuario': this.userLoged, 'filename': 'CLINICOS.pdf'},
+      accept: (file, done) => {this.dropzoneFileNameANALISIS = file.name; this.file5 = true; done(); },
+      autoReset: 1,
+      errorReset: 1
+    };
+
+    this.config5 = {
+      clickable: true, maxFiles: 2,
+      params: {'usuario': this.userLoged, 'filename': 'FOTO.pdf'},
+      accept: (file, done) => {this.dropzoneFileNamePhoto = file.name; this.file6 = true; done(); },
+      autoReset: 1,
+      errorReset: 1
+    };
+
+    this.config6 = {
+      clickable: true, maxFiles: 2,
+      params: {'usuario': this.userLoged, 'filename': 'NSS.pdf'},
+      accept: (file, done) => {this.dropzoneFileNameNSS = file.name; this.file7 = true; done(); },
+      autoReset: 1,
+      errorReset: 1
+    };
   }
 
   checkIfFilesCompleted() {
-    if ( this.file1 && this.file2 && this.file3 && this.file3 && this.file4) {
+    if ( this.file1 && this.file2 && this.file3 && this.file3 && this.file4 && this.file5 && this.file6 && this.file7) {
       this.wizardService.changeStepTwoStatus(true);
     }
   }
+
+  /*  DROPZONE 1 METHODS  */
+  public resetDropzoneUploads(): void {
+    this.componentRef.directiveRef.reset();
+  }
+
+  public onUploadInit(args: any): void {
+    console.log('onUploadInit:', args);
+  }
+
+  public onUploadError(args: any): void {
+    this.resetDropzoneUploads();
+    if (args[1] === `You can't upload files of this type.`) {
+      this.messagesService.warning('¡Error no se pueden subir archivos con esa extensión!');
+    } else {
+      this.messagesService.warning('¡Error no se pueden subir archivos tan pesados!');
+    }
+  }
+
+  public onUploadSuccess(args: any): void {
+    this.messagesService.success('Archivo cargado');
+
+    this.checkIfFilesCompleted();
+  }
+
+  onDrop(event: DragEvent) {
+    this.resetDropzoneUploads();
+    console.log('dropped', event);
+  }
+
+  dropzoneClicked() {
+    this.resetDropzoneUploads();
+  }
+
 }
