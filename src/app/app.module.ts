@@ -31,6 +31,7 @@ import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
 import { WizardService } from './services/wizard.service';
 import { FormularioRegistroService } from './services/formulario-registro.service';
+import { DropzoneTemplatesService } from './services/dropzone-templates.service';
 
 // Angular material
 import { MaterialModule } from './material';
@@ -95,7 +96,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DropzoneModule
   ],
   providers: [MenuService, AlumnoService, LoginService, FileService,
-    WizardService, FormularioRegistroService,
+    WizardService, FormularioRegistroService, DropzoneTemplatesService,
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG
