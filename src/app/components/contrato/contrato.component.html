@@ -2,16 +2,16 @@
   <div class="container">
       <div class='login-block'>
           <div class="container">
-        
+
             <div class="row justify-content-center align-items-center">
               <div class="col-md-4 login-sec">
                 <h2 class="text-center">
                   Contrato con el Estudiante
                 </h2>
               </div>
-        
+
             </div>
-      
+
             <img src="/src/assets/imgs/Head.png" class="img-fluid" alt="Responsive image">
             <div style="text-align:center;">
               <h5><b>Cláusulas</b></h5>
@@ -20,7 +20,7 @@
               <div>
                 <dl>
                   <dt><u>Compromisos de la Institución:</u></dt>
-        
+
                   <p>La Institución se compromete con el Estudiante a:</p>
                   <dd>
                     <ol>
@@ -41,7 +41,7 @@
                       <dd>&#10003;Cumplir los contenidos de los planes y
                       programas de estudio.
                       </dd>
-        
+
                       <dd>&#10003;Fomentar la participación en actividades
                       académicas, culturales y deportivas (Concursos de Ciencias Básicas,
                       Creatividad, Emprendedores; Actividades Deportivas y
@@ -60,7 +60,7 @@
                       </dd>
                     </ol>
                   </dd>
-        
+
                   <p>ATENCION EN VENTANILLA</p>
                   <dd>
                     <ol>
@@ -70,7 +70,7 @@
                       </dd>
                     </ol>
                   </dd>
-        
+
                   <p>SERVICIOS ESTUDIANTILES</p>
                   <dd>
                     <ol>
@@ -82,7 +82,7 @@
                       </dd>
                     </ol>
                   </dd>
-        
+
                   <p>SERVICIOS DE APOYO</p>
                   <dd>
                     <ol>
@@ -91,30 +91,30 @@
                           determinado por el Programa de Estudios y el
                           Presupuesto Autorizado para tal efecto.
                       </dd>
-        
+
                     </ol>
                   </dd>
-                  
-        
+
+
                 </dl>
               </div>
             </div>
             <div style="padding: 10px; float: right; width: 45%; text-align: justify;">
-        
+
               <dl>
-                
-                  
+
+
                       <p>&#10003; Proporcionar los Servicios de Computo con que
                           cuenta el plantel, así como los servicios del
                           Centro de Información (préstamo interno y
                           externo de material bibliográfico) dentro de los
                           horarios establecidos.
                       </p>
-                 
+
                 <br><br><br><br><br>
                 <dt><u>Compromisos del Estudiante:</u></dt>
                 <p>El Estudiante se compromete con la Institución a:</p>
-                  
+
                         <p>&#10003; Cubrir los requisitos de ingreso que marca la
                             Institución.
                         </p>
@@ -153,16 +153,16 @@
                         <p>&#10003; Revisar las calificaciones en el Sistema Integral
                             de Información, previo a la reinscripción.
                         </p>
-        
+
               </dl>
-        
+
             </div>
             <img src="/src/assets/imgs/Footer.png" class="img-fluid" alt="Responsive image">
             <br><br>
             <div style="text-align:center;">
-              <mat-checkbox>Acepto los terminos y condiciones.</mat-checkbox>
-              
+              <mat-checkbox [checked]="checked" (change)="onChange($event); false">Acepto los terminos y condiciones.</mat-checkbox>
+
             </div>
-            
+
           </div>
         </div>

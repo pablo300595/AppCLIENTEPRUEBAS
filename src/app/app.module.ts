@@ -1,24 +1,41 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
+// componentes
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FormularioRegistroAlumnoComponent } from './components/formulario-registro-alumno/formulario-registro-alumno.component';
 import { CargaDocumentosComponent } from './components/carga-documentos/carga-documentos.component';
 import { HomeInscripcionesComponent } from './components/home-inscripciones/home-inscripciones.component';
+import { InscripcionWizardComponent } from './components/inscripcion-wizard/inscripcion-wizard.component';
+import { DetalleAlumnoComponent } from './components/detalle-alumno/detalle-alumno.component';
 
 // modulos
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DetalleAlumnoComponent, DetalleAlumnoDialogComponent } from './components/detalle-alumno/detalle-alumno.component';
+import { DetalleAlumnoDialogComponent } from './components/detalle-alumno/detalle-alumno.component';
 
 import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { ContratoComponent } from './components/contrato/contrato.component';
+import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
+import { SuccessWizardComponent } from './components/success-wizard/success-wizard.component';
+import { FooterComponent } from './components/footer/footer.component';
+// subcomponentes
+import { PdfTemplatePhotoComponent } from './components/subcomponents/pdf-template-photo/pdf-template-photo.component';
+import { PdfTemplateNssComponent } from './components/subcomponents/pdf-template-nss/pdf-template-nss.component';
+import { PdfTemplateComprobanteComponent } from './components/subcomponents/pdf-template-comprobante/pdf-template-comprobante.component';
+import { PdfTemplateCurpComponent } from './components/subcomponents/pdf-template-curp/pdf-template-curp.component';
+import { PdfTemplateClinicosComponent } from './components/subcomponents/pdf-template-clinicos/pdf-template-clinicos.component';
+import { PdfTemplateCertificadoComponent } from './components/subcomponents/pdf-template-certificado/pdf-template-certificado.component';
+import { PdfTemplateActaComponent } from './components/subcomponents/pdf-template-acta/pdf-template-acta.component';
+
+// modulos de angular
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-// import { Subject } from 'rxjs';
 
 // servicios
 import { MenuService } from './services/menu.service';
@@ -26,31 +43,26 @@ import { LoginService } from './services/login.service';
 import { AlumnoService } from './services/alumno.service';
 import { FileService } from './services/file.service';
 import { WizardService } from './services/wizard.service';
+import { FormularioRegistroService } from './services/formulario-registro.service';
+import { DropzoneTemplatesService } from './services/dropzone-templates.service';
 
+// Angular material
+import { MaterialModule } from './material';
 
-// import Table with paginator
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSortModule} from '@angular/material/sort';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-
-
+// Angular cdk
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 
-
-// Librerias
+// ng2
 import { FileSelectDirective } from 'ng2-file-upload';
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
-import { InscripcionWizardComponent } from './components/inscripcion-wizard/inscripcion-wizard.component';
 
 // Material
-import { MaterialModule } from './material';
-import { SuccessWizardComponent } from './components/success-wizard/success-wizard.component';
-import { FooterComponent } from './components/footer/footer.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 
@@ -58,12 +70,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatNativeDateModule} from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
-import { ContratoComponent } from './components/contrato/contrato.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 import { ResumenComponent } from './components/resumen/resumen.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
+import { TemplateWizardComponent } from './components/subcomponents/template-wizard/template-wizard.component';
 
 
 const appRoutes: Routes = [
@@ -77,39 +88,42 @@ const appRoutes: Routes = [
   {path: 'wizard-success', component: SuccessWizardComponent},
   {path: 'contrato', component: ContratoComponent},
   {path: 'resumen', component: ResumenComponent}
-    ];
+];
+
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+   url: 'http://localhost:3000/upload',
+   maxFilesize: 3,
+   acceptedFiles: '.pdf,.png,.jpg',
+   createImageThumbnails: true,
+   maxThumbnailFilesize: 10,
+   thumbnailWidth: 800,
+   thumbnailHeight: 800,
+   dictDefaultMessage: 'Arrastre los archivos o de click para su carga',
+   clickable: false
+ };
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    MenuComponent,
-    FormularioRegistroAlumnoComponent,
-    CargaDocumentosComponent,
-    HomeInscripcionesComponent,
-    DetalleAlumnoComponent,
-    DetalleAlumnoDialogComponent,
-    LoginComponent,
-    PerfilComponent,
-    FileSelectDirective,
-    InscripcionWizardComponent,
-    SuccessWizardComponent,
-    FooterComponent,
-    ContratoComponent,
-    ConfirmacionComponent,
-    ResumenComponent,
-    
+    AppComponent, HeaderComponent, MenuComponent, FormularioRegistroAlumnoComponent,
+    CargaDocumentosComponent, HomeInscripcionesComponent, DetalleAlumnoComponent, DetalleAlumnoDialogComponent,
+    LoginComponent, PerfilComponent, FileSelectDirective, InscripcionWizardComponent,
+    SuccessWizardComponent, FooterComponent, ContratoComponent, ConfirmacionComponent, ResumenComponent,
+    PdfTemplatePhotoComponent,
+    PdfTemplateNssComponent,
+    PdfTemplateComprobanteComponent,
+    PdfTemplateCurpComponent,
+    PdfTemplateClinicosComponent,
+    PdfTemplateCertificadoComponent,
+    PdfTemplateActaComponent,
+    TemplateWizardComponent
+    ],
 
-  ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatInputModule,
     BrowserAnimationsModule,
     DragDropModule,
     ScrollingModule,
@@ -118,20 +132,24 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MaterialModule,
     RouterModule.forRoot(appRoutes),
+    DropzoneModule,
     MatCheckboxModule,
     MatTabsModule,
     MatDialogModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    MatFormFieldModule,
     MatSelectModule,
     MatIconModule
-
   ],
   entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent],
-  
-  providers: [MenuService, AlumnoService, LoginService, FileService, WizardService],
-  bootstrap: [AppComponent ]
+  providers: [MenuService, AlumnoService, LoginService, FileService,
+    WizardService, FormularioRegistroService, DropzoneTemplatesService,
+    {
+      provide: DROPZONE_CONFIG,
+      useValue: DEFAULT_DROPZONE_CONFIG
+    }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 

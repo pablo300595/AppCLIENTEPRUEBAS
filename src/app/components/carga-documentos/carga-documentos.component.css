@@ -26,3 +26,14 @@ padding : 50px 0;
 .banner-text h2{color:#fff; font-weight:600;}
 .banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
 .banner-text p{color:#fff;}
+#cursorDropzoneFoto{
+  cursor: pointer;
+  background-color: rgb(199, 199, 192);
+}
+#dropzoneFotoLoader{
+  cursor: pointer;
+  background-color: rgb(206, 206, 160);
+}
+#dropzonePreview{
+  background-color: rgb(245, 245, 2);
+}
