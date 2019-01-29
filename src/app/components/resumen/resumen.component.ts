@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Alumno } from './../../models/alumno';
 import { AlumnoService} from './../../services/alumno.service';
 import { LoginService } from './../../services/login.service';
-import * as jsPDF from 'jspdf';
+// import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-resumen',
@@ -78,7 +78,7 @@ export class ResumenComponent implements OnInit {
   }
 
   downloadPDF() {
-    const doc = new jsPDF();
+    /*const doc = new jsPDF();
     doc.text(this.fieldLastNameFather, 10, 10);
     doc.text(this.fieldLastNameMother, 10, 12);
     doc.text(this.fieldFirstName, 10, 14);
@@ -103,7 +103,7 @@ export class ResumenComponent implements OnInit {
     doc.text(this.fieldNameSchool, 10, 54);
     doc.text(this.fieldAverage, 10, 56);
     doc.text(this.fieldCareer, 10, 58);
-    doc.save('Test.pdf');
+    doc.save('Test.pdf');*/
   }
 
 }
