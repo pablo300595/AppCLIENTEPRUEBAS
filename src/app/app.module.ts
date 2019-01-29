@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,8 @@ import { HomeInscripcionesComponent } from './components/home-inscripciones/home
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DetalleAlumnoComponent } from './components/detalle-alumno/detalle-alumno.component';
+import { DetalleAlumnoComponent, DetalleAlumnoDialogComponent } from './components/detalle-alumno/detalle-alumno.component';
+
 import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -50,14 +52,18 @@ import { MaterialModule } from './material';
 import { SuccessWizardComponent } from './components/success-wizard/success-wizard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
+import {MatNativeDateModule} from '@angular/material';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 import { ContratoComponent } from './components/contrato/contrato.component';
-
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 import { ResumenComponent } from './components/resumen/resumen.component';
-
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
 
 
 const appRoutes: Routes = [
@@ -82,6 +88,7 @@ const appRoutes: Routes = [
     CargaDocumentosComponent,
     HomeInscripcionesComponent,
     DetalleAlumnoComponent,
+    DetalleAlumnoDialogComponent,
     LoginComponent,
     PerfilComponent,
     FileSelectDirective,
@@ -90,7 +97,8 @@ const appRoutes: Routes = [
     FooterComponent,
     ContratoComponent,
     ConfirmacionComponent,
-    ResumenComponent
+    ResumenComponent,
+    
 
   ],
   imports: [
@@ -111,10 +119,20 @@ const appRoutes: Routes = [
     MaterialModule,
     RouterModule.forRoot(appRoutes),
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule
 
   ],
+  entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent],
+  
   providers: [MenuService, AlumnoService, LoginService, FileService, WizardService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent ]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);
