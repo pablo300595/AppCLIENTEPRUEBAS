@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,10 @@ import { CargaDocumentosComponent } from './components/carga-documentos/carga-do
 import { HomeInscripcionesComponent } from './components/home-inscripciones/home-inscripciones.component';
 import { InscripcionWizardComponent } from './components/inscripcion-wizard/inscripcion-wizard.component';
 import { DetalleAlumnoComponent } from './components/detalle-alumno/detalle-alumno.component';
+
+// modulos
+import { DetalleAlumnoDialogComponent } from './components/detalle-alumno/detalle-alumno.component';
+
 import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ContratoComponent } from './components/contrato/contrato.component';
@@ -57,6 +62,19 @@ import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 
+// Material
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
+import {MatNativeDateModule} from '@angular/material';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ResumenComponent } from './components/resumen/resumen.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -67,7 +85,8 @@ const appRoutes: Routes = [
   {path: 'perfil', component: PerfilComponent},
   {path: 'wizard', component: InscripcionWizardComponent},
   {path: 'wizard-success', component: SuccessWizardComponent},
-  {path: 'contrato', component: ContratoComponent}
+  {path: 'contrato', component: ContratoComponent},
+  {path: 'resumen', component: ResumenComponent}
 ];
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -86,9 +105,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 @NgModule({
   declarations: [
     AppComponent, HeaderComponent, MenuComponent, FormularioRegistroAlumnoComponent,
-    CargaDocumentosComponent, HomeInscripcionesComponent, DetalleAlumnoComponent,
+    CargaDocumentosComponent, HomeInscripcionesComponent, DetalleAlumnoComponent, DetalleAlumnoDialogComponent,
     LoginComponent, PerfilComponent, FileSelectDirective, InscripcionWizardComponent,
-    SuccessWizardComponent, FooterComponent, ContratoComponent, ConfirmacionComponent,
+    SuccessWizardComponent, FooterComponent, ContratoComponent, ConfirmacionComponent, ResumenComponent,
     PdfTemplatePhotoComponent,
     PdfTemplateNssComponent,
     PdfTemplateComprobanteComponent,
@@ -96,7 +115,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     PdfTemplateClinicosComponent,
     PdfTemplateCertificadoComponent,
     PdfTemplateActaComponent
-  ],
+    ],
+
   imports: [
     CommonModule,
     BrowserModule,
@@ -110,8 +130,16 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ReactiveFormsModule,
     MaterialModule,
     RouterModule.forRoot(appRoutes),
-    DropzoneModule
+    DropzoneModule,
+    MatCheckboxModule,
+    MatTabsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatIconModule
   ],
+  entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent],
   providers: [MenuService, AlumnoService, LoginService, FileService,
     WizardService, FormularioRegistroService, DropzoneTemplatesService,
     {
@@ -122,3 +150,5 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);
