@@ -15,11 +15,12 @@
             <label for="lblCertificado"><b>CERTIFICADO DE BACHILLERATO O EQUIVALENTE</b></label>
           </div>
           <div class='card-body'>
-            <label><b>Adjuntar un archivo</b></label><br>
-            <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-            <br><br>
-            <button type="button" class="btn btn-primary btn-s" (click)="uploader.uploadAll()"
-              [disabled]="!uploader.getNotUploadedItems().length" >Enviar</button>
+              <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCERTIFICADO}}</label>
+              <dropzone [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+              (click)="dropzoneClicked()" matTooltip="Remover archivo"
+              [matTooltipDisabled]="this.dropzoneFileNameCERTIFICADO==''"></dropzone>
+              <app-pdf-template-certificado *ngIf='file1'></app-pdf-template-certificado>
           </div>
         </div>
       </div>
@@ -30,11 +31,12 @@
             <label for="lblCertificado"><b>ACTA DE NACIMIENTO</b></label>
           </div>
           <div class='card-body'>
-            <label><b>Adjuntar un archivo</b></label><br>
-            <input type="file" name="photo" ng2FileSelect [uploader]="uploaderBirthCertificate" />
-            <br><br>
-            <button type="button" class="btn btn-primary btn-s"(click)="uploaderBirthCertificate.uploadAll()"
-              [disabled]="!uploaderBirthCertificate.getNotUploadedItems().length" >Enviar</button>
+            <label><b>Nombre original de archivo: </b>{{dropzoneFileNameACTA}}</label>
+            <dropzone [config]="config1" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+            (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+            (click)="dropzoneClicked()" matTooltip="Remover archivo"
+            [matTooltipDisabled]="this.dropzoneFileNameACTA==''"></dropzone>
+            <app-pdf-template-acta *ngIf='file2'></app-pdf-template-acta>
           </div>
         </div>
       </div>
@@ -48,11 +50,12 @@
               <label for="lblCertificado"><b>CURP</b></label>
           </div>
           <div class='card-body'>
-            <label><b>Adjuntar un archivo</b></label><br>
-            <input type="file" name="photo" ng2FileSelect [uploader]="uploaderBirthCURP" />
-            <br><br>
-            <button type="button" class="btn btn-primary btn-s" (click)="uploaderBirthCURP.uploadAll()"
-              [disabled]="!uploaderBirthCURP.getNotUploadedItems().length" >Enviar</button>
+            <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCURP}}</label>
+            <dropzone [config]="config2" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+            (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+            (click)="dropzoneClicked()" matTooltip="Remover archivo"
+            [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+            <app-pdf-template-curp *ngIf='file3'></app-pdf-template-curp>
           </div>
         </div>
       </div>
@@ -63,49 +66,70 @@
             <label for="lblCertificado"><b>COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN</b></label>
           </div>
           <div class='card-body'>
-            <label><b>Adjuntar un archivo</b></label><br>
-              <input type="file" name="photo" ng2FileSelect [uploader]="uploaderProofCopy" />
-              <br><br>
-              <button type="button" class="btn btn-primary btn-s"(click)="uploaderProofCopy.uploadAll()"
-                [disabled]="!uploaderProofCopy.getNotUploadedItems().length" >Enviar</button>
+            <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCOMPROBANTE}}</label>
+            <dropzone [config]="config3" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+              (click)="dropzoneClicked()" matTooltip="Remover archivo"
+              [matTooltipDisabled]="this.dropzoneFileNameCOMPROBANTE==''"></dropzone>
+              <app-pdf-template-comprobante *ngIf='file4'></app-pdf-template-comprobante>
           </div>
         </div>
       </div>
     </div>
     <!--Fila 3: FOTO y Resultado de análisis--><br>
     <div class='row'>
-      <!--Columna 1: FOTO-->
-      <div class='col-md-6'>
-        <div class='card'>
-          <div class='card-header'>
-            <label for="lblCertificado"><b>FOTO</b></label>
-          </div>
-          <div class='card-body'>
-            <label><b>Nombre original de archivo: </b>{{dropzoneFileName}}</label>
-            <dropzone [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-              (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-              (click)="dropzoneClicked()" matTooltip="Remover archivo"
-              [matTooltipDisabled]="this.dropzoneFileName==''"></dropzone>
-          </div>
-        </div>
-      </div>
-      <!--Columna 2: RESULTADO DE ANÁLISIS-->
+      <!--Columna 1: RESULTADO DE ANÁLISIS-->
       <div class='col-md-6'>
         <div class='card'>
           <div class='card-header'>
             <label for="lblCertificado"><b>RESULTADO DE ANÁLISIS CLÍNICOS</b></label>
           </div>
           <div class='card-body'>
-            <label><b>Adjuntar un archivo</b></label><br>
-            <input type="file" name="photo" ng2FileSelect [uploader]="uploaderClinicAnalysis" />
-            <br><br>
-            <button type="button" class="btn btn-primary btn-s" (click)="uploaderClinicAnalysis.uploadAll()"
-            [disabled]="!uploaderClinicAnalysis.getNotUploadedItems().length">Enviar</button>
+            <label><b>Nombre original de archivo: </b>{{dropzoneFileNameANALISIS}}</label>
+            <dropzone [config]="config4" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+              (click)="dropzoneClicked()" matTooltip="Remover archivo"
+              [matTooltipDisabled]="this.dropzoneFileNameANALISIS==''"></dropzone>
+              <app-pdf-template-clinicos *ngIf='file5'></app-pdf-template-clinicos>
+          </div>
+        </div>
+      </div>
+      <!--Columna 2: FOTO-->
+      <div class='col-md-6'>
+        <div class='card'>
+          <div class='card-header'>
+            <label for="lblCertificado"><b>FOTO</b></label>
+          </div>
+          <div class='card-body'>
+            <label><b>Nombre original de archivo: </b>{{dropzoneFileNamePhoto}}</label>
+            <dropzone [config]="config5" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+              (click)="dropzoneClicked()" matTooltip="Remover archivo"
+              [matTooltipDisabled]="this.dropzoneFileNamePhoto==''"></dropzone>
+              <app-pdf-template-photo *ngIf='file6'></app-pdf-template-photo>
           </div>
         </div>
       </div>
     </div>
-
+    <!--Fila 4: NSS--><br>
+    <div class='row'>
+      <!--Columna 1: NSS-->
+      <div class='col-md-6'>
+          <div class='card'>
+            <div class='card-header'>
+              <label for="lblCertificado"><b>NSS</b></label>
+            </div>
+            <div class='card-body'>
+              <label><b>Nombre original de archivo: </b>{{dropzoneFileNameNSS}}</label>
+              <dropzone  [config]="config6" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+                (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+                (click)="dropzoneClicked()" matTooltip="Remover archivo"
+                [matTooltipDisabled]="this.dropzoneFileNameNSS==''"></dropzone>
+                <app-pdf-template-nss *ngIf='file7'></app-pdf-template-nss>
+            </div>
+          </div>
+        </div>
+    </div>
     <br>
   </div>
 </div>

@@ -17,6 +17,14 @@ import { ContratoComponent } from './components/contrato/contrato.component';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 import { SuccessWizardComponent } from './components/success-wizard/success-wizard.component';
 import { FooterComponent } from './components/footer/footer.component';
+// subcomponentes
+import { PdfTemplatePhotoComponent } from './components/subcomponents/pdf-template-photo/pdf-template-photo.component';
+import { PdfTemplateNssComponent } from './components/subcomponents/pdf-template-nss/pdf-template-nss.component';
+import { PdfTemplateComprobanteComponent } from './components/subcomponents/pdf-template-comprobante/pdf-template-comprobante.component';
+import { PdfTemplateCurpComponent } from './components/subcomponents/pdf-template-curp/pdf-template-curp.component';
+import { PdfTemplateClinicosComponent } from './components/subcomponents/pdf-template-clinicos/pdf-template-clinicos.component';
+import { PdfTemplateCertificadoComponent } from './components/subcomponents/pdf-template-certificado/pdf-template-certificado.component';
+import { PdfTemplateActaComponent } from './components/subcomponents/pdf-template-acta/pdf-template-acta.component';
 
 // modulos de angular
 import { HttpClientModule } from '@angular/common/http';
@@ -48,6 +56,8 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
+
+
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
   {path: 'cargaDocumentos', component: CargaDocumentosComponent},
@@ -78,7 +88,14 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     AppComponent, HeaderComponent, MenuComponent, FormularioRegistroAlumnoComponent,
     CargaDocumentosComponent, HomeInscripcionesComponent, DetalleAlumnoComponent,
     LoginComponent, PerfilComponent, FileSelectDirective, InscripcionWizardComponent,
-    SuccessWizardComponent, FooterComponent, ContratoComponent, ConfirmacionComponent
+    SuccessWizardComponent, FooterComponent, ContratoComponent, ConfirmacionComponent,
+    PdfTemplatePhotoComponent,
+    PdfTemplateNssComponent,
+    PdfTemplateComprobanteComponent,
+    PdfTemplateCurpComponent,
+    PdfTemplateClinicosComponent,
+    PdfTemplateCertificadoComponent,
+    PdfTemplateActaComponent
   ],
   imports: [
     CommonModule,

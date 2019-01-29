@@ -46,4 +46,12 @@ export class InscripcionWizardComponent implements OnInit {
     this.wizardService.changeStepOneStatus(true);
   }
 
+  checkStepTwo() {
+    if (this.stepTwoCompleted) {
+      this.messagesService.success('Documentos cargados de forma correcta!!!');
+    } else {
+      this.messagesService.warning('Aun no se ha completado este paso!!!');
+    }
+  }
+
 }
