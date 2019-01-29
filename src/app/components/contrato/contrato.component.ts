@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContratoService } from './../../services/contrato.service';
 
 @Component({
   selector: 'app-contrato',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contrato.component.css']
 })
 export class ContratoComponent implements OnInit {
+  checked = false;
+  acceptedTerms: boolean;
 
-  constructor() { }
+  constructor(private contratoService: ContratoService) {
+    this.contratoService.currentAcceptedTerms.subscribe(accepted => this.acceptedTerms = accepted);
+  }
 
   ngOnInit() {
+  }
+
+  onChange(event) {
+    console.log('onChange event.checked ' + event.checked);
+    this.contratoService.changeAcceptedTerms(event.checked);
   }
 
 }

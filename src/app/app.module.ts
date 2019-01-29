@@ -74,6 +74,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ResumenComponent } from './components/resumen/resumen.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
+import { TemplateWizardComponent } from './components/subcomponents/template-wizard/template-wizard.component';
 
 
 const appRoutes: Routes = [
@@ -114,7 +115,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     PdfTemplateCurpComponent,
     PdfTemplateClinicosComponent,
     PdfTemplateCertificadoComponent,
-    PdfTemplateActaComponent
+    PdfTemplateActaComponent,
+    TemplateWizardComponent
     ],
 
   imports: [

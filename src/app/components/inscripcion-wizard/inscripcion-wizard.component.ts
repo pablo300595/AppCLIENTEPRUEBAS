@@ -4,7 +4,10 @@ import { WizardService } from './../../services/wizard.service';
 import { MessagesService } from './../../services/messages.service';
 import { LoginService } from './../../services/login.service';
 import { FormularioRegistroService } from './../../services/formulario-registro.service';
+import { ContratoService } from './../../services/contrato.service';
 import { Alumno } from './../../models/alumno';
+import { TemplateWizardComponent } from './../subcomponents/template-wizard/template-wizard.component';
+
 
 @Component({
   selector: 'app-inscripcion-wizard',
@@ -21,7 +24,8 @@ export class InscripcionWizardComponent implements OnInit {
   idAlumnoLoged: String;
   firstTryGivenValues: boolean;
   constructor(private alumnoService: AlumnoService, private loginService: LoginService, private wizardService: WizardService,
-    private formularioRegistroService: FormularioRegistroService, private messagesService: MessagesService) { }
+    private formularioRegistroService: FormularioRegistroService, private messagesService: MessagesService,
+    private contratoService: ContratoService) { }
 
   ngOnInit() {
     this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
@@ -32,6 +36,7 @@ export class InscripcionWizardComponent implements OnInit {
     this.formularioRegistroService.currentalumnoToUpdate.subscribe(alumnoToUpdate => this.alumnoToUpdate = alumnoToUpdate);
     this.formularioRegistroService.currentfirstTryGivenValues.subscribe(value => this.firstTryGivenValues = value);
     this.formularioRegistroService.currentallFieldsAreValid.subscribe(value => this.stepOneCompleted = value);
+    this.contratoService.currentAcceptedTerms.subscribe(accepted => this.stepThreeCompleted = accepted);
   }
 
   updateAlumno() {
@@ -52,6 +57,18 @@ export class InscripcionWizardComponent implements OnInit {
     } else {
       this.messagesService.warning('Aun no se ha completado este paso!!!');
     }
+  }
+
+  checkStepThree() {
+    if (this.stepThreeCompleted) {
+      this.messagesService.success('Contrato aceptado!!!');
+    } else {
+      this.messagesService.warning('Aun no se ha completado este paso!!!');
+    }
+  }
+
+  checkStepFour() {
+    this.stepFourCompleted = true;
   }
 
 }
