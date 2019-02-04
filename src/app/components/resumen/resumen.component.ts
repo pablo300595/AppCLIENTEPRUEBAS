@@ -7,9 +7,14 @@ import { LoginService } from './../../services/login.service';
 @Component({
   selector: 'app-resumen',
   templateUrl: './resumen.component.html',
-  styleUrls: ['./resumen.component.css']
+  styleUrls: ['./resumen.component.css'],
+  
 })
 export class ResumenComponent implements OnInit {
+  panelOpenState = false;
+  src = "/src/assets/imgs/curp.pdf";
+  nss = "/src/assets/imgs/NSS.pdf";
+
   alumno: Alumno;
   alumnos: any;
 

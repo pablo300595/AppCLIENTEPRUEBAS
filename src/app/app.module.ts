@@ -65,7 +65,7 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 // Material
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatCardModule} from '@angular/material/card';
 
 import {MatNativeDateModule} from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
@@ -75,6 +75,8 @@ import { ResumenComponent } from './components/resumen/resumen.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { TemplateWizardComponent } from './components/subcomponents/template-wizard/template-wizard.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 const appRoutes: Routes = [
@@ -139,7 +141,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ReactiveFormsModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatExpansionModule,
+    PdfViewerModule
   ],
   entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent],
   providers: [MenuService, AlumnoService, LoginService, FileService,
