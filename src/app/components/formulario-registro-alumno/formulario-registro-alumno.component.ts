@@ -17,6 +17,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   fieldLastNameFather: String = 'Valenzuela';
   fieldLastNameMother: String = 'Miramontes';
   fieldFirstName: String = 'Jose Pablo';
+  fieldControlNumber: String = '13400409';
   fieldPlaceBirth: String = 'Tepic, Nayarit';
   fieldDateBirth: String = '';
   fieldStatusCivil: String = 'Soltero/a';
@@ -83,7 +84,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   evaluateIfallFieldsAreValid() {
     this.allFieldsAreValid =  (this.fieldLastNameFather.length > 1 &&
       this.fieldLastNameMother.length > 1 && this.fieldFirstName.length > 1 &&
-      this.fieldPlaceBirth.length > 1  && this.fieldEmail.length > 1 &&
+      this.fieldControlNumber.length > 1 && this.fieldPlaceBirth.length > 1  && this.fieldEmail.length > 1 &&
       this.fieldCURP.length > 1 && this.fieldStreet.length > 1 &&
       this.fieldColony.length > 1 && this.fieldCity.length > 1 &&
       this.fieldNameSchool.length > 1 && this.fieldAverage > 0 &&
@@ -95,6 +96,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
         lastNameFather: this.fieldLastNameFather,
         lastNameMother: this.fieldLastNameMother,
         firstName: this.fieldFirstName,
+        controlNumber: this.fieldControlNumber,
         placeBirth: this.fieldPlaceBirth,
         dateBirth: this.extractBirthFromCURP(this.fieldCURP.substring(4, 10)),
         statusCivil: this.fieldStatusCivil,

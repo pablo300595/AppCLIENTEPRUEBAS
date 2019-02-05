@@ -1,5 +1,5 @@
 export class Alumno {
-  constructor(lastNameFather= '', lastNameMother= '', firstName= '', placeBirth= '', dateBirth= '', statusCivil= 'Soltero/a',
+  constructor(lastNameFather= '', lastNameMother= '', firstName= '', controlNumber='', placeBirth= '', dateBirth= '', statusCivil= 'Soltero/a',
               email= '', curp= '', nss= 0, sex= 'H', street= '', colony= '', city= '', state= 'Nayarit', postalCode= 0,
               phone= 0, etnia= '', otherEtnia= '', disability= '',
               whichDisability= '', school= '', otherSchool= '', nameSchool= '',
@@ -8,6 +8,7 @@ export class Alumno {
     this.lastNameFather = lastNameFather;
     this.lastNameMother = lastNameMother;
     this.firstName = firstName;
+    this.controlNumber = controlNumber;
     this.placeBirth = placeBirth;
     this.dateBirth = dateBirth;
     this.statusCivil = statusCivil;
@@ -37,6 +38,7 @@ export class Alumno {
   lastNameFather: String;
   lastNameMother: String;
   firstName: String;
+  controlNumber: String;
   placeBirth: String;
   dateBirth: String;
   statusCivil: String;

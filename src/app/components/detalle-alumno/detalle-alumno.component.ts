@@ -30,7 +30,7 @@ export class DetalleAlumnoComponent implements OnInit {
   animal: string;
   name: string;
 
-  displayedColumns: string[] = ['lastNameFather', 'lastNameMother', 'firstName', 'email', 'career'];
+  displayedColumns: string[] = ['controlNumber','lastNameFather', 'lastNameMother', 'firstName', 'career'];
 
   dataSource: MatTableDataSource<Alumno>;
 
@@ -114,6 +114,7 @@ export class DetalleAlumnoDialogComponent {
   fieldLastNameFather: String = '';
   fieldLastNameMother: String = '';
   fieldFirstName: String = '';
+  fieldControlNumber: String = '';
   fieldPlaceBirth: String = '';
   fieldDateBirth: String = '';
   fieldStatusCivil: String = '';

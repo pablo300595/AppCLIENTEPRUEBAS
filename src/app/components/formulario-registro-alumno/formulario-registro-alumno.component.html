@@ -1,282 +1,297 @@
 <div class='login-block'>
-<div class="container">
-  <br>
-  <p class="text-center">
-    <b>SOLICITUD DE INSCRIPCIÓN</b>
-  </p>
-  <br>
-  <form>
-    <div class="card">
-      <div class="card-body">
-        <p>
-          <b>DATOS GENERALES</b>
-        </p>
-        <div class="form-row">
-          <div class="form-group col-xs-6 col-md-4">
-            <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
-            <input type="text" class="form-control" id="txtApellidoPaterno" name="fieldLastNameFather" placeholder="APELLIDO PATERNO"
-              [(ngModel)]="fieldLastNameFather" (change)='evaluateIfallFieldsAreValid()'>
+  <div class="container">
+    <br>
+    <p class="text-center">
+      <b>SOLICITUD DE INSCRIPCIÓN</b>
+    </p>
+    <br>
+    <form>
+      <div class="card">
+        <div class="card-body">
+          <p>
+            <b>DATOS GENERALES</b>
+          </p>
+          <div class="form-row">
+            <div class="form-group col-xs-6 col-md-4">
+              <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
+              <input type="text" class="form-control" id="txtApellidoPaterno" name="fieldLastNameFather" placeholder="APELLIDO PATERNO"
+                [(ngModel)]="fieldLastNameFather" (change)='evaluateIfallFieldsAreValid()'>
               <p id="msgError" *ngIf="(fieldLastNameFather.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-          </div>
-          <div class="form-group col-xs-6 col-md-4">
-            <label for="txtApellidoMaterno">APELLIDO MATERNO</label>
-            <input type="text" class="form-control" id="txtApellidoMaterno" name="fieldLastNameMother" placeholder="APELLIDO MATERNO"
-              [(ngModel)]="fieldLastNameMother" (change)='evaluateIfallFieldsAreValid()'>
+            </div>
+            <div class="form-group col-xs-6 col-md-4">
+              <label for="txtApellidoMaterno">APELLIDO MATERNO</label>
+              <input type="text" class="form-control" id="txtApellidoMaterno" name="fieldLastNameMother" placeholder="APELLIDO MATERNO"
+                [(ngModel)]="fieldLastNameMother" (change)='evaluateIfallFieldsAreValid()'>
               <p id="msgError" *ngIf="(fieldLastNameMother.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-          </div>
-          <div class="form-group col-xs-6 col-md-4">
-            <label for="txtNombre">NOMBRE(S)</label>
-            <input type="text" class="form-control" id="txtNombre" name="fieldFirstName" placeholder="NOMBRE(S)"
-              [(ngModel)]="fieldFirstName" (change)='evaluateIfallFieldsAreValid()'>
+            </div>
+            <div class="form-group col-xs-6 col-md-4">
+              <label for="txtNombre">NOMBRE(S)</label>
+              <input type="text" class="form-control" id="txtNombre" name="fieldFirstName" placeholder="NOMBRE(S)"
+                [(ngModel)]="fieldFirstName" (change)='evaluateIfallFieldsAreValid()'>
               <p id="msgError" *ngIf="(fieldFirstName.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+            </div>
+          </div>
+
+
+          <br>
+          <div class="form-row">
+            <div class="form-group col-xs-6 col-md-4">
+              <label for="txtLugarNacimiento">NÚMERO DE CONTROL</label>
+              <input type="text" class="form-control" id="txtNC" placeholder="Número de Control"
+                [(ngModel)]="fieldControlNumber" name="fieldNumeroControl" (change)='evaluateIfallFieldsAreValid()'>
+              <p id="msgError" *ngIf="(fieldControlNumber.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+            </div>
+
+            <div class="form-group col-xs-6 col-md-4">
+              <label for="txtLugarNacimiento">LUGAR DE NACIMIENTO</label>
+              <input type="text" class="form-control" id="txtLugarNacimiento" placeholder="LUGAR DE NACIMIENTO"
+                [(ngModel)]="fieldPlaceBirth" name="fieldPlaceBirth" (change)='evaluateIfallFieldsAreValid()'>
+              <p id="msgError" *ngIf="(fieldPlaceBirth.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+            </div>
+
+
+            <div class="form-group col-xs-6 col-md-4">
+              <label for="selectEstadoCivil">ESTADO CIVIL</label>
+              <select class="custom-select mr-sm-2" id="selectEstadoCivil" [(ngModel)]="fieldStatusCivil" name="fieldStatusCivil"
+                (change)='evaluateIfallFieldsAreValid()'>
+                <option selected="Soltero">Soltero/a</option>
+                <option>Comprometido/a</option>
+                <option>Casado/a</option>
+                <option>Divorsiado/a</option>
+                <option>Viudo/a</option>
+
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="txtEmail">CORREO ELECTRÓNICO</label>
+            <input type="email" class="form-control" placeholder="Ingrese Correo" [(ngModel)]="fieldEmail" name="fieldEmail"
+              (change)='evaluateIfallFieldsAreValid()'>
+            <p id="msgError" *ngIf="(fieldEmail.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="txtCurp">CURP</label>
+              <input type="text" class="form-control" id="txtCURP" placeholder="CURP" [(ngModel)]="fieldCURP" name="fieldCURP"
+                (change)='evaluateIfallFieldsAreValid()'>
+              <p id="msgError" *ngIf="(fieldCURP.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="txtNSS">NSS(NÚMERO DE SEGURO SOCIAL)</label>
+              <input type="number" class="form-control" id="txtNSS" placeholder="NSS(NÚMERO DE SEGURO SOCIAL)"
+                [(ngModel)]="fieldNSS" name="fieldNSS" (change)='evaluateIfallFieldsAreValid()'>
+              <p id="msgError" *ngIf="(fieldNSS < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+            </div>
           </div>
         </div>
 
 
         <br>
-        <div class="form-group">
-          <label for="txtLugarNacimiento">LUGAR DE NACIMIENTO</label>
-          <input type="text" class="form-control" id="txtLugarNacimiento" placeholder="LUGAR DE NACIMIENTO" [(ngModel)]="fieldPlaceBirth"
-            name="fieldPlaceBirth" (change)='evaluateIfallFieldsAreValid()'>
-            <p id="msgError" *ngIf="(fieldPlaceBirth.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-        </div>
+        <div class="card">
+          <div class="card-body">
+            <p>
+              <b>DIRECCIÓN</b>
+            </p>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="txtCalle">CALLE</label>
+                <input type="text" class="form-control" id="txtCalle" placeholder="CALLE" [(ngModel)]="fieldStreet"
+                  name="fieldStreet" (change)='evaluateIfallFieldsAreValid()'>
+                <p id="msgError" *ngIf="(fieldStreet.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="txtColonia">COLONIA</label>
+                <input type="text" class="form-control" id="txtColonia" placeholder="COLONIA" [(ngModel)]="fieldColony"
+                  name="fieldColony" (change)='evaluateIfallFieldsAreValid()'>
+                <p id="msgError" *ngIf="(fieldColony.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              </div>
+            </div>
 
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="txtCiudad">CIUDAD</label>
+                <input type="text" class="form-control" id="txtCiudad" placeholder="CIUDAD" [(ngModel)]="fieldCity"
+                  name="fieldCity" (change)='evaluateIfallFieldsAreValid()'>
+                <p id="msgError" *ngIf="(fieldCity.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="txtEstado">ESTADO</label>
+                <select class="form-control" id="selectEstado" [(ngModel)]="fieldState" name="fieldState" (change)='evaluateIfallFieldsAreValid()'>
+                  <option selected>Aguascalientes</option>
+                  <option>Baja California</option>
+                  <option>Baja California Sur</option>
+                  <option>Campeche</option>
+                  <option>Chiapas</option>
+                  <option>Chihuahua</option>
+                  <option>Coahuila de Zaragoza</option>
+                  <option>Colima</option>
+                  <option>Durango</option>
+                  <option>Estado de México</option>
+                  <option>Guanajuato</option>
+                  <option>Guerrero</option>
+                  <option>Hidalgo</option>
+                  <option>Jalisco</option>
+                  <option>Michoacán</option>
+                  <option>Morelos</option>
+                  <option>Nayarit</option>
+                  <option>Nuevo León</option>
+                  <option>Oaxaca</option>
+                  <option>Puebla</option>
+                  <option>Querétaro</option>
+                  <option>Quintana Roo</option>
+                  <option>San Luis Potosí</option>
+                  <option>Sinaloa</option>
+                  <option>Sonora</option>
+                  <option>Tabasco</option>
+                  <option>Tamaulipas</option>
+                  <option>Tlaxcala</option>
+                  <option>Veracruz</option>
+                  <option>Yucatán</option>
+                  <option>Zacatecas</option>
 
-          <div class="form-group col-md-6">
-            <label for="selectEstadoCivil">ESTADO CIVIL</label>
-            <select class="custom-select mr-sm-2" id="selectEstadoCivil" [(ngModel)]="fieldStatusCivil" name="fieldStatusCivil" (change)='evaluateIfallFieldsAreValid()'>
-              <option selected="Soltero">Soltero/a</option>
-              <option>Comprometido/a</option>
-              <option>Casado/a</option>
-              <option>Divorsiado/a</option>
-              <option>Viudo/a</option>
+                </select>
 
-            </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="txtCodigoPostal">CÓDIGO POSTAL</label>
+                <input type="number" class="form-control" id="txtCodigoPostal" placeholder="CÓDIGO POSTAL" [(ngModel)]="fieldPostalCode"
+                  name="fieldPostalCode" (change)='evaluateIfallFieldsAreValid()'>
+                <p id="msgError" *ngIf="(fieldPostalCode < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="txtTelefono">TELÉFONO</label>
+                <input type="number" class="form-control" id="txtTelefono" placeholder="TELÉFONO" [(ngModel)]="fieldPhone"
+                  name="fieldPhone" (change)='evaluateIfallFieldsAreValid()'>
+                <p id="msgError" *ngIf="(fieldPhone < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="txtEmail">CORREO ELECTRÓNICO</label>
-          <input type="email" class="form-control" placeholder="Ingrese Correo" [(ngModel)]="fieldEmail" name="fieldEmail" (change)='evaluateIfallFieldsAreValid()'>
-          <p id="msgError" *ngIf="(fieldEmail.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-        </div>
+        <br>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="txtCurp">CURP</label>
-            <input type="text" class="form-control" id="txtCURP" placeholder="CURP" [(ngModel)]="fieldCURP"
-              name="fieldCURP" (change)='evaluateIfallFieldsAreValid()'>
-              <p id="msgError" *ngIf="(fieldCURP.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="txtNSS">NSS(NÚMERO DE SEGURO SOCIAL)</label>
-            <input type="number" class="form-control" id="txtNSS" placeholder="NSS(NÚMERO DE SEGURO SOCIAL)" [(ngModel)]="fieldNSS"
-              name="fieldNSS" (change)='evaluateIfallFieldsAreValid()'>
-              <p id="msgError" *ngIf="(fieldNSS < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-          </div>
-        </div>
-      </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="selectEtnia">¿PERTENECES A ALGUNA ETNIA?</label>
 
+                <select class="form-control" id="selectEtnia" [(ngModel)]="fieldEtnia" name="fieldEtnia" (change)='evaluateIfallFieldsAreValid()'>
+                  <option selected>SI</option>
+                  <option>NO</option>
 
-    <br>
-    <div class="card">
-      <div class="card-body">
-        <p>
-          <b>DIRECCIÓN</b>
-        </p>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="txtCalle">CALLE</label>
-            <input type="text" class="form-control" id="txtCalle" placeholder="CALLE" [(ngModel)]="fieldStreet" name="fieldStreet" (change)='evaluateIfallFieldsAreValid()'>
-            <p id="msgError" *ngIf="(fieldStreet.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="txtColonia">COLONIA</label>
-            <input type="text" class="form-control" id="txtColonia" placeholder="COLONIA" [(ngModel)]="fieldColony"
-              name="fieldColony" (change)='evaluateIfallFieldsAreValid()'>
-            <p id="msgError" *ngIf="(fieldColony.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-          </div>
-        </div>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="txtCualEtnia">¿CUÁL?</label>
+                <input type="text" class="form-control" id="txtCualEtnia" placeholder="Introducir ETNIA" [(ngModel)]="fieldOtherEtnia"
+                  name="fieldOtherEtnia" (change)='evaluateIfallFieldsAreValid()'>
+              </div>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="txtCiudad">CIUDAD</label>
-            <input type="text" class="form-control" id="txtCiudad" placeholder="CIUDAD" [(ngModel)]="fieldCity" name="fieldCity" (change)='evaluateIfallFieldsAreValid()'>
-            <p id="msgError" *ngIf="(fieldCity.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="txtEstado">ESTADO</label>
-            <select class="form-control" id="selectEstado" [(ngModel)]="fieldState" name="fieldState" (change)='evaluateIfallFieldsAreValid()'>
-              <option selected>Aguascalientes</option>
-              <option>Baja California</option>
-              <option>Baja California Sur</option>
-              <option>Campeche</option>
-              <option>Chiapas</option>
-              <option>Chihuahua</option>
-              <option>Coahuila de Zaragoza</option>
-              <option>Colima</option>
-              <option>Durango</option>
-              <option>Estado de México</option>
-              <option>Guanajuato</option>
-              <option>Guerrero</option>
-              <option>Hidalgo</option>
-              <option>Jalisco</option>
-              <option>Michoacán</option>
-              <option>Morelos</option>
-              <option>Nayarit</option>
-              <option>Nuevo León</option>
-              <option>Oaxaca</option>
-              <option>Puebla</option>
-              <option>Querétaro</option>
-              <option>Quintana Roo</option>
-              <option>San Luis Potosí</option>
-              <option>Sinaloa</option>
-              <option>Sonora</option>
-              <option>Tabasco</option>
-              <option>Tamaulipas</option>
-              <option>Tlaxcala</option>
-              <option>Veracruz</option>
-              <option>Yucatán</option>
-              <option>Zacatecas</option>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="selectDiscapacidad">¿TIENES ALGUNA DISCAPACIDAD?</label>
 
-            </select>
+                <select class="form-control" id="selectDiscapacidad" [(ngModel)]="fieldDisability" name="fieldDisability"
+                  (change)='evaluateIfallFieldsAreValid()'>
+                  <option selected>SI</option>
+                  <option>NO</option>
 
-          </div>
-        </div>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="txtDiscapacidad">¿CUÁL?</label>
+                <input type="text" class="form-control" id="txtDiscapacidad" placeholder="Introducir DISCAPACIDAD"
+                  [(ngModel)]="fieldWhichDisability" name="fieldWhichDisability" (change)='evaluateIfallFieldsAreValid()'>
+              </div>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="txtCodigoPostal">CÓDIGO POSTAL</label>
-            <input type="number" class="form-control" id="txtCodigoPostal" placeholder="CÓDIGO POSTAL" [(ngModel)]="fieldPostalCode"
-              name="fieldPostalCode" (change)='evaluateIfallFieldsAreValid()'>
-            <p id="msgError" *ngIf="(fieldPostalCode < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="txtTelefono">TELÉFONO</label>
-            <input type="number" class="form-control" id="txtTelefono" placeholder="TELÉFONO" [(ngModel)]="fieldPhone"
-              name="fieldPhone" (change)='evaluateIfallFieldsAreValid()'>
-              <p id="msgError" *ngIf="(fieldPhone < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-
-    <div class="card">
-      <div class="card-body">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="selectEtnia">¿PERTENECES A ALGUNA ETNIA?</label>
-
-            <select class="form-control" id="selectEtnia" [(ngModel)]="fieldEtnia" name="fieldEtnia" (change)='evaluateIfallFieldsAreValid()'>
-              <option selected>SI</option>
-              <option >NO</option>
-
-            </select>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="txtCualEtnia">¿CUÁL?</label>
-            <input type="text" class="form-control" id="txtCualEtnia" placeholder="Introducir ETNIA" [(ngModel)]="fieldOtherEtnia"
-              name="fieldOtherEtnia" (change)='evaluateIfallFieldsAreValid()'>
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="selectDiscapacidad">¿TIENES ALGUNA DISCAPACIDAD?</label>
+        <br>
+        <div class="card">
+          <div class="card-body">
+            <p>
+              <b>DATOS ACADÉMICOS:</b>
+            </p>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="selectEscuelaDeProcedencia">ESCUELA DE PROCEDENCIA</label>
 
-            <select class="form-control" id="selectDiscapacidad" [(ngModel)]="fieldDisability" name="fieldDisability" (change)='evaluateIfallFieldsAreValid()'>
-              <option selected>SI</option>
-              <option >NO</option>
+                <select class="custom-select mr-sm-2" id="selectEscuelaDeProcedencia" [(ngModel)]="fieldSchool" name="fieldSchool"
+                  (change)='evaluateIfallFieldsAreValid()'>
 
-            </select>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="txtDiscapacidad">¿CUÁL?</label>
-            <input type="text" class="form-control" id="txtDiscapacidad" placeholder="Introducir DISCAPACIDAD"
-              [(ngModel)]="fieldWhichDisability" name="fieldWhichDisability" (change)='evaluateIfallFieldsAreValid()'>
+                  <option selected>CONALEP</option>
+                  <option>CETIS</option>
+                  <option>CBTIS</option>
+                  <option>CBTa</option>
+                  <option>COBACH</option>
+                  <option>Cecyte</option>
+                  <option>Preparatoria</option>
+                  <option>Sistema Abierto</option>
+                  <option>Otra</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="txtOtraEscuela">OTRA</label>
+                <input type="text" class="form-control" id="txtOtraEscuela" placeholder="Introducir Escuela"
+                  [(ngModel)]="fieldOtherSchool" name="fieldOtherSchool" (change)='evaluateIfallFieldsAreValid()'>
+              </div>
+            </div>
+
+
+            <div class="form-row">
+              <div class="form-group col-xs-12 col-md-8">
+                <label for="txtNombreEscuela">NOMBRE DE LA ESCUELA</label>
+                <input type="text" class="form-control" id="txtNombreEscuela" placeholder="ESCUELA" [(ngModel)]="fieldNameSchool"
+                  name="fieldNameSchool" (change)='evaluateIfallFieldsAreValid()'>
+                <p id="msgError" *ngIf="(fieldNameSchool.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              </div>
+              <div class="form-group col-xs-6 col-md-4">
+                <label for="txtPromedio">PROMEDIO</label>
+                <input type="number" class="form-control" id="txtPromedio" placeholder="PROMEDIO" [(ngModel)]="fieldAverage"
+                  name="fieldAverage" min="1" max="100" value="1" (change)='evaluateIfallFieldsAreValid()'>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="selectCarrera">
+                <b>CARRERA A CURSAR</b>
+              </label>
+              <select id="selectCarrera" class="form-control" [(ngModel)]="fieldCareer" name="fieldCareer" (change)='evaluateIfallFieldsAreValid()'>
+                <option selected>Arquitectura</option>
+                <option>Ingeniería Bioquímica</option>
+                <option>Ingeniería Civil</option>
+                <option>Ingeniería Eléctrica</option>
+                <option>Ingeniería en Gestión Empresarial</option>
+                <option>Ingeniería Industrial</option>
+                <option>Ingeniería Mecatrónica</option>
+                <option>Ingeniería Química</option>
+                <option>Ingeniería en Sistemas Computacionales</option>
+                <option>Ingeniería en Tecnología de la Información y Comunicaciones</option>
+                <option>Licenciatura en Administración</option>
+                <option>Maestría en Tecnologías de la Información</option>
+                <option>Maestría en Ciencias en Alimentos</option>
+                <option>Doctorado en Ciencias en Alimentos</option>
+
+              </select>
+
+            </div>
           </div>
         </div>
+        <br>
 
-      </div>
-    </div>
-    <br>
-    <div class="card">
-      <div class="card-body">
-        <p>
-          <b>DATOS ACADÉMICOS:</b>
-        </p>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="selectEscuelaDeProcedencia">ESCUELA DE PROCEDENCIA</label>
-
-            <select class="custom-select mr-sm-2" id="selectEscuelaDeProcedencia" [(ngModel)]="fieldSchool" name="fieldSchool" (change)='evaluateIfallFieldsAreValid()'>
-
-              <option selected>CONALEP</option>
-              <option>CETIS</option>
-              <option>CBTIS</option>
-              <option>CBTa</option>
-              <option>COBACH</option>
-              <option>Cecyte</option>
-              <option>Preparatoria</option>
-              <option>Sistema Abierto</option>
-              <option>Otra</option>
-            </select>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="txtOtraEscuela">OTRA</label>
-            <input type="text" class="form-control" id="txtOtraEscuela" placeholder="Introducir Escuela" [(ngModel)]="fieldOtherSchool"
-              name="fieldOtherSchool" (change)='evaluateIfallFieldsAreValid()'>
-          </div>
-        </div>
-
-
-        <div class="form-row">
-          <div class="form-group col-xs-12 col-md-8">
-            <label for="txtNombreEscuela">NOMBRE DE LA ESCUELA</label>
-            <input type="text" class="form-control" id="txtNombreEscuela" placeholder="ESCUELA" [(ngModel)]="fieldNameSchool"
-              name="fieldNameSchool" (change)='evaluateIfallFieldsAreValid()'>
-              <p id="msgError" *ngIf="(fieldNameSchool.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
-          </div>
-          <div class="form-group col-xs-6 col-md-4">
-            <label for="txtPromedio">PROMEDIO</label>
-            <input type="number" class="form-control" id="txtPromedio" placeholder="PROMEDIO" [(ngModel)]="fieldAverage"
-              name="fieldAverage" min="1" max="100" value="1" (change)='evaluateIfallFieldsAreValid()'>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="selectCarrera">
-            <b>CARRERA A CURSAR</b>
-          </label>
-          <select id="selectCarrera" class="form-control" [(ngModel)]="fieldCareer" name="fieldCareer" (change)='evaluateIfallFieldsAreValid()'>
-            <option selected >Arquitectura</option>
-            <option >Ingeniería Bioquímica</option>
-            <option >Ingeniería Civil</option>
-            <option >Ingeniería Eléctrica</option>
-            <option >Ingeniería en Gestión Empresarial</option>
-            <option >Ingeniería Industrial</option>
-            <option >Ingeniería Mecatrónica</option>
-            <option >Ingeniería Química</option>
-            <option >Ingeniería en Sistemas Computacionales</option>
-            <option >Ingeniería en Tecnología de la Información y Comunicaciones</option>
-            <option >Licenciatura en Administración</option>
-            <option >Maestría en Tecnologías de la Información</option>
-            <option >Maestría en Ciencias en Alimentos</option>
-            <option >Doctorado en Ciencias en Alimentos</option>
-
-          </select>
-
-        </div>
-      </div>
-    </div>
-    <br>
-
-    <!--<button type="button" class="btn btn-primary btn-block  form-control">Actualizar
+        <!--<button type="button" class="btn btn-primary btn-block  form-control">Actualizar
       información</button>-->
+      </div>
 
+    </form>
+  </div>
 
-  </form>
 </div>
-
-</div>
-
