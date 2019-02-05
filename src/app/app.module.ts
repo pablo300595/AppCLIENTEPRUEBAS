@@ -94,7 +94,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
    url: 'http://localhost:3000/upload',
    maxFilesize: 3,
-   acceptedFiles: '.pdf,.png,.jpg',
+   acceptedFiles: '.pdf',
    createImageThumbnails: true,
    maxThumbnailFilesize: 10,
    thumbnailWidth: 800,

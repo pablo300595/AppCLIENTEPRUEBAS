@@ -107,6 +107,7 @@
               (click)="dropzoneClicked()" matTooltip="Remover archivo"
               [matTooltipDisabled]="this.dropzoneFileNamePhoto==''"></dropzone>
               <app-pdf-template-photo *ngIf='file6'></app-pdf-template-photo>
+              <div *ngIf='file6'><hr><p><b>Nombre nuevo: {{dropzoneFilePhotoNewNameExtension}}</b></p><hr></div>
           </div>
         </div>
       </div>

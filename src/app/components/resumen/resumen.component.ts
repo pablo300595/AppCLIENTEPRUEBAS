@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Alumno } from './../../models/alumno';
 import { AlumnoService} from './../../services/alumno.service';
 import { LoginService } from './../../services/login.service';
-// import * as jsPDF from 'jspdf';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-resumen',
@@ -78,32 +78,33 @@ export class ResumenComponent implements OnInit {
   }
 
   downloadPDF() {
-    /*const doc = new jsPDF();
-    doc.text(this.fieldLastNameFather, 10, 10);
-    doc.text(this.fieldLastNameMother, 10, 12);
-    doc.text(this.fieldFirstName, 10, 14);
-    doc.text(this.fieldPlaceBirth, 10, 16);
-    doc.text(this.fieldDateBirth, 10, 18);
-    doc.text(this.fieldStatusCivil, 10, 20);
-    doc.text(this.fieldEmail, 10, 22);
-    doc.text(this.fieldCURP, 10, 24);
-    doc.text(this.fieldNSS, 10, 26);
-    doc.text(this.fieldStreet, 10, 28);
-    doc.text(this.fieldColony, 10, 30);
-    doc.text(this.fieldCity, 10, 32);
-    doc.text(this.fieldState, 10, 36);
-    doc.text(this.fieldPostalCode, 10, 38);
-    doc.text(this.fieldPhone, 10, 40);
-    doc.text(this.fieldEtnia, 10, 42);
-    doc.text(this.fieldOtherEtnia, 10, 44);
-    doc.text(this.fieldDisability, 10, 46);
-    doc.text(this.fieldWhichDisability, 10, 48);
-    doc.text(this.fieldSchool, 10, 50);
-    doc.text(this.fieldOtherSchool, 10, 52);
-    doc.text(this.fieldNameSchool, 10, 54);
-    doc.text(this.fieldAverage, 10, 56);
-    doc.text(this.fieldCareer, 10, 58);
-    doc.save('Test.pdf');*/
+    console.log('PDF');
+    const doc = new jsPDF();
+    doc.text(this.fieldLastNameFather + '', 10, 10);
+    doc.text(this.fieldLastNameMother + '', 10, 12);
+    doc.text(this.fieldFirstName + '', 10, 14);
+    doc.text(this.fieldPlaceBirth + '', 10, 16);
+    doc.text(this.fieldDateBirth + '', 10, 18);
+    doc.text(this.fieldStatusCivil + '', 10, 20);
+    doc.text(this.fieldEmail + '', 10, 22);
+    doc.text(this.fieldCURP + '', 10, 24);
+    doc.text(this.fieldNSS + '', 10, 26);
+    doc.text(this.fieldStreet + '', 10, 28);
+    doc.text(this.fieldColony + '', 10, 30);
+    doc.text(this.fieldCity + '', 10, 32);
+    doc.text(this.fieldState + '', 10, 36);
+    doc.text(this.fieldPostalCode + '', 10, 38);
+    doc.text(this.fieldPhone + '', 10, 40);
+    doc.text(this.fieldEtnia + '', 10, 42);
+    doc.text(this.fieldOtherEtnia + '', 10, 44);
+    doc.text(this.fieldDisability + '', 10, 46);
+    doc.text(this.fieldWhichDisability + '', 10, 48);
+    doc.text(this.fieldSchool + '', 10, 50);
+    doc.text(this.fieldOtherSchool + '', 10, 52);
+    doc.text(this.fieldNameSchool + '', 10, 54);
+    doc.text(this.fieldAverage + '', 10, 56);
+    doc.text(this.fieldCareer + '', 10, 58);
+    doc.save('Test.pdf');
   }
 
 }
