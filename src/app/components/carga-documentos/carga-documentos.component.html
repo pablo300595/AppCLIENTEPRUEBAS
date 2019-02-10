@@ -16,9 +16,11 @@
           </div>
           <div class='card-body'>
               <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCERTIFICADO}}</label>
-              <dropzone [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-              (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-              (click)="dropzoneClicked()" matTooltip="Remover archivo"
+              <app-template-incorrect *ngIf='!file1'></app-template-incorrect>
+              <app-template-correct *ngIf='file1'></app-template-correct>
+              <dropzone id="dz0"[config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+              (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
               [matTooltipDisabled]="this.dropzoneFileNameCERTIFICADO==''"></dropzone>
               <app-pdf-template-certificado *ngIf='file1'></app-pdf-template-certificado>
           </div>
@@ -32,9 +34,11 @@
           </div>
           <div class='card-body'>
             <label><b>Nombre original de archivo: </b>{{dropzoneFileNameACTA}}</label>
-            <dropzone [config]="config1" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-            (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-            (click)="dropzoneClicked()" matTooltip="Remover archivo"
+            <app-template-incorrect *ngIf='!file2'></app-template-incorrect>
+            <app-template-correct *ngIf='file2'></app-template-correct>
+            <dropzone id="dz1" [config]="config1" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+            (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+            (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
             [matTooltipDisabled]="this.dropzoneFileNameACTA==''"></dropzone>
             <app-pdf-template-acta *ngIf='file2'></app-pdf-template-acta>
           </div>
@@ -51,9 +55,11 @@
           </div>
           <div class='card-body'>
             <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCURP}}</label>
-            <dropzone [config]="config2" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-            (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-            (click)="dropzoneClicked()" matTooltip="Remover archivo"
+            <app-template-incorrect *ngIf='!file3'></app-template-incorrect>
+            <app-template-correct *ngIf='file3'></app-template-correct>
+            <dropzone id="dz2" [config]="config2" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+            (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+            (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
             [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
             <app-pdf-template-curp *ngIf='file3'></app-pdf-template-curp>
           </div>
@@ -67,9 +73,11 @@
           </div>
           <div class='card-body'>
             <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCOMPROBANTE}}</label>
-            <dropzone [config]="config3" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-              (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-              (click)="dropzoneClicked()" matTooltip="Remover archivo"
+            <app-template-incorrect *ngIf='!file4'></app-template-incorrect>
+            <app-template-correct *ngIf='file4'></app-template-correct>
+            <dropzone id="dz3" [config]="config3" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+              (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
               [matTooltipDisabled]="this.dropzoneFileNameCOMPROBANTE==''"></dropzone>
               <app-pdf-template-comprobante *ngIf='file4'></app-pdf-template-comprobante>
           </div>
@@ -86,9 +94,11 @@
           </div>
           <div class='card-body'>
             <label><b>Nombre original de archivo: </b>{{dropzoneFileNameANALISIS}}</label>
-            <dropzone [config]="config4" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-              (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-              (click)="dropzoneClicked()" matTooltip="Remover archivo"
+            <app-template-incorrect *ngIf='!file5'></app-template-incorrect>
+            <app-template-correct *ngIf='file5'></app-template-correct>
+            <dropzone id="dz4" [config]="config4" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+              (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
               [matTooltipDisabled]="this.dropzoneFileNameANALISIS==''"></dropzone>
               <app-pdf-template-clinicos *ngIf='file5'></app-pdf-template-clinicos>
           </div>
@@ -102,12 +112,16 @@
           </div>
           <div class='card-body'>
             <label><b>Nombre original de archivo: </b>{{dropzoneFileNamePhoto}}</label>
-            <dropzone [config]="config5" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-              (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-              (click)="dropzoneClicked()" matTooltip="Remover archivo"
+            <app-template-incorrect *ngIf='!file6'></app-template-incorrect>
+            <app-template-correct *ngIf='file6'></app-template-correct>
+            <dropzone id="dz5"[config]="config5" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+              (dragEnter)="onDragEnd($event)" (error)="onError($event)"
+              (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
               [matTooltipDisabled]="this.dropzoneFileNamePhoto==''"></dropzone>
-              <app-pdf-template-photo *ngIf='file6'></app-pdf-template-photo>
-              <div *ngIf='file6'><hr><p><b>Nombre nuevo: {{dropzoneFilePhotoNewNameExtension}}</b></p><hr></div>
+              <app-pdf-template-photo *ngIf="file6 && ((dropzoneFilePhotoNewNameExtension.substring(dropzoneFilePhotoNewNameExtension.length-3))==='png')"></app-pdf-template-photo>
+              <app-pdf-template-photo-jpg *ngIf="file6 && ((dropzoneFilePhotoNewNameExtension.substring(dropzoneFilePhotoNewNameExtension.length-3))==='jpg')"></app-pdf-template-photo-jpg>
+              <div *ngIf='file6' style="text-align:center;"><hr><p><b>Nombre nuevo: {{dropzoneFilePhotoNewNameExtension}}</b></p><hr></div>
           </div>
         </div>
       </div>
@@ -122,9 +136,11 @@
             </div>
             <div class='card-body'>
               <label><b>Nombre original de archivo: </b>{{dropzoneFileNameNSS}}</label>
-              <dropzone  [config]="config6" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-                (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-                (click)="dropzoneClicked()" matTooltip="Remover archivo"
+              <app-template-incorrect *ngIf='!file7'></app-template-incorrect>
+              <app-template-correct *ngIf='file7'></app-template-correct>
+              <dropzone id="dz6" [config]="config6" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+                (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
+                (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
                 [matTooltipDisabled]="this.dropzoneFileNameNSS==''"></dropzone>
                 <app-pdf-template-nss *ngIf='file7'></app-pdf-template-nss>
             </div>

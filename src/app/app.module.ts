@@ -75,6 +75,9 @@ import { ResumenComponent } from './components/resumen/resumen.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { TemplateWizardComponent } from './components/subcomponents/template-wizard/template-wizard.component';
+import { PdfTemplatePhotoJPGComponent } from './components/subcomponents/pdf-template-photo-jpg/pdf-template-photo-jpg.component';
+import { TemplateCorrectComponent } from './components/subcomponents/template-correct/template-correct.component';
+import { TemplateIncorrectComponent } from './components/subcomponents/template-incorrect/template-incorrect.component';
 
 
 const appRoutes: Routes = [
@@ -116,7 +119,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     PdfTemplateClinicosComponent,
     PdfTemplateCertificadoComponent,
     PdfTemplateActaComponent,
-    TemplateWizardComponent
+    TemplateWizardComponent,
+    PdfTemplatePhotoJPGComponent,
+    TemplateCorrectComponent,
+    TemplateIncorrectComponent
     ],
 
   imports: [

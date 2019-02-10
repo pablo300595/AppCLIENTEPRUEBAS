@@ -84,8 +84,8 @@ export class CargaDocumentosComponent implements OnInit {
     this.cargaDocumentosService.currentFile3String.subscribe(status => this.dropzoneFileNameCURP = status);
     this.cargaDocumentosService.currentFile4String.subscribe(status => this.dropzoneFileNameCOMPROBANTE = status);
     this.cargaDocumentosService.currentFile5String.subscribe(status => this.dropzoneFileNameANALISIS = status);
-    this.cargaDocumentosService.currentFile6String.subscribe(status => this.dropzoneFileNameCERTIFICADO = status);
-    this.cargaDocumentosService.currentFile7String.subscribe(status => this.dropzoneFileNamePhoto = status);
+    this.cargaDocumentosService.currentFile6String.subscribe(status => this.dropzoneFileNamePhoto = status);
+    this.cargaDocumentosService.currentFile7String.subscribe(status => this.dropzoneFileNameNSS = status);
     /*Dropzone*/
     this.config = {
       clickable: true, maxFiles: 2,
@@ -167,15 +167,25 @@ export class CargaDocumentosComponent implements OnInit {
     console.log('onUploadInit:', args);
   }
 
-  public onUploadError(args: any): void {
+  public onDragEnd(args: any): void {
+    console.log('onSending:', args);
+  }
+
+  /*public onUploadError(args: any): void {
     this.resetDropzoneUploads();
     if (args[1] === `You can't upload files of this type.`) {
-      this.messagesService.warning(`¡Error no se pueden subir archivos con esa extensión!\n
-      Las extensiones permitidas son .pdf, .png y .jpeg`);
+      if (this.EDITINGPHOTO) {
+        this.messagesService.warning(`¡Error no se pueden subir archivos con esa extensión!\n
+        Las extensiones permitidas son .png y .jpeg`);
+        this.EDITINGPHOTO = false;
+      } else {
+        this.messagesService.warning(`¡Error no se pueden subir archivos con esa extensión!\n
+        Las extensiones permitidas son .pdf`);
+      }
     } else {
       this.messagesService.warning('¡Error no se pueden subir archivos tan pesados!\nEl límite es 3MB');
     }
-  }
+  }*/
 
   public onUploadSuccess(args: any): void {
     this.messagesService.success('Archivo cargado');
@@ -186,6 +196,25 @@ export class CargaDocumentosComponent implements OnInit {
   onDrop(event: DragEvent) {
     this.resetDropzoneUploads();
     console.log('dropped', event);
+  }
+
+  onError(args: any) {
+    if (args[1] === `You can't upload files of this type.`) {
+      this.messagesService.warning(`¡Error no se pueden subir archivos con esa extensión!\n
+      Las extensiones permitidas son .png y .jpeg`);
+    } else {
+      this.messagesService.warning('¡Error no se pueden subir archivos tan pesados!\nEl límite es 3MB');
+    }
+  }
+
+  onErrorCommon(args: any) {
+    this.resetDropzoneUploads();
+    if (args[1] === `You can't upload files of this type.`) {
+      this.messagesService.warning(`¡Error no se pueden subir archivos con esa extensión!\n
+      Las extensiones permitidas son .pdf`);
+    } else {
+      this.messagesService.warning('¡Error no se pueden subir archivos tan pesados!\nEl límite es 3MB');
+    }
   }
 
   dropzoneClicked() {

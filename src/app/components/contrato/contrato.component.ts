@@ -7,7 +7,6 @@ import { ContratoService } from './../../services/contrato.service';
   styleUrls: ['./contrato.component.css']
 })
 export class ContratoComponent implements OnInit {
-  checked = false;
   acceptedTerms: boolean;
 
   constructor(private contratoService: ContratoService) {

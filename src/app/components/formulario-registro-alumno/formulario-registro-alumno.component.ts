@@ -14,30 +14,30 @@ import { stringify } from '@angular/core/src/render3/util';
   styleUrls: ['./formulario-registro-alumno.component.css']
 })
 export class FormularioRegistroAlumnoComponent implements OnInit {
-  fieldLastNameFather: String = 'Valenzuela';
-  fieldLastNameMother: String = 'Miramontes';
-  fieldFirstName: String = 'Jose Pablo';
-  fieldPlaceBirth: String = 'Tepic, Nayarit';
-  fieldDateBirth: String = '';
-  fieldStatusCivil: String = 'Soltero/a';
-  fieldEmail: String = 'pabloeng05@gmail.com';
-  fieldCURP: String = 'VAMP950530HNTLRB09';
-  fieldNSS: Number = 86169562542;
-  fieldStreet: String = 'Calcio';
-  fieldColony: String = '10 de Mayo';
-  fieldCity: String = 'Xalisco';
-  fieldState: String = 'Nayarit';
-  fieldPostalCode: Number = 63780;
-  fieldPhone: Number = 3112617945;
-  fieldEtnia: String = 'NO';
-  fieldOtherEtnia: String = '';
-  fieldDisability: String = 'NO';
-  fieldWhichDisability: String = '';
-  fieldSchool: String = 'CETIS';
-  fieldOtherSchool: String = '';
-  fieldNameSchool: String = '';
-  fieldAverage: Number = 100;
-  fieldCareer: String = 'Ingeniería en Sistemas Computacionales';
+  fieldLastNameFather: String;
+  fieldLastNameMother: String;
+  fieldFirstName: String;
+  fieldPlaceBirth: String;
+  fieldDateBirth: String;
+  fieldStatusCivil: String;
+  fieldEmail: String;
+  fieldCURP: String;
+  fieldNSS: Number;
+  fieldStreet: String;
+  fieldColony: String;
+  fieldCity: String;
+  fieldState: String;
+  fieldPostalCode: Number;
+  fieldPhone: Number;
+  fieldEtnia: String ;
+  fieldOtherEtnia: String;
+  fieldDisability: String;
+  fieldWhichDisability: String;
+  fieldSchool: String ;
+  fieldOtherSchool: String;
+  fieldNameSchool: String;
+  fieldAverage: Number;
+  fieldCareer: String;
   fieldDocuments: String[] = [];
   statusInscripcion: String = '';
 
@@ -66,6 +66,31 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     this.formularioRegistroService.currentalumnoToUpdate.subscribe(alumnoToUpdate => this.alumno = alumnoToUpdate);
     this.formularioRegistroService.currentfirstTryGivenValues.subscribe(value => this.firstTryGivenValues = value);
     this.formularioRegistroService.currentallFieldsAreValid.subscribe(value => this.allFieldsAreValid = value);
+
+    this.formularioRegistroService.currentfieldLastNameFather.subscribe(value => this.fieldLastNameFather = value);
+    this.formularioRegistroService.currentfieldLastNameMother.subscribe(value => this.fieldLastNameMother = value);
+    this.formularioRegistroService.currentfieldFirstName.subscribe(value => this.fieldFirstName = value);
+    this.formularioRegistroService.currentfieldPlaceBirth.subscribe(value => this.fieldPlaceBirth = value);
+    this.formularioRegistroService.currentfieldDateBirth.subscribe(value => this.fieldDateBirth = value);
+    this.formularioRegistroService.currentfieldStatusCivil.subscribe(value => this.fieldStatusCivil = value);
+    this.formularioRegistroService.currentfieldEmail.subscribe(value => this.fieldEmail = value);
+    this.formularioRegistroService.currentfieldCURP.subscribe(value => this.fieldCURP = value);
+    this.formularioRegistroService.currentfieldNSS.subscribe(value => this.fieldNSS = value);
+    this.formularioRegistroService.currentfieldStreet.subscribe(value => this.fieldStreet = value);
+    this.formularioRegistroService.currentfieldColony.subscribe(value => this.fieldColony = value);
+    this.formularioRegistroService.currentfieldCity.subscribe(value => this.fieldCity = value);
+    this.formularioRegistroService.currentfieldState.subscribe(value => this.fieldState = value);
+    this.formularioRegistroService.currentfieldPostalCode.subscribe(value => this.fieldPostalCode = value);
+    this.formularioRegistroService.currentfieldPhone.subscribe(value => this.fieldPhone = value);
+    this.formularioRegistroService.currentfieldEtnia.subscribe(value => this.fieldEtnia = value);
+    this.formularioRegistroService.currentfieldOtherEtnia.subscribe(value => this.fieldOtherEtnia = value);
+    this.formularioRegistroService.currentfieldDisability.subscribe(value => this.fieldDisability = value);
+    this.formularioRegistroService.currentfieldWhichDisability.subscribe(value => this.fieldWhichDisability = value);
+    this.formularioRegistroService.currentfieldSchool.subscribe(value => this.fieldSchool = value);
+    this.formularioRegistroService.currentfieldOtherSchool.subscribe(value => this.fieldOtherSchool = value);
+    this.formularioRegistroService.currentfieldNameSchool.subscribe(value => this.fieldNameSchool = value);
+    this.formularioRegistroService.currentfieldAverage.subscribe(value => this.fieldAverage = value);
+    this.formularioRegistroService.currentfieldCareer.subscribe(value => this.fieldCareer = value);
   }
 
   getAlumnoStatus() {
@@ -81,13 +106,15 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   }
 
   evaluateIfallFieldsAreValid() {
-    this.allFieldsAreValid =  (this.fieldLastNameFather.length > 1 &&
+    this.allFieldsAreValid =  (this.  fieldLastNameFather.length > 1 &&
       this.fieldLastNameMother.length > 1 && this.fieldFirstName.length > 1 &&
       this.fieldPlaceBirth.length > 1  && this.fieldEmail.length > 1 &&
       this.fieldCURP.length > 1 && this.fieldStreet.length > 1 &&
       this.fieldColony.length > 1 && this.fieldCity.length > 1 &&
       this.fieldNameSchool.length > 1 && this.fieldAverage > 0 &&
-      this.fieldAverage <= 100);
+      this.fieldPostalCode != null && this.fieldPostalCode > 0 &&
+      this.fieldAverage <= 100 && this.fieldAverage != null &&
+      this.fieldPhone > 0 && this.fieldPhone != null);
 
     if (this.allFieldsAreValid) {
       this.formularioRegistroService.changeallFieldsAreValid(true);

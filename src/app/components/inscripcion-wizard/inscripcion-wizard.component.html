@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]='true' #stepper>
+<mat-horizontal-stepper [linear]='true' #stepper *ngIf="alumnoStatus==='En captura'">
   <mat-step editable='false' [completed]='stepOneCompleted'>
     <ng-template matStepLabel>Paso 1</ng-template>
     <h2>Paso 1.- Formulario.</h2>
@@ -97,7 +97,7 @@
           <div class='col-3'>
             <span class="float-right">
                 <button class='btn btn-outline-primary btn-lg' (click)="stepper.reset(); resetSteps();">Regresar</button>
-                <button class='btn btn-outline-primary btn-lg' (click)="resetSteps()" [routerLink]="['/wizard-success']">Terminar</button>
+                <button class='btn btn-outline-primary btn-lg' (click)="finishSteps()" [routerLink]="['/wizard-success']">Terminar</button>
             </span>
           </div>
         </div>
