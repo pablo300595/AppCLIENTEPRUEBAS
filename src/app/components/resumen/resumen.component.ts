@@ -80,17 +80,7 @@ export class ResumenComponent implements OnInit {
   downloadPDF() {
     console.log('PDF');
     const doc = new jsPDF();
-    /*
 
-    doc.text(this.fieldEtnia + '', 10, 42);
-    doc.text(this.fieldOtherEtnia + '', 10, 44);
-    doc.text(this.fieldDisability + '', 10, 46);
-    doc.text(this.fieldWhichDisability + '', 10, 48);
-    doc.text(this.fieldSchool + '', 10, 50);
-    doc.text(this.fieldOtherSchool + '', 10, 52);
-    doc.text(this.fieldNameSchool + '', 10, 54);
-    doc.text(this.fieldAverage + '', 10, 56);
-    doc.text(this.fieldCareer + '', 10, 58);*/
     // Cuadro 1
     doc.setDrawColor(0);
     doc.setFillColor(0, 0, 0);
