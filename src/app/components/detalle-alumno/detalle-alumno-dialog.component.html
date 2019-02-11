@@ -13,43 +13,45 @@
             <div class="form-group col-xs-6 col-md-4">
               <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
               <input type="text" class="form-control" id="txtApellidoPaterno" name="fieldLastNameFather" placeholder="Apellido Paterno"
-                [(ngModel)]="fieldLastNameFather">
+                [(ngModel)]="editLastNameFather">
               <p id="msgError" *ngIf="(fieldLastNameFather.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-xs-6 col-md-4">
               <label for="txtApellidoMaterno">APELLIDO MATERNO</label>
               <input type="text" class="form-control" id="txtApellidoMaterno" name="fieldLastNameMother" placeholder="Apellido Materno"
-                [(ngModel)]="fieldLastNameMother">
+                [(ngModel)]="editLastNameMother">
               <p id="msgError" *ngIf="(fieldLastNameMother.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-xs-6 col-md-4">
               <label for="txtNombre">NOMBRE(S)</label>
               <input type="text" class="form-control" id="txtNombre" name="fieldFirstName" placeholder="Nombre(s)"
-                [(ngModel)]="fieldFirstName">
+                [(ngModel)]="editFirstName">
               <p id="msgError" *ngIf="(fieldFirstName.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
+            
           </div>
-
+          
+         
 
           <br>
           <div class="form-group">
             <label for="txtLugarNacimiento">LUGAR DE NACIMIENTO</label>
             <input type="text" class="form-control" id="txtLugarNacimiento" placeholder="Lugar de Nacimiento"
-              [(ngModel)]="fieldPlaceBirth" name="fieldPlaceBirth">
+              [(ngModel)]="editPlaceBirth" name="fieldPlaceBirth">
             <p id="msgError" *ngIf="(fieldPlaceBirth.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtFecha">FECHA DE NACIMIENTO</label>
-              <input type="date" class="form-control" id="txtFecha" placeholder="Fecha de Nacimiento" [(ngModel)]="fieldDateBirth"
+              <input type="date" class="form-control" id="txtFecha" placeholder="Fecha de Nacimiento" [(ngModel)]="editDateBirth"
                 name="fieldDateBirth">
               <p id="msgError" *ngIf="(fieldDateBirth.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
 
             <div class="form-group col-md-6">
               <label for="selectEstadoCivil">ESTADO CIVIL</label>
-              <select class="custom-select mr-sm-2" id="selectEstadoCivil" [(ngModel)]="fieldStatusCivil" name="fieldStatusCivil">
+              <select class="custom-select mr-sm-2" id="selectEstadoCivil" [(ngModel)]="editStatusCivil" name="fieldStatusCivil">
                 <option selected="Soltero">Soltero/a</option>
                 <option>Comprometido/a</option>
                 <option>Casado/a</option>
@@ -61,20 +63,20 @@
           </div>
           <div class="form-group">
             <label for="txtEmail">CORREO ELECTRÓNICO</label>
-            <input type="email" class="form-control" placeholder="Ingrese Correo" [(ngModel)]="fieldEmail" name="fieldEmail">
+            <input type="email" class="form-control" placeholder="Ingrese Correo" [(ngModel)]="editEmail" name="fieldEmail">
             <p id="msgError" *ngIf="(fieldEmail.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtCurp">CURP</label>
-              <input type="text" class="form-control" id="txtCURP" placeholder="CURP" [(ngModel)]="fieldCURP" name="fieldCURP">
+              <input type="text" class="form-control" id="txtCURP" placeholder="CURP" [(ngModel)]="editCurp" name="fieldCURP">
               <p id="msgError" *ngIf="(fieldCURP.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-md-6">
               <label for="txtNSS">NSS(NÚMERO DE SEGURO SOCIAL)</label>
               <input type="text" class="form-control" id="txtNSS" placeholder="NSS(Número de Seguro Social)"
-                [(ngModel)]="fieldNSS" name="fieldNSS">
+                [(ngModel)]="editNSS" name="fieldNSS">
               <p id="msgError" *ngIf="(fieldNSS.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
           </div>
@@ -90,12 +92,12 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtCalle">CALLE</label>
-              <input type="text" class="form-control" id="txtCalle" placeholder="Calle" [(ngModel)]="fieldStreet" name="fieldStreet">
+              <input type="text" class="form-control" id="txtCalle" placeholder="Calle" [(ngModel)]="editStreet" name="fieldStreet">
               <p id="msgError" *ngIf="(fieldStreet.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-md-6">
               <label for="txtColonia">COLONIA</label>
-              <input type="text" class="form-control" id="txtColonia" placeholder="Colonia" [(ngModel)]="fieldColony"
+              <input type="text" class="form-control" id="txtColonia" placeholder="Colonia" [(ngModel)]="editColony"
                 name="fieldColony">
               <p id="msgError" *ngIf="(fieldColony.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
@@ -104,12 +106,12 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtCiudad">CIUDAD</label>
-              <input type="text" class="form-control" id="txtCiudad" placeholder="Ciudad" [(ngModel)]="fieldCity" name="fieldCity">
+              <input type="text" class="form-control" id="txtCiudad" placeholder="Ciudad" [(ngModel)]="editCity" name="fieldCity">
               <p id="msgError" *ngIf="(fieldCity.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-md-6">
               <label for="txtEstado">ESTADO</label>
-              <select class="form-control" id="selectEstado" [(ngModel)]="fieldState" name="fieldState">
+              <select class="form-control" id="selectEstado" [(ngModel)]="editState" name="fieldState">
                 <option selected>Aguascalientes</option>
                 <option>Baja California</option>
                 <option>Baja California Sur</option>
@@ -150,13 +152,13 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtCodigoPostal">CÓDIGO POSTAL</label>
-              <input type="text" class="form-control" id="txtCodigoPostal" placeholder="Código Postal" [(ngModel)]="fieldPostalCode"
+              <input type="text" class="form-control" id="txtCodigoPostal" placeholder="Código Postal" [(ngModel)]="editPostalCode"
                 name="fieldPostalCode">
               <p id="msgError" *ngIf="(fieldPostalCode.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-md-6">
               <label for="txtTelefono">TELÉFONO</label>
-              <input type="text" class="form-control" id="txtTelefono" placeholder="Teléfono" [(ngModel)]="fieldPhone"
+              <input type="text" class="form-control" id="txtTelefono" placeholder="Teléfono" [(ngModel)]="editPhone"
                 name="fieldPhone">
               <p id="msgError" *ngIf="(fieldPhone.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
@@ -171,7 +173,7 @@
             <div class="form-group col-md-6">
               <label for="selectEtnia">¿PERTENECES A ALGUNA ETNIA?</label>
 
-              <select class="form-control" id="selectEtnia" [(ngModel)]="fieldEtnia" name="fieldEtnia">
+              <select class="form-control" id="selectEtnia" [(ngModel)]="editEtnia" name="fieldEtnia">
                 <option selected>SI</option>
                 <option>NO</option>
 
@@ -179,7 +181,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="txtCualEtnia">¿CUÁL?</label>
-              <input type="text" class="form-control" id="txtCualEtnia" placeholder="Introducir ETNIA" [(ngModel)]="fieldOtherEtnia"
+              <input type="text" class="form-control" id="txtCualEtnia" placeholder="Introducir ETNIA" [(ngModel)]="editOtherEtnia"
                 name="fieldOtherEtnia">
             </div>
           </div>
@@ -188,7 +190,7 @@
             <div class="form-group col-md-6">
               <label for="selectDiscapacidad">¿TIENES ALGUNA DISCAPACIDAD?</label>
 
-              <select class="form-control" id="selectDiscapacidad" [(ngModel)]="fieldDisability" name="fieldDisability">
+              <select class="form-control" id="selectDiscapacidad" [(ngModel)]="editDisability" name="fieldDisability">
                 <option selected>SI</option>
                 <option>NO</option>
 
@@ -197,7 +199,7 @@
             <div class="form-group col-md-6">
               <label for="txtDiscapacidad">¿CUÁL?</label>
               <input type="text" class="form-control" id="txtDiscapacidad" placeholder="Introducir Discapacidad"
-                [(ngModel)]="fieldWhichDisability" name="fieldWhichDisability">
+                [(ngModel)]="editWhichDisability" name="fieldWhichDisability">
             </div>
           </div>
 
@@ -213,7 +215,7 @@
             <div class="form-group col-md-6">
               <label for="selectEscuelaDeProcedencia">ESCUELA DE PROCEDENCIA</label>
 
-              <select class="custom-select mr-sm-2" id="selectEscuelaDeProcedencia" [(ngModel)]="fieldSchool" name="fieldSchool">
+              <select class="custom-select mr-sm-2" id="selectEscuelaDeProcedencia" [(ngModel)]="editShool" name="fieldSchool">
 
                 <option selected>CONALEP</option>
                 <option>CETIS</option>
@@ -228,7 +230,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="txtOtraEscuela">OTRA</label>
-              <input type="text" class="form-control" id="txtOtraEscuela" placeholder="Introducir Escuela" [(ngModel)]="fieldOtherSchool"
+              <input type="text" class="form-control" id="txtOtraEscuela" placeholder="Introducir Escuela" [(ngModel)]="editOtherSchool"
                 name="fieldOtherSchool">
             </div>
           </div>
@@ -237,13 +239,13 @@
           <div class="form-row">
             <div class="form-group col-xs-12 col-md-8">
               <label for="txtNombreEscuela">NOMBRE DE LA ESCUELA</label>
-              <input type="text" class="form-control" id="txtNombreEscuela" placeholder="Escuela" [(ngModel)]="fieldNameSchool"
+              <input type="text" class="form-control" id="txtNombreEscuela" placeholder="Escuela" [(ngModel)]="editNameSchool"
                 name="fieldNameSchool">
               <p id="msgError" *ngIf="(fieldNameSchool.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-xs-6 col-md-4">
               <label for="txtPromedio">PROMEDIO</label>
-              <input type="number" class="form-control" id="txtPromedio" placeholder="PROMEDIO" [(ngModel)]="fieldAverage"
+              <input type="number" class="form-control" id="txtPromedio" placeholder="PROMEDIO" [(ngModel)]="editAverage"
                 name="fieldAverage" min="1" max="100" value="1">
             </div>
           </div>
@@ -252,7 +254,7 @@
             <label for="selectCarrera">
               <b>CARRERA A CURSAR</b>
             </label>
-            <select id="selectCarrera" class="form-control" [(ngModel)]="fieldCareer" name="fieldCareer">
+            <select id="selectCarrera" class="form-control" [(ngModel)]="editCareer" name="fieldCareer">
               <option selected>Arquitectura</option>
               <option>Ingeniería Bioquímica</option>
               <option>Ingeniería Civil</option>
@@ -282,7 +284,7 @@
 <br>
 <div class="right">
   <div class="example-button-row">
-    <button mat-button>Cancelar</button>
-    <button mat-raised-button color="primary">Guardar</button>
+    <button mat-button (click)="exit()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="updateModal()">Guardar</button>
   </div>
 </div>

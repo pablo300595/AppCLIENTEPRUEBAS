@@ -7,9 +7,11 @@ import { NgForm } from '@angular/forms';
 
 
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {Inject} from '@angular/core';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Inject } from '@angular/core';
+import { ResumenComponent } from '../resumen/resumen.component';
+import { MatDialogConfig } from "@angular/material";
+import { LoginService } from './../../services/login.service';
 
 
 export interface DialogData {
@@ -30,7 +32,9 @@ export class DetalleAlumnoComponent implements OnInit {
   animal: string;
   name: string;
 
-  displayedColumns: string[] = ['controlNumber','lastNameFather', 'lastNameMother', 'firstName', 'career'];
+  fila: any;
+
+  displayedColumns: string[] = ['controlNumber', 'lastNameFather', 'lastNameMother', 'firstName', 'career', 'actions'];
 
   dataSource: MatTableDataSource<Alumno>;
 
@@ -86,7 +90,7 @@ export class DetalleAlumnoComponent implements OnInit {
         console.log(this.alumnos);
       });
   }
-
+  /*
   openDialog(): void {
     const dialogRef = this.dialog.open(DetalleAlumnoDialogComponent, {
       width: '850px',
@@ -98,9 +102,22 @@ export class DetalleAlumnoComponent implements OnInit {
       console.log('The dialog was closed');
       this.animal = result;
     });
+  }*/
+
+  onEdit(row): void {
+    let valor = 'hola';
+    //this.alumnoService.(valor);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig);
   }
 
+
 }
+
+
 
 @Component({
   selector: 'app-detalle-alumno-dialog.component',
@@ -138,25 +155,138 @@ export class DetalleAlumnoDialogComponent {
   fieldCareer: String = '';
   fieldDocuments: String[] = [];
   statusInscripcion: String = '';
-  
-    // Services variables
-    alumno: Alumno;
-    alumnos: any;
-  
-    idAlumnoLoged: String;
-    statusInscripcionAlumno: string;
-    // Error messages
-  
-    // Flags
-    stepOneCompleted: boolean;
-    firstTryGivenValues: boolean;
+
+  // Services variables
+  alumno: Alumno;
+  alumnos: any;
+
+  idAlumnoLoged: String;
+  statusInscripcionAlumno: string;
+  // Error messages
+
+  // Flags
+  stepOneCompleted: boolean;
+  firstTryGivenValues: boolean;
+
+
+  idAlumno: String;
+  editarAlumno: any;
+  editAverage: Number;
+  editCareer: String;
+  editCity: String;
+  editColony: String;
+  editCurp: String;
+  editDateBirth: String;
+  editDisability: String;
+  editEmail: String;
+  editEtnia: String;
+  editFirstName: String;
+  editLastNameFather: String;
+  editLastNameMother: String;
+  editNameSchool: String;
+  editNSS: Number;
+  editOtherEtnia: String;
+  editOtherSchool: String;
+  editPhone: Number;
+  editPlaceBirth: String;
+  editPostalCode: String;
+  editShool: String;
+  editSexo: String;
+  editState: String;
+  editStatusCivil: String;
+  editStreet: String;
+  editWhichDisability: String;
+
+
+
+  modalAlumno: Alumno;
 
   constructor(
     public dialogRef: MatDialogRef<DetalleAlumnoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private loginService: LoginService,
+    private alumnoService: AlumnoService) {
+
+    this.loginService.currentIdAlumnoSource.subscribe(res => {
+      this.idAlumno = res;
+    });
+
+    this.alumnoService.getAlumno('13400409').subscribe(res => {
+      this.editarAlumno = res;
+      this.editAverage = this.editarAlumno.average;
+      this.editCareer = this.editarAlumno.career;
+      this.editCity = this.editarAlumno.city;
+      this.editColony = this.editarAlumno.colony;
+      this.editCurp = this.editarAlumno.curp;
+      this.editDateBirth = this.editarAlumno.dateBirth;
+      this.editDisability = this.editarAlumno.disability;
+      this.editEmail = this.editarAlumno.email;
+      this.editEtnia = this.editarAlumno.etnia;
+      this.editFirstName = this.editarAlumno.firstName;
+      this.editLastNameFather = this.editarAlumno.lastNameFather;
+      this.editLastNameMother = this.editarAlumno.lastNameMother;
+      this.editNameSchool = this.editarAlumno.nameSchool;
+      this.editNSS = this.editarAlumno.nss;
+      this.editOtherEtnia = this.editarAlumno.otherEtnia;
+      this.editOtherSchool = this.editarAlumno.otherSchool;
+      this.editPhone = this.editarAlumno.phone;
+      this.editPlaceBirth = this.editarAlumno.placeBirth;
+      this.editPostalCode = this.editarAlumno.postalCode;
+      this.editShool = this.editarAlumno.school;
+      this.editSexo = this.editarAlumno.sex;
+      this.editState = this.editarAlumno.state;
+      this.editStatusCivil = this.editarAlumno.state;
+      this.editStreet = this.editarAlumno.street;
+      this.editWhichDisability = this.editarAlumno.whichDisability;
+    });
+
+
+
+    console.log();
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  exit(): void {
+    this.dialogRef.close();
+  }
+
+
+  updateModal(): void {
+
+    this.modalAlumno = {
+      lastNameFather: '',
+      lastNameMother: '',
+      firstName: '',
+      controlNumber: '',
+      placeBirth: '',
+      dateBirth:  this.editDateBirth,
+      statusCivil: '',
+      email: this.editEmail,
+      curp: this.editCurp,
+      nss: 0,
+      sex: '',
+      street: '',
+      colony: this.editColony,
+      city: this.editCity ,
+      state: '',
+      postalCode: 63061,
+      phone: 3111591173,
+      etnia: '',
+      otherEtnia: '',
+      disability: '',
+      whichDisability: this.editDisability,
+      school: '',
+      otherSchool: '',
+      nameSchool: '',
+      average: this.editAverage,
+      career: this.editCareer,
+      documents: [],
+      
+    };
+    this.alumnoService.putAlumno(this.modalAlumno, this.idAlumno).subscribe();
   }
 
 }

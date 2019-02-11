@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Alumno } from './../models/alumno';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +28,10 @@ export class AlumnoService {
     return this.http.get(this.URL);
    }
 
+   getAlumno(id) {
+      return this.http.get(this.URL + '/' + id);
+     }
+
    getAlumnoStatusInscripcion(idAlumno) {
     return this.http.get(this.URL + `/status/${idAlumno}`);
    }
@@ -41,4 +47,7 @@ export class AlumnoService {
    deleteAlumno(_id: string) {
       // return this.http.delete(this.URL + `/${_id}`);
    }
+
+     
 }
+
