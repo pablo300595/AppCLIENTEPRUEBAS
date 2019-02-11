@@ -133,7 +133,7 @@ export class ResumenComponent implements OnInit {
     doc.setFontType('bold');
     doc.text('NSS: ', 15, 110);
     doc.setFontType('normal');
-    doc.text(this.fieldNSS, 80, 110);
+    doc.text(this.fieldNSS + '', 80, 110);
 
     doc.setFontType('bold');
     doc.text('Número de control: ', 15, 115);
@@ -182,12 +182,12 @@ export class ResumenComponent implements OnInit {
     doc.setFontType('bold');
     doc.text('Código Postal: ', 15, 160);
     doc.setFontType('normal');
-    doc.text(this.fieldPostalCode, 80, 160);
+    doc.text(this.fieldPostalCode + '', 80, 160);
 
     doc.setFontType('bold');
     doc.text('Teléfono: ', 15, 165);
     doc.setFontType('normal');
-    doc.text(this.fieldPhone, 80, 165);
+    doc.text(this.fieldPhone + '', 80, 165);
 
     // Cuadro 3
     doc.setDrawColor(0);
@@ -221,7 +221,7 @@ export class ResumenComponent implements OnInit {
     doc.setFontType('bold');
     doc.text('Promedio: ', 15, 200);
     doc.setFontType('normal');
-    doc.text(this.fieldAverage, 80, 200);
+    doc.text(this.fieldAverage + '', 80, 200);
 
     doc.setFontType('bold');
     doc.text('Carrera a cursar: ', 15, 205);
