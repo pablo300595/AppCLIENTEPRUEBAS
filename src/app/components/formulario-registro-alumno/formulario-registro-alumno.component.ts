@@ -18,7 +18,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   fieldLastNameFather: String;
   fieldLastNameMother: String;
   fieldFirstName: String;
-  fieldControlNumber: String;
+  fieldControlNumber = '13400501';
   fieldPlaceBirth: String;
   fieldDateBirth: String;
   fieldStatusCivil: String;

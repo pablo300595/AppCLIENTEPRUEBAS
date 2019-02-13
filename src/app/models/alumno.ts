@@ -39,7 +39,7 @@ export class Alumno {
   lastNameFather?: String;
   lastNameMother?: String;
   firstName?: String;
-  controlNumber: String;
+  controlNumber?: String;
   placeBirth?: String;
   dateBirth?: String;
   statusCivil?: String;

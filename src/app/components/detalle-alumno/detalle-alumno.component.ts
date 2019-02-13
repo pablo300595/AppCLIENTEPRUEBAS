@@ -94,7 +94,7 @@ export class DetalleAlumnoComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DetalleAlumnoDialogComponent, {
       width: '850px',
-      
+
 
     });
 
@@ -106,11 +106,11 @@ export class DetalleAlumnoComponent implements OnInit {
 
   onEdit(row): void {
     let valor = 'hola';
-    //this.alumnoService.(valor);
+    // this.alumnoService.(valor);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = '60%';
     this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig);
   }
 
@@ -211,7 +211,7 @@ export class DetalleAlumnoDialogComponent {
       this.idAlumno = res;
     });
 
-    this.alumnoService.getAlumno('13400410').subscribe(res => {
+    this.alumnoService.getAlumno('13400501').subscribe(res => {
       this.editarAlumno = res;
       this.editAverage = this.editarAlumno.average;
       this.editCareer = this.editarAlumno.career;
@@ -284,7 +284,7 @@ export class DetalleAlumnoDialogComponent {
       average: this.editAverage,
       career: this.editCareer,
       documents: [],
-      
+
     };
     this.alumnoService.putAlumno(this.modalAlumno, this.idAlumno).subscribe();
   }*/
