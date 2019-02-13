@@ -176,7 +176,7 @@ export class DetalleAlumnoDialogComponent {
   editCity: String;
   editColony: String;
   editCurp: String;
-  editDateBirth: String;
+  editDateBirth: Date;
   editDisability: String;
   editEmail: String;
   editEtnia: String;
@@ -211,7 +211,7 @@ export class DetalleAlumnoDialogComponent {
       this.idAlumno = res;
     });
 
-    this.alumnoService.getAlumno('13400409').subscribe(res => {
+    this.alumnoService.getAlumno('13400410').subscribe(res => {
       this.editarAlumno = res;
       this.editAverage = this.editarAlumno.average;
       this.editCareer = this.editarAlumno.career;
@@ -235,7 +235,7 @@ export class DetalleAlumnoDialogComponent {
       this.editShool = this.editarAlumno.school;
       this.editSexo = this.editarAlumno.sex;
       this.editState = this.editarAlumno.state;
-      this.editStatusCivil = this.editarAlumno.state;
+      this.editStatusCivil = this.editarAlumno.statusCivil;
       this.editStreet = this.editarAlumno.street;
       this.editWhichDisability = this.editarAlumno.whichDisability;
     });
@@ -253,7 +253,7 @@ export class DetalleAlumnoDialogComponent {
     this.dialogRef.close();
   }
 
-
+  /*
   updateModal(): void {
 
     this.modalAlumno = {
@@ -287,7 +287,7 @@ export class DetalleAlumnoDialogComponent {
       
     };
     this.alumnoService.putAlumno(this.modalAlumno, this.idAlumno).subscribe();
-  }
+  }*/
 
 }
 
