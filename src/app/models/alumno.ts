@@ -1,5 +1,6 @@
 export class Alumno {
-  constructor(lastNameFather= '', lastNameMother= '', firstName= '', controlNumber='', placeBirth= '', dateBirth= '', statusCivil= 'Soltero/a',
+  constructor(lastNameFather= '', lastNameMother= '', firstName= '', controlNumber = '', placeBirth= '', dateBirth= '',
+              statusCivil= 'Soltero/a',
               email= '', curp= '', nss= 0, sex= 'H', street= '', colony= '', city= '', state= 'Nayarit', postalCode= 0,
               phone= 0, etnia= '', otherEtnia= '', disability= '',
               whichDisability= '', school= '', otherSchool= '', nameSchool= '',
@@ -35,32 +36,32 @@ export class Alumno {
     this.statusInscripcion = statusInscripcion;
   }
 
-  lastNameFather: String;
-  lastNameMother: String;
-  firstName: String;
+  lastNameFather?: String;
+  lastNameMother?: String;
+  firstName?: String;
   controlNumber: String;
-  placeBirth: String;
-  dateBirth: String;
-  statusCivil: String;
-  email: String;
-  curp: String;
-  nss: Number;
-  sex: String;
-  street: String;
-  colony: String;
-  city: String;
-  state: String;
-  postalCode: Number;
-  phone: Number;
-  etnia: String;
-  otherEtnia: String;
-  disability: String;
-  whichDisability: String;
-  school: String;
-  otherSchool: String;
-  nameSchool: String;
-  average: Number;
-  career: String;
-  documents: String[];
-  statusInscripcion: String;
+  placeBirth?: String;
+  dateBirth?: String;
+  statusCivil?: String;
+  email?: String;
+  curp?: String;
+  nss?: Number;
+  sex?: String;
+  street?: String;
+  colony?: String;
+  city?: String;
+  state?: String;
+  postalCode?: Number;
+  phone?: Number;
+  etnia?: String;
+  otherEtnia?: String;
+  disability?: String;
+  whichDisability?: String;
+  school?: String;
+  otherSchool?: String;
+  nameSchool?: String;
+  average?: Number;
+  career?: String;
+  documents?: String[];
+  statusInscripcion?: String;
 }

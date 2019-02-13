@@ -40,9 +40,9 @@ export class AlumnoService {
       return this.http.put(this.URL + `/${id}`, alumno);
    }
 
-   putStatusAlumno(alumno: Object , id) {
+  putStatusAlumno(alumno: Alumno , id) {
     return this.http.put(this.URL + `/status/${id}`, alumno);
- }
+  }
 
    deleteAlumno(_id: string) {
       // return this.http.delete(this.URL + `/${_id}`);

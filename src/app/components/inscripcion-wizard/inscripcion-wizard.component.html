@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]='true' #stepper>
+<mat-horizontal-stepper [linear]='true' #stepper *ngIf="alumnoStatus==='En captura'">
   <mat-step editable='false' [completed]='stepOneCompleted'>
     <ng-template matStepLabel>Paso 1</ng-template>
     <h2>Paso 1.- Formulario.</h2>
@@ -6,7 +6,16 @@
     <br>
     <div class='card'>
       <div class='card-body'>
-          <button mat-button matStepperNext class='btn btn-outline-primary btn-lg' (click)='updateAlumno()'>Siguiente</button>
+        <div class='row'>
+          <div class='col-3'></div>
+          <div class='col-3'></div>
+          <div class='col-3'></div>
+          <div class='col-3'>
+            <span class="float-right">
+              <button matStepperNext class='btn btn-outline-primary btn-lg' (click)='updateAlumno()'>Siguiente</button>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
     </mat-step>
@@ -16,7 +25,20 @@
     <h2>Paso 2.- Documentos.</h2>
     <app-carga-documentos></app-carga-documentos>
     <br>
-    <button mat-button matStepperNext class='btn btn-outline-primary btn-lg' (click)='checkStepTwo()'>Siguiente</button>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-3'></div>
+          <div class='col-3'></div>
+          <div class='col-3'></div>
+          <div class='col-3'>
+            <span class="float-right">
+              <button matStepperNext class='btn btn-outline-primary btn-lg' (click)='checkStepTwo()'>Siguiente</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-step>
 
   <mat-step editable='false' [completed]='stepThreeCompleted'>
@@ -24,7 +46,20 @@
     <h2>Paso 3.- Contrato con el estudiante.</h2>
     <app-contrato></app-contrato>
     <br>
-    <button mat-button matStepperNext class='btn btn-outline-primary btn-lg' (click)='checkStepThree()'>Siguiente</button>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-3'></div>
+          <div class='col-3'></div>
+          <div class='col-3'></div>
+          <div class='col-3'>
+            <span class="float-right">
+              <button matStepperNext class='btn btn-outline-primary btn-lg' (click)='checkStepThree()'>Siguiente</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-step>
 
   <mat-step editable='false' >
@@ -32,7 +67,20 @@
     <h2>Paso 4.- Resumen.</h2>
     <app-resumen></app-resumen>
     <br>
-    <button mat-button matStepperNext class='btn btn-outline-primary btn-lg' (click)='checkStepFour()'>Siguiente</button>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-3'></div>
+          <div class='col-3'></div>
+          <div class='col-3'></div>
+          <div class='col-3'>
+            <span class="float-right">
+              <button matStepperNext class='btn btn-outline-primary btn-lg' (click)='checkStepFour()'>Siguiente</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-step>
 
   <mat-step editable='false' >
@@ -40,7 +88,20 @@
     <h2>Paso 5.- Confirmación.</h2>
     <app-template-wizard></app-template-wizard>
     <br>
-    <button class='btn btn-outline-primary btn-lg' (click)="stepper.reset()">Regresar</button>
-    <button class='btn btn-outline-primary btn-lg' [routerLink]="['/wizard-success']">Terminar</button>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-3'></div>
+          <div class='col-3'></div>
+          <div class='col-3'></div>
+          <div class='col-3'>
+            <span class="float-right">
+                <button class='btn btn-outline-primary btn-lg' (click)="stepper.reset(); resetSteps();">Regresar</button>
+                <button class='btn btn-outline-primary btn-lg' (click)="finishSteps()" [routerLink]="['/wizard-success']">Terminar</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-step>
 </mat-horizontal-stepper>

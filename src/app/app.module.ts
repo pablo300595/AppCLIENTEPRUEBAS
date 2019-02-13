@@ -77,6 +77,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { TemplateWizardComponent } from './components/subcomponents/template-wizard/template-wizard.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfTemplatePhotoJPGComponent } from './components/subcomponents/pdf-template-photo-jpg/pdf-template-photo-jpg.component';
+import { TemplateCorrectComponent } from './components/subcomponents/template-correct/template-correct.component';
+import { TemplateIncorrectComponent } from './components/subcomponents/template-incorrect/template-incorrect.component';
 
 
 const appRoutes: Routes = [
@@ -96,7 +99,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
    url: 'http://localhost:3000/upload',
    maxFilesize: 3,
-   acceptedFiles: '.pdf,.png,.jpg',
+   acceptedFiles: '.pdf',
    createImageThumbnails: true,
    maxThumbnailFilesize: 10,
    thumbnailWidth: 800,
@@ -118,7 +121,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     PdfTemplateClinicosComponent,
     PdfTemplateCertificadoComponent,
     PdfTemplateActaComponent,
-    TemplateWizardComponent
+    TemplateWizardComponent,
+    PdfTemplatePhotoJPGComponent,
+    TemplateCorrectComponent,
+    TemplateIncorrectComponent
     ],
 
   imports: [
