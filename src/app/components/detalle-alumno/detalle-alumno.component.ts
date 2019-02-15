@@ -254,7 +254,6 @@ export class DetalleAlumnoDialogComponent {
     this.dialogRef.close();
   }
 
-<<<<<<< HEAD
   updateAlumno(): void {
 
     this.alumno = {
@@ -284,39 +283,6 @@ export class DetalleAlumnoDialogComponent {
       nameSchool: this.fieldNameSchool,
       average: this.fieldAverage,
       career: this.fieldCareer,
-=======
-
-  /*
-  updateModal(): void {
-
-    this.modalAlumno = {
-      lastNameFather: '',
-      lastNameMother: '',
-      firstName: '',
-      controlNumber: '',
-      placeBirth: '',
-      dateBirth:  this.editDateBirth,
-      statusCivil: '',
-      email: this.editEmail,
-      curp: this.editCurp,
-      nss: 0,
-      sex: '',
-      street: '',
-      colony: this.editColony,
-      city: this.editCity ,
-      state: '',
-      postalCode: 63061,
-      phone: 3111591173,
-      etnia: '',
-      otherEtnia: '',
-      disability: '',
-      whichDisability: this.editDisability,
-      school: '',
-      otherSchool: '',
-      nameSchool: '',
-      average: this.editAverage,
-      career: this.editCareer,
->>>>>>> fcf88fb13e74f28e4e1b9cfc333f3e2e4390e586
       documents: [],
 
     };
