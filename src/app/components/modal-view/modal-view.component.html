@@ -1,6 +1,8 @@
 <mat-dialog-content class="mat-typography">
-        
-<div class='login-block'>
+  <div class="right">
+  <mat-icon class="right" (click)="closeDialog()">close</mat-icon>
+  </div>
+  <div class='login-block'>
     <div class="container">
       <div class='login-block'>
         <div class="container">
@@ -208,7 +210,7 @@
 
                     </mat-panel-description>
                   </mat-expansion-panel-header>
-                  <pdf-viewer [src]="src"></pdf-viewer>
+                  <pdf-viewer [src]="src" ></pdf-viewer>
                 </mat-expansion-panel>
 
                 <mat-expansion-panel>

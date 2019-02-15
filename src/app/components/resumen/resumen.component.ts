@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Alumno } from './../../models/alumno';
 import { AlumnoService} from './../../services/alumno.service';
 import { LoginService } from './../../services/login.service';
 import * as jsPDF from 'jspdf';
+import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-resumen',
@@ -46,7 +47,8 @@ export class ResumenComponent implements OnInit {
   statusInscripcion: String;
 
   idAlumnoLoged: String;
-  constructor(private alumnoService: AlumnoService, private loginService: LoginService) { }
+  constructor(private alumnoService: AlumnoService, private loginService: LoginService
+   ) { }
 
   ngOnInit() {
     this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
@@ -82,6 +84,11 @@ export class ResumenComponent implements OnInit {
     });
   }
 
+ 
+    
+  
+
+/*
   downloadPDF() {
     console.log('PDF');
     const doc = new jsPDF();
@@ -273,5 +280,5 @@ export class ResumenComponent implements OnInit {
     doc.text(this.fieldWhichDisability, 80, 245);
     doc.save('Test.pdf');
   }
-
+*/
 }

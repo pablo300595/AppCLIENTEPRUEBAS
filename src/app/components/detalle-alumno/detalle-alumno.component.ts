@@ -10,9 +10,11 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Inject } from '@angular/core';
 import { ResumenComponent } from '../resumen/resumen.component';
+import { ModalViewComponent} from '../modal-view/modal-view.component';
 import { MatDialogConfig } from "@angular/material";
 import { LoginService } from './../../services/login.service';
-
+import { DialogService } from 'src/app/services/dialog.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 export interface DialogData {
   animal: string;
@@ -47,7 +49,10 @@ export class DetalleAlumnoComponent implements OnInit {
   alumno: Alumno;
   alumnos: any;
 
-  constructor(private alumnoService: AlumnoService, public dialog: MatDialog) {
+  constructor(private alumnoService: AlumnoService,
+    public dialog: MatDialog,
+    private dialogService: DialogService,
+    private notificationService: NotificationService) {
     // Create 100 users
     //const users = Array.from({length: 100}, (_, k) => this.getAlumnos());
 
@@ -114,6 +119,26 @@ export class DetalleAlumnoComponent implements OnInit {
     this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig);
   }
 
+
+  onDelete(controlNumber) {
+
+    //this.alumnoService.deleteAlumno('13400501').subscribe();
+    this.dialogService.openConfirmDialog('¿Estás seguro de eliminar este alumno?')
+      .afterClosed().subscribe(res => {
+        if (res) {
+          this.alumnoService.deleteAlumno(controlNumber).subscribe();
+          this.notificationService.warn('! Deleted successfully');
+        }
+      });
+  }
+
+  onView() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '90%';
+    this.dialog.open(ModalViewComponent, dialogConfig);
+  }
 
 }
 
@@ -252,6 +277,7 @@ export class DetalleAlumnoDialogComponent {
   exit(): void {
     this.dialogRef.close();
   }
+
 
   /*
   updateModal(): void {

@@ -61,9 +61,9 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
           <mat-cell *matCellDef="let row"> 
               <button mat-icon-button (click)="onEdit()"><mat-icon>mode_edit</mat-icon></button>
-              <button mat-icon-button ><mat-icon>delete</mat-icon></button>
-              <button mat-icon-button ><mat-icon>visibility</mat-icon></button>
-             <!-- <label>{{dataSource.filteredData.indexOf(row.controlNumber)}}</label>-->
+              <button mat-icon-button color="warn" (click)="onDelete(row.controlNumber)" ><mat-icon>delete</mat-icon></button>
+              <button mat-icon-button  (click)="onView()"><mat-icon>visibility</mat-icon></button>
+             
           </mat-cell>
         </ng-container>
 

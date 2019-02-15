@@ -80,6 +80,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PdfTemplatePhotoJPGComponent } from './components/subcomponents/pdf-template-photo-jpg/pdf-template-photo-jpg.component';
 import { TemplateCorrectComponent } from './components/subcomponents/template-correct/template-correct.component';
 import { TemplateIncorrectComponent } from './components/subcomponents/template-incorrect/template-incorrect.component';
+import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { ModalViewComponent } from './components/modal-view/modal-view.component';
 
 
 const appRoutes: Routes = [
@@ -124,7 +126,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     TemplateWizardComponent,
     PdfTemplatePhotoJPGComponent,
     TemplateCorrectComponent,
-    TemplateIncorrectComponent
+    TemplateIncorrectComponent,
+    MatConfirmDialogComponent,
+    ModalViewComponent
     ],
 
   imports: [
@@ -152,7 +156,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatExpansionModule,
     PdfViewerModule
   ],
-  entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent],
+  entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent, MatConfirmDialogComponent, ModalViewComponent],
   providers: [MenuService, AlumnoService, LoginService, FileService,
     WizardService, FormularioRegistroService, DropzoneTemplatesService,
     {
