@@ -12,6 +12,8 @@ import { Inject } from '@angular/core';
 import { ResumenComponent } from '../resumen/resumen.component';
 import { MatDialogConfig } from "@angular/material";
 import { LoginService } from './../../services/login.service';
+import { FormularioRegistroService } from './../../services/formulario-registro.service';
+import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
 
 
 export interface DialogData {
@@ -47,17 +49,14 @@ export class DetalleAlumnoComponent implements OnInit {
   alumno: Alumno;
   alumnos: any;
 
-  constructor(private alumnoService: AlumnoService, public dialog: MatDialog) {
-    // Create 100 users
-    //const users = Array.from({length: 100}, (_, k) => this.getAlumnos());
+  selectedNoCtrl: string;
 
-    // Assign the data to the data source for the table to render
+  constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService) {
     this.dataSource = new MatTableDataSource(this.alumnos);
-
   }
 
   ngOnInit() {
-
+    this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res);
 
     this.alumnoService.getAlumnos()
       .subscribe(res => {
@@ -70,8 +69,6 @@ export class DetalleAlumnoComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
-
-
   }
 
   applyFilter(filterValue: string) {
@@ -104,17 +101,33 @@ export class DetalleAlumnoComponent implements OnInit {
     });
   }*/
 
-  onEdit(row): void {
-    let valor = 'hola';
-    // this.alumnoService.(valor);
+  preUpdate(ctrlNumber) {
+    console.log('DETALLE NUMERO DE CONTROL: ' + ctrlNumber);
+    this.detalleAlumnoService.changeAlumnoToUpdate(ctrlNumber);
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
-    this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig);
+    this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig).afterClosed(
+    ).subscribe(
+      res => this.doRefreshTable()
+    );
   }
 
+  doRefreshTable() {
+    this.alumnoService.getAlumnos()
+      .subscribe(res => {
+        this.alumnoService.alumnos = res as Alumno[];
+        this.alumnos = res;
+        console.log(this.alumnos);
 
+        this.dataSource = new MatTableDataSource(this.alumnos);
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+  }
 }
 
 
@@ -137,13 +150,14 @@ export class DetalleAlumnoDialogComponent {
   fieldStatusCivil: String = '';
   fieldEmail: String = '';
   fieldCURP: String = '';
-  fieldNSS: String = '';
+  fieldNSS: Number;
+  fieldSex: String = '';
   fieldStreet: String = '';
   fieldColony: String = '';
   fieldCity: String = '';
   fieldState: String = '';
-  fieldPostalCode: String = '';
-  fieldPhone: String = '';
+  fieldPostalCode: Number = 0;
+  fieldPhone: Number = 0;
   fieldEtnia: String = '';
   fieldOtherEtnia: String = '';
   fieldDisability: String = '';
@@ -151,98 +165,58 @@ export class DetalleAlumnoDialogComponent {
   fieldSchool: String = '';
   fieldOtherSchool: String = '';
   fieldNameSchool: String = '';
-  fieldAverage: Number = 0;
+  fieldAverage: Number;
   fieldCareer: String = '';
   fieldDocuments: String[] = [];
-  statusInscripcion: String = '';
+  statusInscripcion: String;
+
+  editLastNameFather: String;
 
   // Services variables
   alumno: Alumno;
-  alumnos: any;
-
-  idAlumnoLoged: String;
-  statusInscripcionAlumno: string;
-  // Error messages
-
-  // Flags
-  stepOneCompleted: boolean;
+  selectedNoCtrl: String;
   firstTryGivenValues: boolean;
-
-
-  idAlumno: String;
-  editarAlumno: any;
-  editAverage: Number;
-  editCareer: String;
-  editCity: String;
-  editColony: String;
-  editCurp: String;
-  editDateBirth: Date;
-  editDisability: String;
-  editEmail: String;
-  editEtnia: String;
-  editFirstName: String;
-  editLastNameFather: String;
-  editLastNameMother: String;
-  editNameSchool: String;
-  editNSS: Number;
-  editOtherEtnia: String;
-  editOtherSchool: String;
-  editPhone: Number;
-  editPlaceBirth: String;
-  editPostalCode: String;
-  editShool: String;
-  editSexo: String;
-  editState: String;
-  editStatusCivil: String;
-  editStreet: String;
-  editWhichDisability: String;
-
-
-
-  modalAlumno: Alumno;
 
   constructor(
     public dialogRef: MatDialogRef<DetalleAlumnoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private loginService: LoginService,
-    private alumnoService: AlumnoService) {
+    private alumnoService: AlumnoService,
+    private formularioRegistroService: FormularioRegistroService,
+    private detalleAlumnoService: DetalleAlumnoService) {
 
-    this.loginService.currentIdAlumnoSource.subscribe(res => {
-      this.idAlumno = res;
+    this.formularioRegistroService.changefirstTryGivenValues(false);
+    this.formularioRegistroService.currentfirstTryGivenValues.subscribe(value => this.firstTryGivenValues = value);
+    this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res);
+
+    this.alumnoService.getAlumno(this.selectedNoCtrl).subscribe(res => {
+      this.alumno = res as Alumno;
+      this.fieldAverage = this.alumno.average;
+      this.fieldCareer = this.alumno.career;
+      this.fieldCity = this.alumno.city;
+      this.fieldColony = this.alumno.colony;
+      this.fieldCURP = this.alumno.curp;
+      this.fieldDateBirth = this.alumno.dateBirth,
+      this.fieldDisability = this.alumno.disability;
+      this.fieldEmail = this.alumno.email;
+      this.fieldEtnia = this.alumno.etnia;
+      this.fieldFirstName = this.alumno.firstName;
+      this.fieldLastNameFather = this.alumno.lastNameFather;
+      this.fieldLastNameMother = this.alumno.lastNameMother;
+      this.fieldNameSchool = this.alumno.nameSchool;
+      this.fieldNSS = this.alumno.nss;
+      this.fieldOtherEtnia = this.alumno.otherEtnia;
+      this.fieldOtherSchool = this.alumno.otherSchool;
+      this.fieldPhone = this.alumno.phone;
+      this.fieldPlaceBirth = this.alumno.placeBirth;
+      this.fieldPostalCode = this.alumno.postalCode;
+      this.fieldSchool = this.alumno.school;
+      this.fieldSex = this.alumno.sex,
+      this.fieldState = this.alumno.state;
+      this.fieldStatusCivil = this.alumno.statusCivil;
+      this.fieldStreet = this.alumno.street;
+      this.fieldWhichDisability = this.alumno.whichDisability;
+      console.log(this.alumno);
     });
-
-    this.alumnoService.getAlumno('13400501').subscribe(res => {
-      this.editarAlumno = res;
-      this.editAverage = this.editarAlumno.average;
-      this.editCareer = this.editarAlumno.career;
-      this.editCity = this.editarAlumno.city;
-      this.editColony = this.editarAlumno.colony;
-      this.editCurp = this.editarAlumno.curp;
-      this.editDateBirth = this.editarAlumno.dateBirth;
-      this.editDisability = this.editarAlumno.disability;
-      this.editEmail = this.editarAlumno.email;
-      this.editEtnia = this.editarAlumno.etnia;
-      this.editFirstName = this.editarAlumno.firstName;
-      this.editLastNameFather = this.editarAlumno.lastNameFather;
-      this.editLastNameMother = this.editarAlumno.lastNameMother;
-      this.editNameSchool = this.editarAlumno.nameSchool;
-      this.editNSS = this.editarAlumno.nss;
-      this.editOtherEtnia = this.editarAlumno.otherEtnia;
-      this.editOtherSchool = this.editarAlumno.otherSchool;
-      this.editPhone = this.editarAlumno.phone;
-      this.editPlaceBirth = this.editarAlumno.placeBirth;
-      this.editPostalCode = this.editarAlumno.postalCode;
-      this.editShool = this.editarAlumno.school;
-      this.editSexo = this.editarAlumno.sex;
-      this.editState = this.editarAlumno.state;
-      this.editStatusCivil = this.editarAlumno.statusCivil;
-      this.editStreet = this.editarAlumno.street;
-      this.editWhichDisability = this.editarAlumno.whichDisability;
-    });
-
-
-
-    console.log();
   }
 
   onNoClick(): void {
@@ -253,41 +227,55 @@ export class DetalleAlumnoDialogComponent {
     this.dialogRef.close();
   }
 
-  /*
-  updateModal(): void {
+  updateAlumno(): void {
 
-    this.modalAlumno = {
-      lastNameFather: '',
-      lastNameMother: '',
-      firstName: '',
-      controlNumber: '',
-      placeBirth: '',
-      dateBirth:  this.editDateBirth,
-      statusCivil: '',
-      email: this.editEmail,
-      curp: this.editCurp,
-      nss: 0,
-      sex: '',
-      street: '',
-      colony: this.editColony,
-      city: this.editCity ,
-      state: '',
-      postalCode: 63061,
-      phone: 3111591173,
-      etnia: '',
-      otherEtnia: '',
-      disability: '',
-      whichDisability: this.editDisability,
-      school: '',
-      otherSchool: '',
-      nameSchool: '',
-      average: this.editAverage,
-      career: this.editCareer,
+    this.alumno = {
+      lastNameFather: this.fieldLastNameFather,
+      lastNameMother: this.fieldLastNameMother,
+      firstName: this.fieldFirstName,
+      controlNumber: this.selectedNoCtrl,
+      placeBirth: this.fieldPlaceBirth,
+      dateBirth:  this.extractBirthFromCURP(this.fieldCURP.substring(4, 10)),
+      statusCivil: this.fieldStatusCivil,
+      email: this.fieldEmail,
+      curp: this.fieldCURP,
+      nss: this.fieldNSS,
+      sex: this.fieldCURP.substring(10, 11),
+      street: this.fieldStreet,
+      colony: this.fieldColony,
+      city: this.fieldCity ,
+      state: this.fieldState,
+      postalCode: this.fieldPostalCode,
+      phone: this.fieldPhone,
+      etnia: this.fieldEtnia,
+      otherEtnia: this.fieldOtherEtnia,
+      disability: this.fieldDisability,
+      whichDisability: this.fieldWhichDisability,
+      school: this.fieldSchool,
+      otherSchool: this.fieldOtherSchool,
+      nameSchool: this.fieldNameSchool,
+      average: this.fieldAverage,
+      career: this.fieldCareer,
       documents: [],
 
     };
-    this.alumnoService.putAlumno(this.modalAlumno, this.idAlumno).subscribe();
-  }*/
+    this.alumnoService.putAlumnoByCtrl(this.alumno, this.selectedNoCtrl).subscribe();
+    this.dialogRef.close();
+  }
+
+  extractBirthFromCURP(curp: string) {
+    let finalDate = '';
+    let numericYear = + (curp.substring(0, 2));
+
+    if (numericYear <= 99 && numericYear >= 80) {
+      numericYear += 1900;
+    } else {
+      numericYear += 2000;
+    }
+
+    finalDate = numericYear + '-' + curp.substring(2, 4) + '-' + curp.substring(4, 6);
+    return finalDate;
+  }
 
 }
 
