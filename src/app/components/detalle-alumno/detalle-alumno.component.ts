@@ -10,11 +10,14 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Inject } from '@angular/core';
 import { ResumenComponent } from '../resumen/resumen.component';
-import { MatDialogConfig } from "@angular/material";
+import { ModalViewComponent} from '../modal-view/modal-view.component';
+import { MatDialogConfig } from '@angular/material';
 import { LoginService } from './../../services/login.service';
 import { FormularioRegistroService } from './../../services/formulario-registro.service';
 import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
 
+import { DialogService } from 'src/app/services/dialog.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 export interface DialogData {
   animal: string;
@@ -51,7 +54,9 @@ export class DetalleAlumnoComponent implements OnInit {
 
   selectedNoCtrl: string;
 
-  constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService) {
+  constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
+    private dialogService: DialogService,
+    private notificationService: NotificationService) {
     this.dataSource = new MatTableDataSource(this.alumnos);
   }
 
@@ -128,6 +133,26 @@ export class DetalleAlumnoComponent implements OnInit {
         this.dataSource.sort = this.sort;
       });
   }
+  onDelete(controlNumber) {
+
+    // this.alumnoService.deleteAlumno('13400501').subscribe();
+    this.dialogService.openConfirmDialog('¿Estás seguro de eliminar este alumno?')
+      .afterClosed().subscribe(res => {
+        if (res) {
+          this.alumnoService.deleteAlumno(controlNumber).subscribe();
+          this.notificationService.warn('! Deleted successfully');
+        }
+      });
+  }
+
+  onView() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '90%';
+    this.dialog.open(ModalViewComponent, dialogConfig);
+  }
+
 }
 
 
