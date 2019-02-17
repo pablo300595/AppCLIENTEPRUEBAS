@@ -164,11 +164,11 @@ export class CargaDocumentosComponent implements OnInit {
   }
 
   public onUploadInit(args: any): void {
-    console.log('onUploadInit:', args);
+
   }
 
   public onDragEnd(args: any): void {
-    console.log('onSending:', args);
+
   }
 
   /*public onUploadError(args: any): void {
@@ -195,7 +195,6 @@ export class CargaDocumentosComponent implements OnInit {
 
   onDrop(event: DragEvent) {
     this.resetDropzoneUploads();
-    console.log('dropped', event);
   }
 
   onError(args: any) {
