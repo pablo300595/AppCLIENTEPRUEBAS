@@ -31,6 +31,10 @@ export class AlumnoService {
    getAlumno(id) {
       return this.http.get(this.URL + '/' + id);
      }
+   
+     getAlumnoR(id) {
+      return this.http.get(this.URL + '/' + id);
+     }
 
    getAlumnoStatusInscripcion(idAlumno) {
     return this.http.get(this.URL + `/status/${idAlumno}`);
