@@ -88,8 +88,9 @@ export class TemplateLinkDownloadsComponent implements OnInit {
   }
 
   loadLink() {
-    this.refCurp = document.getElementById('refCURP');
-    this.refCurp.href = `../../../assets/files/upload/${this.usuarioLoged}/documentos/CURP.pdf`;
+    // this.refCurp = document.getElementById('refCURP');
+    // this.refCurp.href = `/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/13400501/documentos/CURP.pdf`;
+    // this.refCurp.href = `../../../../../../APPAPIPRUEBAS/upload/${this.usuarioLoged}/documentos/CURP.pdf`;
 
     this.refNSS = document.getElementById('refNSS');
     this.refNSS.href = `../../../assets/files/upload/${this.usuarioLoged}/documentos/NSS.pdf`;
