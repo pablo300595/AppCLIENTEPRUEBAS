@@ -14,6 +14,8 @@ export class AlumnoService {
   statusInscripcion: String = 'No status';
 
   readonly URL = 'http://localhost:3000/alumnos';
+  // readonly URL = 'https://app-apipruebas.herokuapp.com/alumnos';
+  // https://files.000webhost.com/handler.php?action=download?action=download&path=%2F13400500%2FGlossary_English_MOOCs.pdf
 
   constructor(private http: HttpClient) {
     this.selectedAlumno = new Alumno();
