@@ -7,7 +7,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class FileService {
-  readonly URL = 'http://localhost:3000/upload';
+  // readonly URL = 'http://localhost:3000/upload';
+  readonly URL = 'https://app-apipruebas.herokuapp.com/upload';
 
   constructor(private http: HttpClient) {
 

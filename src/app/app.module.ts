@@ -100,7 +100,8 @@ const appRoutes: Routes = [
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
-   url: 'http://localhost:3000/upload',
+   // url: 'http://localhost:3000/upload',
+   url: 'https://app-apipruebas.herokuapp.com/upload',
    maxFilesize: 3,
    acceptedFiles: '.pdf',
    createImageThumbnails: true,

@@ -12,7 +12,9 @@ import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class ResumenComponent implements OnInit {
   panelOpenState = false;
-  src = './../../../assets/images/curp.pdf';
+  // src = './../../../assets/images/curp.pdf';
+  // src = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
+  src = 'https://files.000webhost.com/13400501/documentos/CURP.pdf';
   nss = './../../../assets/images/NSS.pdf';
 
   alumno: Alumno;

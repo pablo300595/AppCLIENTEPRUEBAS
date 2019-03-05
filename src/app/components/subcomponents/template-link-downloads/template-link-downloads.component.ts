@@ -90,22 +90,27 @@ export class TemplateLinkDownloadsComponent implements OnInit {
   loadLink() {
     this.refCurp = document.getElementById('refCURP');
     this.refCurp.href = `https://files.000webhost.com/handler.php?
-    action=download?action=download&path=%2F${this.usuarioLoged}%2FGlossary_English_MOOCs.pdf`;
+    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FCURP.pdf`;
 
     this.refNSS = document.getElementById('refNSS');
-    this.refNSS.href = `../../../assets/files/upload/${this.usuarioLoged}/documentos/NSS.pdf`;
+    this.refNSS.href = `https://files.000webhost.com/handler.php?
+    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FNSS.pdf`;
 
     this.refActa = document.getElementById('refACTA');
-    this.refActa.href = `../../../assets/files/upload/${this.usuarioLoged}/documentos/ACTA.pdf`;
+    this.refActa.href = `https://files.000webhost.com/handler.php?
+    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FACTA.pdf`;
 
     this.refClinicos = document.getElementById('refCLINICOS');
-    this.refClinicos.href = `../../../assets/files/upload/${this.usuarioLoged}/documentos/CLINICOS.pdf`;
+    this.refClinicos.href = `https://files.000webhost.com/handler.php?
+    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FCLINICOS.pdf`;
 
     this.refCertificado = document.getElementById('refCERTIFICADO');
-    this.refCertificado.href = `../../../assets/files/upload/${this.usuarioLoged}/documentos/CERTIFICADO.pdf`;
+    this.refCertificado.href = `https://files.000webhost.com/handler.php?
+    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FCERTIFICADO.pdf`;
 
     this.refComprobante = document.getElementById('refCOMPROBANTE');
-    this.refComprobante.href = `../../../assets/files/upload/${this.usuarioLoged}/documentos/COMPROBANTE.pdf`;
+    this.refComprobante.href = `https://files.000webhost.com/handler.php?
+    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FCOMPROBANTE.pdf`;
   }
 
   downloadPDF() {
