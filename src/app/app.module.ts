@@ -116,7 +116,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   declarations: [
     AppComponent, HeaderComponent, MenuComponent, FormularioRegistroAlumnoComponent,
     CargaDocumentosComponent, HomeInscripcionesComponent, DetalleAlumnoComponent, DetalleAlumnoDialogComponent,
-    LoginComponent, PerfilComponent, FileSelectDirective, InscripcionWizardComponent,
+    LoginComponent, PerfilComponent, InscripcionWizardComponent,
     SuccessWizardComponent, FooterComponent, ContratoComponent, ConfirmacionComponent, ResumenComponent,
     PdfTemplatePhotoComponent,
     PdfTemplateNssComponent,
