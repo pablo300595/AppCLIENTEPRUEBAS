@@ -17,7 +17,6 @@ export class ContratoComponent implements OnInit {
   }
 
   onChange(event) {
-    console.log('onChange event.checked ' + event.checked);
     this.contratoService.changeAcceptedTerms(event.checked);
   }
 

@@ -23,8 +23,11 @@ export class InscripcionWizardComponent implements OnInit {
   // Services variables
   alumnoToUpdate: Alumno;
   idAlumnoLoged: String;
+
   firstTryGivenValues: boolean;
   alumnoStatus: String;
+
+
   constructor(private alumnoService: AlumnoService, private loginService: LoginService, private wizardService: WizardService,
     private formularioRegistroService: FormularioRegistroService, private messagesService: MessagesService,
     private contratoService: ContratoService, private cargaDocumentosService: CargaDocumentosService) { }
@@ -138,5 +141,4 @@ export class InscripcionWizardComponent implements OnInit {
     this.alumnoService.putStatusAlumno(alumno, this.idAlumnoLoged).subscribe();
     this.resetSteps();
   }
-
 }

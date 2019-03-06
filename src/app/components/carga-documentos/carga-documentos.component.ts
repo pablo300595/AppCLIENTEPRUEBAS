@@ -17,7 +17,8 @@ import { PdfTemplateActaComponent } from './../subcomponents/pdf-template-acta/p
 import { DropzoneComponent , DropzoneDirective,
   DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
-const URL = 'http://localhost:3000/upload';
+// const URL = 'http://localhost:3000/upload';
+const URL = 'https://app-apipruebas.herokuapp.com/upload';
 
 @Component({
   selector: 'app-carga-documentos',
@@ -164,11 +165,11 @@ export class CargaDocumentosComponent implements OnInit {
   }
 
   public onUploadInit(args: any): void {
-    console.log('onUploadInit:', args);
+
   }
 
   public onDragEnd(args: any): void {
-    console.log('onSending:', args);
+
   }
 
   /*public onUploadError(args: any): void {
@@ -195,7 +196,6 @@ export class CargaDocumentosComponent implements OnInit {
 
   onDrop(event: DragEvent) {
     this.resetDropzoneUploads();
-    console.log('dropped', event);
   }
 
   onError(args: any) {

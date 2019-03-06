@@ -82,6 +82,7 @@ import { TemplateCorrectComponent } from './components/subcomponents/template-co
 import { TemplateIncorrectComponent } from './components/subcomponents/template-incorrect/template-incorrect.component';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { ModalViewComponent } from './components/modal-view/modal-view.component';
+import { TemplateLinkDownloadsComponent } from './components/subcomponents/template-link-downloads/template-link-downloads.component';
 
 
 const appRoutes: Routes = [
@@ -99,7 +100,8 @@ const appRoutes: Routes = [
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
-   url: 'http://localhost:3000/upload',
+   // url: 'http://localhost:3000/upload',
+   url: 'https://app-apipruebas.herokuapp.com/upload',
    maxFilesize: 3,
    acceptedFiles: '.pdf',
    createImageThumbnails: true,
@@ -128,7 +130,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     TemplateCorrectComponent,
     TemplateIncorrectComponent,
     MatConfirmDialogComponent,
-    ModalViewComponent
+    ModalViewComponent,
+    TemplateLinkDownloadsComponent
     ],
 
   imports: [
