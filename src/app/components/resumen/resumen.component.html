@@ -1,290 +1,278 @@
-<div class='login-block'>
-  <div class="container">
-    <div class='login-block'>
-      <div class="container">
+<mat-dialog-content class="mat-typography">
 
-        <div class="row justify-content-center align-items-center">
-          <div class="col-md-4 login-sec">
-            <h2 class="text-center">
-              Resúmen
-            </h2>
+<div class='login-block'>
+    <div class="container">
+      <div class='login-block'>
+        <div class="container">
+
+          <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 login-sec">
+              <h2 class="text-center">
+                Resúmen
+              </h2>
+            </div>
+
           </div>
 
+          <mat-tab-group>
+            <mat-tab label="Solícitud de Inscripción">
+
+              <br>
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <p>
+                        <b>DATOS GENERALES</b>
+                      </p>
+
+
+                      <div>
+                        <label for="txtNombre"><b>Nombre:</b>&nbsp;</label>
+                        <label type="text" id="txtNombre" name="fieldFirstName">Francisco Javier Gallegos Godinez</label>
+                      </div>
+
+                      <div>
+                        <label for="txtLugarNacimiento"><b>Lugar de Nacimiento:</b>&nbsp;</label>
+                        <label type="text" id="txtLugarNacimiento" name="fieldPlaceBirth">Tepic, Nayarit</label>
+                      </div>
+
+
+                      <div>
+                        <label for="txtFecha"><b>Fecha de Nacimiento:</b>&nbsp;</label>
+                        <label type="text" id="txtFecha" name="fieldDateBirth">13/09/94</label>
+                      </div>
+
+
+                      <div>
+                        <label for="selectEstadoCivil"><b>Estado Civil:</b>&nbsp;</label>
+                        <label type="text" id="selectEstadoCivil" name="fieldStatusCivil">Soltero</label>
+                      </div>
+
+
+                      <div>
+                        <label for="txtEmail"><b>Correo Electrónico:</b>&nbsp;</label>
+                        <label type="text" name="fieldEmail">frjagallegosgo@ittepic.edu.mx</label>
+                      </div>
+
+                      <div>
+                        <div>
+                          <label for="txtCurp"><b>CURP:</b>&nbsp;</label>
+                          <label type="text" name="fieldCURP">GAGF940913HNTLDR09</label>
+                        </div>
+                        <div>
+                          <label for="txtNSS"><b>NSS(Número de Seguro Social):</b>&nbsp;</label>
+                          <label type="text" name="fieldNSS">55139423242</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <p>
+                        <b>DIRECCIÓN</b>
+                      </p>
+                      <div>
+                        <div>
+                          <label for="txtCalle"><b>Calle:</b>&nbsp;</label>
+                          <label type="text" name="fieldStreet">Emiliano Zapata #977-B</label>
+                        </div>
+                        <div>
+                          <label for="txtColonia"><b>Colonia:</b>&nbsp;</label>
+                          <label type="text" name="fieldColony">Lomas Altas</label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div>
+                          <label for="txtCiudad"><b>Ciudad:</b>&nbsp;</label>
+                          <label type="text" name="fieldCity">Tepic</label>
+                        </div>
+                        <div>
+                          <label for="txtEstado"><b>Estado:</b>&nbsp;</label>
+                          <label type="text" name="fieldState">Nayarit</label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div>
+                          <label for="txtCodigoPostal"><b>Código Postal:</b>&nbsp;</label>
+                          <label type="text" name="fieldPostalCode">63061</label>
+                        </div>
+                        <div>
+                          <label for="txtTelefono"><b>Teléfono:</b>&nbsp;</label>
+                          <label type="text" name="fieldPhone">3111591173</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <br><br>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <div>
+                        <div>
+                          <label for="selectEtnia"><b>¿Perteneces a alguna Etnia?</b>&nbsp;</label>
+                          <label type="text" name="fieldEtnia">No</label>
+                        </div>
+                        <div>
+                          <label for="txtCualEtnia"><b>¿Cuál?</b>&nbsp;</label>
+                          <label type="text" name="fieldOtherEtnia">Ninguna</label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div>
+                          <label for="selectDiscapacidad"><b>¿Tienes alguna Discapacidad?</b>&nbsp;</label>
+                          <label type="text" name="fieldDisability">No</label>
+                        </div>
+                        <div>
+                          <label for="txtDiscapacidad"><b>¿Cuál?</b>&nbsp;</label>
+                          <label type="text" name="fieldWhichDisability">Ninguna</label>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                      <p>
+                        <b>DATOS ACADÉMICOS</b>
+                      </p>
+                      <div>
+                        <div>
+                          <label for="selectEscuelaDeProcedencia"><b>Escuela de Procedencia:</b>&nbsp;</label>
+                          <label type="text" name="fieldSchool">Conalep Tepic 169</label>
+                        </div>
+                        <div>
+                          <label for="txtOtraEscuela"><b>OTRA:</b>&nbsp;</label>
+                          <label type="text" name="fieldOtherSchool"></label>
+                        </div>
+                      </div>
+
+
+                      <div>
+                        <label for="txtPromedio"><b>PROMEDIO:</b>&nbsp;</label>
+                        <label type="text" name="fieldAverage">90</label>
+                      </div>
+
+
+                      <div>
+                        <label for="selectCarrera">
+                          <b>Carrera a Cursar:</b>&nbsp;
+                        </label>
+                        <label type="text" name="fieldCareer">Ing. En Sistemas Computacionales</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            </mat-tab>
+
+            <mat-tab label="Documentos">
+              <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      CERTIFICADO DE BACHILLERATO O EQUIVALENTE
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+
+
+
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      ACTA DE NACIMIENTO
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="true">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      CURP
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <pdf-viewer [src]="src"></pdf-viewer>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      RESULTADO DE ANÁLISIS CLÍNICOS
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      NÚMERO DE SEGURO SOCIAL
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <pdf-viewer [src]="nss"></pdf-viewer>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      FOTOGRAFÍA
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      FORMULARIO
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+
+              </mat-accordion>
+            </mat-tab>
+          </mat-tab-group>
         </div>
-
-        <mat-tab-group>
-          <mat-tab label="Solícitud de Inscripción">
-            <br>
-            <div class="card">
-              <div class="card-body">
-                <p>
-                  <b>DATOS GENERALES</b>
-                </p>
-                <div class="form-row">
-                  <div class="form-group col-xs-6 col-md-4">
-                    <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
-                    <label type="text" class="form-control" id="txtApellidoPaterno" name="fieldLastNameFather"
-                      placeholder="test">Gallegos</label>
-                  </div>
-                  <div class="form-group col-xs-6 col-md-4">
-                    <label for="txtApellidoMaterno">APELLIDO MATERNO</label>
-                    <label type="text" class="form-control" id="txtApellidoMaterno" name="fieldLastNameMother">Godinez</label>
-                  </div>
-                  <div class="form-group col-xs-6 col-md-4">
-                    <label for="txtNombre">NOMBRE(S)</label>
-                    <label type="text" class="form-control" id="txtNombre" name="fieldFirstName">Francisco Javier</label>
-                  </div>
-                </div>
-
-                <br>
-                <div class="form-group">
-                  <label for="txtLugarNacimiento">LUGAR DE NACIMIENTO</label>
-                  <label type="text" class="form-control" id="txtLugarNacimiento" name="fieldPlaceBirth"></label>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="txtFecha">FECHA DE NACIMIENTO</label>
-                    <label type="text" class="form-control" id="txtFecha" name="fieldDateBirth"></label>
-                  </div>
-
-
-                  <div class="form-group col-md-6">
-                    <label for="selectEstadoCivil">ESTADO CIVIL</label>
-                    <label type="text" class="form-control" id="selectEstadoCivil" name="fieldStatusCivil"></label>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="txtEmail">CORREO ELECTRÓNICO</label>
-                  <label type="text" class="form-control" name="fieldEmail"></label>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="txtCurp">CURP</label>
-                    <label type="text" class="form-control" name="fieldCURP"></label>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="txtNSS">NSS(NÚMERO DE SEGURO SOCIAL)</label>
-                    <label type="text" class="form-control" name="fieldNSS"></label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <br>
-            <div class="card">
-              <div class="card-body">
-                <p>
-                  <b>DIRECCIÓN</b>
-                </p>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="txtCalle">CALLE</label>
-                    <label type="text" class="form-control" name="fieldStreet"></label>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="txtColonia">COLONIA</label>
-                    <label type="text" class="form-control" name="fieldColony"></label>
-                  </div>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="txtCiudad">CIUDAD</label>
-                    <label type="text" class="form-control" name="fieldCity"></label>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="txtEstado">ESTADO</label>
-                    <label type="text" class="form-control" name="fieldState"></label>
-                  </div>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="txtCodigoPostal">CÓDIGO POSTAL</label>
-                    <label type="text" class="form-control" name="fieldPostalCode"></label>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="txtTelefono">TELÉFONO</label>
-                    <label type="text" class="form-control" name="fieldPhone"></label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <br>
-            <div class="card">
-              <div class="card-body">
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="selectEtnia">¿PERTENECES A ALGUNA ETNIA?</label>
-                    <label type="text" class="form-control" name="fieldEtnia"></label>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="txtCualEtnia">¿CUÁL?</label>
-                    <label type="text" class="form-control" name="fieldOtherEtnia"></label>
-                  </div>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="selectDiscapacidad">¿TIENES ALGUNA DISCAPACIDAD?</label>
-                    <label type="text" class="form-control" name="fieldDisability"></label>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="txtDiscapacidad">¿CUÁL?</label>
-                    <label type="text" class="form-control" name="fieldWhichDisability"></label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <br>
-            <div class="card">
-              <div class="card-body">
-                <p>
-                  <b>DATOS ACADÉMICOS:</b>
-                </p>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="selectEscuelaDeProcedencia">ESCUELA DE PROCEDENCIA</label>
-                    <label type="text" class="form-control" name="fieldSchool"></label>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="txtOtraEscuela">OTRA</label>
-                    <label type="text" class="form-control" name="fieldOtherSchool"></label>
-                  </div>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-xs-12 col-md-8">
-                    <label for="txtNombreEscuela">NOMBRE DE LA ESCUELA</label>
-                    <label type="text" class="form-control" name="fieldNameSchool"></label>
-                  </div>
-                  <div class="form-group col-xs-6 col-md-4">
-                    <label for="txtPromedio">PROMEDIO</label>
-                    <label type="text" class="form-control" name="fieldAverage"></label>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="selectCarrera">
-                    <b>CARRERA A CURSAR</b>
-                  </label>
-                  <label type="text" class="form-control" name="fieldCareer"></label>
-                </div>
-              </div>
-            </div>
-
-
-          </mat-tab>
-
-          <mat-tab label="Solícitud de Documentos">
-            <br>
-            <div class='row'>
-              <div class='col-md-6'>
-                <div class='card'>
-                  <div class='card-header'>
-                    <label for="lblCertificado"><b>CERTIFICADO DE BACHILLERATO O EQUIVALENTE</b></label>
-
-                  </div>
-                  <div class='card-body'>
-                    <label name="lblCertificado"><a href='file:///home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/13400501/documentos/CERTIFICADO.pdf' target="_explorer.exe">Enlace de documento</a></label><br>
-                  </div>
-                </div>
-              </div>
-
-              <div class='col-md-6'>
-                <div class='card'>
-                  <div class='card-header'>
-                    <label for="lblActaNacimiento"><b>ACTA DE NACIMIENTO</b></label>
-                  </div>
-                  <div class='card-body'>
-                    <label name="lblActaNacimiento"><a href='file:///home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/13400501/documentos/ACTA.pdf'>Enlace de documento</a></label><br>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <br>
-            <div class='row'>
-              <div class='col-md-6'>
-                <div class='card'>
-                  <div class='card-header'>
-                    <label for="lblCURP"><b>CURP</b></label>
-                  </div>
-                  <div class='card-body'>
-                    <label name="lblCURP"><a href='file:///home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/13400501/documentos/CURP.pdf'>Enlace de documento</a></label><br>
-                  </div>
-                </div>
-              </div>
-              <div class='col-md-6'>
-                <div class='card'>
-                  <div class='card-header'>
-                    <label for="lblComprobante"><b>COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN</b></label>
-                  </div>
-                  <div class='card-body'>
-                    <label name="lblComprobante"><a href='file:///home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/13400501/documentos/COMPROBANTE.pdf'>Enlace de documento</a></label><br>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <br>
-            <div class='row'>
-              <div class='col-md-6'>
-                <div class='card'>
-                  <div class='card-header'>
-                    <label for="lblAnalisis"><b>RESULTADO DE ANÁLISIS CLÍNICOS</b></label>
-                  </div>
-                  <div class='card-body'>
-                    <label name="lblAnalisis"><a href='file:///home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/13400501/documentos/CLINICOS.pdf'>Enlace de documento</a></label><br>
-                  </div>
-                </div>
-              </div>
-              <div class='col-md-6'>
-                <div class='card'>
-                  <div class='card-header'>
-                    <label for="lblNSS"><b>NSS</b></label>
-                  </div>
-                  <div class='card-body'>
-                    <label name="lblNSS"><a href = 'file:///home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/13400501/documentos/NSS.pdf'>Enlace de documento</a></label><br>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <br>
-            <div class='row'>
-              <div class='col-md-6'>
-                <div class='card'>
-                  <div class='card-header'>
-                    <label for="lblFoto"><b>FOTOGRAFÍA</b></label>
-                  </div>
-                  <div class='card-body'>
-                    <label name="lblFoto"><a href='file:///home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/13400501/documentos/FOTO.pdf'>Enlace de documento</a></label><br>
-                  </div>
-                </div>
-              </div>
-
-              <div class='col-md-6'>
-                  <div class='card'>
-                    <div class='card-header'>
-                      <label for="lblFoto"><b>Formulario</b></label>
-                    </div>
-                    <div class='card-body'>
-                      <p name="lblFoto" onclick="downloadPDF()">Enlace de documento</p><br>
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-          </mat-tab>
-
-        </mat-tab-group>
       </div>
     </div>
   </div>
-</div>
+</mat-dialog-content>

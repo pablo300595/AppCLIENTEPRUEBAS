@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Alumno } from './../models/alumno';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -11,34 +13,51 @@ export class AlumnoService {
   sesionType: String = 'guest';
   statusInscripcion: String = 'No status';
 
-  readonly URL = 'http://localhost:3000/alumnos';
+  readonly URL = 'https://app-apipruebas.herokuapp.com/alumnos';
+  // https://files.000webhost.com/handler.php?action=download?action=download&path=%2F13400500%2FGlossary_English_MOOCs.pdf
 
   constructor(private http: HttpClient) {
     this.selectedAlumno = new Alumno();
-   }
+  }
 
-   postAlumno(alumno: Alumno) {
-      console.log(alumno);
-      return this.http.post(this.URL, alumno);
-   }
+  postAlumno(alumno: Alumno) {
+    console.log(alumno);
+    return this.http.post(this.URL, alumno);
+  }
 
-   getAlumnos() {
+  getAlumnos() {
     return this.http.get(this.URL);
-   }
+  }
 
-   getAlumnoStatusInscripcion(idAlumno) {
+  getAlumno(id) {
+    return this.http.get(this.URL + '/' + id);
+  }
+
+  getAlumnoById(id) {
+    return this.http.get(this.URL + '/id/' + id);
+  }
+
+  getAlumnoStatusInscripcion(idAlumno) {
     return this.http.get(this.URL + `/status/${idAlumno}`);
-   }
+  }
 
-   putAlumno(alumno: Alumno , id) {
-      return this.http.put(this.URL + `/${id}`, alumno);
-   }
+  putAlumno(alumno: Alumno , id) {
+    return this.http.put(this.URL + `/${id}`, alumno);
+  }
 
-   putStatusAlumno(alumno: Object , id) {
+  putStatusAlumno(alumno: Alumno , id) {
     return this.http.put(this.URL + `/status/${id}`, alumno);
- }
+  }
 
-   deleteAlumno(_id: string) {
-      // return this.http.delete(this.URL + `/${_id}`);
-   }
+  putAlumnoByCtrl(alumno: Alumno , id) {
+    return this.http.put(this.URL + `/ctrl/${id}`, alumno);
+  }
+
+  deleteAlumno(_id: string) {
+    // return this.http.delete(this.URL + `/${_id}`);
+    return this.http.delete(this.URL + '/' + _id);
+  }
+
+
 }
+

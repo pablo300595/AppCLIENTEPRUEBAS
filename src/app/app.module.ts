@@ -65,7 +65,7 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 // Material
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatCardModule} from '@angular/material/card';
 
 import {MatNativeDateModule} from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
@@ -75,6 +75,14 @@ import { ResumenComponent } from './components/resumen/resumen.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { TemplateWizardComponent } from './components/subcomponents/template-wizard/template-wizard.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfTemplatePhotoJPGComponent } from './components/subcomponents/pdf-template-photo-jpg/pdf-template-photo-jpg.component';
+import { TemplateCorrectComponent } from './components/subcomponents/template-correct/template-correct.component';
+import { TemplateIncorrectComponent } from './components/subcomponents/template-incorrect/template-incorrect.component';
+import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { ModalViewComponent } from './components/modal-view/modal-view.component';
+import { TemplateLinkDownloadsComponent } from './components/subcomponents/template-link-downloads/template-link-downloads.component';
 
 
 const appRoutes: Routes = [
@@ -92,9 +100,10 @@ const appRoutes: Routes = [
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
-   url: 'http://localhost:3000/upload',
+   // url: 'http://localhost:3000/upload',
+   url: 'https://app-apipruebas.herokuapp.com/upload',
    maxFilesize: 3,
-   acceptedFiles: '.pdf,.png,.jpg',
+   acceptedFiles: '.pdf',
    createImageThumbnails: true,
    maxThumbnailFilesize: 10,
    thumbnailWidth: 800,
@@ -116,7 +125,13 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     PdfTemplateClinicosComponent,
     PdfTemplateCertificadoComponent,
     PdfTemplateActaComponent,
-    TemplateWizardComponent
+    TemplateWizardComponent,
+    PdfTemplatePhotoJPGComponent,
+    TemplateCorrectComponent,
+    TemplateIncorrectComponent,
+    MatConfirmDialogComponent,
+    ModalViewComponent,
+    TemplateLinkDownloadsComponent
     ],
 
   imports: [
@@ -139,9 +154,12 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ReactiveFormsModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatExpansionModule,
+    PdfViewerModule
   ],
-  entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent],
+  entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent, MatConfirmDialogComponent, ModalViewComponent],
   providers: [MenuService, AlumnoService, LoginService, FileService,
     WizardService, FormularioRegistroService, DropzoneTemplatesService,
     {

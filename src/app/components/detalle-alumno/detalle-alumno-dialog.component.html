@@ -14,21 +14,23 @@
               <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
               <input type="text" class="form-control" id="txtApellidoPaterno" name="fieldLastNameFather" placeholder="Apellido Paterno"
                 [(ngModel)]="fieldLastNameFather">
-              <p id="msgError" *ngIf="(fieldLastNameFather.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldLastNameFather.length < 1)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-xs-6 col-md-4">
               <label for="txtApellidoMaterno">APELLIDO MATERNO</label>
               <input type="text" class="form-control" id="txtApellidoMaterno" name="fieldLastNameMother" placeholder="Apellido Materno"
                 [(ngModel)]="fieldLastNameMother">
-              <p id="msgError" *ngIf="(fieldLastNameMother.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldLastNameMother.length < 1)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-xs-6 col-md-4">
               <label for="txtNombre">NOMBRE(S)</label>
               <input type="text" class="form-control" id="txtNombre" name="fieldFirstName" placeholder="Nombre(s)"
                 [(ngModel)]="fieldFirstName">
-              <p id="msgError" *ngIf="(fieldFirstName.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldFirstName.length < 1)">*Campo obligatorio</p>
             </div>
+
           </div>
+
 
 
           <br>
@@ -36,7 +38,7 @@
             <label for="txtLugarNacimiento">LUGAR DE NACIMIENTO</label>
             <input type="text" class="form-control" id="txtLugarNacimiento" placeholder="Lugar de Nacimiento"
               [(ngModel)]="fieldPlaceBirth" name="fieldPlaceBirth">
-            <p id="msgError" *ngIf="(fieldPlaceBirth.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+            <p id="msgError" *ngIf="(fieldPlaceBirth.length < 1)">*Campo obligatorio</p>
           </div>
 
           <div class="form-row">
@@ -44,7 +46,7 @@
               <label for="txtFecha">FECHA DE NACIMIENTO</label>
               <input type="date" class="form-control" id="txtFecha" placeholder="Fecha de Nacimiento" [(ngModel)]="fieldDateBirth"
                 name="fieldDateBirth">
-              <p id="msgError" *ngIf="(fieldDateBirth.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldDateBirth.length < 1)">*Campo obligatorio</p>
             </div>
 
             <div class="form-group col-md-6">
@@ -62,20 +64,20 @@
           <div class="form-group">
             <label for="txtEmail">CORREO ELECTRÓNICO</label>
             <input type="email" class="form-control" placeholder="Ingrese Correo" [(ngModel)]="fieldEmail" name="fieldEmail">
-            <p id="msgError" *ngIf="(fieldEmail.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+            <p id="msgError" *ngIf="(fieldEmail.length < 1)">*Campo obligatorio</p>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtCurp">CURP</label>
               <input type="text" class="form-control" id="txtCURP" placeholder="CURP" [(ngModel)]="fieldCURP" name="fieldCURP">
-              <p id="msgError" *ngIf="(fieldCURP.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldCURP.length < 1)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-md-6">
               <label for="txtNSS">NSS(NÚMERO DE SEGURO SOCIAL)</label>
               <input type="text" class="form-control" id="txtNSS" placeholder="NSS(Número de Seguro Social)"
                 [(ngModel)]="fieldNSS" name="fieldNSS">
-              <p id="msgError" *ngIf="(fieldNSS.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldNSS !== null)">*Campo obligatorio</p>
             </div>
           </div>
         </div>
@@ -91,13 +93,13 @@
             <div class="form-group col-md-6">
               <label for="txtCalle">CALLE</label>
               <input type="text" class="form-control" id="txtCalle" placeholder="Calle" [(ngModel)]="fieldStreet" name="fieldStreet">
-              <p id="msgError" *ngIf="(fieldStreet.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldStreet.length < 1)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-md-6">
               <label for="txtColonia">COLONIA</label>
               <input type="text" class="form-control" id="txtColonia" placeholder="Colonia" [(ngModel)]="fieldColony"
                 name="fieldColony">
-              <p id="msgError" *ngIf="(fieldColony.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldColony.length < 1)">*Campo obligatorio</p>
             </div>
           </div>
 
@@ -105,7 +107,7 @@
             <div class="form-group col-md-6">
               <label for="txtCiudad">CIUDAD</label>
               <input type="text" class="form-control" id="txtCiudad" placeholder="Ciudad" [(ngModel)]="fieldCity" name="fieldCity">
-              <p id="msgError" *ngIf="(fieldCity.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldCity.length < 1)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-md-6">
               <label for="txtEstado">ESTADO</label>
@@ -152,13 +154,13 @@
               <label for="txtCodigoPostal">CÓDIGO POSTAL</label>
               <input type="text" class="form-control" id="txtCodigoPostal" placeholder="Código Postal" [(ngModel)]="fieldPostalCode"
                 name="fieldPostalCode">
-              <p id="msgError" *ngIf="(fieldPostalCode.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldPostalCode != null)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-md-6">
               <label for="txtTelefono">TELÉFONO</label>
               <input type="text" class="form-control" id="txtTelefono" placeholder="Teléfono" [(ngModel)]="fieldPhone"
                 name="fieldPhone">
-              <p id="msgError" *ngIf="(fieldPhone.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldPhone !== null)">*Campo obligatorio</p>
             </div>
           </div>
         </div>
@@ -237,9 +239,9 @@
           <div class="form-row">
             <div class="form-group col-xs-12 col-md-8">
               <label for="txtNombreEscuela">NOMBRE DE LA ESCUELA</label>
-              <input type="text" class="form-control" id="txtNombreEscuela" placeholder="ESCUELA" [(ngModel)]="fieldNameSchool"
+              <input type="text" class="form-control" id="txtNombreEscuela" placeholder="Escuela" [(ngModel)]="fieldNameSchool"
                 name="fieldNameSchool">
-              <p id="msgError" *ngIf="(fieldNameSchool.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldNameSchool.length < 1)">*Campo obligatorio</p>
             </div>
             <div class="form-group col-xs-6 col-md-4">
               <label for="txtPromedio">PROMEDIO</label>
@@ -282,7 +284,7 @@
 <br>
 <div class="right">
   <div class="example-button-row">
-    <button mat-button>Cancelar</button>
-    <button mat-raised-button color="primary">Guardar</button>
+    <button mat-button (click)="exit()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="updateAlumno();">Guardar</button>
   </div>
 </div>

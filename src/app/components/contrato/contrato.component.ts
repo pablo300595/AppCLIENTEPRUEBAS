@@ -7,7 +7,6 @@ import { ContratoService } from './../../services/contrato.service';
   styleUrls: ['./contrato.component.css']
 })
 export class ContratoComponent implements OnInit {
-  checked = false;
   acceptedTerms: boolean;
 
   constructor(private contratoService: ContratoService) {
@@ -18,7 +17,6 @@ export class ContratoComponent implements OnInit {
   }
 
   onChange(event) {
-    console.log('onChange event.checked ' + event.checked);
     this.contratoService.changeAcceptedTerms(event.checked);
   }
 

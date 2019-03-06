@@ -1,0 +1,90 @@
+<div class= 'container'>
+  <div class='row'>
+      <div class='col-12'>
+        Imagen
+      </div>
+  </div>
+  <!--$$$$$$$$$$$$$$$$$$$$FILA NUMERO UNO DE DOCUMENTOS$$$$$$$$$$$$$$$$-->
+  <div class= 'row'>
+    <div class='col-4'>
+      <div class='card'>
+        <div class='card-header'>
+          <label for="lblCURP"><b>CURP</b></label>
+        </div>
+        <div class='card-body'>
+          <label id='link' name="lblCURP"><a id='refCURP' (click)="loadLink()" target="_self" download="CURP.pdf">Enlace de documento</a></label><br>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-4'>
+      <div class='card'>
+        <div class='card-header'>
+          <label for="lblNSS"><b>NSS</b></label>
+        </div>
+        <div class='card-body'>
+          <label id='link' name="lblNSS"><a id='refNSS'  (click)="loadLink()" target="_self" download="NSS.pdf">Enlace de documento</a></label><br>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-4'>
+      <div class='card'>
+        <div class='card-header'>
+          <label for="lblFORMULARIO"><b>FORMULARIO</b></label>
+        </div>
+        <div class='card-body'>
+          <label id='link' name="lblFORMULARIO"><a id='refFORMULARIO'  (click)="downloadPDF()" target="_self" download="CURP.pdf">Enlace de documento</a></label><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><!--$$$$$$$$$$$$$$$$$$$$FILA NUMERO DOS DE DOCUMENTOS$$$$$$$$$$$$$$$$-->
+  <div class='row'>
+    <div class='col-4'>
+      <div class='card'>
+        <div class='card-header'>
+          <label for="lblACTA"><b>ACTA</b></label>
+        </div>
+        <div class='card-body'>
+          <label id='link' name="lblACTA"><a id='refACTA'  (click)="loadLink()" target="_self" download="ACTA.pdf">Enlace de documento</a></label><br>
+        </div>
+      </div>
+    </div>
+    <div class='col-4'>
+      <div class='card'>
+        <div class='card-header'>
+          <label for="lblCLINICOS"><b>CLINICOS</b></label>
+        </div>
+        <div class='card-body'>
+          <label id='link' name="lblCLINICOS"><a id='refCLINICOS'  (click)="loadLink()" target="_self" download="CLINICOS.pdf">Enlace de documento</a></label><br>
+        </div>
+      </div>
+    </div>
+    <div class='col-4'>
+      <div class='card'>
+        <div class='card-header'>
+          <label for="lblCERTIFICADO"><b>CERTIFICADO</b></label>
+        </div>
+        <div class='card-body'>
+          <label id='link' name="lblCERTIFICADO"><a id='refCERTIFICADO'  (click)="loadLink()" target="_self" download="CERTIFICADO.pdf">Enlace de documento</a></label><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><!--$$$$$$$$$$$$$$$$$$$$FILA NUMERO TRES DE DOCUMENTOS$$$$$$$$$$$$$$$$-->
+  <div class='row'>
+    <div class='col-4'></div>
+    <div class='col-4'>
+      <div class='card'>
+        <div class='card-header'>
+          <label for="lblCOMPROBANTE"><b>COMPROBANTE</b></label>
+        </div>
+        <div class='card-body'>
+          <label id='link' name="lblCOMPROBANTE"><a id='refCOMPROBANTE'  (click)="loadLink()" target="_self" download="COMPROBANTE.pdf">Enlace de documento</a></label><br>
+        </div>
+      </div>
+    </div>
+    <div class='col-4'></div>
+  </div>
+</div>
