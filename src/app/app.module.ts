@@ -171,4 +171,4 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 })
 export class AppModule { }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+// platformBrowserDynamic().bootstrapModule(AppModule);
