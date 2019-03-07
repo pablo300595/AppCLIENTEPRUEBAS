@@ -12,10 +12,18 @@ import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class ResumenComponent implements OnInit {
   panelOpenState = false;
+  acta: string;
+  certificado: string;
+  clinicos: string;
+  comprobante: string;
+  curp: string;
+  foto: string;
+  nss: string;
   // src = './../../../assets/images/curp.pdf';
-  // src = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
-  src = 'https://files.000webhost.com/13400501/documentos/CURP.pdf';
-  nss = './../../../assets/images/NSS.pdf';
+  // nss = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
+  // src = 'https://files.000webhost.com/13400501/documentos/CURP.pdf';
+  // src = 'https://filetestresidence.000webhostapp.com/Glossary_English_MOOCs.pdf';
+  // nss = './../../../assets/images/NSS.pdf';
 
   alumno: Alumno;
   alumnos: any;
@@ -48,15 +56,24 @@ export class ResumenComponent implements OnInit {
   statusInscripcion: String;
 
   idAlumnoLoged: String;
+  currentUser: String;
+
   constructor(private alumnoService: AlumnoService, private loginService: LoginService
    ) { }
 
   ngOnInit() {
+    this.acta = `https://filetestresidence.000webhostapp.com/13400501/documentos/ACTA.pdf`;
+    this.certificado = `https://filetestresidence.000webhostapp.com/13400501/documentos/CERTIFICADO.pdf`;
+    this.clinicos  = `https://filetestresidence.000webhostapp.com/13400501/documentos/CLINICOS.pdf`;
+    this.comprobante  = `https://filetestresidence.000webhostapp.com/13400501/documentos/COMPROBANTE.pdf`;
+    this.curp  = `https://filetestresidence.000webhostapp.com/13400501/documentos/CURP.pdf`;
+    this.foto  = `https://filetestresidence.000webhostapp.com/13400501/documentos/FOTO.png`;
+    this.nss  = `https://filetestresidence.000webhostapp.com/13400501/documentos/NSS.pdf`;
+
     this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
-    this.alumnoService.getAlumnos()
+    this.alumnoService.getAlumnoById(this.idAlumnoLoged)
     .subscribe(res => {
-      this.alumnos = res as Alumno[];
-      this.alumno = this.alumnos[0];
+      this.alumno = res as Alumno;
 
       this.fieldLastNameFather = this.alumno.lastNameFather;
       this.fieldLastNameMother = this.alumno.lastNameMother;
