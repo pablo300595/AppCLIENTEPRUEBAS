@@ -115,19 +115,4 @@ export class ResumenComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-
-=======
-
-
-  ngOnInit() {
-    this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
-    this.alumnoService.getAlumnos()
-    .subscribe(res => {
-        this.traceAlumno();
-    });
-  }
-
-
->>>>>>> 1ecd83212a08d0d0756282c78c89baead58a0c31
 }
