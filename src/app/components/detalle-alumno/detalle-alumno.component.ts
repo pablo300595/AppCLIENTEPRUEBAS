@@ -155,8 +155,8 @@ export class DetalleAlumnoComponent implements OnInit {
     this.dialog.open(ModalViewComponent, dialogConfig);
   }
 
-  loadDocumentApproval() {
-
+  loadDocumentApproval(controlNumber) {
+    this.detalleAlumnoService.changeAlumnoToUpdate(controlNumber);
   }
 
 }

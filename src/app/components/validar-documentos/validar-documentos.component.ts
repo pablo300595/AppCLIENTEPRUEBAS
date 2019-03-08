@@ -3,6 +3,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { MatDialogConfig } from "@angular/material";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
+import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
 
 export interface UserData {
   id: string;
@@ -31,8 +32,8 @@ const DOCS : string[] = ['CURP', 'CERTIFICADO','COMPROBANTE DE PAGO','CURP','ACT
 
 
 export class ValidarDocumentosComponent implements OnInit {
+  alumnToValidate: string;
 
- 
 
   displayedColumns: string[] = ['id','progress', 'color', 'name'];
   dataSource: MatTableDataSource<UserData>;
@@ -40,7 +41,7 @@ export class ValidarDocumentosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService) {
     // Create 100 users
     const users = Array.from({length: 6}, (_, k) => createNewUser(k + 1));
 
@@ -51,6 +52,8 @@ export class ValidarDocumentosComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.detalleAlumnoService.currentRowCtrlNumber.subscribe(ctrnumber => this.alumnToValidate = ctrnumber);
   }
 
   applyFilter(filterValue: string) {
@@ -75,7 +78,7 @@ export class ValidarDocumentosComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '90%';
-    
+
     this.dialog.open(EditModalComponent, dialogConfig);
   }
 
@@ -88,7 +91,7 @@ function createNewUser(id: number): UserData {
       NAMES[Math.round(Math.random() * (NAMES.length))] + ' ' +
       NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
 
-      
+
   return {
     id: DOCS[Math.round(Math.random() * (DOCS.length))],
     name: name,
