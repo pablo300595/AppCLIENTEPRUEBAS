@@ -25,7 +25,7 @@ export class ResumenComponent implements OnInit {
   // src = 'https://filetestresidence.000webhostapp.com/Glossary_English_MOOCs.pdf';
   // nss = './../../../assets/images/NSS.pdf';
 
-  
+
   alumnos: any;
 
   fieldLastNameFather: String = '';
@@ -64,7 +64,6 @@ export class ResumenComponent implements OnInit {
   firstTryGivenValues: boolean;
 
   idAlumnoLoged: String;
-<<<<<<< HEAD
   currentUser: String;
 
   constructor(private alumnoService: AlumnoService, private loginService: LoginService
@@ -85,16 +84,6 @@ export class ResumenComponent implements OnInit {
 
     this.alumnoService.getAlumnoById(this.idAlumnoLoged)
     .subscribe(res => {
-=======
-  constructor(private alumnoService: AlumnoService, 
-              private loginService: LoginService
-   ) {
-
-  }
-
-  traceAlumno(){
-    this.alumnoService.getAlumnoR(this.idAlumnoLoged).subscribe(res => {
->>>>>>> 1ecd83212a08d0d0756282c78c89baead58a0c31
       this.alumno = res as Alumno;
 
       this.fieldAverage = this.alumno.average;
@@ -129,7 +118,7 @@ export class ResumenComponent implements OnInit {
 <<<<<<< HEAD
 
 =======
-    
+
 
   ngOnInit() {
     this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
@@ -139,6 +128,6 @@ export class ResumenComponent implements OnInit {
     });
   }
 
- 
+
 >>>>>>> 1ecd83212a08d0d0756282c78c89baead58a0c31
 }
