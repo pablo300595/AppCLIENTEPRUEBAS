@@ -1,0 +1,35 @@
+<mat-dialog-content class="mat-typography">
+    <div class="right">
+        <button mat-icon-button (click)="closeDialog()">
+            <mat-icon class="right">close</mat-icon>
+        </button>
+    </div>
+    <h2 style="text-align:center;">Status</h2>
+    <mat-tab-group>
+        <mat-tab>
+            <br>
+            <h4>Status del documento</h4>
+            <mat-form-field>
+                <mat-select placeholder="Seleccione el status del documento">
+                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <br><br>
+            <h4>Observación</h4>
+            <mat-form-field>
+                <input matInput placeholder="Introduzca una observación sobre el documento">
+            </mat-form-field>
+
+        </mat-tab>
+    </mat-tab-group>
+</mat-dialog-content>
+<br>
+<div class="right">
+  <div class="example-button-row">
+    <button mat-button (click)="exit()">Cancelar</button>
+    <button mat-raised-button color="primary" >Guardar</button>
+  </div>
+</div>

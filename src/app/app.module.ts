@@ -82,7 +82,9 @@ import { TemplateCorrectComponent } from './components/subcomponents/template-co
 import { TemplateIncorrectComponent } from './components/subcomponents/template-incorrect/template-incorrect.component';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { ModalViewComponent } from './components/modal-view/modal-view.component';
-
+import { ValidarDocumentosComponent } from './components/validar-documentos/validar-documentos.component';
+import { ValidarDocumentosModalComponent} from './components/validar-documentos/validar-documentos.component';
+import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -94,7 +96,8 @@ const appRoutes: Routes = [
   {path: 'wizard', component: InscripcionWizardComponent},
   {path: 'wizard-success', component: SuccessWizardComponent},
   {path: 'contrato', component: ContratoComponent},
-  {path: 'resumen', component: ResumenComponent}
+  {path: 'resumen', component: ResumenComponent},
+  {path: 'validarDocumentos', component: ValidarDocumentosComponent}
 ];
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -128,7 +131,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     TemplateCorrectComponent,
     TemplateIncorrectComponent,
     MatConfirmDialogComponent,
-    ModalViewComponent
+    ModalViewComponent,
+    ValidarDocumentosComponent,
+    ValidarDocumentosModalComponent,
+    EditModalComponent
     ],
 
   imports: [
@@ -156,7 +162,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatExpansionModule,
     PdfViewerModule
   ],
-  entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent, MatConfirmDialogComponent, ModalViewComponent],
+  entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent, 
+    MatConfirmDialogComponent, ModalViewComponent,ValidarDocumentosModalComponent,
+    EditModalComponent],
   providers: [MenuService, AlumnoService, LoginService, FileService,
     WizardService, FormularioRegistroService, DropzoneTemplatesService,
     {
