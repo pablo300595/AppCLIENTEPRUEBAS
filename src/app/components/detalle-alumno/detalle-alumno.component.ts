@@ -155,6 +155,10 @@ export class DetalleAlumnoComponent implements OnInit {
     this.dialog.open(ModalViewComponent, dialogConfig);
   }
 
+  loadDocumentApproval() {
+
+  }
+
 }
 
 
@@ -214,7 +218,7 @@ export class DetalleAlumnoDialogComponent {
     this.formularioRegistroService.changefirstTryGivenValues(false);
     this.formularioRegistroService.currentfirstTryGivenValues.subscribe(value => this.firstTryGivenValues = value);
     this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res);
-      
+
     this.alumnoService.getAlumno(this.selectedNoCtrl).subscribe(res => {
       this.alumno = res as Alumno;
       this.fieldAverage = this.alumno.average;

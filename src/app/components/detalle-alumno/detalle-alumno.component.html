@@ -7,7 +7,7 @@
         </h2>
       </div>
     </div>
-    
+
 
     <mat-form-field>
       <mat-icon matSuffix>search</mat-icon>
@@ -54,7 +54,7 @@
               <button mat-icon-button (click)="preUpdate(row.controlNumber)"><mat-icon>mode_edit</mat-icon></button>
               <button mat-icon-button color="warn" (click)="onDelete(row.controlNumber)" ><mat-icon>delete</mat-icon></button>
               <button mat-icon-button  (click)="onView()"><mat-icon>visibility</mat-icon></button>
-
+              <button mat-icon-button (click)="loadDocumentApproval(row.controlNumber)" [routerLink]="['/validarDocumentos']"><mat-icon>thumbs_up_down</mat-icon></button>
           </mat-cell>
         </ng-container>
 
