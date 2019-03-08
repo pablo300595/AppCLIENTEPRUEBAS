@@ -88,6 +88,9 @@ export class TemplateLinkDownloadsComponent implements OnInit {
   }
 
   loadLink() {
+    this.refFoto = document.getElementById('refFOTO');
+    this.refFoto.src = `https://filetestresidence.000webhostapp.com/${this.usuarioLoged}/documentos/FOTO.png`;
+
     this.refCurp = document.getElementById('refCURP');
     this.refCurp.href = `https://files.000webhost.com/handler.php?
     action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FCURP.pdf`;

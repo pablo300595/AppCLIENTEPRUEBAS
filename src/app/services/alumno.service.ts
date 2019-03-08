@@ -29,9 +29,13 @@ export class AlumnoService {
     return this.http.get(this.URL);
   }
 
-  getAlumno(id) {
-    return this.http.get(this.URL + '/' + id);
-  }
+   getAlumno(id) {
+      return this.http.get(this.URL + '/' + id);
+     }
+
+     getAlumnoR(id) {
+      return this.http.get(this.URL + '/' + id);
+     }
 
   getAlumnoById(id) {
     return this.http.get(this.URL + '/id/' + id);
