@@ -1,0 +1,15 @@
+<mat-dialog-content class="mat-typography">
+    <div class="right">
+        <button mat-icon-button (click)="closeDialog()"><mat-icon class="right" >close</mat-icon></button>
+    </div>    
+        <h2 style="text-align:center;">Documento</h2>
+        <mat-tab-group>
+            <mat-tab>
+                <br>
+
+                <div>
+                    <pdf-viewer [src]="nss"></pdf-viewer>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+</mat-dialog-content>

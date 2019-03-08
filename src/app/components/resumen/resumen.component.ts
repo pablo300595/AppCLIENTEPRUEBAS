@@ -25,37 +25,46 @@ export class ResumenComponent implements OnInit {
   // src = 'https://filetestresidence.000webhostapp.com/Glossary_English_MOOCs.pdf';
   // nss = './../../../assets/images/NSS.pdf';
 
-  alumno: Alumno;
+  
   alumnos: any;
 
-  fieldLastNameFather: String;
-  fieldLastNameMother: String;
-  fieldFirstName: String;
-  fieldPlaceBirth: String;
-  fieldDateBirth: String;
-  fieldStatusCivil: String;
-  fieldEmail: String;
-  fieldCURP: String;
+  fieldLastNameFather: String = '';
+  fieldLastNameMother: String = '';
+  fieldFirstName: String = '';
+  fieldControlNumber: String = '';
+  fieldPlaceBirth: String = '';
+  fieldDateBirth: String = '';
+  fieldStatusCivil: String = '';
+  fieldEmail: String = '';
+  fieldCURP: String = '';
   fieldNSS: Number;
-  fieldStreet: String;
-  fieldColony: String;
-  fieldCity: String;
-  fieldState: String;
-  fieldPostalCode: Number;
-  fieldPhone: Number;
-  fieldEtnia: String;
-  fieldOtherEtnia: String;
-  fieldDisability: String;
-  fieldWhichDisability: String;
-  fieldSchool: String;
-  fieldOtherSchool: String;
-  fieldNameSchool: String;
+  fieldSex: String = '';
+  fieldStreet: String = '';
+  fieldColony: String = '';
+  fieldCity: String = '';
+  fieldState: String = '';
+  fieldPostalCode: Number = 0;
+  fieldPhone: Number = 0;
+  fieldEtnia: String = '';
+  fieldOtherEtnia: String = '';
+  fieldDisability: String = '';
+  fieldWhichDisability: String = '';
+  fieldSchool: String = '';
+  fieldOtherSchool: String = '';
+  fieldNameSchool: String = '';
   fieldAverage: Number;
-  fieldCareer: String;
+  fieldCareer: String = '';
   fieldDocuments: String[] = [];
   statusInscripcion: String;
 
+
+  // Services variables
+  alumno: Alumno;
+  selectedNoCtrl: String;
+  firstTryGivenValues: boolean;
+
   idAlumnoLoged: String;
+<<<<<<< HEAD
   currentUser: String;
 
   constructor(private alumnoService: AlumnoService, private loginService: LoginService
@@ -76,34 +85,60 @@ export class ResumenComponent implements OnInit {
 
     this.alumnoService.getAlumnoById(this.idAlumnoLoged)
     .subscribe(res => {
+=======
+  constructor(private alumnoService: AlumnoService, 
+              private loginService: LoginService
+   ) {
+
+  }
+
+  traceAlumno(){
+    this.alumnoService.getAlumnoR(this.idAlumnoLoged).subscribe(res => {
+>>>>>>> 1ecd83212a08d0d0756282c78c89baead58a0c31
       this.alumno = res as Alumno;
 
-      this.fieldLastNameFather = this.alumno.lastNameFather;
-      this.fieldLastNameMother = this.alumno.lastNameMother;
-      this.fieldFirstName = this.alumno.firstName;
-      this.fieldPlaceBirth = this.alumno.placeBirth;
-      this.fieldDateBirth = this.alumno.dateBirth;
-      this.fieldStatusCivil = this.alumno.statusCivil;
-      this.fieldEmail = this.alumno.email;
-      this.fieldCURP = this.alumno.curp;
-      this.fieldNSS = this.alumno.nss;
-      this.fieldStreet = this.alumno.street;
-      this.fieldColony = this.alumno.colony;
-      this.fieldCity = this.alumno.city;
-      this.fieldState = this.alumno.state;
-      this.fieldPostalCode = this.alumno.postalCode;
-      this.fieldPhone = this.alumno.phone;
-      this.fieldEtnia = this.alumno.etnia;
-      this.fieldOtherEtnia = this.alumno.otherEtnia;
-      this.fieldDisability = this.alumno.disability;
-      this.fieldWhichDisability = this.alumno.whichDisability;
-      this.fieldSchool = this.alumno.school;
-      this.fieldOtherSchool = this.alumno.otherSchool;
-      this.fieldNameSchool = this.alumno.nameSchool;
       this.fieldAverage = this.alumno.average;
       this.fieldCareer = this.alumno.career;
+      this.fieldCity = this.alumno.city;
+      this.fieldColony = this.alumno.colony;
+      this.fieldCURP = this.alumno.curp;
+      this.fieldDateBirth = this.alumno.dateBirth,
+      this.fieldDisability = this.alumno.disability;
+      this.fieldEmail = this.alumno.email;
+      this.fieldEtnia = this.alumno.etnia;
+      this.fieldFirstName = this.alumno.firstName;
+      this.fieldLastNameFather = this.alumno.lastNameFather;
+      this.fieldLastNameMother = this.alumno.lastNameMother;
+      this.fieldNameSchool = this.alumno.nameSchool;
+      this.fieldNSS = this.alumno.nss;
+      this.fieldOtherEtnia = this.alumno.otherEtnia;
+      this.fieldOtherSchool = this.alumno.otherSchool;
+      this.fieldPhone = this.alumno.phone;
+      this.fieldPlaceBirth = this.alumno.placeBirth;
+      this.fieldPostalCode = this.alumno.postalCode;
+      this.fieldSchool = this.alumno.school;
+      this.fieldSex = this.alumno.sex,
+      this.fieldState = this.alumno.state;
+      this.fieldStatusCivil = this.alumno.statusCivil;
+      this.fieldStreet = this.alumno.street;
+      this.fieldWhichDisability = this.alumno.whichDisability;
+      console.log(this.alumno);
     });
   }
 
+<<<<<<< HEAD
 
+=======
+    
+
+  ngOnInit() {
+    this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
+    this.alumnoService.getAlumnos()
+    .subscribe(res => {
+        this.traceAlumno();
+    });
+  }
+
+ 
+>>>>>>> 1ecd83212a08d0d0756282c78c89baead58a0c31
 }
