@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AlumnoService} from './../../services/alumno.service';
 import { LoginService } from './../../services/login.service';
 import { WizardService } from './../../services/wizard.service';
@@ -14,6 +14,7 @@ import { stringify } from '@angular/core/src/render3/util';
   styleUrls: ['./formulario-registro-alumno.component.css']
 })
 export class FormularioRegistroAlumnoComponent implements OnInit {
+  @Input() couper = 'hello';
 
   fieldLastNameFather: String;
   fieldLastNameMother: String;

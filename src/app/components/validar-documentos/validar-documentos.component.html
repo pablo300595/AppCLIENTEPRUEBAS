@@ -1,0 +1,63 @@
+<div class='login-block'>
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-4 login-sec">
+        <h2 class="text-center">
+          Validación de Documentos {{alumnToValidate}}
+        </h2>
+      </div>
+    </div>
+
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Documentos </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="progress">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let row"> {{row.progress}} </td>
+        </ng-container>
+
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="color">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Observación </th>
+          <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
+          <td mat-cell *matCellDef="let row">
+
+            <button mat-icon-button (click)="onView()" ><mat-icon>visibility</mat-icon></button>
+            <button mat-icon-button class="icon" (click)="onEdit()"><mat-icon>mode_edit</mat-icon></button>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+  </div>
+
+  <footer class="page-footer font-small blue pt-4">
+    <div class=" footer-copyright text-center py-3">
+      <small id="">
+        AV. TECNOLÓGICO # 2595, COL. LAGOS DEL COUNTRY. TEPIC, NAYARIT. MÉXICO. C.P. 63175. TEL: (311) 211 94 00.
+        DIRECCION@ITTEPIC.EDU.MX
+      </small>
+    </div>
+  </footer>
+</div>
