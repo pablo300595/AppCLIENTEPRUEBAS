@@ -2,7 +2,7 @@
   <mat-step editable='false' [completed]='stepOneCompleted'>
     <ng-template matStepLabel>Paso 1</ng-template>
     <h2>Paso 1.- Formulario.</h2>
-    <app-formulario-registro-alumno></app-formulario-registro-alumno>
+    <app-formulario-registro-alumno [couper]='idAlumnoLoged'></app-formulario-registro-alumno>
     <br>
     <div class='card'>
       <div class='card-body'>

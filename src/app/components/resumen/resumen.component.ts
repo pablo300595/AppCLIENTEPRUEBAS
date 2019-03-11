@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { Alumno } from './../../models/alumno';
 import { AlumnoService} from './../../services/alumno.service';
 import { LoginService } from './../../services/login.service';
@@ -62,6 +62,10 @@ export class ResumenComponent implements OnInit {
    ) { }
 
   ngOnInit() {
+    this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
+  }
+
+  initResumen() {
     this.acta = `https://filetestresidence.000webhostapp.com/13400501/documentos/ACTA.pdf`;
     this.certificado = `https://filetestresidence.000webhostapp.com/13400501/documentos/CERTIFICADO.pdf`;
     this.clinicos  = `https://filetestresidence.000webhostapp.com/13400501/documentos/CLINICOS.pdf`;
@@ -70,7 +74,6 @@ export class ResumenComponent implements OnInit {
     this.foto  = `https://filetestresidence.000webhostapp.com/13400501/documentos/FOTO.png`;
     this.nss  = `https://filetestresidence.000webhostapp.com/13400501/documentos/NSS.pdf`;
 
-    this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
     this.alumnoService.getAlumnoById(this.idAlumnoLoged)
     .subscribe(res => {
       this.alumno = res as Alumno;
@@ -101,4 +104,6 @@ export class ResumenComponent implements OnInit {
       this.fieldCareer = this.alumno.career;
     });
   }
+
+
 }

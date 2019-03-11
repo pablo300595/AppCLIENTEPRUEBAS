@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlumnoService} from './../../services/alumno.service';
 import { WizardService } from './../../services/wizard.service';
 import { MessagesService } from './../../services/messages.service';
@@ -8,6 +8,8 @@ import { ContratoService } from './../../services/contrato.service';
 import { CargaDocumentosService } from './../../services/carga-documentos.service';
 import { Alumno } from './../../models/alumno';
 import { TemplateWizardComponent } from './../subcomponents/template-wizard/template-wizard.component';
+import { ResumenComponent } from '../resumen/resumen.component';
+import { TemplateLinkDownloadsComponent } from '../subcomponents/template-link-downloads/template-link-downloads.component';
 
 
 @Component({
@@ -16,6 +18,9 @@ import { TemplateWizardComponent } from './../subcomponents/template-wizard/temp
   styleUrls: ['./inscripcion-wizard.component.css']
 })
 export class InscripcionWizardComponent implements OnInit {
+  @ViewChild(ResumenComponent) resumen: ResumenComponent;
+  @ViewChild(TemplateLinkDownloadsComponent) links: TemplateLinkDownloadsComponent;
+
   stepOneCompleted: boolean;
   stepTwoCompleted: boolean;
   stepThreeCompleted: boolean;
@@ -76,6 +81,7 @@ export class InscripcionWizardComponent implements OnInit {
   checkStepThree() {
     if (this.stepThreeCompleted) {
       this.messagesService.success('¡Contrato ha sido aceptado!');
+      this.resumen.initResumen();
     } else {
       this.messagesService.warning('¡Los términos y condiciones deben ser aceptados antes de poder continuar!');
     }
@@ -83,6 +89,7 @@ export class InscripcionWizardComponent implements OnInit {
 
   checkStepFour() {
     this.stepFourCompleted = true;
+    this.links.loadLink();
     this.messagesService.success('¡Resumen observado!');
   }
 
