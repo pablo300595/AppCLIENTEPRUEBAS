@@ -85,6 +85,9 @@ export class FormularioRegistroService {
   private fieldNameSchoolSource = new BehaviorSubject('');
   currentfieldNameSchool = this.fieldNameSchoolSource.asObservable();
 
+  private fieldControlNumberSource = new BehaviorSubject('');
+  currentfieldControlNumber = this.fieldControlNumberSource.asObservable();
+
   private fieldAverageSource = new BehaviorSubject(100);
   currentfieldAverage = this.fieldAverageSource.asObservable();
 
@@ -198,6 +201,10 @@ export class FormularioRegistroService {
 
   changefieldCareer(status: string) {
     this.fieldCareerSource.next(status);
+  }
+
+  changefieldControlNumber(status: string) {
+    this.fieldControlNumberSource.next(status);
   }
 
 }

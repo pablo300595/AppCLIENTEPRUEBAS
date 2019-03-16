@@ -116,7 +116,7 @@ export class DetalleAlumnoComponent implements OnInit {
     dialogConfig.width = '60%';
     this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig).afterClosed(
     ).subscribe(
-      res => this.doRefreshTable()
+      res => setTimeout( () => this.doRefreshTable(), 500)
     );
   }
 
@@ -290,7 +290,11 @@ export class DetalleAlumnoDialogComponent {
       documents: [],
 
     };
-    this.alumnoService.putAlumnoByCtrl(this.alumno, this.selectedNoCtrl).subscribe();
+    this.alumnoService.putAlumnoByCtrl(this.alumno, this.selectedNoCtrl).subscribe(
+      res => {
+        // alert('Se actualizó el alumno ya!!!');
+      }
+    );
     this.dialogRef.close();
   }
 

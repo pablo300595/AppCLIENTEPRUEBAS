@@ -31,6 +31,7 @@
     "moment": "2.24.0",
     "ng2-file-upload": "^1.3.0",
     "ng2-pdf-viewer": "^5.2.3",
+    "ng2-pdfjs-viewer": "^0.2.29",
     "ngx-dropzone-wrapper": "^7.2.1",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.3.3",

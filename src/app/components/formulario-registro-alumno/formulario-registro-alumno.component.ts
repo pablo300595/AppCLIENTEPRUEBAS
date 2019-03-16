@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { AlumnoService} from './../../services/alumno.service';
 import { LoginService } from './../../services/login.service';
 import { WizardService } from './../../services/wizard.service';
@@ -19,7 +19,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   fieldLastNameFather: String;
   fieldLastNameMother: String;
   fieldFirstName: String;
-  fieldControlNumber = '13400501';
+  fieldControlNumber: String;
   fieldPlaceBirth: String;
   fieldDateBirth: String;
   fieldStatusCivil: String;
@@ -110,7 +110,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   }
 
   evaluateIfallFieldsAreValid() {
-    this.allFieldsAreValid =  (this.  fieldLastNameFather.length > 1 &&
+    this.allFieldsAreValid =  (this.fieldLastNameFather.length > 1 &&
       this.fieldLastNameMother.length > 1 && this.fieldFirstName.length > 1 &&
       this.fieldControlNumber.length > 1 && this.fieldPlaceBirth.length > 1  && this.fieldEmail.length > 1 &&
       this.fieldCURP.length > 1 && this.fieldStreet.length > 1 &&

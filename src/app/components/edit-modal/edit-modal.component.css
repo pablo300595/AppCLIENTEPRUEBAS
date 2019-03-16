@@ -1,9 +1,9 @@
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 
 .customCard {
     background-color: rgb(224, 67, 67);
   }
-  
-  @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+
   .login-block{
       background: #DE6262;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
@@ -27,33 +27,33 @@
   .banner-text h2{color:#fff; font-weight:600;}
   .banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
   .banner-text p{color:#fff;}
-  
+
   /* Structure */
-  
+
   table {
       width: 100%;
     }
-    
+
     .mat-form-field {
       font-size: 14px;
       width: 100%;
     }
-  
-    
+
+
     td, th {
       width: 25%;
     }
-  
+
     .example-form {
       min-width: 150px;
       max-width: 500px;
       width: 100%;
     }
-    
+
     .example-full-width {
       width: 100%;
     }
-  
+
     .example-icon-row mat-icon {
       margin-right: 20px;
     }
@@ -64,5 +64,5 @@
 
     .right{
       float: right;
-      
+
   }
