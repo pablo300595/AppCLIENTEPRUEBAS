@@ -118,7 +118,8 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
       this.fieldNameSchool.length > 1 && this.fieldAverage > 0 &&
       this.fieldPostalCode != null && this.fieldPostalCode > 0 &&
       this.fieldAverage <= 100 && this.fieldAverage != null &&
-      this.fieldPhone > 0 && this.fieldPhone != null);
+      this.fieldPhone > 0 && this.fieldPhone != null &&
+      this.fieldControlNumber.length > 1);
 
     if (this.allFieldsAreValid) {
       this.formularioRegistroService.changeallFieldsAreValid(true);

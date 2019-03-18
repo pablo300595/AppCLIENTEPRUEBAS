@@ -62,6 +62,6 @@ export class Alumno {
   nameSchool?: String;
   average?: Number;
   career?: String;
-  documents?: String[];
+  documents?: Object[];
   statusInscripcion?: String;
 }

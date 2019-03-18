@@ -1,11 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Alumno } from './../../models/alumno';
 import { AlumnoService} from './../../services/alumno.service';
-import { LoginService } from './../../services/login.service';
-//import * as jsPDF from 'jspdf';
+import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-
-
 
 @Component({
   selector: 'app-modal-view',
@@ -15,11 +12,16 @@ import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 export class ModalViewComponent implements OnInit {
 
   panelOpenState = false;
-  src = "/src/assets/imgs/curp.pdf";
-  nss = "/src/assets/imgs/NSS.pdf";
+  acta: string;
+  certificado: string;
+  clinicos: string;
+  comprobante: string;
+  curp: string;
+  foto: string;
+  nss: string;
 
   alumno: Alumno;
-  alumnos: any;
+  ctrlNumberToSearch: String;
 
   fieldLastNameFather: String;
   fieldLastNameMother: String;
@@ -49,17 +51,26 @@ export class ModalViewComponent implements OnInit {
   statusInscripcion: String;
 
   idAlumnoLoged: String;
-  constructor(private alumnoService: AlumnoService, private loginService: LoginService,
+  constructor(private alumnoService: AlumnoService,
+    private detalleAlumnoService: DetalleAlumnoService,
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<ModalViewComponent>
    ) { }
 
   ngOnInit() {
-    this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
-    this.alumnoService.getAlumnos()
+    this.initDocuments();
+  }
+
+
+  closeDialog() {
+    this.dialogRef.close(false);
+  }
+
+  initDocuments() {
+    this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.ctrlNumberToSearch = res);
+    this.alumnoService.getAlumno(this.ctrlNumberToSearch)
     .subscribe(res => {
-      this.alumnos = res as Alumno[];
-      this.alumno = this.alumnos[0];
+      this.alumno = res as Alumno;
 
       this.fieldLastNameFather = this.alumno.lastNameFather;
       this.fieldLastNameMother = this.alumno.lastNameMother;
@@ -85,12 +96,15 @@ export class ModalViewComponent implements OnInit {
       this.fieldNameSchool = this.alumno.nameSchool;
       this.fieldAverage = this.alumno.average;
       this.fieldCareer = this.alumno.career;
-    });
-  }
-  
 
-  closeDialog(){
-    this.dialogRef.close(false);
+      this.acta = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/ACTA.pdf`;
+      this.certificado = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CERTIFICADO.pdf`;
+      this.clinicos  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CLINICOS.pdf`;
+      this.comprobante  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/COMPROBANTE.pdf`;
+      this.curp  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CURP.pdf`;
+      this.foto  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FOTO.png`;
+      this.nss  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/NSS.pdf`;
+    });
   }
 
 }

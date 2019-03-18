@@ -73,14 +73,6 @@ export class ResumenComponent implements OnInit {
   }
 
   initResumen() {
-    this.acta = `https://novaresidencia.000webhostapp.com/13400501/documentos/ACTA.pdf`;
-    this.certificado = `https://novaresidencia.000webhostapp.com/13400501/documentos/CERTIFICADO.pdf`;
-    this.clinicos  = `https://novaresidencia.000webhostapp.com/13400501/documentos/CLINICOS.pdf`;
-    this.comprobante  = `https://novaresidencia.000webhostapp.com/13400501/documentos/COMPROBANTE.pdf`;
-    this.curp  = `https://novaresidencia.000webhostapp.com/13400501/documentos/CURP.pdf`;
-    this.foto  = `https://novaresidencia.000webhostapp.com/13400501/documentos/FOTO.png`;
-    this.nss  = `https://novaresidencia.000webhostapp.com/13400501/documentos/NSS.pdf`;
-
     this.alumnoService.getAlumnoById(this.idAlumnoLoged)
     .subscribe(res => {
       this.alumno = res as Alumno;
@@ -110,7 +102,15 @@ export class ResumenComponent implements OnInit {
       this.fieldStatusCivil = this.alumno.statusCivil;
       this.fieldStreet = this.alumno.street;
       this.fieldWhichDisability = this.alumno.whichDisability;
-      console.log(this.alumno);
+
+      this.acta = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/ACTA.pdf`;
+      this.certificado = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CERTIFICADO.pdf`;
+      this.clinicos  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CLINICOS.pdf`;
+      this.comprobante  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/COMPROBANTE.pdf`;
+      this.curp  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CURP.pdf`;
+      this.foto  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FOTO.png`;
+      this.nss  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/NSS.pdf`;
+
     });
   }
 
