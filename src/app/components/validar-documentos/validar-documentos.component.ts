@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import { MatDialogConfig } from "@angular/material";
+import { MatDialogConfig } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
@@ -19,9 +19,9 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
   'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
   'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
 
-const STATUS :  string[] = [ "Aceptado","Rechazado","En Revisión"];
-const OBSERVACION : string[] = ['Documento correctamente','Documento pendiente',''];
-const DOCS : string[] = ['CURP', 'CERTIFICADO','COMPROBANTE DE PAGO','CURP','ACTA NACIMIENTO']
+const STATUS:  string[] = [ 'Aceptado', 'Rechazado', 'En Revisión'];
+const OBSERVACION: string[] = ['Documento correctamente','Documento pendiente',''];
+const DOCS: string[] = ['CURP', 'CERTIFICADO','COMPROBANTE DE PAGO','CURP','ACTA NACIMIENTO']
 
 @Component({
   selector: 'app-validar-documentos',
@@ -34,8 +34,7 @@ const DOCS : string[] = ['CURP', 'CERTIFICADO','COMPROBANTE DE PAGO','CURP','ACT
 export class ValidarDocumentosComponent implements OnInit {
   alumnToValidate: string;
 
-
-  displayedColumns: string[] = ['id','progress', 'color', 'name'];
+  displayedColumns: string[] = ['id', 'progress', 'color', 'name'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -107,19 +106,16 @@ function createNewUser(id: number): UserData {
   styleUrls: ['./validar-documentos-modal.component.css']
 })
 
-export class ValidarDocumentosModalComponent
- {
-  src = "/src/assets/imgs/curp.pdf";
-  nss = "/src/assets/imgs/NSS.pdf";
-
+export class ValidarDocumentosModalComponent {
+  src = `https://novaresidencia.000webhostapp.com/13400501/documentos/ACTA.pdf`;
+  nss = `https://novaresidencia.000webhostapp.com/13400501/documentos/ACTA.pdf`;
 
   constructor(public dialogRef: MatDialogRef<ValidarDocumentosModalComponent>){
 
-
   }
 
-  closeDialog(){
+  closeDialog() {
     this.dialogRef.close(false);
   }
 
- }
+}

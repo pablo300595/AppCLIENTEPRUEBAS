@@ -62,6 +62,10 @@ export class AlumnoService {
     return this.http.delete(this.URL + '/' + _id);
   }
 
+  updateAlumnoDocumentation(_id: string, documentation: Object) {
+    return this.http.put(this.URL + `/documentation/${_id}`, documentation);
+  }
+
 
 }
 
