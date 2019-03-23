@@ -66,6 +66,14 @@ export class AlumnoService {
     return this.http.put(this.URL + `/documentation/${_id}`, documentation);
   }
 
+  updateAlumnoDocumentationByCtrlNumber(ctrlNumber: string, documentation: Object) {
+    return this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, documentation);
+  }
+
+  getAlumnoDocumentation(_id: string) {
+    return this.http.get(this.URL + `/documentation/${_id}`);
+  }
+
 
 }
 

@@ -1,24 +1,21 @@
+// Angular
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-import { Alumno } from './../../models/alumno';
+import { Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
+// Material
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Inject } from '@angular/core';
-import { ModalViewComponent} from '../modal-view/modal-view.component';
 import { MatDialogConfig } from '@angular/material';
+// Components
+import { ModalViewComponent} from '../modal-view/modal-view.component';
+// Services
 import { FormularioRegistroService } from './../../services/formulario-registro.service';
 import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
-
 import { DialogService } from 'src/app/services/dialog.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { AlumnoService } from './../../services/alumno.service';
-
-/* export interface DialogData {
-  animal: string;
-  name: string;
-}*/
+// Models
+import { Alumno } from './../../models/alumno';
 
 @Component({
   selector: 'app-detalle-alumno',
@@ -27,14 +24,7 @@ import { AlumnoService } from './../../services/alumno.service';
 })
 
 export class DetalleAlumnoComponent implements OnInit {
-
-  animal: string;
-  name: string;
-
-  fila: any;
-
   displayedColumns: string[] = ['controlNumber', 'lastNameFather', 'lastNameMother', 'firstName', 'career', 'actions'];
-
   dataSource: MatTableDataSource<Alumno>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -46,8 +36,7 @@ export class DetalleAlumnoComponent implements OnInit {
   selectedNoCtrl: string;
 
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
-    private dialogService: DialogService,
-    private notificationService: NotificationService) {
+    private dialogService: DialogService, private notificationService: NotificationService) {
     this.dataSource = new MatTableDataSource(this.alumnos);
   }
 

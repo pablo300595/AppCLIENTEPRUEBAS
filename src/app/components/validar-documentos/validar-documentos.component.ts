@@ -1,27 +1,15 @@
+// Angular
 import {Component, OnInit, ViewChild} from '@angular/core';
+// Material
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { MatDialogConfig } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+// Components
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
+// Services
 import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
-const STATUS:  string[] = [ 'Aceptado', 'Rechazado', 'En Revisión'];
-const OBSERVACION: string[] = ['Documento correctamente','Documento pendiente',''];
-const DOCS: string[] = ['CURP', 'CERTIFICADO','COMPROBANTE DE PAGO','CURP','ACTA NACIMIENTO']
+import { AlumnoService } from './../../services/alumno.service';
+import { ValidarDocumentosService } from './../../services/validar-documentos.service';
 
 @Component({
   selector: 'app-validar-documentos',
@@ -29,30 +17,36 @@ const DOCS: string[] = ['CURP', 'CERTIFICADO','COMPROBANTE DE PAGO','CURP','ACTA
   styleUrls: ['./validar-documentos.component.css']
 })
 
-
-
 export class ValidarDocumentosComponent implements OnInit {
   alumnToValidate: string;
+  documentToAnalize: string;
 
-  displayedColumns: string[] = ['id', 'progress', 'color', 'name'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['documentName', 'status', 'observacion', 'actions'];
+  dataSource: MatTableDataSource<Object>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService) {
-    // Create 100 users
-    const users = Array.from({length: 6}, (_, k) => createNewUser(k + 1));
+  documentation: any;
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+  constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
+    private validarDocumentosService: ValidarDocumentosService) {
+
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.initServices();
+  }
 
-    this.detalleAlumnoService.currentRowCtrlNumber.subscribe(ctrnumber => this.alumnToValidate = ctrnumber);
+  async initServices() {
+    await this.detalleAlumnoService.currentRowCtrlNumber.subscribe(ctrnumber => this.alumnToValidate = ctrnumber).unsubscribe();
+    await this.validarDocumentosService.currentRowDocumentName.subscribe(docname => this.documentToAnalize = docname);
+    await this.alumnoService.getAlumnoDocumentation(this.alumnToValidate).subscribe(res => {
+      this.documentation = res as Object[];
+      this.dataSource = new MatTableDataSource(this.documentation);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   applyFilter(filterValue: string) {
@@ -63,7 +57,8 @@ export class ValidarDocumentosComponent implements OnInit {
     }
   }
 
-  onView() {
+  onView(documentToVisualize) {
+    this.validarDocumentosService.changeDocumentToUpdate(documentToVisualize);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -72,33 +67,29 @@ export class ValidarDocumentosComponent implements OnInit {
     this.dialog.open(ValidarDocumentosModalComponent, dialogConfig);
   }
 
-  onEdit(){
+  onEdit(documentToValidate) {
+    this.validarDocumentosService.changeDocumentToUpdate(documentToValidate);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '90%';
 
-    this.dialog.open(EditModalComponent, dialogConfig);
+    this.dialog.open(EditModalComponent, dialogConfig).afterClosed(
+      ).subscribe(
+        res => setTimeout( () => this.doRefreshTable(), 500)
+      );
+  }
+
+  async doRefreshTable() {
+    await this.alumnoService.getAlumnoDocumentation(this.alumnToValidate).subscribe(res => {
+      this.documentation = res as Object[];
+      this.dataSource = new MatTableDataSource(this.documentation);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
 }
-
-const CURP = 'CURP';
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-      NAMES[Math.round(Math.random() * (NAMES.length))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-
-  return {
-    id: DOCS[Math.round(Math.random() * (DOCS.length))],
-    name: name,
-    progress: STATUS[Math.round(Math.random() * (STATUS.length - 1)).toString()],
-    color: OBSERVACION[Math.round(Math.random() * (OBSERVACION.length - 1)).toString()]
-  };
-}
-
 
 @Component({
   selector: 'app-validar-documentos-modal',
@@ -107,15 +98,54 @@ function createNewUser(id: number): UserData {
 })
 
 export class ValidarDocumentosModalComponent {
-  src = `https://novaresidencia.000webhostapp.com/13400501/documentos/ACTA.pdf`;
-  nss = `https://novaresidencia.000webhostapp.com/13400501/documentos/ACTA.pdf`;
+  source: string;
+  alumnToValidate: string;
+  documentToAnalize: string;
 
-  constructor(public dialogRef: MatDialogRef<ValidarDocumentosModalComponent>){
-
+  constructor(public dialogRef: MatDialogRef<ValidarDocumentosModalComponent>,
+    private detalleAlumnoService: DetalleAlumnoService, private validarDocumentosService: ValidarDocumentosService) {
+    this.initData();
   }
 
   closeDialog() {
     this.dialogRef.close(false);
+  }
+
+  async initData() {
+    await this.detalleAlumnoService.currentRowCtrlNumber.subscribe(ctrnumber => this.alumnToValidate = ctrnumber).unsubscribe();
+    await this.validarDocumentosService.currentRowDocumentName.subscribe(docname => this.documentToAnalize = docname);
+
+    switch (this.documentToAnalize) {
+      case('ACTA'): {
+        this.source = `https://novaresidencia.000webhostapp.com/${this.alumnToValidate}/documentos/ACTA.pdf`;
+        break;
+      }
+      case('CERTIFICADO'): {
+        this.source = `https://novaresidencia.000webhostapp.com/${this.alumnToValidate}/documentos/CERTIFICADO.pdf`;
+        break;
+      }
+      case('CLINICOS'): {
+        this.source  = `https://novaresidencia.000webhostapp.com/${this.alumnToValidate}/documentos/CLINICOS.pdf`;
+        break;
+      }
+      case('COMPROBANTE'): {
+        this.source  = `https://novaresidencia.000webhostapp.com/${this.alumnToValidate}/documentos/COMPROBANTE.pdf`;
+        break;
+      }
+      case('CURP'): {
+        this.source  = `https://novaresidencia.000webhostapp.com/${this.alumnToValidate}/documentos/CURP.pdf`;
+        break;
+      }
+      case('FOTO'): {
+        this.source  = `https://novaresidencia.000webhostapp.com/${this.alumnToValidate}/documentos/FOTO.png`;
+        break;
+      }
+      case('NSS'): {
+        this.source  = `https://novaresidencia.000webhostapp.com/${this.alumnToValidate}/documentos/NSS.pdf`;
+        break;
+      }
+
+    }
   }
 
 }
