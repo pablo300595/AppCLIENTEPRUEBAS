@@ -120,7 +120,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   declarations: [
     AppComponent, HeaderComponent, MenuComponent, FormularioRegistroAlumnoComponent,
     CargaDocumentosComponent, HomeInscripcionesComponent, DetalleAlumnoComponent, DetalleAlumnoDialogComponent,
-    LoginComponent, PerfilComponent, FileSelectDirective, InscripcionWizardComponent,
+    LoginComponent, PerfilComponent, InscripcionWizardComponent,
     SuccessWizardComponent, FooterComponent, ContratoComponent, ConfirmacionComponent, ResumenComponent,
     PdfTemplatePhotoComponent,
     PdfTemplateNssComponent,
@@ -180,4 +180,4 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 })
 export class AppModule { }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+// platformBrowserDynamic().bootstrapModule(AppModule);
