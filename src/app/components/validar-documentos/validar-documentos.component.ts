@@ -4,6 +4,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { MatDialogConfig } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {MatChipsModule} from '@angular/material/chips';
 // Components
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 // Services
