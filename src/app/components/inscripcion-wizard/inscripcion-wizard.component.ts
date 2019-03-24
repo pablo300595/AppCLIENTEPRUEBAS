@@ -11,7 +11,6 @@ import { TemplateWizardComponent } from './../subcomponents/template-wizard/temp
 import { ResumenComponent } from '../resumen/resumen.component';
 import { TemplateLinkDownloadsComponent } from '../subcomponents/template-link-downloads/template-link-downloads.component';
 
-
 @Component({
   selector: 'app-inscripcion-wizard',
   templateUrl: './inscripcion-wizard.component.html',
@@ -119,6 +118,8 @@ export class InscripcionWizardComponent implements OnInit {
     this.formularioRegistroService.changefieldStatusCivil('Soltero/a');
     this.formularioRegistroService.changefieldStreet('');
     this.formularioRegistroService.changefieldWhichDisability('');
+    this.formularioRegistroService.changefieldControlNumber('');
+    this.formularioRegistroService.changeallFieldsAreValid(false);
     this.wizardService.changeStepTwoStatus(false);
     /* STEP 2*/
     this.cargaDocumentosService.changeFile1(false);
@@ -145,7 +146,10 @@ export class InscripcionWizardComponent implements OnInit {
   finishSteps() {
     let alumno = new Alumno();
     alumno = {statusInscripcion: 'Enviado'};
-    this.alumnoService.putStatusAlumno(alumno, this.idAlumnoLoged).subscribe();
+    this.alumnoService.putStatusAlumno(alumno, this.idAlumnoLoged).subscribe(
+      res => console.log('Status de alumno ha cambiado a enviado')
+    );
     this.resetSteps();
   }
+
 }

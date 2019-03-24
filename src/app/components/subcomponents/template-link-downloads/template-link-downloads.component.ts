@@ -56,6 +56,9 @@ export class TemplateLinkDownloadsComponent implements OnInit {
   ngOnInit() {
     this.loginService.currentUser.subscribe(user => this.usuarioLoged = user);
     this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
+  }
+
+  loadLink() {
     this.alumnoService.getAlumnoById(this.idAlumnoLoged)
     .subscribe(res => {
       this.alumno = res as Alumno;
@@ -85,35 +88,27 @@ export class TemplateLinkDownloadsComponent implements OnInit {
       this.fieldAverage = this.alumno.average;
       this.fieldCareer = this.alumno.career;
     });
-  }
 
-  loadLink() {
     this.refFoto = document.getElementById('refFOTO');
-    this.refFoto.src = `https://filetestresidence.000webhostapp.com/${this.usuarioLoged}/documentos/FOTO.png`;
+    this.refFoto.src = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/FOTO.png`;
 
     this.refCurp = document.getElementById('refCURP');
-    this.refCurp.href = `https://files.000webhost.com/handler.php?
-    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FCURP.pdf`;
+    this.refCurp.href = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/CURP.pdf`;
 
     this.refNSS = document.getElementById('refNSS');
-    this.refNSS.href = `https://files.000webhost.com/handler.php?
-    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FNSS.pdf`;
+    this.refNSS.href = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/NSS.pdf`;
 
     this.refActa = document.getElementById('refACTA');
-    this.refActa.href = `https://files.000webhost.com/handler.php?
-    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FACTA.pdf`;
+    this.refActa.href = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/ACTA.pdf`;
 
     this.refClinicos = document.getElementById('refCLINICOS');
-    this.refClinicos.href = `https://files.000webhost.com/handler.php?
-    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FCLINICOS.pdf`;
+    this.refClinicos.href = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/CLINICOS.pdf`;
 
     this.refCertificado = document.getElementById('refCERTIFICADO');
-    this.refCertificado.href = `https://files.000webhost.com/handler.php?
-    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FCERTIFICADO.pdf`;
+    this.refCertificado.href = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/CERTIFICADO.pdf`;
 
     this.refComprobante = document.getElementById('refCOMPROBANTE');
-    this.refComprobante.href = `https://files.000webhost.com/handler.php?
-    action=download?action=download&path=%2F${this.usuarioLoged}%2Fdocumentos%2FCOMPROBANTE.pdf`;
+    this.refComprobante.href = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/COMPROBANTE.pdf`;
   }
 
   downloadPDF() {

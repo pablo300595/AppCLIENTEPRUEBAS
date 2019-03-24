@@ -10,9 +10,9 @@
             <br>
             <h4>Status del documento</h4>
             <mat-form-field>
-                <mat-select placeholder="Seleccione el status del documento">
-                    <mat-option *ngFor="let food of foods" [value]="food.value">
-                        {{food.viewValue}}
+                <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                    <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -20,7 +20,8 @@
             <br><br>
             <h4>Observación</h4>
             <mat-form-field>
-                <input matInput placeholder="Introduzca una observación sobre el documento">
+                <input matInput placeholder="Introduzca una observación sobre el documento"
+                [(ngModel)]="observacion" name="observacion">
             </mat-form-field>
 
         </mat-tab>
@@ -30,6 +31,6 @@
 <div class="right">
   <div class="example-button-row">
     <button mat-button (click)="exit()">Cancelar</button>
-    <button mat-raised-button color="primary" >Guardar</button>
+    <button mat-raised-button (click)="validateForm()" color="primary" >Guardar</button>
   </div>
 </div>

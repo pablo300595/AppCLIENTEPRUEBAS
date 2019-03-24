@@ -23,6 +23,7 @@ export class LoginService {
   usuarios: Usuario[];
 
   readonly URL = 'https://app-apipruebas.herokuapp.com/login/auth';
+  // readonly URL = 'http://localhost:3000/login/auth';
 
   constructor(private http: HttpClient) {
     this.selectedUsuario = new Usuario();

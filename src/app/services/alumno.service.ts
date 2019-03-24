@@ -14,7 +14,7 @@ export class AlumnoService {
   statusInscripcion: String = 'No status';
 
   readonly URL = 'https://app-apipruebas.herokuapp.com/alumnos';
-  // https://files.000webhost.com/handler.php?action=download?action=download&path=%2F13400500%2FGlossary_English_MOOCs.pdf
+  // readonly URL = 'http://localhost:3000/alumnos';
 
   constructor(private http: HttpClient) {
     this.selectedAlumno = new Alumno();
@@ -29,13 +29,13 @@ export class AlumnoService {
     return this.http.get(this.URL);
   }
 
-   getAlumno(id) {
-      return this.http.get(this.URL + '/' + id);
-     }
+  getAlumno(id) {
+    return this.http.get(this.URL + '/' + id);
+  }
 
-     getAlumnoR(id) {
-      return this.http.get(this.URL + '/' + id);
-     }
+  getAlumnoR(id) {
+    return this.http.get(this.URL + '/' + id);
+  }
 
   getAlumnoById(id) {
     return this.http.get(this.URL + '/id/' + id);
@@ -60,6 +60,18 @@ export class AlumnoService {
   deleteAlumno(_id: string) {
     // return this.http.delete(this.URL + `/${_id}`);
     return this.http.delete(this.URL + '/' + _id);
+  }
+
+  updateAlumnoDocumentation(_id: string, documentation: Object) {
+    return this.http.put(this.URL + `/documentation/${_id}`, documentation);
+  }
+
+  updateAlumnoDocumentationByCtrlNumber(ctrlNumber: string, documentation: Object) {
+    return this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, documentation);
+  }
+
+  getAlumnoDocumentation(_id: string) {
+    return this.http.get(this.URL + `/documentation/${_id}`);
   }
 
 

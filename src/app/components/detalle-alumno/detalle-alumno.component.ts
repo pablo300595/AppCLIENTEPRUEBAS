@@ -1,30 +1,21 @@
+// Angular
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormularioRegistroAlumnoComponent } from '../formulario-registro-alumno/formulario-registro-alumno.component';
-
-import { AlumnoService } from './../../services/alumno.service';
-import { Alumno } from './../../models/alumno';
+import { Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
-
+// Material
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Inject } from '@angular/core';
-import { ResumenComponent } from '../resumen/resumen.component';
+import { MatDialogConfig } from '@angular/material';
+// Components
 import { ModalViewComponent} from '../modal-view/modal-view.component';
-import { MatDialogConfig } from "@angular/material";
-import { LoginService } from './../../services/login.service';
+// Services
 import { FormularioRegistroService } from './../../services/formulario-registro.service';
 import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
-
 import { DialogService } from 'src/app/services/dialog.service';
 import { NotificationService } from 'src/app/services/notification.service';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
-
-
+import { AlumnoService } from './../../services/alumno.service';
+// Models
+import { Alumno } from './../../models/alumno';
 
 @Component({
   selector: 'app-detalle-alumno',
@@ -33,21 +24,11 @@ export interface DialogData {
 })
 
 export class DetalleAlumnoComponent implements OnInit {
-
-  animal: string;
-  name: string;
-
-  fila: any;
-
   displayedColumns: string[] = ['controlNumber', 'lastNameFather', 'lastNameMother', 'firstName', 'career', 'actions'];
-
   dataSource: MatTableDataSource<Alumno>;
-
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
-
 
   alumno: Alumno;
   alumnos: any;
@@ -55,8 +36,7 @@ export class DetalleAlumnoComponent implements OnInit {
   selectedNoCtrl: string;
 
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
-    private dialogService: DialogService,
-    private notificationService: NotificationService) {
+    private dialogService: DialogService, private notificationService: NotificationService) {
     this.dataSource = new MatTableDataSource(this.alumnos);
   }
 
@@ -92,19 +72,6 @@ export class DetalleAlumnoComponent implements OnInit {
         console.log(this.alumnos);
       });
   }
-  /*
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DetalleAlumnoDialogComponent, {
-      width: '850px',
-
-
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }*/
 
   preUpdate(ctrlNumber) {
     console.log('DETALLE NUMERO DE CONTROL: ' + ctrlNumber);
@@ -116,7 +83,7 @@ export class DetalleAlumnoComponent implements OnInit {
     dialogConfig.width = '60%';
     this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig).afterClosed(
     ).subscribe(
-      res => this.doRefreshTable()
+      res => setTimeout( () => this.doRefreshTable(), 500)
     );
   }
 
@@ -147,7 +114,8 @@ export class DetalleAlumnoComponent implements OnInit {
       });
   }
 
-  onView() {
+  onView(controlNumber) {
+    this.detalleAlumnoService.changeAlumnoToUpdate(controlNumber);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -160,9 +128,9 @@ export class DetalleAlumnoComponent implements OnInit {
   }
 
 }
-
-
-
+/*--------------------------------------------------------------------------------
+ALUMNO DIALOG
+--------------------------------------------------------------------------------*/
 @Component({
   selector: 'app-detalle-alumno-dialog.component',
   templateUrl: './detalle-alumno-dialog.component.html',
@@ -210,7 +178,7 @@ export class DetalleAlumnoDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DetalleAlumnoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    // @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private alumnoService: AlumnoService,
     private formularioRegistroService: FormularioRegistroService,
     private detalleAlumnoService: DetalleAlumnoService) {
@@ -290,7 +258,11 @@ export class DetalleAlumnoDialogComponent {
       documents: [],
 
     };
-    this.alumnoService.putAlumnoByCtrl(this.alumno, this.selectedNoCtrl).subscribe();
+    this.alumnoService.putAlumnoByCtrl(this.alumno, this.selectedNoCtrl).subscribe(
+      res => {
+        // alert('Se actualizó el alumno ya!!!');
+      }
+    );
     this.dialogRef.close();
   }
 

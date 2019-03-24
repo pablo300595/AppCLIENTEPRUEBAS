@@ -3,6 +3,7 @@ import { LoginService } from './../../services/login.service';
 import { MessagesService } from './../../services/messages.service';
 import { WizardService } from './../../services/wizard.service';
 import { CargaDocumentosService } from './../../services/carga-documentos.service';
+import { AlumnoService } from './../../services/alumno.service';
 
 import { PdfTemplatePhotoComponent } from './../subcomponents/pdf-template-photo/pdf-template-photo.component';
 import { PdfTemplateNssComponent } from './../subcomponents/pdf-template-nss/pdf-template-nss.component';
@@ -16,6 +17,7 @@ import { PdfTemplateActaComponent } from './../subcomponents/pdf-template-acta/p
 
 import { DropzoneComponent , DropzoneDirective,
   DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { Alumno } from 'src/app/models/alumno';
 
 // const URL = 'http://localhost:3000/upload';
 const URL = 'https://app-apipruebas.herokuapp.com/upload';
@@ -62,7 +64,8 @@ export class CargaDocumentosComponent implements OnInit {
   dropzoneFilePhotoNewNameExtension: any;
 
   constructor(private loginService: LoginService, private wizardService: WizardService,
-    private messagesService: MessagesService, private cargaDocumentosService: CargaDocumentosService) {
+    private messagesService: MessagesService, private cargaDocumentosService: CargaDocumentosService,
+    private alumnoService: AlumnoService) {
     this.stepTwoCompleted = false;
   }
 
