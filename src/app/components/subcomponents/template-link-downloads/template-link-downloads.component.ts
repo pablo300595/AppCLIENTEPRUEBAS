@@ -49,6 +49,8 @@ export class TemplateLinkDownloadsComponent implements OnInit {
   refNSS: any;
   refCertificado: any;
 
+  srcFoto: any;
+
   constructor(private alumnoService: AlumnoService, private loginService: LoginService) {
 
   }
