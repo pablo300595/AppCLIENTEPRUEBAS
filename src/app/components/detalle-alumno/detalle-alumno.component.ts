@@ -8,6 +8,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialogConfig } from '@angular/material';
 // Components
 import { ModalViewComponent} from '../modal-view/modal-view.component';
+// Custom Classes
+import { CustomStringOperations } from '../../global-classes/custom-string-operations';
 // Services
 import { FormularioRegistroService } from './../../services/formulario-registro.service';
 import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
@@ -73,7 +75,7 @@ export class DetalleAlumnoComponent implements OnInit {
       });
   }
 
-  preUpdate(ctrlNumber) {
+  async preUpdate(ctrlNumber) {
     console.log('DETALLE NUMERO DE CONTROL: ' + ctrlNumber);
     this.detalleAlumnoService.changeAlumnoToUpdate(ctrlNumber);
 
@@ -81,10 +83,13 @@ export class DetalleAlumnoComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
-    this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig).afterClosed(
-    ).subscribe(
-      res => setTimeout( () => this.doRefreshTable(), 500)
+    await this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig).afterClosed(
+    ).toPromise().then(
+      RES => this.doRefreshTable()
     );
+      // res => setTimeout( () => this.doRefreshTable(), 500)
+
+    // this.doRefreshTable();
   }
 
   doRefreshTable() {
@@ -169,6 +174,14 @@ export class DetalleAlumnoDialogComponent {
   fieldDocuments: String[] = [];
   statusInscripcion: String;
 
+  acta: string;
+  certificado: string;
+  clinicos: string;
+  comprobante: string;
+  curp: string;
+  foto: string;
+  nss: string;
+
   editLastNameFather: String;
 
   // Services variables
@@ -178,16 +191,73 @@ export class DetalleAlumnoDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DetalleAlumnoDialogComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private alumnoService: AlumnoService,
     private formularioRegistroService: FormularioRegistroService,
     private detalleAlumnoService: DetalleAlumnoService) {
+      this.awaitForAlumnoData();
+  }
 
+  updateAlumno() {
+    this.alumno = {
+      lastNameFather: this.fieldLastNameFather,
+      lastNameMother: this.fieldLastNameMother,
+      firstName: this.fieldFirstName,
+      controlNumber: this.selectedNoCtrl,
+      placeBirth: this.fieldPlaceBirth,
+      dateBirth:  CustomStringOperations.extractBirthFromCURP(this.fieldCURP.substring(4, 10)),
+      statusCivil: this.fieldStatusCivil,
+      email: this.fieldEmail,
+      curp: this.fieldCURP,
+      nss: this.fieldNSS,
+      sex: this.fieldCURP.substring(10, 11),
+      street: this.fieldStreet,
+      colony: this.fieldColony,
+      city: this.fieldCity ,
+      state: this.fieldState,
+      postalCode: this.fieldPostalCode,
+      phone: this.fieldPhone,
+      etnia: this.fieldEtnia,
+      otherEtnia: this.fieldOtherEtnia,
+      disability: this.fieldDisability,
+      whichDisability: this.fieldWhichDisability,
+      school: this.fieldSchool,
+      otherSchool: this.fieldOtherSchool,
+      nameSchool: this.fieldNameSchool,
+      average: this.fieldAverage,
+      career: this.fieldCareer,
+      documents: [],
+    };
+    this.alumnoService.putAlumnoByCtrl(this.alumno, this.selectedNoCtrl).subscribe(
+      res => {
+        console.log('Se actualizó el alumno ya!!!');
+      }
+    );
+    this.dialogRef.close();
+  }
+
+  /*extractBirthFromCURP(curp: string) {
+    let finalDate = '';
+    let numericYear = + (curp.substring(0, 2));
+
+    if (numericYear <= 99 && numericYear >= 80) {
+      numericYear += 1900;
+    } else {
+      numericYear += 2000;
+    }
+
+    finalDate = numericYear + '-' + curp.substring(2, 4) + '-' + curp.substring(4, 6);
+    return finalDate;
+  }*/
+  exit(): void {
+    this.dialogRef.close();
+  }
+
+  async awaitForAlumnoData() {
     this.formularioRegistroService.changefirstTryGivenValues(false);
     this.formularioRegistroService.currentfirstTryGivenValues.subscribe(value => this.firstTryGivenValues = value);
     this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res);
 
-    this.alumnoService.getAlumno(this.selectedNoCtrl).subscribe(res => {
+    await this.alumnoService.getAlumno(this.selectedNoCtrl).subscribe(res => {
       this.alumno = res as Alumno;
       this.fieldAverage = this.alumno.average;
       this.fieldCareer = this.alumno.career;
@@ -215,71 +285,15 @@ export class DetalleAlumnoDialogComponent {
       this.fieldStreet = this.alumno.street;
       this.fieldWhichDisability = this.alumno.whichDisability;
       console.log(this.alumno);
+
+      this.acta = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/ACTA.pdf`;
+      this.certificado = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CERTIFICADO.pdf`;
+      this.clinicos  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CLINICOS.pdf`;
+      this.comprobante  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/COMPROBANTE.pdf`;
+      this.curp  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CURP.pdf`;
+      this.foto  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FOTO.png`;
+      this.nss  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/NSS.pdf`;
     });
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  exit(): void {
-    this.dialogRef.close();
-  }
-
-  updateAlumno(): void {
-
-    this.alumno = {
-      lastNameFather: this.fieldLastNameFather,
-      lastNameMother: this.fieldLastNameMother,
-      firstName: this.fieldFirstName,
-      controlNumber: this.selectedNoCtrl,
-      placeBirth: this.fieldPlaceBirth,
-      dateBirth:  this.extractBirthFromCURP(this.fieldCURP.substring(4, 10)),
-      statusCivil: this.fieldStatusCivil,
-      email: this.fieldEmail,
-      curp: this.fieldCURP,
-      nss: this.fieldNSS,
-      sex: this.fieldCURP.substring(10, 11),
-      street: this.fieldStreet,
-      colony: this.fieldColony,
-      city: this.fieldCity ,
-      state: this.fieldState,
-      postalCode: this.fieldPostalCode,
-      phone: this.fieldPhone,
-      etnia: this.fieldEtnia,
-      otherEtnia: this.fieldOtherEtnia,
-      disability: this.fieldDisability,
-      whichDisability: this.fieldWhichDisability,
-      school: this.fieldSchool,
-      otherSchool: this.fieldOtherSchool,
-      nameSchool: this.fieldNameSchool,
-      average: this.fieldAverage,
-      career: this.fieldCareer,
-      documents: [],
-
-    };
-    this.alumnoService.putAlumnoByCtrl(this.alumno, this.selectedNoCtrl).subscribe(
-      res => {
-        // alert('Se actualizó el alumno ya!!!');
-      }
-    );
-    this.dialogRef.close();
-  }
-
-  extractBirthFromCURP(curp: string) {
-    let finalDate = '';
-    let numericYear = + (curp.substring(0, 2));
-
-    if (numericYear <= 99 && numericYear >= 80) {
-      numericYear += 1900;
-    } else {
-      numericYear += 2000;
-    }
-
-    finalDate = numericYear + '-' + curp.substring(2, 4) + '-' + curp.substring(4, 6);
-    return finalDate;
-  }
-
 }
-
-

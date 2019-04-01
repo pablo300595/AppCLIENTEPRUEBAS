@@ -34,9 +34,15 @@ export class InscripcionWizardComponent implements OnInit {
 
   constructor(private alumnoService: AlumnoService, private loginService: LoginService, private wizardService: WizardService,
     private formularioRegistroService: FormularioRegistroService, private messagesService: MessagesService,
-    private contratoService: ContratoService, private cargaDocumentosService: CargaDocumentosService) { }
+    private contratoService: ContratoService, private cargaDocumentosService: CargaDocumentosService) { 
+      this.initServices();
+    }
 
   ngOnInit() {
+
+  }
+
+  initServices() {
     this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
     this.wizardService.currentStepOne.subscribe(status => this.stepOneCompleted = status);
     this.wizardService.currentStepTwo.subscribe(status => this.stepTwoCompleted = status);
