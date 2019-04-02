@@ -176,7 +176,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       useValue: DEFAULT_DROPZONE_CONFIG
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, DetalleAlumnoDialogComponent]
 })
 export class AppModule { }
 

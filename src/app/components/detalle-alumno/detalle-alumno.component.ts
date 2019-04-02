@@ -24,7 +24,7 @@ import { Alumno } from './../../models/alumno';
 })
 
 export class DetalleAlumnoComponent implements OnInit {
-  displayedColumns: string[] = ['controlNumber', 'lastNameFather', 'lastNameMother', 'firstName', 'career', 'actions'];
+  displayedColumns: string[] = ['statusInscripcion', 'controlNumber', 'lastNameFather', 'lastNameMother', 'firstName',  'career',  'actions'];
   dataSource: MatTableDataSource<Alumno>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,6 +35,8 @@ export class DetalleAlumnoComponent implements OnInit {
 
   selectedNoCtrl: string;
 
+  foto: string;
+
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService) {
     this.dataSource = new MatTableDataSource(this.alumnos);
@@ -42,6 +44,7 @@ export class DetalleAlumnoComponent implements OnInit {
 
   ngOnInit() {
     this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res);
+    
 
     this.alumnoService.getAlumnos()
       .subscribe(res => {
@@ -140,6 +143,8 @@ ALUMNO DIALOG
 
 export class DetalleAlumnoDialogComponent {
 
+  foto: string;
+
   fieldLastNameFather: String = '';
   fieldLastNameMother: String = '';
   fieldFirstName: String = '';
@@ -187,6 +192,7 @@ export class DetalleAlumnoDialogComponent {
     this.formularioRegistroService.currentfirstTryGivenValues.subscribe(value => this.firstTryGivenValues = value);
     this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res);
 
+
     this.alumnoService.getAlumno(this.selectedNoCtrl).subscribe(res => {
       this.alumno = res as Alumno;
       this.fieldAverage = this.alumno.average;
@@ -215,6 +221,8 @@ export class DetalleAlumnoDialogComponent {
       this.fieldStreet = this.alumno.street;
       this.fieldWhichDisability = this.alumno.whichDisability;
       console.log(this.alumno);
+      
+      this.foto  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FOTO.png`;
     });
   }
 
@@ -227,6 +235,7 @@ export class DetalleAlumnoDialogComponent {
   }
 
   updateAlumno(): void {
+    
 
     this.alumno = {
       lastNameFather: this.fieldLastNameFather,
@@ -260,6 +269,7 @@ export class DetalleAlumnoDialogComponent {
     };
     this.alumnoService.putAlumnoByCtrl(this.alumno, this.selectedNoCtrl).subscribe(
       res => {
+        
         // alert('Se actualizó el alumno ya!!!');
       }
     );
