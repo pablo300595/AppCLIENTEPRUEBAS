@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialogConfig } from '@angular/material';
+import {MatSlideToggleModule} from '@angular/material';
 // Components
 import { ModalViewComponent} from '../modal-view/modal-view.component';
 // Custom Classes
@@ -16,6 +17,9 @@ import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { AlumnoService } from './../../services/alumno.service';
+import { MessagesService } from './../../services/messages.service';
+import { UsuarioService } from './../../services/usuario.service';
+import { LoginService } from './../../services/login.service';
 // Models
 import { Alumno } from './../../models/alumno';
 
@@ -26,26 +30,68 @@ import { Alumno } from './../../models/alumno';
 })
 
 export class DetalleAlumnoComponent implements OnInit {
-  displayedColumns: string[] = ['controlNumber', 'lastNameFather', 'lastNameMother', 'firstName', 'career', 'actions'];
+  displayedColumns: string[] = ['controlNumber', 'lastNameFather', 'lastNameMother', 'firstName', 'career', 'statusInscripcion', 'actions'];
   dataSource: MatTableDataSource<Alumno>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  // Filters
+  filterA: any;
+  filterB: any;
+  filterC: any;
+  filterD: any;
+
   alumno: Alumno;
   alumnos: any;
 
   selectedNoCtrl: string;
+  currentUser: string;
+  currentUserToLoadCareer: any;
+
+  // Mecanisms
+  careerVisualizationMode: boolean;
 
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
-    private dialogService: DialogService, private notificationService: NotificationService) {
+    private dialogService: DialogService, private notificationService: NotificationService,
+    private usuarioService: UsuarioService, private loginService: LoginService) {
     this.dataSource = new MatTableDataSource(this.alumnos);
+
+    this.filterA = {'value': false, 'filter': 'En captura'};
+    this.filterB = {'value': false, 'filter': 'Enviado'};
+    this.filterC = {'value': false, 'filter': 'Validado'};
+    this.filterD = {'value': false, 'filter': 'Aceptado'};
+
+    this.careerVisualizationMode = false;
   }
 
   ngOnInit() {
     this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res);
+    this.loginService.currentUser.subscribe(res => this.currentUser = res);
+    this.usuarioService.getUsuario(this.currentUser).subscribe(res => this.currentUserToLoadCareer = res);
 
-    this.alumnoService.getAlumnos()
+    setTimeout(() => {
+      this.getUsuarioData(this.currentUserToLoadCareer);
+    }, 500);
+  }
+
+  getUsuarioData(careers) {
+    console.log('DATA');
+    this.alumnoService.getAlumnosByCareer(careers)
+      .subscribe(res => {
+        this.alumnoService.alumnos = res as Alumno[];
+        this.alumnos = res;
+        console.log(this.alumnos);
+
+        this.dataSource = new MatTableDataSource(this.alumnos);
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+  }
+
+  refreshTableAlumnosData() {
+    this.alumnoService.getAlumnosByCareer(this.currentUserToLoadCareer)
       .subscribe(res => {
         this.alumnoService.alumnos = res as Alumno[];
         this.alumnos = res;
@@ -66,6 +112,50 @@ export class DetalleAlumnoComponent implements OnInit {
     }
   }
 
+  applyFilterOfCheck(filterValue) {
+    if (!this.filterA.value) { this.filterA.filter = ''; }
+    if (!this.filterB.value) { this.filterB.filter = ''; }
+    if (!this.filterC.value) { this.filterC.filter = ''; }
+    if (!this.filterD.value) { this.filterD.filter = ''; }
+
+    this.dataSource.filterPredicate = ((data: any, filter: string) => {
+      return this.customPredicateEvaluation(data);
+    });
+
+    this.dataSource.filter = filterValue;
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+
+    this.filterA.filter = 'En captura';
+    this.filterB.filter = 'Enviado';
+    this.filterC.filter = 'Validado';
+    this.filterD.filter = 'Aceptado';
+  }
+
+  customPredicateEvaluation(data) {
+    console.log(data.statusInscripcion);
+    const result = (data.statusInscripcion === this.filterA.filter) ||
+    (data.statusInscripcion === this.filterB.filter) ||
+    (data.statusInscripcion === this.filterC.filter) ||
+    (data.statusInscripcion === this.filterD.filter);
+    return result;
+  }
+
+  onChange(event) {
+    if (event.source.id === 'ck-EnCaptura') {this.filterA.value = event.checked; }
+    if (event.source.id === 'ck-Enviado') {this.filterB.value = event.checked; }
+    if (event.source.id === 'ck-Validado') {this.filterC.value = event.checked; }
+    if (event.source.id === 'ck-Aceptado') {this.filterD.value = event.checked; }
+
+    this.applyFilterOfCheck(event);
+  }
+
+  onChangeVisualMode() {
+    this.doRefreshTable();
+  }
+
   getAlumnos() {
     this.alumnoService.getAlumnos()
       .subscribe(res => {
@@ -83,17 +173,16 @@ export class DetalleAlumnoComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
-    await this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig).afterClosed(
-    ).toPromise().then(
-      RES => this.doRefreshTable()
+    this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig).afterClosed().subscribe(
+      res => setTimeout( () => this.doRefreshTable(), 500)
     );
-      // res => setTimeout( () => this.doRefreshTable(), 500)
-
-    // this.doRefreshTable();
   }
 
   doRefreshTable() {
-    this.alumnoService.getAlumnos()
+    if (!this.careerVisualizationMode) {
+      this.getUsuarioData(this.currentUserToLoadCareer);
+    } else {
+      this.alumnoService.getAlumnos()
       .subscribe(res => {
         this.alumnoService.alumnos = res as Alumno[];
         this.alumnos = res;
@@ -104,6 +193,7 @@ export class DetalleAlumnoComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
+    }
   }
   onDelete(controlNumber) {
 
@@ -136,6 +226,11 @@ export class DetalleAlumnoComponent implements OnInit {
 /*--------------------------------------------------------------------------------
 ALUMNO DIALOG
 --------------------------------------------------------------------------------*/
+export interface StatusDocumento {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-detalle-alumno-dialog.component',
   templateUrl: './detalle-alumno-dialog.component.html',
@@ -173,7 +268,9 @@ export class DetalleAlumnoDialogComponent {
   fieldCareer: String = '';
   fieldDocuments: String[] = [];
   statusInscripcion: String;
+  // editLastNameFather: String;
 
+  // Link document variables
   acta: string;
   certificado: string;
   clinicos: string;
@@ -181,8 +278,31 @@ export class DetalleAlumnoDialogComponent {
   curp: string;
   foto: string;
   nss: string;
+  // Status of subdocuments from formulario alumno
+  documentation: any;
+  displayedColumns: string[] = ['documentName', 'status', 'observacion'];
+  dataSource: MatTableDataSource<Object>;
 
-  editLastNameFather: String;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  // Values for document validation
+  dataFormulario: any;
+  status: string;
+  observacionCertificado: string;
+  observacionActa: string;
+  observacionCurp: string;
+  observacionComprobante: string;
+  observacionClinicos: string;
+  observacionNss: string;
+  observacionFoto: string;
+  observacionFormulario: string;
+
+  documentToAnalize: string;
+  formularios: StatusDocumento[] = [
+    {value: 'Aceptado', viewValue: 'Aceptado'},
+    {value: 'En proceso', viewValue: 'En proceso'},
+    {value: 'Rechazado', viewValue: 'Rechazado'}
+  ];
 
   // Services variables
   alumno: Alumno;
@@ -193,6 +313,7 @@ export class DetalleAlumnoDialogComponent {
     public dialogRef: MatDialogRef<DetalleAlumnoDialogComponent>,
     private alumnoService: AlumnoService,
     private formularioRegistroService: FormularioRegistroService,
+    private messagesService: MessagesService,
     private detalleAlumnoService: DetalleAlumnoService) {
       this.awaitForAlumnoData();
   }
@@ -230,9 +351,9 @@ export class DetalleAlumnoDialogComponent {
     this.alumnoService.putAlumnoByCtrl(this.alumno, this.selectedNoCtrl).subscribe(
       res => {
         console.log('Se actualizó el alumno ya!!!');
+        this.messagesService.success('¡Datos de alumno modificados con éxito!');
       }
     );
-    this.dialogRef.close();
   }
 
   /*extractBirthFromCURP(curp: string) {
@@ -293,7 +414,85 @@ export class DetalleAlumnoDialogComponent {
       this.curp  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CURP.pdf`;
       this.foto  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FOTO.png`;
       this.nss  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/NSS.pdf`;
+
+      this.awaitForValidationData();
     });
+  }
+
+  awaitForValidationData() {
+    this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {
+      this.documentation = res as Object[];
+      this.dataSource = new MatTableDataSource(this.documentation);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  doRefreshTable() {
+    this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {
+      this.documentation = res as Object[];
+      this.dataSource = new MatTableDataSource(this.documentation);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  validateForm(documentToAnalize) {
+    let comment;
+    switch (documentToAnalize) {
+      case 'ACTA': {
+        comment = this.observacionActa;
+        break;
+      }
+      case 'CERTIFICADO': {
+        comment = this.observacionCertificado;
+        break;
+      }
+      case 'COMPROBANTE': {
+        comment = this.observacionComprobante;
+        break;
+      }
+      case 'CURP': {
+        comment = this.observacionCurp;
+        break;
+      }
+      case 'NSS': {
+        comment = this.observacionNss;
+        break;
+      }
+      case 'CLINICOS': {
+        comment = this.observacionClinicos;
+        break;
+      }
+      case 'FOTO': {
+        comment = this.observacionFoto;
+        break;
+      }
+      case 'FORMULARIO': {
+        comment = this.observacionFormulario;
+        break;
+      }
+    }
+    this.dataFormulario = {
+      'documentName': documentToAnalize,
+      'status': this.status,
+      'observacion': comment
+    };
+    this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.selectedNoCtrl, this.dataFormulario).subscribe(res => {
+      this.messagesService.success('¡Estatus de documento actualizado exitosamente!');
+    });
+  }
+
+  refreshTabContent($event) {
+    this.doRefreshTable();
   }
 
 }

@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
   usuario: any;
   // usuarios: any;
   // Auth data
-  user  = '13400501';
-  pass = '6331';
+  user  = 'secreA';
+  pass = '1234';
   // Flags
   hasAuthFailed: boolean;
 

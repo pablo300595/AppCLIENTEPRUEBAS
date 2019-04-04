@@ -1,6 +1,6 @@
 <mat-dialog-content class="mat-typography">
   <h2 style="text-align:center;">Detalle Alumno</h2>
-  <mat-tab-group>
+  <mat-tab-group (selectedTabChange)="refreshTabContent($event)">
     <mat-tab label="Detalle Alumno">
       <br>
 
@@ -276,6 +276,11 @@
         </div>
       </div>
       <br>
+      <div class="right">
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="updateAlumno();">Guardar</button>
+        </div>
+      </div>
 
     </mat-tab>
 
@@ -384,6 +389,25 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="certificado"></pdf-viewer>
+            <h4>Status del documento</h4>
+            <mat-form-field>
+                <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                    <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><br>
+            <h4>Observación</h4>
+            <mat-form-field>
+                <input matInput placeholder="Introduzca una observación sobre el documento"
+                [(ngModel)]="observacionCertificado" name="observacionCertificado">
+            </mat-form-field>
+            <div class="right">
+              <div class="example-button-row">
+                <button mat-raised-button (click)="validateForm('CERTIFICADO')" color="primary" >Guardar</button>
+              </div>
+            </div>
           </ng-template>
 
         </mat-expansion-panel>
@@ -399,6 +423,25 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="acta"></pdf-viewer>
+            <h4>Status del documento</h4>
+            <mat-form-field>
+                <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                    <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><br>
+            <h4>Observación</h4>
+            <mat-form-field>
+                <input matInput placeholder="Introduzca una observación sobre el documento"
+                [(ngModel)]="observacionActa" name="observacionActa">
+            </mat-form-field>
+            <div class="right">
+              <div class="example-button-row">
+                <button mat-raised-button (click)="validateForm('ACTA')" color="primary" >Guardar</button>
+              </div>
+            </div>
           </ng-template>
         </mat-expansion-panel>
 
@@ -413,6 +456,25 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="curp"></pdf-viewer>
+            <h4>Status del documento</h4>
+            <mat-form-field>
+                <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                    <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><br>
+            <h4>Observación</h4>
+            <mat-form-field>
+                <input matInput placeholder="Introduzca una observación sobre el documento"
+                [(ngModel)]="observacionCurp" name="observacionCurp">
+            </mat-form-field>
+            <div class="right">
+              <div class="example-button-row">
+                <button mat-raised-button (click)="validateForm('CURP')" color="primary" >Guardar</button>
+              </div>
+            </div>
           </ng-template>
         </mat-expansion-panel>
 
@@ -427,6 +489,25 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="comprobante"></pdf-viewer>
+            <h4>Status del documento</h4>
+            <mat-form-field>
+                <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                    <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><br>
+            <h4>Observación</h4>
+            <mat-form-field>
+                <input matInput placeholder="Introduzca una observación sobre el documento"
+                [(ngModel)]="observacionComprobante" name="observacionComprobante">
+            </mat-form-field>
+            <div class="right">
+              <div class="example-button-row">
+                <button mat-raised-button (click)="validateForm('COMPROBANTE')" color="primary" >Guardar</button>
+              </div>
+            </div>
           </ng-template>
         </mat-expansion-panel>
 
@@ -441,6 +522,25 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="clinicos"></pdf-viewer>
+            <h4>Status del documento</h4>
+            <mat-form-field>
+                <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                    <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><br>
+            <h4>Observación</h4>
+            <mat-form-field>
+                <input matInput placeholder="Introduzca una observación sobre el documento"
+                [(ngModel)]="observacionClinicos" name="observacionClinicos">
+            </mat-form-field>
+            <div class="right">
+              <div class="example-button-row">
+                <button mat-raised-button (click)="validateForm('CLINICOS')" color="primary" >Guardar</button>
+              </div>
+            </div>
           </ng-template>
         </mat-expansion-panel>
 
@@ -455,6 +555,25 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="nss"></pdf-viewer>
+            <h4>Status del documento</h4>
+            <mat-form-field>
+                <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                    <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><br>
+            <h4>Observación</h4>
+            <mat-form-field>
+                <input matInput placeholder="Introduzca una observación sobre el documento"
+                [(ngModel)]="observacionNss" name="observacionNss">
+            </mat-form-field>
+            <div class="right">
+              <div class="example-button-row">
+                <button mat-raised-button (click)="validateForm('NSS')" color="primary" >Guardar</button>
+              </div>
+            </div>
           </ng-template>
         </mat-expansion-panel>
 
@@ -467,6 +586,28 @@
 
             </mat-panel-description>
           </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <img [src]="foto">
+            <h4>Status del documento</h4>
+            <mat-form-field>
+                <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                    <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><br>
+            <h4>Observación</h4>
+            <mat-form-field>
+                <input matInput placeholder="Introduzca una observación sobre el documento"
+                [(ngModel)]="observacionFoto" name="observacionFoto">
+            </mat-form-field>
+            <div class="right">
+              <div class="example-button-row">
+                <button mat-raised-button (click)="validateForm('FOTO')" color="primary" >Guardar</button>
+              </div>
+            </div>
+          </ng-template>
         </mat-expansion-panel>
 
         <mat-expansion-panel>
@@ -478,10 +619,73 @@
 
             </mat-panel-description>
           </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <pdf-viewer [src]="nss"></pdf-viewer>
+            <h4>Status del documento</h4>
+            <mat-form-field>
+                <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                    <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><br>
+            <h4>Observación</h4>
+            <mat-form-field>
+                <input matInput placeholder="Introduzca una observación sobre el documento"
+                [(ngModel)]="observacionFormulario" name="observacionFormulario">
+            </mat-form-field>
+            <div class="right">
+              <div class="example-button-row">
+                <button mat-raised-button (click)="validateForm('FORMULARIO')" color="primary" >Guardar</button>
+              </div>
+            </div>
+          </ng-template>
         </mat-expansion-panel>
 
 
       </mat-accordion>
+    </mat-tab>
+
+    <mat-tab label="Estado de validación">
+      <div class="container">
+
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+    
+            <!-- ID Column -->
+            <ng-container matColumnDef="documentName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Documento </th>
+              <td mat-cell *matCellDef="let row"> {{row.documentName}} </td>
+            </ng-container>
+    
+            <!-- Progress Column -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-chip-list>
+                  <mat-chip color="primary" selected *ngIf="row.status == 'En proceso'">{{row.status}}</mat-chip>
+                  <mat-chip color="accent" selected *ngIf="row.status == 'Rechazado'">{{row.status}}</mat-chip>
+                  <mat-chip selected *ngIf="row.status == 'Aceptado'" style="background-color:darkgreen;">{{row.status}}</mat-chip>
+                </mat-chip-list>
+              </td>
+            </ng-container>
+    
+    
+            <!-- Color Column -->
+            <ng-container matColumnDef="observacion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> observacion </th>
+              <td mat-cell *matCellDef="let row"> {{row.observacion}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+          </table>
+    
+          <mat-paginator [pageSizeOptions]="[10, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
     </mat-tab>
 
   </mat-tab-group>
@@ -490,6 +694,5 @@
 <div class="right">
   <div class="example-button-row">
     <button mat-button (click)="exit()">Cancelar</button>
-    <button mat-raised-button color="primary" (click)="updateAlumno();">Guardar</button>
   </div>
 </div>
