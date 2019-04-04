@@ -30,7 +30,11 @@ import { Alumno } from './../../models/alumno';
 })
 
 export class DetalleAlumnoComponent implements OnInit {
+
   displayedColumns: string[] = ['controlNumber', 'lastNameFather', 'lastNameMother', 'firstName', 'career', 'statusInscripcion', 'actions'];
+
+  displayedColumns: string[] = ['statusInscripcion', 'controlNumber', 'lastNameFather', 'lastNameMother', 'firstName',  'career',  'actions'];
+
   dataSource: MatTableDataSource<Alumno>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -52,6 +56,8 @@ export class DetalleAlumnoComponent implements OnInit {
   // Mecanisms
   careerVisualizationMode: boolean;
 
+  foto: string;
+
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService,
     private usuarioService: UsuarioService, private loginService: LoginService) {
@@ -67,8 +73,11 @@ export class DetalleAlumnoComponent implements OnInit {
 
   ngOnInit() {
     this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res);
+
     this.loginService.currentUser.subscribe(res => this.currentUser = res);
     this.usuarioService.getUsuario(this.currentUser).subscribe(res => this.currentUserToLoadCareer = res);
+
+
 
     setTimeout(() => {
       this.getUsuarioData(this.currentUserToLoadCareer);
@@ -240,6 +249,8 @@ export interface StatusDocumento {
 
 export class DetalleAlumnoDialogComponent {
 
+  foto: string;
+
   fieldLastNameFather: String = '';
   fieldLastNameMother: String = '';
   fieldFirstName: String = '';
@@ -315,10 +326,62 @@ export class DetalleAlumnoDialogComponent {
     private formularioRegistroService: FormularioRegistroService,
     private messagesService: MessagesService,
     private detalleAlumnoService: DetalleAlumnoService) {
+
       this.awaitForAlumnoData();
   }
 
-  updateAlumno() {
+
+
+    this.formularioRegistroService.changefirstTryGivenValues(false);
+    this.formularioRegistroService.currentfirstTryGivenValues.subscribe(value => this.firstTryGivenValues = value);
+    this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res);
+
+
+    this.alumnoService.getAlumno(this.selectedNoCtrl).subscribe(res => {
+      this.alumno = res as Alumno;
+      this.fieldAverage = this.alumno.average;
+      this.fieldCareer = this.alumno.career;
+      this.fieldCity = this.alumno.city;
+      this.fieldColony = this.alumno.colony;
+      this.fieldCURP = this.alumno.curp;
+      this.fieldDateBirth = this.alumno.dateBirth,
+      this.fieldDisability = this.alumno.disability;
+      this.fieldEmail = this.alumno.email;
+      this.fieldEtnia = this.alumno.etnia;
+      this.fieldFirstName = this.alumno.firstName;
+      this.fieldLastNameFather = this.alumno.lastNameFather;
+      this.fieldLastNameMother = this.alumno.lastNameMother;
+      this.fieldNameSchool = this.alumno.nameSchool;
+      this.fieldNSS = this.alumno.nss;
+      this.fieldOtherEtnia = this.alumno.otherEtnia;
+      this.fieldOtherSchool = this.alumno.otherSchool;
+      this.fieldPhone = this.alumno.phone;
+      this.fieldPlaceBirth = this.alumno.placeBirth;
+      this.fieldPostalCode = this.alumno.postalCode;
+      this.fieldSchool = this.alumno.school;
+      this.fieldSex = this.alumno.sex,
+      this.fieldState = this.alumno.state;
+      this.fieldStatusCivil = this.alumno.statusCivil;
+      this.fieldStreet = this.alumno.street;
+      this.fieldWhichDisability = this.alumno.whichDisability;
+      console.log(this.alumno);
+      
+      this.foto  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FOTO.png`;
+    });
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  exit(): void {
+    this.dialogRef.close();
+  }
+
+  updateAlumno(): void {
+    
+
+
     this.alumno = {
       lastNameFather: this.fieldLastNameFather,
       lastNameMother: this.fieldLastNameMother,
@@ -350,8 +413,13 @@ export class DetalleAlumnoDialogComponent {
     };
     this.alumnoService.putAlumnoByCtrl(this.alumno, this.selectedNoCtrl).subscribe(
       res => {
+
         console.log('Se actualizó el alumno ya!!!');
         this.messagesService.success('¡Datos de alumno modificados con éxito!');
+
+        
+        // alert('Se actualizó el alumno ya!!!');
+
       }
     );
   }

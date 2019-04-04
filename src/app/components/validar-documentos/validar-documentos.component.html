@@ -23,8 +23,8 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
           <td mat-cell *matCellDef="let row">
             <mat-chip-list>
-              <mat-chip color="primary" selected *ngIf="row.status == 'En proceso'">{{row.status}}</mat-chip>
-              <mat-chip color="accent" selected *ngIf="row.status == 'Rechazado'">{{row.status}}</mat-chip>
+              <mat-chip style="background-color: rgb(252, 252, 10);" selected *ngIf="row.status == 'En proceso'">{{row.status}}</mat-chip>
+              <mat-chip  style="background-color: red;" selected *ngIf="row.status == 'Rechazado'">{{row.status}}</mat-chip>
               <mat-chip selected *ngIf="row.status == 'Aceptado'" style="background-color:darkgreen;">{{row.status}}</mat-chip>
             </mat-chip-list>
           </td>
