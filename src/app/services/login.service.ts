@@ -20,7 +20,7 @@ export class LoginService {
   currentStatusInscripcionSource = this.statusInscripcionSource.asObservable();
 
   selectedUsuario: Usuario;
-  usuarios: Usuario[];
+  usuario: Usuario;
 
   readonly URL = 'https://app-apipruebas.herokuapp.com/login/auth';
   // readonly URL = 'http://localhost:3000/login/auth';

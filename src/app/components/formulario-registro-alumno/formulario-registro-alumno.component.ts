@@ -2,7 +2,6 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { AlumnoService} from './../../services/alumno.service';
 import { LoginService } from './../../services/login.service';
 import { WizardService } from './../../services/wizard.service';
-import { MessagesService } from './../../services/messages.service';
 import { FormularioRegistroService } from './../../services/formulario-registro.service';
 import { Alumno } from './../../models/alumno';
 import { NgForm} from '@angular/forms';
@@ -51,19 +50,23 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
 
   idAlumnoLoged: String;
   statusInscripcionAlumno: string;
-  // Error messages
 
   // Flags
   allFieldsAreValid: boolean;
   firstTryGivenValues: boolean;
 
   constructor(private alumnoService: AlumnoService, private loginService: LoginService,
-    private wizardService: WizardService, private messagesService: MessagesService,
+    private wizardService: WizardService,
     private formularioRegistroService: FormularioRegistroService) {
     this.firstTryGivenValues = false;
+    this.initServices();
   }
 
   ngOnInit() {
+
+  }
+
+  initServices() {
     this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
     this.getAlumnoStatus();
     this.wizardService.currentStepOne.subscribe(status => this.allFieldsAreValid = status);
@@ -155,10 +158,8 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
       };
 
       this.formularioRegistroService.changeAlumnoToUpdate(this.alumno);
-      // this.updateAlumno();
-      // this.wizardService.changeStepOneStatus(true);
     } else {
-      // this.messagesService.warning('hay campos no váldos');
+      // Do nothing
     }
   }
 

@@ -20,11 +20,11 @@ export class LoginComponent implements OnInit {
   sendIdAlumno: string;
   sendStatusInscripcion: string;
   // Model values
-  usuario: Usuario;
-  usuarios: any;
+  usuario: any;
+  // usuarios: any;
   // Auth data
-  user  = '13400501';
-  pass = '6331';
+  user  = 'secreA';
+  pass = '1234';
   // Flags
   hasAuthFailed: boolean;
 
@@ -63,20 +63,29 @@ export class LoginComponent implements OnInit {
     };
     this.loginService.authUser(this.usuario)
       .subscribe(res => {
-        this.loginService.usuarios = res as Usuario[];
-        this.usuarios = res;
+        this.usuario = res;
         if (res != null) {
-          console.log(this.usuarios);
-          this.changeLoginStatus(this.usuarios.credential, true);
-          this.changeProfileStatus(this.usuarios.credential, this.usuarios.user, this.usuarios.alumno);
-          this.router.navigateByUrl('/wizard');
+          this.routeAccordingToCredential();
         } else {
           this.hasAuthFailed = true;
           console.log('El usuario NO existe');
         }
       });
+  }
 
-    console.log('Autenticando');
+  routeAccordingToCredential() {
+    this.changeLoginStatus(this.usuario.credential, true);
+    this.changeProfileStatus(this.usuario.credential, this.usuario.user, this.usuario.alumno);
+      switch (this.usuario.credential) {
+        case 'student': {
+          this.router.navigateByUrl('/wizard');
+          break;
+        }
+        case 'secretary': {
+          this.router.navigateByUrl('/detalleAlumno');
+          break;
+        }
+      }
   }
 
 }
