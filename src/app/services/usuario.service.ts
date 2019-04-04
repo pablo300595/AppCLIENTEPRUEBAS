@@ -5,8 +5,8 @@ import { HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class UsuarioService {
-  // readonly URL = 'https://app-apipruebas.herokuapp.com/usuarios';
-  readonly URL = 'http://localhost:3000/usuarios';
+  readonly URL = 'https://app-apipruebas.herokuapp.com/usuarios';
+  // readonly URL = 'http://localhost:3000/usuarios';
 
   constructor(private http: HttpClient) {
   }
