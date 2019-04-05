@@ -31,7 +31,7 @@ import { Alumno } from './../../models/alumno';
 
 export class DetalleAlumnoComponent implements OnInit {
   displayedColumns: string[] = ['controlNumber', 'lastNameFather', 'lastNameMother', 'firstName', 'career', 'statusInscripcion', 'actions'];
-  dataSource: MatTableDataSource<Alumno>;
+  dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -290,7 +290,7 @@ export class DetalleAlumnoDialogComponent {
   // Status of subdocuments from formulario alumno
   documentation: any;
   displayedColumns: string[] = ['documentName', 'status', 'observacion'];
-  dataSource: MatTableDataSource<Object>;
+  dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
