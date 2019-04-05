@@ -6,9 +6,9 @@ import { NgForm } from '@angular/forms';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialogConfig } from '@angular/material';
-import {MatSlideToggleModule} from '@angular/material';
+import { MatSlideToggleModule } from '@angular/material';
 // Components
-import { ModalViewComponent} from '../modal-view/modal-view.component';
+import { ModalViewComponent } from '../modal-view/modal-view.component';
 // Custom Classes
 import { CustomStringOperations } from '../../global-classes/custom-string-operations';
 // Services
@@ -57,10 +57,10 @@ export class DetalleAlumnoComponent implements OnInit {
     private usuarioService: UsuarioService, private loginService: LoginService) {
     this.dataSource = new MatTableDataSource(this.alumnos);
 
-    this.filterA = {'value': false, 'filter': 'En captura'};
-    this.filterB = {'value': false, 'filter': 'Enviado'};
-    this.filterC = {'value': false, 'filter': 'Validado'};
-    this.filterD = {'value': false, 'filter': 'Aceptado'};
+    this.filterA = { 'value': false, 'filter': 'En captura' };
+    this.filterB = { 'value': false, 'filter': 'Enviado' };
+    this.filterC = { 'value': false, 'filter': 'Validado' };
+    this.filterD = { 'value': false, 'filter': 'Aceptado' };
 
     this.careerVisualizationMode = false;
   }
@@ -137,17 +137,17 @@ export class DetalleAlumnoComponent implements OnInit {
   customPredicateEvaluation(data) {
     console.log(data.statusInscripcion);
     const result = (data.statusInscripcion === this.filterA.filter) ||
-    (data.statusInscripcion === this.filterB.filter) ||
-    (data.statusInscripcion === this.filterC.filter) ||
-    (data.statusInscripcion === this.filterD.filter);
+      (data.statusInscripcion === this.filterB.filter) ||
+      (data.statusInscripcion === this.filterC.filter) ||
+      (data.statusInscripcion === this.filterD.filter);
     return result;
   }
 
   onChange(event) {
-    if (event.source.id === 'ck-EnCaptura') {this.filterA.value = event.checked; }
-    if (event.source.id === 'ck-Enviado') {this.filterB.value = event.checked; }
-    if (event.source.id === 'ck-Validado') {this.filterC.value = event.checked; }
-    if (event.source.id === 'ck-Aceptado') {this.filterD.value = event.checked; }
+    if (event.source.id === 'ck-EnCaptura') { this.filterA.value = event.checked; }
+    if (event.source.id === 'ck-Enviado') { this.filterB.value = event.checked; }
+    if (event.source.id === 'ck-Validado') { this.filterC.value = event.checked; }
+    if (event.source.id === 'ck-Aceptado') { this.filterD.value = event.checked; }
 
     this.applyFilterOfCheck(event);
   }
@@ -174,7 +174,7 @@ export class DetalleAlumnoComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     this.dialog.open(DetalleAlumnoDialogComponent, dialogConfig).afterClosed().subscribe(
-      res => setTimeout( () => this.doRefreshTable(), 500)
+      res => setTimeout(() => this.doRefreshTable(), 500)
     );
   }
 
@@ -183,16 +183,16 @@ export class DetalleAlumnoComponent implements OnInit {
       this.getUsuarioData(this.currentUserToLoadCareer);
     } else {
       this.alumnoService.getAlumnos()
-      .subscribe(res => {
-        this.alumnoService.alumnos = res as Alumno[];
-        this.alumnos = res;
-        console.log(this.alumnos);
+        .subscribe(res => {
+          this.alumnoService.alumnos = res as Alumno[];
+          this.alumnos = res;
+          console.log(this.alumnos);
 
-        this.dataSource = new MatTableDataSource(this.alumnos);
+          this.dataSource = new MatTableDataSource(this.alumnos);
 
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      });
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        });
     }
   }
   onDelete(controlNumber) {
@@ -239,6 +239,15 @@ export interface StatusDocumento {
 })
 
 export class DetalleAlumnoDialogComponent {
+
+  acordeonFoto = 2;
+  acordeonNSS = 1;
+  acordeonCURP = 3;
+  acordeonCertificado = 4;
+  acordeonClinicos = 5;
+  acordeonActa = 6;
+  acordeonPago = 7;
+
 
   fieldLastNameFather: String = '';
   fieldLastNameMother: String = '';
@@ -299,9 +308,9 @@ export class DetalleAlumnoDialogComponent {
 
   documentToAnalize: string;
   formularios: StatusDocumento[] = [
-    {value: 'Aceptado', viewValue: 'Aceptado'},
-    {value: 'En proceso', viewValue: 'En proceso'},
-    {value: 'Rechazado', viewValue: 'Rechazado'}
+    { value: 'Aceptado', viewValue: 'Aceptado' },
+    { value: 'En proceso', viewValue: 'En proceso' },
+    { value: 'Rechazado', viewValue: 'Rechazado' }
   ];
 
   // Services variables
@@ -315,7 +324,7 @@ export class DetalleAlumnoDialogComponent {
     private formularioRegistroService: FormularioRegistroService,
     private messagesService: MessagesService,
     private detalleAlumnoService: DetalleAlumnoService) {
-      this.awaitForAlumnoData();
+    this.awaitForAlumnoData();
   }
 
   updateAlumno() {
@@ -325,7 +334,7 @@ export class DetalleAlumnoDialogComponent {
       firstName: this.fieldFirstName,
       controlNumber: this.selectedNoCtrl,
       placeBirth: this.fieldPlaceBirth,
-      dateBirth:  CustomStringOperations.extractBirthFromCURP(this.fieldCURP.substring(4, 10)),
+      dateBirth: CustomStringOperations.extractBirthFromCURP(this.fieldCURP.substring(4, 10)),
       statusCivil: this.fieldStatusCivil,
       email: this.fieldEmail,
       curp: this.fieldCURP,
@@ -333,7 +342,7 @@ export class DetalleAlumnoDialogComponent {
       sex: this.fieldCURP.substring(10, 11),
       street: this.fieldStreet,
       colony: this.fieldColony,
-      city: this.fieldCity ,
+      city: this.fieldCity,
       state: this.fieldState,
       postalCode: this.fieldPostalCode,
       phone: this.fieldPhone,
@@ -386,7 +395,7 @@ export class DetalleAlumnoDialogComponent {
       this.fieldColony = this.alumno.colony;
       this.fieldCURP = this.alumno.curp;
       this.fieldDateBirth = this.alumno.dateBirth,
-      this.fieldDisability = this.alumno.disability;
+        this.fieldDisability = this.alumno.disability;
       this.fieldEmail = this.alumno.email;
       this.fieldEtnia = this.alumno.etnia;
       this.fieldFirstName = this.alumno.firstName;
@@ -401,7 +410,7 @@ export class DetalleAlumnoDialogComponent {
       this.fieldPostalCode = this.alumno.postalCode;
       this.fieldSchool = this.alumno.school;
       this.fieldSex = this.alumno.sex,
-      this.fieldState = this.alumno.state;
+        this.fieldState = this.alumno.state;
       this.fieldStatusCivil = this.alumno.statusCivil;
       this.fieldStreet = this.alumno.street;
       this.fieldWhichDisability = this.alumno.whichDisability;
@@ -409,11 +418,11 @@ export class DetalleAlumnoDialogComponent {
 
       this.acta = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/ACTA.pdf`;
       this.certificado = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CERTIFICADO.pdf`;
-      this.clinicos  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CLINICOS.pdf`;
-      this.comprobante  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/COMPROBANTE.pdf`;
-      this.curp  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CURP.pdf`;
-      this.foto  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FOTO.png`;
-      this.nss  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/NSS.pdf`;
+      this.clinicos = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CLINICOS.pdf`;
+      this.comprobante = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/COMPROBANTE.pdf`;
+      this.curp = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CURP.pdf`;
+      this.foto = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FOTO.png`;
+      this.nss = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/NSS.pdf`;
 
       this.awaitForValidationData();
     });
@@ -423,6 +432,13 @@ export class DetalleAlumnoDialogComponent {
     this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {
       this.documentation = res as Object[];
       this.dataSource = new MatTableDataSource(this.documentation);
+      this.searchDocumentForAcordeonFOTO('FOTO');
+      this.searchDocumentForAcordeonCURP('CURP');
+      this.searchDocumentForAcordeonNSS('NSS');
+      this.searchDocumentForAcordeonCERTIFICADO('CERTIFICADO');
+      this.searchDocumentForAcordeonPAGO('COMPROBANTE');
+      this.searchDocumentForAcordeonCLINICOS('CLINICOS');
+      this.searchDocumentForAcordeonACTA('ACTA');
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -494,5 +510,83 @@ export class DetalleAlumnoDialogComponent {
   refreshTabContent($event) {
     this.doRefreshTable();
   }
+
+  searchDocumentForAcordeonFOTO(document) {
+    let dataSourceCopy: any;
+    dataSourceCopy = this.dataSource.data;
+    for (let i = 0; i < 7; i++) {
+      if (dataSourceCopy[i].documentName === document) {
+        this.acordeonFoto = i;
+        break;
+      }
+    }
+  }
+
+
+  searchDocumentForAcordeonCURP(document) {
+    let dataSourceCopy: any;
+    dataSourceCopy = this.dataSource.data;
+    for (let i = 0; i < 7; i++) {
+      if (dataSourceCopy[i].documentName === document) {
+        this.acordeonCURP = i;
+        break;
+      }
+    }
+  }
+
+  searchDocumentForAcordeonNSS(document) {
+    let dataSourceCopy: any;
+    dataSourceCopy = this.dataSource.data;
+    for (let i = 0; i < 7; i++) {
+      if (dataSourceCopy[i].documentName === document) {
+        this.acordeonNSS = i;
+        break;
+      }
+    }
+  }
+
+  searchDocumentForAcordeonCERTIFICADO(document) {
+    let dataSourceCopy: any;
+    dataSourceCopy = this.dataSource.data;
+    for (let i = 0; i < 7; i++) {
+      if (dataSourceCopy[i].documentName === document) {
+        this.acordeonCertificado = i;
+        break;
+      }
+    }
+  }
+
+  searchDocumentForAcordeonCLINICOS(document) {
+    let dataSourceCopy: any;
+    dataSourceCopy = this.dataSource.data;
+    for (let i = 0; i < 7; i++) {
+      if (dataSourceCopy[i].documentName === document) {
+        this.acordeonClinicos = i;
+        break;
+      }
+    }
+  }
+
+  searchDocumentForAcordeonACTA(document) {
+    let dataSourceCopy: any;
+    dataSourceCopy = this.dataSource.data;
+    for (let i = 0; i < 7; i++) {
+      if (dataSourceCopy[i].documentName === document) {
+        this.acordeonActa = i;
+        break;
+      }
+    }
+  }  
+
+  searchDocumentForAcordeonPAGO(document) {
+    let dataSourceCopy: any;
+    dataSourceCopy = this.dataSource.data;
+    for (let i = 0; i < 7; i++) {
+      if (dataSourceCopy[i].documentName === document) {
+        this.acordeonPago = i;
+        break;
+      }
+    }
+  }  
 
 }
