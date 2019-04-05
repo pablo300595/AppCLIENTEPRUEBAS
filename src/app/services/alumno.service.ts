@@ -29,6 +29,10 @@ export class AlumnoService {
     return this.http.get(this.URL);
   }
 
+  getAlumnosByCareer(career) {
+    return this.http.post(this.URL + '/career', career);
+  }
+
   getAlumno(id) {
     return this.http.get(this.URL + '/' + id);
   }
@@ -66,11 +70,11 @@ export class AlumnoService {
     return this.http.put(this.URL + `/documentation/${_id}`, documentation);
   }
 
-  updateAlumnoDocumentationByCtrlNumber(ctrlNumber: string, documentation: Object) {
+  updateAlumnoDocumentationByCtrlNumber(ctrlNumber, documentation: Object) {
     return this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, documentation);
   }
 
-  getAlumnoDocumentation(_id: string) {
+  getAlumnoDocumentation(_id) {
     return this.http.get(this.URL + `/documentation/${_id}`);
   }
 

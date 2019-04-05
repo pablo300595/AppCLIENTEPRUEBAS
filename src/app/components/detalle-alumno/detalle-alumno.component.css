@@ -4,10 +4,12 @@
   background-color: rgb(224, 67, 67);
 }
 
-.login-block{
-  background: #DE6262;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #FFB88C, #DE6262); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  .login-block{
+    background: rgb(15, 44, 138);  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, rgb(15, 44, 138), rgb(15, 44, 138)); 
+
   float:left;
   width:100%;
   padding : 50px 0;
@@ -57,3 +59,10 @@ td, th {
 .example-icon-row mat-icon {
   margin-right: 20px;
 }
+
+.right{
+  float: right;
+  
+}
+
+.menu{text-align: right;}

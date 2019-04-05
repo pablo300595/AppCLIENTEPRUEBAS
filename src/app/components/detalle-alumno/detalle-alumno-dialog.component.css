@@ -23,6 +23,23 @@
     
 }
 
+.center{
+  float: center;
+  
+}
+
+.container{
+  text-align:center
+}
+
+.menu {text-align: right;}
+
+#button {
+  position: relative;
+  float: right;
+}
+
+
 .example-button-row button,
 .example-button-row a {
   margin-right: 8px;

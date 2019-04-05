@@ -8,6 +8,15 @@
       </div>
     </div>
 
+    <mat-checkbox id='ck-EnCaptura' (change)="onChange($event);" [checked]="filterA.value">En captura &nbsp;</mat-checkbox>
+    <mat-checkbox id='ck-Enviado' (change)="onChange($event);" [checked]="filterB.value">Enviado &nbsp;</mat-checkbox>
+    <mat-checkbox id='ck-Validado' (change)="onChange($event);" [checked]="filterC.value">Validado &nbsp; </mat-checkbox>
+    <mat-checkbox id='ck-Aceptado' (change)="onChange($event);" [checked]="filterD.value">Aceptado &nbsp; </mat-checkbox>
+
+    <mat-slide-toggle [(ngModel)]="careerVisualizationMode" (change)="onChangeVisualMode()">
+      <p *ngIf="careerVisualizationMode">Modo Global</p>
+      <p *ngIf="!careerVisualizationMode">Asignadas</p>
+    </mat-slide-toggle>
 
     <mat-form-field>
       <mat-icon matSuffix>search</mat-icon>
@@ -47,14 +56,20 @@
           <td mat-cell *matCellDef="let row"> {{row.career}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="statusInscripcion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Estátus </th>
+          <td mat-cell *matCellDef="let row"> {{row.statusInscripcion}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
 
           <mat-cell *matCellDef="let row">
-              <button mat-icon-button (click)="preUpdate(row.controlNumber)"><mat-icon>mode_edit</mat-icon></button>
+              <button mat-icon-button (click)="preUpdate(row.controlNumber)"><mat-icon>group</mat-icon></button>
               <button mat-icon-button color="warn" (click)="onDelete(row.controlNumber)" ><mat-icon>delete</mat-icon></button>
-              <button mat-icon-button  (click)="onView(row.controlNumber)"><mat-icon>visibility</mat-icon></button>
+          <!--<button mat-icon-button  (click)="onView(row.controlNumber)"><mat-icon>visibility</mat-icon></button>
               <button mat-icon-button (click)="loadDocumentApproval(row.controlNumber)" [routerLink]="['/validarDocumentos']"><mat-icon>thumbs_up_down</mat-icon></button>
+            -->
           </mat-cell>
         </ng-container>
 
@@ -71,10 +86,10 @@
 
   <footer class="page-footer font-small blue pt-4">
     <div class=" footer-copyright text-center py-3">
-      <small id="">
+      <font color="white">
         AV. TECNOLÓGICO # 2595, COL. LAGOS DEL COUNTRY. TEPIC, NAYARIT. MÉXICO. C.P. 63175. TEL: (311) 211 94 00.
         DIRECCION@ITTEPIC.EDU.MX
-      </small>
+      </font>
     </div>
   </footer>
 </div>
