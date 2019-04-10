@@ -5,7 +5,6 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialogConfig } from '@angular/material';
 // Components
-import { ModalViewComponent } from '../modal-view/modal-view.component';
 import { DetalleAlumnoDialogComponent } from '../detalle-alumno-dialog/detalle-alumno-dialog.component';
 // Services
 import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
@@ -40,8 +39,8 @@ export class DetalleAlumnoComponent implements OnInit {
   alumnos: any;
 
   selectedNoCtrl: string;
-  currentUser: string;
-  currentUserToLoadCareer: any;
+  currentUser: string; // Stores JUST the username
+  currentUserToLoadCareer: any; // Stores WHOLE current user data
 
   // Mecanisms
   careerVisualizationMode: boolean;
@@ -49,7 +48,6 @@ export class DetalleAlumnoComponent implements OnInit {
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService,
     private usuarioService: UsuarioService, private loginService: LoginService) {
-    this.dataSource = new MatTableDataSource(this.alumnos);
 
     this.filterA = { 'value': false, 'filter': 'En captura' };
     this.filterB = { 'value': false, 'filter': 'Enviado' };
@@ -60,7 +58,7 @@ export class DetalleAlumnoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res); // Gets control number of selected row
+    // this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res); // Gets control number of selected row
     this.loginService.currentUser.subscribe(res => this.currentUser = res); // Gets current username loged
     this.usuarioService.getUsuario(this.currentUser).subscribe(res => this.currentUserToLoadCareer = res);
 
@@ -69,7 +67,10 @@ export class DetalleAlumnoComponent implements OnInit {
     }, 500);
   }
   /* CalledBy(ngOnInit)
-    Metho
+    Method that uses the object brought by the parameter (ex: {_id:"123456",active:false,career:Array,
+    credential:'secretary',user:'secreA',pass:'1234'}).
+    Then it makes a POST request to https://app-apipruebas.herokuapp.com/alumnos/career
+    where an array composed by Students and its documents is retrieved. Finally Global values are updated with this
   */
   getUsuarioData(careers) {
     console.log('DATA');

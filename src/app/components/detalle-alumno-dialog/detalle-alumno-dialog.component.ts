@@ -110,6 +110,7 @@ export class DetalleAlumnoDialogComponent {
         private messagesService: MessagesService,
         private detalleAlumnoService: DetalleAlumnoService) {
         this.awaitForAlumnoData();
+        // this.dataSource.data = [''];
     }
 
     updateAlumno() {
@@ -293,7 +294,6 @@ export class DetalleAlumnoDialogComponent {
             }
         }
     }
-
 
     searchDocumentForAcordeonCURP(document) {
         let dataSourceCopy: any;
