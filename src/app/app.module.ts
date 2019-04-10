@@ -14,7 +14,7 @@ import { InscripcionWizardComponent } from './components/inscripcion-wizard/insc
 import { DetalleAlumnoComponent } from './components/detalle-alumno/detalle-alumno.component';
 
 // modulos
-import { DetalleAlumnoDialogComponent } from './components/detalle-alumno/detalle-alumno.component';
+import { DetalleAlumnoDialogComponent } from './components/detalle-alumno-dialog/detalle-alumno-dialog.component';
 
 import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';

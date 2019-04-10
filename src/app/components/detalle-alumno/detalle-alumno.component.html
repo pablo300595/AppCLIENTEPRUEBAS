@@ -67,9 +67,6 @@
           <mat-cell *matCellDef="let row">
               <button mat-icon-button (click)="preUpdate(row.controlNumber)"><mat-icon>group</mat-icon></button>
               <button mat-icon-button color="warn" (click)="onDelete(row.controlNumber)" ><mat-icon>delete</mat-icon></button>
-          <!--<button mat-icon-button  (click)="onView(row.controlNumber)"><mat-icon>visibility</mat-icon></button>
-              <button mat-icon-button (click)="loadDocumentApproval(row.controlNumber)" [routerLink]="['/validarDocumentos']"><mat-icon>thumbs_up_down</mat-icon></button>
-            -->
           </mat-cell>
         </ng-container>
 
