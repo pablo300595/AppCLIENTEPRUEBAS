@@ -34,6 +34,8 @@ export class DetalleAlumnoComponent implements OnInit {
   filterB: any;
   filterC: any;
   filterD: any;
+  // Tables
+  globalTable: any;
 
   alumno: Alumno;
   alumnos: any;
@@ -66,7 +68,7 @@ export class DetalleAlumnoComponent implements OnInit {
       this.getUsuarioData(this.currentUserToLoadCareer);
     }, 500);
   }
-  /* CalledBy(ngOnInit)
+  /* CalledBy(ngOnInit, doRefreshTable)
     Method that uses the object brought by the parameter (ex: {_id:"123456",active:false,career:Array,
     credential:'secretary',user:'secreA',pass:'1234'}).
     Then it makes a POST request to https://app-apipruebas.herokuapp.com/alumnos/career
@@ -100,7 +102,10 @@ export class DetalleAlumnoComponent implements OnInit {
         this.dataSource.sort = this.sort;
       });
   }
-
+  /* CalledBy (Writing in search bar)
+    Method that check if the actual text provided by search bar matches
+    the global predicate. Then it filt
+  */
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -108,13 +113,29 @@ export class DetalleAlumnoComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+  /* CalledBy (Clicking check)
+  After clicked check changes the global value variable. Then calls a method
+  that evaluate each element from the global dataSource.
+  */
+  onChange(event) {
+    if (event.source.id === 'ck-EnCaptura') { this.filterA.value = event.checked; }
+    if (event.source.id === 'ck-Enviado') { this.filterB.value = event.checked; }
+    if (event.source.id === 'ck-Validado') { this.filterC.value = event.checked; }
+    if (event.source.id === 'ck-Aceptado') { this.filterD.value = event.checked; }
 
+    this.applyFilterOfCheck(event);
+  }
+  /* CalledBy (onChange)
+  Adjust the global variables to evaluate each element of the current table.
+  The properties of the filters are modified to achieve this and in the end
+  they are restarted.
+  */
   applyFilterOfCheck(filterValue) {
     if (!this.filterA.value) { this.filterA.filter = ''; }
     if (!this.filterB.value) { this.filterB.filter = ''; }
     if (!this.filterC.value) { this.filterC.filter = ''; }
     if (!this.filterD.value) { this.filterD.filter = ''; }
-
+    // Segment that validates element by element (Called after this.dataSource.filter)
     this.dataSource.filterPredicate = ((data: any, filter: string) => {
       return this.customPredicateEvaluation(data);
     });
@@ -130,7 +151,10 @@ export class DetalleAlumnoComponent implements OnInit {
     this.filterC.filter = 'Validado';
     this.filterD.filter = 'Aceptado';
   }
-
+  /* CalledBy(applyFilterOfCheck)
+    Method that evaluates each element given and determines if it
+    meets the given condition
+  */
   customPredicateEvaluation(data) {
     console.log(data.statusInscripcion);
     const result = (data.statusInscripcion === this.filterA.filter) ||
@@ -139,16 +163,10 @@ export class DetalleAlumnoComponent implements OnInit {
       (data.statusInscripcion === this.filterD.filter);
     return result;
   }
-
-  onChange(event) {
-    if (event.source.id === 'ck-EnCaptura') { this.filterA.value = event.checked; }
-    if (event.source.id === 'ck-Enviado') { this.filterB.value = event.checked; }
-    if (event.source.id === 'ck-Validado') { this.filterC.value = event.checked; }
-    if (event.source.id === 'ck-Aceptado') { this.filterD.value = event.checked; }
-
-    this.applyFilterOfCheck(event);
-  }
-
+  /* CalledBy(Clicking toggle 'Asignadas/Modo Global')
+    Method that checks current visualizationMode, ASIGNADAS request only
+    the asigned careers, while MODO GLOBAL request every Alumno
+  */
   onChangeVisualMode() {
     this.doRefreshTable();
   }
@@ -174,7 +192,10 @@ export class DetalleAlumnoComponent implements OnInit {
       res => setTimeout(() => this.doRefreshTable(), 500)
     );
   }
-
+  /* CalledBy(onChangeVisualMode)
+    Method that checks current visualizationMode, ASIGNADAS request only
+    the asigned careers, while MODO GLOBAL request every Alumno
+  */
   doRefreshTable() {
     if (!this.careerVisualizationMode) {
       this.getUsuarioData(this.currentUserToLoadCareer);
@@ -193,7 +214,6 @@ export class DetalleAlumnoComponent implements OnInit {
     }
   }
   onDelete(controlNumber) {
-
     // this.alumnoService.deleteAlumno('13400501').subscribe();
     this.dialogService.openConfirmDialog('¿Estás seguro de eliminar este alumno?')
       .afterClosed().subscribe(res => {
@@ -209,5 +229,4 @@ export class DetalleAlumnoComponent implements OnInit {
   loadDocumentApproval(controlNumber) {
     this.detalleAlumnoService.changeAlumnoToUpdate(controlNumber);
   }
-
 }

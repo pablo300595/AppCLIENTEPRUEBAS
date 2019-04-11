@@ -110,7 +110,6 @@ export class DetalleAlumnoDialogComponent {
         private messagesService: MessagesService,
         private detalleAlumnoService: DetalleAlumnoService) {
         this.awaitForAlumnoData();
-        // this.dataSource.data = [''];
     }
 
     updateAlumno() {
@@ -168,7 +167,7 @@ export class DetalleAlumnoDialogComponent {
             this.fieldColony = this.alumno.colony;
             this.fieldCURP = this.alumno.curp;
             this.fieldDateBirth = this.alumno.dateBirth,
-                this.fieldDisability = this.alumno.disability;
+            this.fieldDisability = this.alumno.disability;
             this.fieldEmail = this.alumno.email;
             this.fieldEtnia = this.alumno.etnia;
             this.fieldFirstName = this.alumno.firstName;
@@ -183,7 +182,7 @@ export class DetalleAlumnoDialogComponent {
             this.fieldPostalCode = this.alumno.postalCode;
             this.fieldSchool = this.alumno.school;
             this.fieldSex = this.alumno.sex,
-                this.fieldState = this.alumno.state;
+            this.fieldState = this.alumno.state;
             this.fieldStatusCivil = this.alumno.statusCivil;
             this.fieldStreet = this.alumno.street;
             this.fieldWhichDisability = this.alumno.whichDisability;
@@ -224,7 +223,8 @@ export class DetalleAlumnoDialogComponent {
             this.dataSource.paginator.firstPage();
         }
     }
-
+    /*refreshTabContent 
+    */
     doRefreshTable() {
         this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {
             this.documentation = res as Object[];
