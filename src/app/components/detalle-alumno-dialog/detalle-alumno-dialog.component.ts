@@ -223,7 +223,7 @@ export class DetalleAlumnoDialogComponent {
             this.dataSource.paginator.firstPage();
         }
     }
-    /*refreshTabContent 
+    /*refreshTabContent
     */
     doRefreshTable() {
         this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {

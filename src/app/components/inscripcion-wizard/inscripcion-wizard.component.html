@@ -97,7 +97,7 @@
           <div class='col-3'>
             <span class="float-right">
                 <button class='btn btn-outline-primary btn-lg' (click)="stepper.reset(); resetSteps();">Regresar</button>
-                <button class='btn btn-outline-primary btn-lg' (click)="finishSteps()" [routerLink]="['/wizard-success']">Terminar</button>
+                <button class='btn btn-outline-primary btn-lg' (click)="finishSteps()">Terminar</button>
             </span>
           </div>
         </div>
@@ -107,3 +107,4 @@
 
   </mat-step>
 </mat-horizontal-stepper>
+<app-success-wizard *ngIf="alumnoStatus!=='En captura'"></app-success-wizard>
