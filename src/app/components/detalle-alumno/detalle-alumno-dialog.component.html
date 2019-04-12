@@ -1,6 +1,12 @@
 <mat-dialog-content class="mat-typography">
+  <div class="right">
+    <button mat-icon-button class="right" (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
   <h2 style="text-align:center;">Detalle Alumno</h2>
   <mat-tab-group (selectedTabChange)="refreshTabContent($event)">
+    
     <mat-tab label="Detalle Alumno">
       <br>
 
@@ -9,12 +15,36 @@
           <p>
             <b>DATOS GENERALES</b>
           </p>
-
+          <!--
           <div>
             <img [src]="foto" style="width:150px; height:150px;" class="img-rounded" alt="Responsive image">
           </div>
-          <br>
+          <br>-->
 
+          <div class="row">
+            <div class="col-md-4">
+              <img [src]="foto" style="width:150px; height:150px;" class="img-rounded" alt="Responsive image">
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+              <label for="txtNombre">NOMBRE(S)</label>
+              <input type="text" class="form-control" id="txtNombre" name="fieldFirstName" placeholder="Nombre(s)"
+                [(ngModel)]="fieldFirstName">
+              <p id="msgError" *ngIf="(fieldFirstName.length < 1)">*Campo obligatorio</p>
+              <br>
+              <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
+              <input type="text" class="form-control" id="txtApellidoPaterno" name="fieldLastNameFather" placeholder="Apellido Paterno"
+                [(ngModel)]="fieldLastNameFather">
+              <p id="msgError" *ngIf="(fieldLastNameFather.length < 1)">*Campo obligatorio</p>
+              <br>
+              <label for="txtApellidoMaterno">APELLIDO MATERNO</label>
+              <input type="text" class="form-control" id="txtApellidoMaterno" name="fieldLastNameMother" placeholder="Apellido Materno"
+                [(ngModel)]="fieldLastNameMother">
+              <p id="msgError" *ngIf="(fieldLastNameMother.length < 1)">*Campo obligatorio</p>
+
+            </div>
+          </div>
+
+          <!--
           <div class="form-row">
             <div class="form-group col-xs-6 col-md-4">
               <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
@@ -36,8 +66,7 @@
             </div>
 
           </div>
-
-
+        -->
 
           <br>
           <div class="form-group">
@@ -389,9 +418,11 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
 
-              <p style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonCertificado].status == 'En proceso'"><b>{{dataSource.data[acordeonCertificado].status}}</b></p>
-              <p selected *ngIf="dataSource.data[acordeonCertificado].status == 'Rechazado'">{{dataSource.data[acordeonCertificado].status}}</p>
-              <p selected *ngIf="dataSource.data[acordeonCertificado].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonCertificado].status}}</b></p>
+              <mat-chip-list>
+                <mat-chip style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonCertificado].status == 'En proceso'"><b>{{dataSource.data[acordeonCertificado].status}}</b></mat-chip>
+                <mat-chip selected *ngIf="dataSource.data[acordeonCertificado].status == 'Rechazado'"><b>{{dataSource.data[acordeonCertificado].status}}</b></mat-chip>
+                <mat-chip selected *ngIf="dataSource.data[acordeonCertificado].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonCertificado].status}}</b></mat-chip>
+              </mat-chip-list>
               <div class="container">
                 CERTIFICADO DE BACHILLERATO O EQUIVALENTE
               </div>
@@ -400,22 +431,31 @@
 
             </mat-panel-description>
           </mat-expansion-panel-header>
+
           <ng-template matExpansionPanelContent>
+
             <pdf-viewer [src]="certificado"></pdf-viewer>
-            <h4>Status del documento</h4>
-            <mat-form-field>
-              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
-                <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
-                  {{formulario.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br><br>
-            <h4>Observación</h4>
-            <mat-form-field>
-              <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionCertificado"
-                name="observacionCertificado">
-            </mat-form-field>
+            <br>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                      <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionCertificado"
+                      name="observacionCertificado">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
             <div class="right">
               <div class="example-button-row">
                 <button mat-raised-button (click)="validateForm('CERTIFICADO')" color="primary">Guardar</button>
@@ -429,10 +469,11 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
 
-              <p style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonActa].status == 'En proceso'"><b>{{dataSource.data[acordeonActa].status}}</b></p>
-              <p style="background-color: red;" selected *ngIf="dataSource.data[acordeonActa].status == 'Rechazado'">{{dataSource.data[acordeonActa].status}}</p>
-              <p selected *ngIf="dataSource.data[acordeonActa].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonActa].status}}</b></p>
-
+              <mat-chip-list>
+                <mat-chip style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonActa].status == 'En proceso'"><b>{{dataSource.data[acordeonActa].status}}</b></mat-chip>
+                <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonActa].status == 'Rechazado'"><b>{{dataSource.data[acordeonActa].status}}</b></mat-chip>
+                <mat-chip selected *ngIf="dataSource.data[acordeonActa].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonActa].status}}</b></mat-chip>
+              </mat-chip-list>
               <div class="container">
                 ACTA DE NACIMIENTO
               </div>
@@ -444,20 +485,29 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="acta"></pdf-viewer>
-            <h4>Status del documento</h4>
-            <mat-form-field>
-              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
-                <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
-                  {{formulario.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br><br>
-            <h4>Observación</h4>
-            <mat-form-field>
-              <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionActa"
-                name="observacionActa">
-            </mat-form-field>
+
+            <br>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                      <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionActa"
+                      name="observacionActa">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+
             <div class="right">
               <div class="example-button-row">
                 <button mat-raised-button (click)="validateForm('ACTA')" color="primary">Guardar</button>
@@ -470,11 +520,12 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
 
-
-              <p style="text-align:right;" style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonCURP].status == 'En proceso'"><b>{{dataSource.data[acordeonCURP].status}}</b></p>
-              <p style="background-color: red;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Rechazado'">{{dataSource.data[acordeonCURP].status}}</p>
-              <p style="text-align:right;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonCURP].status}}</b></p>
-
+              <mat-chip-list>
+                <mat-chip style="text-align:right;" style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonCURP].status == 'En proceso'"><b>{{dataSource.data[acordeonCURP].status}}</b></mat-chip>
+                <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Rechazado'"><b>{{dataSource.data[acordeonCURP].status}}</b></mat-chip>
+                <mat-chip style="text-align:right;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Aceptado'"
+                  style="background-color:darkgreen;"><b>{{dataSource.data[acordeonCURP].status}}</b></mat-chip>
+              </mat-chip-list>
               <div class="container">
                 CURP
               </div>
@@ -486,20 +537,29 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="curp"></pdf-viewer>
-            <h4>Status del documento</h4>
-            <mat-form-field>
-              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
-                <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
-                  {{formulario.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br><br>
-            <h4>Observación</h4>
-            <mat-form-field>
-              <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionCurp"
-                name="observacionCurp">
-            </mat-form-field>
+
+            <br>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                      <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionCurp"
+                      name="observacionCurp">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+
             <div class="right">
               <div class="example-button-row">
                 <button mat-raised-button (click)="validateForm('CURP')" color="primary">Guardar</button>
@@ -512,11 +572,12 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
 
-
-              <p style="text-align:right;" style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonPago].status == 'En proceso'"><b>{{dataSource.data[acordeonPago].status}}</b></p>
-              <p style="background-color: red;" selected *ngIf="dataSource.data[acordeonPago].status == 'Rechazado'">{{dataSource.data[acordeonPago].status}}</p>
-              <p style="text-align:right;" selected *ngIf="dataSource.data[acordeonPago].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonPago].status}}</b></p>
-
+              <mat-chip-list>
+                <mat-chip style="text-align:right;" style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonPago].status == 'En proceso'"><b>{{dataSource.data[acordeonPago].status}}</b></mat-chip>
+                <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonPago].status == 'Rechazado'"><b>{{dataSource.data[acordeonPago].status}}</b></mat-chip>
+                <mat-chip style="text-align:right;" selected *ngIf="dataSource.data[acordeonPago].status == 'Aceptado'"
+                  style="background-color:darkgreen;"><b>{{dataSource.data[acordeonPago].status}}</b></mat-chip>
+              </mat-chip-list>
               <div class="container">
                 COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN
               </div>
@@ -527,20 +588,29 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="comprobante"></pdf-viewer>
-            <h4>Status del documento</h4>
-            <mat-form-field>
-              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
-                <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
-                  {{formulario.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br><br>
-            <h4>Observación</h4>
-            <mat-form-field>
-              <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionComprobante"
-                name="observacionComprobante">
-            </mat-form-field>
+
+            <br>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                      <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionComprobante"
+                      name="observacionComprobante">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+
             <div class="right">
               <div class="example-button-row">
                 <button mat-raised-button (click)="validateForm('COMPROBANTE')" color="primary">Guardar</button>
@@ -552,17 +622,16 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-             
-              
-                <p  style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonClinicos].status == 'En proceso'"><b>{{dataSource.data[acordeonClinicos].status}}</b></p>
-                <p  style="background-color: red;" selected *ngIf="dataSource.data[acordeonClinicos].status == 'Rechazado'">{{dataSource.data[acordeonClinicos].status}}</p>
-                <p  selected *ngIf="dataSource.data[acordeonClinicos].status == 'Aceptado'"
-                  style="background-color:darkgreen;"><b>{{dataSource.data[acordeonClinicos].status}}</b></p>
-              
+
+              <mat-chip-list>
+                <mat-chip style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonClinicos].status == 'En proceso'"><b>{{dataSource.data[acordeonClinicos].status}}</b></mat-chip>
+                <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonClinicos].status == 'Rechazado'"><b>{{dataSource.data[acordeonClinicos].status}}</b></mat-chip>
+                <mat-chip selected *ngIf="dataSource.data[acordeonClinicos].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonClinicos].status}}</b></mat-chip>
+              </mat-chip-list>
 
               <div class="container">
-              RESULTADO DE ANÁLISIS CLÍNICOS
-                </div>
+                RESULTADO DE ANÁLISIS CLÍNICOS
+              </div>
             </mat-panel-title>
             <mat-panel-description>
 
@@ -570,20 +639,30 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="clinicos"></pdf-viewer>
-            <h4>Status del documento</h4>
-            <mat-form-field>
-              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
-                <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
-                  {{formulario.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br><br>
-            <h4>Observación</h4>
-            <mat-form-field>
-              <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionClinicos"
-                name="observacionClinicos">
-            </mat-form-field>
+
+            <br>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                      <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionClinicos"
+                      name="observacionClinicos">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+
             <div class="right">
               <div class="example-button-row">
                 <button mat-raised-button (click)="validateForm('CLINICOS')" color="primary">Guardar</button>
@@ -595,16 +674,16 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              
-             
-                <p  style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonNSS].status == 'En proceso'"><b>{{dataSource.data[acordeonNSS].status}}</b></p>
-                <p  style="background-color: red;" selected *ngIf="dataSource.data[acordeonNSS].status == 'Rechazado'">{{dataSource.data[acordeonNSS].status}}</p>
-                <p  selected *ngIf="dataSource.data[acordeonNSS].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonNSS].status}}</b></p>
-             
+
+              <mat-chip-list>
+                <mat-chip style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonNSS].status == 'En proceso'"><b>{{dataSource.data[acordeonNSS].status}}</b></mat-chip>
+                <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonNSS].status == 'Rechazado'"><b>{{dataSource.data[acordeonNSS].status}}</b></mat-chip>
+                <mat-chip selected *ngIf="dataSource.data[acordeonNSS].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonNSS].status}}</b></mat-chip>
+              </mat-chip-list>
 
               <div class="container">
-              NÚMERO DE SEGURO SOCIAL
-                </div>
+                NÚMERO DE SEGURO SOCIAL
+              </div>
             </mat-panel-title>
             <mat-panel-description>
 
@@ -612,20 +691,29 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="nss"></pdf-viewer>
-            <h4>Status del documento</h4>
-            <mat-form-field>
-              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
-                <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
-                  {{formulario.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br><br>
-            <h4>Observación</h4>
-            <mat-form-field>
-              <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionNss"
-                name="observacionNss">
-            </mat-form-field>
+
+            <br>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                      <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionNss"
+                      name="observacionNss">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+
             <div class="right">
               <div class="example-button-row">
                 <button mat-raised-button (click)="validateForm('NSS')" color="primary">Guardar</button>
@@ -637,16 +725,16 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-             
 
-              
-                <p  style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonFoto].status == 'En proceso'"><b>{{dataSource.data[acordeonFoto].status}}</b></p>
-                <p  style="background-color: red;" selected *ngIf="dataSource.data[acordeonFoto].status == 'Rechazado'">{{dataSource.data[acordeonFoto].status}}</p>
-                <p  selected *ngIf="dataSource.data[acordeonFoto].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonFoto].status}}</b></p>
-              
+              <mat-chip-list>
+
+                <mat-chip style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonFoto].status == 'En proceso'"><b>{{dataSource.data[acordeonFoto].status}}</b></mat-chip>
+                <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonFoto].status == 'Rechazado'"><b>{{dataSource.data[acordeonFoto].status}}</b></mat-chip>
+                <mat-chip selected *ngIf="dataSource.data[acordeonFoto].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonFoto].status}}</b></mat-chip>
+              </mat-chip-list>
 
               <div class="container">
-                  FOTOGRAFÍA
+                FOTOGRAFÍA
               </div>
 
             </mat-panel-title>
@@ -656,20 +744,29 @@
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <img [src]="foto">
-            <h4>Status del documento</h4>
-            <mat-form-field>
-              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
-                <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
-                  {{formulario.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br><br>
-            <h4>Observación</h4>
-            <mat-form-field>
-              <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionFoto"
-                name="observacionFoto">
-            </mat-form-field>
+
+            <br>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="status" name="status">
+                      <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                        {{formulario.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Introduzca una observación sobre el documento" [(ngModel)]="observacionFoto"
+                      name="observacionFoto">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+
             <div class="right">
               <div class="example-button-row">
                 <button mat-raised-button (click)="validateForm('FOTO')" color="primary">Guardar</button>
@@ -716,7 +813,7 @@
     </mat-tab>
 
     <mat-tab label="Estado de validación">
-      <div class="container">
+      
 
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="dataSource" matSort>
@@ -753,7 +850,7 @@
 
           <mat-paginator [pageSizeOptions]="[10, 10, 25, 100]"></mat-paginator>
         </div>
-      </div>
+   
     </mat-tab>
 
   </mat-tab-group>

@@ -587,6 +587,11 @@ export class DetalleAlumnoDialogComponent {
         break;
       }
     }
-  }  
+  }
+  
+  closeDialog() {
+    this.dialogRef.close(false);
+  }
+  
 
 }
