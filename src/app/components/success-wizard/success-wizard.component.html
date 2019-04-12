@@ -1,6 +1,7 @@
 <br>
 <div class="row">
-  <div class="col 4">
+  <div class="col-3"></div>
+  <div class="col-6">
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -16,6 +17,101 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <div class="col-3"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-3">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>NSS</mat-card-title>
+        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <label id="link" name="lblNSS"><a id="refNSS" target="_self" download="NSS.pdf" (click)="loadLink()">Enlace de
+            documento</a></label>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-3">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>CURP</mat-card-title>
+        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <label id="link" name="lblCURP"><a id="refCURP" target="_self" download="CURP.pdf" (click)="loadLink()">Enlace
+            de
+            documento</a></label>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-3">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>ACTA</mat-card-title>
+        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <label id="link" name="lblACTA"><a id="refACTA" target="_self" download="ACTA.pdf" (click)="loadLink()">Enlace
+            de
+            documento</a></label>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-3">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>CLINICOS</mat-card-title>
+        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <label id="link" name="lblCLINICOS"><a id="refCLINICOS" target="_self" download="CLINICOS.pdf" (click)="loadLink()">Enlace
+            de
+            documento</a></label>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-3">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>CERTIFICADO</mat-card-title>
+        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <label id="link" name="lblCERTIFICADO"><a id="refCERTIFICADO" target="_self" download="CERTIFICADO.pdf" (click)="loadLink()">Enlace
+            de
+            documento</a></label>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-3">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>COMPROBANTE</mat-card-title>
+        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <label id="link" name="lblCOMPROBANTE"><a id="refCOMPROBANTE" target="_self" download="COMPROBANTE.pdf" (click)="loadLink()">Enlace
+            de
+            documento</a></label>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-3"></div>
+  <div class="col-3"></div>
+</div>
+<br>
+<div class="row">
   <div class="col 8">
     <div class="container">
       <div class="mat-elevation-z8">
@@ -44,6 +140,17 @@
           <ng-container matColumnDef="observacion">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> observacion </th>
             <td mat-cell *matCellDef="let row"> {{row.observacion}} </td>
+          </ng-container>
+
+          <!-- Color Column -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
+            <td mat-cell *matCellDef="let row">
+              <dropzone *ngIf="row.status==='En proceso'" id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+                (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"
+                [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+              <p>--------------------------------------------------------------</p>
+            </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
