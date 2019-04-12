@@ -13,6 +13,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { AlumnoService } from './../../services/alumno.service';
 import { UsuarioService } from './../../services/usuario.service';
 import { LoginService } from './../../services/login.service';
+import { ExcelService } from './../../services/excel.service';
 // Models
 import { Alumno } from './../../models/alumno';
 
@@ -49,10 +50,12 @@ export class DetalleAlumnoComponent implements OnInit {
   currentTable: Array<Object>;
   globalTable: Array<Object>;
   asignedTable: Array<Object>;
+  exportableTable: Array<Object>;
 
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService,
-    private usuarioService: UsuarioService, private loginService: LoginService) {
+    private usuarioService: UsuarioService, private loginService: LoginService,
+    private excelService: ExcelService) {
 
     this.filterA = { 'value': false, 'filter': 'En captura' };
     this.filterB = { 'value': false, 'filter': 'Enviado' };
@@ -94,6 +97,7 @@ export class DetalleAlumnoComponent implements OnInit {
       return this.defaultPredicateEvaluation(data, filter);
     });
     this.dataSource = new MatTableDataSource(this.currentTable);
+    this.exportableTable = this.currentTable;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -144,6 +148,7 @@ export class DetalleAlumnoComponent implements OnInit {
 
     this.filterA.filter = 'En captura'; this.filterB.filter = 'Enviado';
     this.filterC.filter = 'Validado'; this.filterD.filter = 'Aceptado';
+    this.exportableTable = this.currentTable;
   }
   /* CalledBy(applyFilterOfCheck)
     Method that evaluates each element given and determines if it
@@ -223,7 +228,7 @@ export class DetalleAlumnoComponent implements OnInit {
 
         this.globalTable = this.alumnos;
         this.dataSource = new MatTableDataSource(this.alumnos);
-        this.currentTable = this.alumnos; // FEAT
+        this.currentTable = this.exportableTable = this.alumnos; // FEAT
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -245,7 +250,7 @@ export class DetalleAlumnoComponent implements OnInit {
 
         this.asignedTable = this.alumnos;
         this.dataSource = new MatTableDataSource(this.alumnos);
-        this.currentTable = this.alumnos; // FEAT
+        this.currentTable = this.exportableTable = this.alumnos; // FEAT
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -253,7 +258,6 @@ export class DetalleAlumnoComponent implements OnInit {
   }
 
   onDelete(controlNumber) {
-    // this.alumnoService.deleteAlumno('13400501').subscribe();
     this.dialogService.openConfirmDialog('¿Estás seguro de eliminar este alumno?')
       .afterClosed().subscribe(res => {
         if (res) {
@@ -267,5 +271,11 @@ export class DetalleAlumnoComponent implements OnInit {
 
   loadDocumentApproval(controlNumber) {
     this.detalleAlumnoService.changeAlumnoToUpdate(controlNumber);
+  }
+  /* CalledBy(Clicking button "Descargar Excel")
+    Generates XLSX File using the current data provided by dataSource.data
+  */
+  exportAsXLSX() {
+    this.excelService.exportAsExcelFile(this.exportableTable, 'sample');
   }
 }

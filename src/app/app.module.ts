@@ -87,6 +87,7 @@ import { TemplateLinkDownloadsComponent } from './components/subcomponents/templ
 import { ValidarDocumentosComponent } from './components/validar-documentos/validar-documentos.component';
 import { ValidarDocumentosModalComponent} from './components/validar-documentos/validar-documentos.component';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
+import { ExcelTemplateComponent } from './components/subcomponents/excel-template/excel-template.component';
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -138,7 +139,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     TemplateLinkDownloadsComponent,
     ValidarDocumentosComponent,
     ValidarDocumentosModalComponent,
-    EditModalComponent
+    EditModalComponent,
+    ExcelTemplateComponent
     ],
 
   imports: [

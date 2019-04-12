@@ -8,15 +8,21 @@
       </div>
     </div>
 
-    <mat-checkbox id='ck-EnCaptura' (change)="onChange($event);" [checked]="filterA.value">En captura &nbsp;</mat-checkbox>
-    <mat-checkbox id='ck-Enviado' (change)="onChange($event);" [checked]="filterB.value">Enviado &nbsp;</mat-checkbox>
-    <mat-checkbox id='ck-Validado' (change)="onChange($event);" [checked]="filterC.value">Validado &nbsp; </mat-checkbox>
-    <mat-checkbox id='ck-Aceptado' (change)="onChange($event);" [checked]="filterD.value">Aceptado &nbsp; </mat-checkbox>
-
-    <mat-slide-toggle [(ngModel)]="careerVisualizationMode" (change)="onChangeVisualMode()">
-      <p *ngIf="careerVisualizationMode">Modo Global</p>
-      <p *ngIf="!careerVisualizationMode">Asignadas</p>
-    </mat-slide-toggle>
+    <mat-grid-list cols="6" rowHeight="50px">
+      <mat-grid-tile><mat-checkbox id='ck-EnCaptura' (change)="onChange($event);" [checked]="filterA.value">En captura &nbsp;</mat-checkbox></mat-grid-tile>
+      <mat-grid-tile><mat-checkbox id='ck-Enviado' (change)="onChange($event);" [checked]="filterB.value">Enviado &nbsp;</mat-checkbox></mat-grid-tile>
+      <mat-grid-tile><mat-checkbox id='ck-Validado' (change)="onChange($event);" [checked]="filterC.value">Validado &nbsp; </mat-checkbox></mat-grid-tile>
+      <mat-grid-tile><mat-checkbox id='ck-Aceptado' (change)="onChange($event);" [checked]="filterD.value">Aceptado &nbsp; </mat-checkbox></mat-grid-tile>
+      <mat-grid-tile>
+        <mat-slide-toggle [(ngModel)]="careerVisualizationMode" (change)="onChangeVisualMode()">
+          <p *ngIf="careerVisualizationMode">Modo Global</p>
+          <p *ngIf="!careerVisualizationMode">Asignadas</p>
+        </mat-slide-toggle>
+      </mat-grid-tile>
+      <mat-grid-tile><button (click)="exportAsXLSX()" mat-button>
+        <app-excel-template></app-excel-template>Descargar Excel</button>
+      </mat-grid-tile>
+    </mat-grid-list>
 
     <mat-form-field>
       <mat-icon matSuffix>search</mat-icon>
