@@ -34,8 +34,6 @@ export class DetalleAlumnoComponent implements OnInit {
   filterB: any;
   filterC: any;
   filterD: any;
-  // Tables
-  globalTable: any;
 
   alumno: Alumno;
   alumnos: any;
@@ -46,6 +44,11 @@ export class DetalleAlumnoComponent implements OnInit {
 
   // Mecanisms
   careerVisualizationMode: boolean;
+
+  // Table
+  currentTable: Array<Object>;
+  globalTable: Array<Object>;
+  asignedTable: Array<Object>;
 
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService,
@@ -65,28 +68,8 @@ export class DetalleAlumnoComponent implements OnInit {
     this.usuarioService.getUsuario(this.currentUser).subscribe(res => this.currentUserToLoadCareer = res);
 
     setTimeout(() => {
-      this.getUsuarioData(this.currentUserToLoadCareer);
+      this.getAsignedTableData(this.currentUserToLoadCareer);
     }, 500);
-  }
-  /* CalledBy(ngOnInit, doRefreshTable)
-    Method that uses the object brought by the parameter (ex: {_id:"123456",active:false,career:Array,
-    credential:'secretary',user:'secreA',pass:'1234'}).
-    Then it makes a POST request to https://app-apipruebas.herokuapp.com/alumnos/career
-    where an array composed by Students and its documents is retrieved. Finally Global values are updated with this
-  */
-  getUsuarioData(careers) {
-    console.log('DATA');
-    this.alumnoService.getAlumnosByCareer(careers)
-      .subscribe(res => {
-        this.alumnoService.alumnos = res as Alumno[];
-        this.alumnos = res;
-        console.log(this.alumnos);
-
-        this.dataSource = new MatTableDataSource(this.alumnos);
-
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      });
   }
 
   refreshTableAlumnosData() {
@@ -107,8 +90,11 @@ export class DetalleAlumnoComponent implements OnInit {
     the global predicate. Then it filt
   */
   applyFilter(filterValue: string) {
+    this.dataSource.filterPredicate = ((data: any, filter: string) => {
+      return this.defaultPredicateEvaluation(data, filter);
+    });
+    this.dataSource = new MatTableDataSource(this.currentTable);
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
@@ -125,7 +111,7 @@ export class DetalleAlumnoComponent implements OnInit {
 
     this.applyFilterOfCheck(event);
   }
-  /* CalledBy (onChange)
+  /* CalledBy (onChange) checkbox click
   Adjust the global variables to evaluate each element of the current table.
   The properties of the filters are modified to achieve this and in the end
   they are restarted.
@@ -135,21 +121,29 @@ export class DetalleAlumnoComponent implements OnInit {
     if (!this.filterB.value) { this.filterB.filter = ''; }
     if (!this.filterC.value) { this.filterC.filter = ''; }
     if (!this.filterD.value) { this.filterD.filter = ''; }
+    if (this.filterA.value === false && this.filterB.value === false &&
+      this.filterC.value === false && this.filterD.value === false) {
+      this.filterA.filter = 'En captura';
+      this.filterB.filter = 'Enviado';
+      this.filterC.filter = 'Validado';
+      this.filterD.filter = 'Aceptado';
+      this.doRefreshTable();
+    }
     // Segment that validates element by element (Called after this.dataSource.filter)
+    this.currentTable = [];
     this.dataSource.filterPredicate = ((data: any, filter: string) => {
       return this.customPredicateEvaluation(data);
     });
-
+    // Adjust Table data according to VisualizationMode
+    // this.changeMatTableContent();
     this.dataSource.filter = filterValue;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
 
-    this.filterA.filter = 'En captura';
-    this.filterB.filter = 'Enviado';
-    this.filterC.filter = 'Validado';
-    this.filterD.filter = 'Aceptado';
+    this.filterA.filter = 'En captura'; this.filterB.filter = 'Enviado';
+    this.filterC.filter = 'Validado'; this.filterD.filter = 'Aceptado';
   }
   /* CalledBy(applyFilterOfCheck)
     Method that evaluates each element given and determines if it
@@ -161,6 +155,28 @@ export class DetalleAlumnoComponent implements OnInit {
       (data.statusInscripcion === this.filterB.filter) ||
       (data.statusInscripcion === this.filterC.filter) ||
       (data.statusInscripcion === this.filterD.filter);
+    if (result) { this.currentTable.push(data); }
+    return result;
+  }
+  /*CalledBy(applyFilterOfCheck)
+    Methods that update MatTableData
+  */
+  changeMatTableContent() {
+    if (this.careerVisualizationMode) {
+      this.dataSource = new MatTableDataSource(this.globalTable);
+    } else {
+      this.dataSource = new MatTableDataSource(this.asignedTable);
+    }
+  }
+  /*UsedBy not Called(applyFilterOfCheck)
+    Changes predicate for MatTableData
+  */
+  defaultPredicateEvaluation(data, filter) {
+    const result = (data.controlNumber.includes(filter) ||
+      data.lastNameFather.includes(filter) ||
+      data.lastNameMother.includes(filter) ||
+      data.career.includes(filter)
+    );
     return result;
   }
   /* CalledBy(Clicking toggle 'Asignadas/Modo Global')
@@ -169,15 +185,6 @@ export class DetalleAlumnoComponent implements OnInit {
   */
   onChangeVisualMode() {
     this.doRefreshTable();
-  }
-
-  getAlumnos() {
-    this.alumnoService.getAlumnos()
-      .subscribe(res => {
-        this.alumnoService.alumnos = res as Alumno[];
-        this.alumnos = res;
-        console.log(this.alumnos);
-      });
   }
 
   async preUpdate(ctrlNumber) {
@@ -198,21 +205,53 @@ export class DetalleAlumnoComponent implements OnInit {
   */
   doRefreshTable() {
     if (!this.careerVisualizationMode) {
-      this.getUsuarioData(this.currentUserToLoadCareer);
+      this.getAsignedTableData(this.currentUserToLoadCareer);
     } else {
-      this.alumnoService.getAlumnos()
-        .subscribe(res => {
-          this.alumnoService.alumnos = res as Alumno[];
-          this.alumnos = res;
-          console.log(this.alumnos);
-
-          this.dataSource = new MatTableDataSource(this.alumnos);
-
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        });
+      this.getGlobalTableData();
     }
   }
+  /* CalledBy(doRefreshTable)
+    Method that makes a POST request to https://app-apipruebas.herokuapp.com/alumnos
+    where an array composed by Students and its documents is retrieved. Finally Global values are updated with this
+  */
+  getGlobalTableData() {
+    this.alumnoService.getAlumnos()
+      .subscribe(res => {
+        this.alumnoService.alumnos = res as Alumno[];
+        this.alumnos = res;
+        console.log(this.alumnos);
+
+        this.globalTable = this.alumnos;
+        this.dataSource = new MatTableDataSource(this.alumnos);
+        this.currentTable = this.alumnos; // FEAT
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+  }
+  /* CalledBy(ngOnInit, doRefreshTable)
+    Method that uses the object brought by the parameter (ex: {_id:"123456",active:false,career:Array,
+    credential:'secretary',user:'secreA',pass:'1234'}).
+    Then it makes a POST request to https://app-apipruebas.herokuapp.com/alumnos/career
+    where an array composed by Students and its documents is retrieved. Finally Global values are updated with this
+  */
+  getAsignedTableData(careers) {
+    console.log('DATA');
+    this.alumnoService.getAlumnosByCareer(careers)
+      .subscribe(res => {
+        this.alumnoService.alumnos = res as Alumno[];
+        this.alumnos = res;
+        console.log(this.alumnos);
+
+        this.asignedTable = this.alumnos;
+        this.dataSource = new MatTableDataSource(this.alumnos);
+        this.currentTable = this.alumnos; // FEAT
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+  }
+
   onDelete(controlNumber) {
     // this.alumnoService.deleteAlumno('13400501').subscribe();
     this.dialogService.openConfirmDialog('¿Estás seguro de eliminar este alumno?')
