@@ -34,6 +34,18 @@
 
 .menu {text-align: right;}
 
+.margen{
+margin-left:10px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+
 #button {
   position: relative;
   float: right;
@@ -44,3 +56,5 @@
 .example-button-row a {
   margin-right: 8px;
 }
+
+.right{float: right;}
