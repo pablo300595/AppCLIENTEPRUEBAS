@@ -268,10 +268,6 @@ export class DetalleAlumnoComponent implements OnInit {
         }
       });
   }
-
-  loadDocumentApproval(controlNumber) {
-    this.detalleAlumnoService.changeAlumnoToUpdate(controlNumber);
-  }
   /* CalledBy(Clicking button "Descargar Excel")
     Generates XLSX File using the current data provided by dataSource.data
   */
