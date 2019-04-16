@@ -24,7 +24,7 @@ import { Alumno } from './../../models/alumno';
 })
 
 export class DetalleAlumnoComponent implements OnInit {
-  displayedColumns: string[] = ['controlNumber', 'lastNameFather', 'lastNameMother', 'firstName', 'career', 'statusInscripcion', 'actions'];
+  displayedColumns: string[] = [ 'controlNumber', 'completeName', 'career', 'statusInscripcion', 'actions'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
