@@ -26,7 +26,7 @@ export interface StatusDocumento {
 })
 
 export class DetalleAlumnoDialogComponent {
-    // Position of dataSource.data in order to retrieve status
+    // Position of dataSource.data in order to deliver the status
     acordeonFoto = 2;
     acordeonNSS = 1;
     acordeonCURP = 3;
@@ -115,8 +115,7 @@ export class DetalleAlumnoDialogComponent {
     }
 
     /* CalledBy (Constructor)
-    Initialize Service variables
-    */
+    Initialize Service variables, maynly focuses on get all data from Alumno by NoCtrl*/
    async awaitForAlumnoData() {
     this.formularioRegistroService.changefirstTryGivenValues(false);
     this.formularioRegistroService.currentfirstTryGivenValues.subscribe(value => this.firstTryGivenValues = value);
@@ -149,7 +148,6 @@ export class DetalleAlumnoDialogComponent {
         this.fieldStatusCivil = this.alumno.statusCivil;
         this.fieldStreet = this.alumno.street;
         this.fieldWhichDisability = this.alumno.whichDisability;
-        console.log(this.alumno);
 
         this.acta = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/ACTA.pdf`;
         this.certificado = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CERTIFICADO.pdf`;
@@ -163,8 +161,9 @@ export class DetalleAlumnoDialogComponent {
         });
     }
     /* CalledBy (awaitForAlumnoData)
-
-    */
+    Method that makes a GET request to https://app-apipruebas.herokuapp.com/alumnos/documentation/:id
+    then delivers all documentation into a global variable documentation. The object retrieved
+    is used to generate information in allDocumentStatus and allDocumentObservations*/
     awaitForValidationData() {
         this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {
             this.documentation = res as Object[];
@@ -190,19 +189,51 @@ export class DetalleAlumnoDialogComponent {
             // this.allDocumentObservations[7] = this.documentation[this.acordeonFormulario].observacion; // NEW
         });
     }
+    /*CalledBy(changing tab)
+    Updates dataSource from the request getAlumnoDocumentation*/
+    doRefreshTable() {
+        this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {
+            this.documentation = res as Object[];
+            this.dataSource = new MatTableDataSource(this.documentation);
+            this.adjustAccordionPosition();
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        });
+    }
     /*CalledBy (awaitForValidationData, doRefreshTable)
-    */
+    Call diferent methods that adjust the new position for each element for dataSource*/
     adjustAccordionPosition() {
-        this.searchDocumentForAcordeonFOTO('FOTO');
-        this.searchDocumentForAcordeonCURP('CURP');
-        this.searchDocumentForAcordeonNSS('NSS');
-        this.searchDocumentForAcordeonCERTIFICADO('CERTIFICADO');
-        this.searchDocumentForAcordeonPAGO('COMPROBANTE');
-        this.searchDocumentForAcordeonCLINICOS('CLINICOS');
-        this.searchDocumentForAcordeonACTA('ACTA');
+        this.searchDocumentForAnyAcordeon('FOTO', 'Foto');
+        this.searchDocumentForAnyAcordeon('CURP', 'CURP');
+        this.searchDocumentForAnyAcordeon('NSS', 'NSS');
+        this.searchDocumentForAnyAcordeon('CERTIFICADO', 'Certificado');
+        this.searchDocumentForAnyAcordeon('COMPROBANTE', 'Pago');
+        this.searchDocumentForAnyAcordeon('CLINICOS', 'Clinicos');
+        this.searchDocumentForAnyAcordeon('ACTA', 'Acta ');
         // this.searchDocumentForAcordeonACTA('FORMULARIO');
     }
-
+    /*CalledBy (adjustAccordionPosition)
+    Methods that returns the position of a dataSource element based on the document given by
+    parameter*/
+    searchDocumentForAnyAcordeon(document, accordion) {
+        let dataSourceCopy: any;
+        dataSourceCopy = this.dataSource.data;
+        for (let i = 0; i < 7; i++) {
+            if (dataSourceCopy[i].documentName === document) {
+                if (accordion === 'Foto') {this.acordeonFoto = i; break; }
+                if (accordion === 'CURP') {this.acordeonCURP = i; break; }
+                if (accordion === 'NSS') {this.acordeonNSS = i; break; }
+                if (accordion === 'Certificado') {this.acordeonCertificado = i; break; }
+                if (accordion === 'Clinicos') {this.acordeonClinicos = i; break; }
+                if (accordion === 'Acta') {this.acordeonActa = i; break; }
+                if (accordion === 'Pago') {this.acordeonPago = i; break; }
+                // if (accordion === 'Formulario') {this.acordeonPago = i; break; }
+            }
+        }
+    }
+    /*CalledBy (Clicking button Guardar in first tab)
+    Method that makes a PUT request to https://app-apipruebas.herokuapp.com/alumnos using an object
+    built by most common global variables for each input*/
     updateAlumno() {
         this.alumno = {
             lastNameFather: this.fieldLastNameFather,
@@ -240,37 +271,16 @@ export class DetalleAlumnoDialogComponent {
             }
         );
     }
-
+    /*CalledBy (Clicking button Cancelar on modal window)
+    Closes the modal window*/
     exit(): void {
         this.dialogRef.close();
     }
-
-    applyFilter(filterValue: string) {
-        this.dataSource.filter = filterValue.trim().toLowerCase();
-
-        if (this.dataSource.paginator) {
-            this.dataSource.paginator.firstPage();
-        }
-    }
-    refreshTabContent($event) {
-        this.doRefreshTable();
-    }
-    /*CalledBy(refreshTabContent)
-    */
-    doRefreshTable() {
-        this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {
-            this.documentation = res as Object[];
-            this.dataSource = new MatTableDataSource(this.documentation);
-            this.adjustAccordionPosition();
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-        });
-    }
     /*CalledBy (Guardar Button in each accordeon item)
-    Depending on the document passed by parameter is build an object that is
-    composed by: documentName, status and observacion. The object values are given by
-    the scoped variables comment and newstatus that uses the global arrays
-    allDocumentObservations and allDocumentStatus.
+    Depending on the document passed by parameter is build an object that is composed by: documentName,
+    status and observacion. The object values are given by the scoped variables comment and newstatus
+    that uses the global arrays allDocumentObservations and allDocumentStatus. Finnally it
+    makes a PUT request to https://app-apipruebas.herokuapp.com/alumnos/documentation/ctrl/:id
      */
     validateForm(documentToAnalize) {
         let comment;
@@ -326,82 +336,4 @@ export class DetalleAlumnoDialogComponent {
             this.messagesService.success('¡Estatus de documento actualizado exitosamente!');
         });
     }
-
-    searchDocumentForAcordeonFOTO(document) {
-        let dataSourceCopy: any;
-        dataSourceCopy = this.dataSource.data;
-        for (let i = 0; i < 7; i++) {
-            if (dataSourceCopy[i].documentName === document) {
-                this.acordeonFoto = i;
-                break;
-            }
-        }
-    }
-
-    searchDocumentForAcordeonCURP(document) {
-        let dataSourceCopy: any;
-        dataSourceCopy = this.dataSource.data;
-        for (let i = 0; i < 7; i++) {
-            if (dataSourceCopy[i].documentName === document) {
-                this.acordeonCURP = i;
-                break;
-            }
-        }
-    }
-
-    searchDocumentForAcordeonNSS(document) {
-        let dataSourceCopy: any;
-        dataSourceCopy = this.dataSource.data;
-        for (let i = 0; i < 7; i++) {
-            if (dataSourceCopy[i].documentName === document) {
-                this.acordeonNSS = i;
-                break;
-            }
-        }
-    }
-
-    searchDocumentForAcordeonCERTIFICADO(document) {
-        let dataSourceCopy: any;
-        dataSourceCopy = this.dataSource.data;
-        for (let i = 0; i < 7; i++) {
-            if (dataSourceCopy[i].documentName === document) {
-                this.acordeonCertificado = i;
-                break;
-            }
-        }
-    }
-
-    searchDocumentForAcordeonCLINICOS(document) {
-        let dataSourceCopy: any;
-        dataSourceCopy = this.dataSource.data;
-        for (let i = 0; i < 7; i++) {
-            if (dataSourceCopy[i].documentName === document) {
-                this.acordeonClinicos = i;
-                break;
-            }
-        }
-    }
-
-    searchDocumentForAcordeonACTA(document) {
-        let dataSourceCopy: any;
-        dataSourceCopy = this.dataSource.data;
-        for (let i = 0; i < 7; i++) {
-            if (dataSourceCopy[i].documentName === document) {
-                this.acordeonActa = i;
-                break;
-            }
-        }
-    }
-
-    searchDocumentForAcordeonPAGO(document) {
-        let dataSourceCopy: any;
-        dataSourceCopy = this.dataSource.data;
-        for (let i = 0; i < 7; i++) {
-            if (dataSourceCopy[i].documentName === document) {
-                this.acordeonPago = i;
-                break;
-            }
-        }
-    }
-
 }
