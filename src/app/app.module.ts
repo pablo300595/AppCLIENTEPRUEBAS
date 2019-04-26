@@ -88,6 +88,8 @@ import { ValidarDocumentosComponent } from './components/validar-documentos/vali
 import { ValidarDocumentosModalComponent} from './components/validar-documentos/validar-documentos.component';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { ExcelTemplateComponent } from './components/subcomponents/excel-template/excel-template.component';
+import { SecretariaMovementsComponent } from './components/secretaria-movements/secretaria-movements.component';
+import { DetalleAlumnoJefeComponent } from './components/detalle-alumno-jefe/detalle-alumno-jefe.component';
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -100,7 +102,8 @@ const appRoutes: Routes = [
   {path: 'wizard-success', component: SuccessWizardComponent},
   {path: 'contrato', component: ContratoComponent},
   {path: 'resumen', component: ResumenComponent},
-  {path: 'validarDocumentos', component: ValidarDocumentosComponent}
+  {path: 'validarDocumentos', component: ValidarDocumentosComponent},
+  {path: 'secretariaMovements', component: SecretariaMovementsComponent}
 ];
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -140,7 +143,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ValidarDocumentosComponent,
     ValidarDocumentosModalComponent,
     EditModalComponent,
-    ExcelTemplateComponent
+    ExcelTemplateComponent,
+    SecretariaMovementsComponent,
+    DetalleAlumnoJefeComponent
     ],
 
   imports: [

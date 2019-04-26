@@ -191,7 +191,10 @@ export class DetalleAlumnoComponent implements OnInit {
   onChangeVisualMode() {
     this.doRefreshTable();
   }
-
+  /*CalledBy (Clicking group icon button in row item action)
+  Allows to configure the modal window configuration and calls a detalleAlumnoService in order to
+  send the control number by a service variable.
+  */
   async preUpdate(ctrlNumber) {
     console.log('DETALLE NUMERO DE CONTROL: ' + ctrlNumber);
     this.detalleAlumnoService.changeAlumnoToUpdate(ctrlNumber);

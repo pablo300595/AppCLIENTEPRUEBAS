@@ -11,6 +11,9 @@ import { FormularioRegistroService } from './../../services/formulario-registro.
 import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
 import { AlumnoService } from './../../services/alumno.service';
 import { MessagesService } from './../../services/messages.service';
+import { SecretariaMovementsService } from './../../services/secretaria-movements.service';
+import { UsuarioService } from './../../services/usuario.service';
+import { LoginService } from './../../services/login.service';
 // Models
 import { Alumno } from './../../models/alumno';
 
@@ -99,9 +102,11 @@ export class DetalleAlumnoDialogComponent {
     ];
 
     // Services variables
-    alumno: Alumno;
+    alumno: any;
     selectedNoCtrl: String;
     firstTryGivenValues: boolean;
+    currentUsername: String;
+    currentUser: any;
     allDocumentStatus = ['', '', '', '', '', '', '', ''];
     allDocumentObservations = ['', '', '', '', '', '', '', ''];
 
@@ -110,7 +115,10 @@ export class DetalleAlumnoDialogComponent {
         private alumnoService: AlumnoService,
         private formularioRegistroService: FormularioRegistroService,
         private messagesService: MessagesService,
-        private detalleAlumnoService: DetalleAlumnoService) {
+        private detalleAlumnoService: DetalleAlumnoService,
+        private secretariaMovementsService: SecretariaMovementsService,
+        private usuarioService: UsuarioService,
+        private loginService: LoginService) {
         this.awaitForAlumnoData();
     }
 
@@ -120,9 +128,11 @@ export class DetalleAlumnoDialogComponent {
     this.formularioRegistroService.changefirstTryGivenValues(false);
     this.formularioRegistroService.currentfirstTryGivenValues.subscribe(value => this.firstTryGivenValues = value);
     this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res);
+    this.loginService.currentUser.subscribe(res => this.currentUsername = res);
+    this.usuarioService.getUsuario(this.currentUsername).subscribe(res => this.currentUser = res);
 
     await this.alumnoService.getAlumno(this.selectedNoCtrl).subscribe(res => {
-        this.alumno = res as Alumno;
+        this.alumno = res as any;
         this.fieldAverage = this.alumno.average;
         this.fieldCareer = this.alumno.career;
         this.fieldCity = this.alumno.city;
@@ -332,6 +342,17 @@ export class DetalleAlumnoDialogComponent {
             'status': newstatus,
             'observacion': comment
         };
+        const movement = {
+            'usuario': this.currentUser._id,
+            'secretaria': this.currentUser.secretaria,
+            'alumno': this.alumno._id,
+            'action': 'UPDATE',
+            'document': documentToAnalize,
+            'dateModificationServer': new Date(),
+            'dateModificationClient': new Date(),
+            'dataModified': `status: ${newstatus}, observacion: ${comment}`
+        };
+        this.secretariaMovementsService.registerSecretaryMovement(movement).subscribe();
         this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.selectedNoCtrl, this.dataFormulario).subscribe(res => {
             this.messagesService.success('¡Estatus de documento actualizado exitosamente!');
         });
