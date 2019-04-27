@@ -29,10 +29,10 @@
 }
 
 .container{
-  text-align:center
+  text-align: center
 }
 
-.menu {text-align: right;}
+.menu {text-align: center }
 
 .margen{
 margin-left:10px;
@@ -40,6 +40,15 @@ margin-left:10px;
 
 .example-full-width {
   width: 100%;
+}
+
+.full-width {
+  width: 50%;
+}
+
+.box{
+  margin: 0 auto;
+  width: 200px;
 }
 
 td {

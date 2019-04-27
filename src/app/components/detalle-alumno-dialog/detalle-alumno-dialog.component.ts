@@ -361,4 +361,8 @@ export class DetalleAlumnoDialogComponent {
         }
     }
 
+    closeDialog(): void {
+        this.dialogRef.close();
+      }
+
 }

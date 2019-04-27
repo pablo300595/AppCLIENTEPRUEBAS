@@ -1,12 +1,17 @@
+<div class="right">
+  <button mat-icon-button (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<!--<h2 style="text-align:center;">Detalle Alumno</h2>-->
+<h2 mat-dialog-title style="text-align:center;">Detalle Alumno</h2>
+
 <mat-dialog-content class="mat-typography">
-  <div class="right">
-    <button mat-icon-button class="right" (click)="closeDialog()">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
-  <h2 style="text-align:center;">Detalle Alumno</h2>
+  
   <mat-tab-group (selectedTabChange)="refreshTabContent($event)">
-    
+
+
     <mat-tab label="Detalle Alumno">
       <br>
 
@@ -31,6 +36,10 @@
                 [(ngModel)]="fieldFirstName">
               <p id="msgError" *ngIf="(fieldFirstName.length < 1)">*Campo obligatorio</p>
               <br>
+              <div>
+                <span>Username:</span>
+                <a href="" id="username" data-type="text" data-placement="right" data-title="Enter username">superuser</a>
+              </div>
               <label for="txtApellidoPaterno">APELLIDO PATERNO</label>
               <input type="text" class="form-control" id="txtApellidoPaterno" name="fieldLastNameFather" placeholder="Apellido Paterno"
                 [(ngModel)]="fieldLastNameFather">
@@ -418,13 +427,14 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
 
-              <mat-chip-list>
+              <mat-chip-list class="">
                 <mat-chip style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonCertificado].status == 'En proceso'"><b>{{dataSource.data[acordeonCertificado].status}}</b></mat-chip>
                 <mat-chip selected *ngIf="dataSource.data[acordeonCertificado].status == 'Rechazado'"><b>{{dataSource.data[acordeonCertificado].status}}</b></mat-chip>
                 <mat-chip selected *ngIf="dataSource.data[acordeonCertificado].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonCertificado].status}}</b></mat-chip>
               </mat-chip-list>
-              <div class="container">
-                CERTIFICADO DE BACHILLERATO O EQUIVALENTE
+
+              <div class="">
+                &nbsp;&nbsp;&nbsp;&nbsp;CERTIFICADO DE BACHILLERATO O EQUIVALENTE
               </div>
             </mat-panel-title>
             <mat-panel-description>
@@ -461,6 +471,7 @@
                 <button mat-raised-button (click)="validateForm('CERTIFICADO')" color="primary">Guardar</button>
               </div>
             </div>
+            <a href="{{certificado}}">Enlace - CERTIFICADO DE BACHILLERATO O EQUIVALENTE</a>
           </ng-template>
 
         </mat-expansion-panel>
@@ -474,8 +485,8 @@
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonActa].status == 'Rechazado'"><b>{{dataSource.data[acordeonActa].status}}</b></mat-chip>
                 <mat-chip selected *ngIf="dataSource.data[acordeonActa].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonActa].status}}</b></mat-chip>
               </mat-chip-list>
-              <div class="container">
-                ACTA DE NACIMIENTO
+              <div class="">
+                &nbsp;&nbsp;&nbsp;&nbsp;ACTA DE NACIMIENTO
               </div>
 
             </mat-panel-title>
@@ -513,6 +524,7 @@
                 <button mat-raised-button (click)="validateForm('ACTA')" color="primary">Guardar</button>
               </div>
             </div>
+            <a href="{{acta}}">Enlace - ACTA DE NACIMIENTO</a>
           </ng-template>
         </mat-expansion-panel>
 
@@ -526,8 +538,8 @@
                 <mat-chip style="text-align:right;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Aceptado'"
                   style="background-color:darkgreen;"><b>{{dataSource.data[acordeonCURP].status}}</b></mat-chip>
               </mat-chip-list>
-              <div class="container">
-                CURP
+              <div class="">
+                &nbsp;&nbsp;&nbsp;&nbsp;CURP
               </div>
 
             </mat-panel-title>
@@ -565,6 +577,7 @@
                 <button mat-raised-button (click)="validateForm('CURP')" color="primary">Guardar</button>
               </div>
             </div>
+            <a href="{{curp}}">Enlace - CURP</a>
           </ng-template>
         </mat-expansion-panel>
 
@@ -578,8 +591,8 @@
                 <mat-chip style="text-align:right;" selected *ngIf="dataSource.data[acordeonPago].status == 'Aceptado'"
                   style="background-color:darkgreen;"><b>{{dataSource.data[acordeonPago].status}}</b></mat-chip>
               </mat-chip-list>
-              <div class="container">
-                COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN
+              <div class="">
+                &nbsp;&nbsp;&nbsp;&nbsp; COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN
               </div>
             </mat-panel-title>
             <mat-panel-description>
@@ -616,6 +629,7 @@
                 <button mat-raised-button (click)="validateForm('COMPROBANTE')" color="primary">Guardar</button>
               </div>
             </div>
+            <a href="{{comprobante}}">Enlace - COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN</a>
           </ng-template>
         </mat-expansion-panel>
 
@@ -629,8 +643,8 @@
                 <mat-chip selected *ngIf="dataSource.data[acordeonClinicos].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonClinicos].status}}</b></mat-chip>
               </mat-chip-list>
 
-              <div class="container">
-                RESULTADO DE ANÁLISIS CLÍNICOS
+              <div class="">
+                &nbsp;&nbsp;&nbsp;&nbsp; RESULTADO DE ANÁLISIS CLÍNICOS
               </div>
             </mat-panel-title>
             <mat-panel-description>
@@ -668,6 +682,7 @@
                 <button mat-raised-button (click)="validateForm('CLINICOS')" color="primary">Guardar</button>
               </div>
             </div>
+            <a href="{{clinicos}}">Enlace - RESULTADO DE ANÁLISIS CLÍNICOS</a>
           </ng-template>
         </mat-expansion-panel>
 
@@ -681,8 +696,8 @@
                 <mat-chip selected *ngIf="dataSource.data[acordeonNSS].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonNSS].status}}</b></mat-chip>
               </mat-chip-list>
 
-              <div class="container">
-                NÚMERO DE SEGURO SOCIAL
+              <div class="">
+                &nbsp;&nbsp;&nbsp;&nbsp; NÚMERO DE SEGURO SOCIAL
               </div>
             </mat-panel-title>
             <mat-panel-description>
@@ -719,6 +734,7 @@
                 <button mat-raised-button (click)="validateForm('NSS')" color="primary">Guardar</button>
               </div>
             </div>
+            <a href="{{nss}}">Enlace - NÚMERO DE SEGURO SOCIAL</a>
           </ng-template>
         </mat-expansion-panel>
 
@@ -726,15 +742,15 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
 
-              <mat-chip-list>
+              <mat-chip-list class="">
 
                 <mat-chip style="background-color: rgb(219, 219, 62);" selected *ngIf="dataSource.data[acordeonFoto].status == 'En proceso'"><b>{{dataSource.data[acordeonFoto].status}}</b></mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonFoto].status == 'Rechazado'"><b>{{dataSource.data[acordeonFoto].status}}</b></mat-chip>
                 <mat-chip selected *ngIf="dataSource.data[acordeonFoto].status == 'Aceptado'" style="background-color:darkgreen;"><b>{{dataSource.data[acordeonFoto].status}}</b></mat-chip>
               </mat-chip-list>
 
-              <div class="container">
-                FOTOGRAFÍA
+              <div class="">
+                &nbsp;&nbsp;&nbsp;&nbsp; FOTOGRAFÍA
               </div>
 
             </mat-panel-title>
@@ -772,6 +788,7 @@
                 <button mat-raised-button (click)="validateForm('FOTO')" color="primary">Guardar</button>
               </div>
             </div>
+            <a href="{{foto}}">Enlace - FOTOGRAFÍA</a>
           </ng-template>
         </mat-expansion-panel>
 
@@ -813,47 +830,48 @@
     </mat-tab>
 
     <mat-tab label="Estado de validación">
-      
-
-        <div class="mat-elevation-z8">
-          <table mat-table [dataSource]="dataSource" matSort>
-
-            <!-- ID Column -->
-            <ng-container matColumnDef="documentName">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Documento </th>
-              <td mat-cell *matCellDef="let row"> {{row.documentName}} </td>
-            </ng-container>
-
-            <!-- Progress Column -->
-            <ng-container matColumnDef="status">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
-              <td mat-cell *matCellDef="let row">
-                <mat-chip-list>
-                  <mat-chip style="background-color: rgb(219, 219, 62);" selected *ngIf="row.status == 'En proceso'">{{row.status}}</mat-chip>
-                  <mat-chip style="background-color: red;" selected *ngIf="row.status == 'Rechazado'">{{row.status}}</mat-chip>
-                  <mat-chip selected *ngIf="row.status == 'Aceptado'" style="background-color:darkgreen;">{{row.status}}</mat-chip>
-                </mat-chip-list>
-              </td>
-            </ng-container>
 
 
-            <!-- Color Column -->
-            <ng-container matColumnDef="observacion">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> observacion </th>
-              <td mat-cell *matCellDef="let row"> {{row.observacion}} </td>
-            </ng-container>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-            </tr>
-          </table>
+          <!-- ID Column -->
+          <ng-container matColumnDef="documentName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Documento </th>
+            <td mat-cell *matCellDef="let row"> {{row.documentName}} </td>
+          </ng-container>
 
-          <mat-paginator [pageSizeOptions]="[10, 10, 25, 100]"></mat-paginator>
-        </div>
-   
+          <!-- Progress Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-chip-list>
+                <mat-chip style="background-color: rgb(219, 219, 62);" selected *ngIf="row.status == 'En proceso'">{{row.status}}</mat-chip>
+                <mat-chip style="background-color: red;" selected *ngIf="row.status == 'Rechazado'">{{row.status}}</mat-chip>
+                <mat-chip selected *ngIf="row.status == 'Aceptado'" style="background-color:darkgreen;">{{row.status}}</mat-chip>
+              </mat-chip-list>
+            </td>
+          </ng-container>
+
+
+          <!-- Color Column -->
+          <ng-container matColumnDef="observacion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> observacion </th>
+            <td mat-cell *matCellDef="let row"> {{row.observacion}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 10, 25, 100]"></mat-paginator>
+      </div>
+
     </mat-tab>
 
   </mat-tab-group>
+
 </mat-dialog-content>
 <br>
 <div class="right">
