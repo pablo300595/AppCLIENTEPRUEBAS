@@ -37,6 +37,7 @@ export class DetalleAlumnoDialogComponent {
     acordeonClinicos = 5;
     acordeonActa = 6;
     acordeonPago = 7;
+    acordeonFormulario = 0;
     // HTML inputs
     fieldLastNameFather: String = '';
     fieldLastNameMother: String = '';
@@ -166,7 +167,7 @@ export class DetalleAlumnoDialogComponent {
         this.curp = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/CURP.pdf`;
         this.foto = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/FOTO.png`;
         this.nss = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/NSS.pdf`;
-
+        this.formulario = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/FORMULARIO.pdf`;
         this.awaitForValidationData();
         });
     }
@@ -195,8 +196,8 @@ export class DetalleAlumnoDialogComponent {
             this.allDocumentObservations[5] = this.documentation[this.acordeonNSS].observacion; // NEW
             this.allDocumentStatus[6] = this.documentation[this.acordeonFoto].status; // NEW
             this.allDocumentObservations[6] = this.documentation[this.acordeonFoto].observacion; // NEW
-            // this.allDocumentStatus[7] = this.documentation[this.acordeonFormulario].status;
-            // this.allDocumentObservations[7] = this.documentation[this.acordeonFormulario].observacion; // NEW
+            this.allDocumentStatus[7] = this.documentation[this.acordeonFormulario].status;
+            this.allDocumentObservations[7] = this.documentation[this.acordeonFormulario].observacion; // NEW
         });
     }
     /*CalledBy(changing tab)
@@ -219,8 +220,8 @@ export class DetalleAlumnoDialogComponent {
         this.searchDocumentForAnyAcordeon('CERTIFICADO', 'Certificado');
         this.searchDocumentForAnyAcordeon('COMPROBANTE', 'Pago');
         this.searchDocumentForAnyAcordeon('CLINICOS', 'Clinicos');
-        this.searchDocumentForAnyAcordeon('ACTA', 'Acta ');
-        // this.searchDocumentForAcordeonACTA('FORMULARIO');
+        this.searchDocumentForAnyAcordeon('ACTA', 'Acta');
+        this.searchDocumentForAnyAcordeon('FORMULARIO', 'Formulario');
     }
     /*CalledBy (adjustAccordionPosition)
     Methods that returns the position of a dataSource element based on the document given by
@@ -237,7 +238,7 @@ export class DetalleAlumnoDialogComponent {
                 if (accordion === 'Clinicos') {this.acordeonClinicos = i; break; }
                 if (accordion === 'Acta') {this.acordeonActa = i; break; }
                 if (accordion === 'Pago') {this.acordeonPago = i; break; }
-                // if (accordion === 'Formulario') {this.acordeonPago = i; break; }
+                if (accordion === 'Formulario') {this.acordeonFormulario = i; break; }
             }
         }
     }
@@ -343,9 +344,9 @@ export class DetalleAlumnoDialogComponent {
             'observacion': comment
         };
         const movement = {
-            'usuario': this.currentUser._id,
-            'secretaria': this.currentUser.secretaria,
-            'alumno': this.alumno._id,
+            'usuario': this.currentUser[0]._id,
+            'secretaria': this.currentUser[0].secretaria,
+            'alumno': this.alumno[0]._id,
             'action': 'UPDATE',
             'document': documentToAnalize,
             'dateModificationServer': new Date(),
