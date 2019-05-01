@@ -229,7 +229,7 @@ export class DetalleAlumnoDialogComponent {
     searchDocumentForAnyAcordeon(document, accordion) {
         let dataSourceCopy: any;
         dataSourceCopy = this.dataSource.data;
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 8; i++) {
             if (dataSourceCopy[i].documentName === document) {
                 if (accordion === 'Foto') {this.acordeonFoto = i; break; }
                 if (accordion === 'CURP') {this.acordeonCURP = i; break; }
