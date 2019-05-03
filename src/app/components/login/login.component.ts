@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
           break;
         }
         case 'chief': {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/detalleAlumnoJefe');
           break;
         }
       }

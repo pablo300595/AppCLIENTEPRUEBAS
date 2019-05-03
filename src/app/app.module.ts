@@ -103,7 +103,8 @@ const appRoutes: Routes = [
   {path: 'contrato', component: ContratoComponent},
   {path: 'resumen', component: ResumenComponent},
   {path: 'validarDocumentos', component: ValidarDocumentosComponent},
-  {path: 'secretariaMovements', component: SecretariaMovementsComponent}
+  {path: 'secretariaMovements', component: SecretariaMovementsComponent},
+  {path: 'detalleAlumnoJefe', component: DetalleAlumnoJefeComponent}
 ];
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {

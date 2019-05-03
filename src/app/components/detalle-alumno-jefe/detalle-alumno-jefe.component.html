@@ -1,3 +1,94 @@
-<p>
-  detalle-alumno-jefe works!
-</p>
+<div class='login-block'>
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-4 login-sec">
+        <h2 class="text-center">
+          Detalle Alumno
+        </h2>
+      </div>
+    </div>
+
+    <mat-grid-list cols="6" rowHeight="50px">
+      <mat-grid-tile>
+        <mat-checkbox id='ck-EnCaptura' (change)="onChange($event);" [checked]="filterA.value">En captura &nbsp;</mat-checkbox>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-checkbox id='ck-Enviado' (change)="onChange($event);" [checked]="filterB.value">Enviado &nbsp;</mat-checkbox>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-checkbox id='ck-Validado' (change)="onChange($event);" [checked]="filterC.value">Validado &nbsp;
+        </mat-checkbox>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-checkbox id='ck-Aceptado' (change)="onChange($event);" [checked]="filterD.value">Aceptado &nbsp;
+        </mat-checkbox>
+      </mat-grid-tile>
+      <!--<mat-grid-tile>
+        <mat-slide-toggle [(ngModel)]="careerVisualizationMode" (change)="onChangeVisualMode()">
+          <p *ngIf="careerVisualizationMode">Modo Global</p>
+          <p *ngIf="!careerVisualizationMode">Asignadas</p>
+        </mat-slide-toggle>
+      </mat-grid-tile>-->
+      <mat-grid-tile><button (click)="exportAsXLSX()" mat-button>
+          <app-excel-template></app-excel-template>Descargar Excel
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-form-field>
+      <mat-icon matSuffix>search</mat-icon>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar alumno">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="controlNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Número de Control </th>
+          <td mat-cell *matCellDef="let row"> {{row.controlNumber}} </td>
+        </ng-container>
+
+        <!-- Full Name Column -->
+        <ng-container matColumnDef="completeName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre completo </th>
+          <td mat-cell *matCellDef="let row"> {{row.lastNameFather}} {{row.lastNameMother}} {{row.firstName}}</td>
+        </ng-container>
+
+
+        <!-- Career Column -->
+        <ng-container matColumnDef="career">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Carrera </th>
+          <td mat-cell *matCellDef="let row"> {{row.career}} </td>
+        </ng-container>
+
+        <!-- StatusInscription Column -->
+        <ng-container matColumnDef="statusInscripcion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Estátus </th>
+          <td mat-cell *matCellDef="let row"> {{row.statusInscripcion}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+
+          <mat-cell *matCellDef="let row">
+            <button mat-icon-button (click)="preUpdate(row.controlNumber)">
+              <mat-icon>group</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onDelete(row.controlNumber)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </div>
+</div>

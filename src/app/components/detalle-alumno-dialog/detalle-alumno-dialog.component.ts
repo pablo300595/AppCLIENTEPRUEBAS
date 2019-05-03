@@ -132,40 +132,40 @@ export class DetalleAlumnoDialogComponent {
     this.usuarioService.getUsuario(this.currentUsername).subscribe(res => this.currentUser = res);
 
     await this.alumnoService.getAlumno(this.selectedNoCtrl).subscribe(res => {
-        this.alumno = res as any;
-        this.fieldAverage = this.alumno.average;
-        this.fieldCareer = this.alumno.career;
-        this.fieldCity = this.alumno.city;
-        this.fieldColony = this.alumno.colony;
-        this.fieldCURP = this.alumno.curp;
-        this.fieldDateBirth = this.alumno.dateBirth,
-        this.fieldDisability = this.alumno.disability;
-        this.fieldEmail = this.alumno.email;
-        this.fieldEtnia = this.alumno.etnia;
-        this.fieldFirstName = this.alumno.firstName;
-        this.fieldLastNameFather = this.alumno.lastNameFather;
-        this.fieldLastNameMother = this.alumno.lastNameMother;
-        this.fieldNameSchool = this.alumno.nameSchool;
-        this.fieldNSS = this.alumno.nss;
-        this.fieldOtherEtnia = this.alumno.otherEtnia;
-        this.fieldOtherSchool = this.alumno.otherSchool;
-        this.fieldPhone = this.alumno.phone;
-        this.fieldPlaceBirth = this.alumno.placeBirth;
-        this.fieldPostalCode = this.alumno.postalCode;
-        this.fieldSchool = this.alumno.school;
-        this.fieldSex = this.alumno.sex,
-        this.fieldState = this.alumno.state;
-        this.fieldStatusCivil = this.alumno.statusCivil;
-        this.fieldStreet = this.alumno.street;
-        this.fieldWhichDisability = this.alumno.whichDisability;
+        this.alumno = res as Object;
+        this.fieldAverage = this.alumno[0].average;
+        this.fieldCareer = this.alumno[0].career;
+        this.fieldCity = this.alumno[0].city;
+        this.fieldColony = this.alumno[0].colony;
+        this.fieldCURP = this.alumno[0].curp;
+        this.fieldDateBirth = this.alumno[0].dateBirth,
+        this.fieldDisability = this.alumno[0].disability;
+        this.fieldEmail = this.alumno[0].email;
+        this.fieldEtnia = this.alumno[0].etnia;
+        this.fieldFirstName = this.alumno[0].firstName;
+        this.fieldLastNameFather = this.alumno[0].lastNameFather;
+        this.fieldLastNameMother = this.alumno[0].lastNameMother;
+        this.fieldNameSchool = this.alumno[0].nameSchool;
+        this.fieldNSS = this.alumno[0].nss;
+        this.fieldOtherEtnia = this.alumno[0].otherEtnia;
+        this.fieldOtherSchool = this.alumno[0].otherSchool;
+        this.fieldPhone = this.alumno[0].phone;
+        this.fieldPlaceBirth = this.alumno[0].placeBirth;
+        this.fieldPostalCode = this.alumno[0].postalCode;
+        this.fieldSchool = this.alumno[0].school;
+        this.fieldSex = this.alumno[0].sex,
+        this.fieldState = this.alumno[0].state;
+        this.fieldStatusCivil = this.alumno[0].statusCivil;
+        this.fieldStreet = this.alumno[0].street;
+        this.fieldWhichDisability = this.alumno[0].whichDisability;
 
-        this.acta = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/ACTA.pdf`;
-        this.certificado = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CERTIFICADO.pdf`;
-        this.clinicos = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CLINICOS.pdf`;
-        this.comprobante = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/COMPROBANTE.pdf`;
-        this.curp = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CURP.pdf`;
-        this.foto = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FOTO.png`;
-        this.nss = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/NSS.pdf`;
+        this.acta = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/ACTA.pdf`;
+        this.certificado = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/CERTIFICADO.pdf`;
+        this.clinicos = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/CLINICOS.pdf`;
+        this.comprobante = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/COMPROBANTE.pdf`;
+        this.curp = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/CURP.pdf`;
+        this.foto = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/FOTO.png`;
+        this.nss = `https://novaresidencia.000webhostapp.com/${this.alumno[0].controlNumber}/documentos/NSS.pdf`;
 
         this.awaitForValidationData();
         });
