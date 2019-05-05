@@ -52,6 +52,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   // Table
   currentTable: Array<Object>;
   currentPeriodTable: Array<Object>;
+  currentSearchBarTable: Array<Object>;
   globalTable: Array<Object>;
   asignedTable: Array<Object>;
   exportableTable: Array<Object>;
@@ -117,15 +118,22 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     the global predicate. Then it filt
   */
   applyFilter(filterValue: string) {
+    this.currentSearchBarTable = [];
     this.dataSource.filterPredicate = ((data: any, filter: string) => {
       return this.defaultPredicateEvaluation(data, filter);
     });
-    this.dataSource = new MatTableDataSource(this.currentTable);
-    this.exportableTable = this.currentTable;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    // IF pendiente
+    if (this.filterA.value === false && this.filterB.value === false &&
+      this.filterC.value === false && this.filterD.value === false && !this.isGlobalModeEnabled) {
+      this.dataSource = new MatTableDataSource(this.currentPeriodTable);
+    } else {
+      this.dataSource = new MatTableDataSource(this.currentTable);
     }
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.exportableTable = this.currentSearchBarTable;
+    // if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    // }
   }
   /* CalledBy (Clicking check)
   After clicked check changes the global value variable. Then calls a method
@@ -201,6 +209,9 @@ export class DetalleAlumnoJefeComponent implements OnInit {
       data.lastNameMother.includes(filter) ||
       data.career.includes(filter)
     );
+    if (result) {
+      this.currentSearchBarTable.push(data);
+    }
     return result;
   }
   /*CalledBy(Changing Period Select. Year and Cicle)*/
@@ -219,6 +230,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     });
     // Adjust Table data according to VisualizationMode
     this.dataSource.filter = filterValue;
+    this.exportableTable = this.currentPeriodTable;
     this.dataSource.paginator.firstPage();
   }
 
@@ -234,9 +246,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   send the control number by a service variable.
   */
   async preUpdate(ctrlNumber) {
-    console.log('DETALLE NUMERO DE CONTROL: ' + ctrlNumber);
     this.detalleAlumnoService.changeAlumnoToUpdate(ctrlNumber);
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -292,7 +302,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.alumnos);
         this.tableCheck = new Array(this.dataSource.data.length);
         for (let i = 0; i < this.tableCheck.length; i++) { this.tableCheck[i] = false; }
-        this.currentTable = this.exportableTable = this.alumnos; // FEAT
+        this.currentTable = this.alumnos; // FEAT
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -341,10 +351,11 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     });
     // Adjust Table data according to VisualizationMode
     this.dataSource.filter = filterValue;
+    this.exportableTable = this.currentPeriodTable;
 
-    if (this. dataSource.paginator) {
+    // if (this. dataSource.paginator) {
       this.dataSource.paginator.firstPage();
-    }
+    // }
   }
   /*CalledBy() */
   changeToGlobalMode(filter) {
