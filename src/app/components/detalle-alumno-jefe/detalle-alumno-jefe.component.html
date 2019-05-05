@@ -8,6 +8,33 @@
       </div>
     </div>
 
+    <mat-grid-list cols="3" rowHeight="50px">
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-select placeholder="Seleccione el ciclo" [(ngModel)]="currentPeriodMonth" name="status" (selectionChange)="onChangePeriod($event)">
+            <mat-option *ngFor="let mesPeriodo of mesPeriodos" [value]="mesPeriodo.value">
+              {{mesPeriodo.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+          <mat-form-field>
+            <mat-select placeholder="Seleccione el año" [(ngModel)]="currentPeriodYear" name="status" (selectionChange)="onChangePeriod($event)">
+              <mat-option *ngFor="let yearPeriodo of yearPeriodos" [value]="yearPeriodo.value">
+                {{yearPeriodo.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-slide-toggle [(ngModel)]="isGlobalModeEnabled" (change)="changeToGlobalMode($event)">
+            <p *ngIf="isGlobalModeEnabled">Modo Global Activado</p>
+            <p *ngIf="!isGlobalModeEnabled">Modo Global Desactivado</p>
+          </mat-slide-toggle>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <br>
     <mat-grid-list cols="6" rowHeight="50px">
       <mat-grid-tile>
         <mat-checkbox id='ck-EnCaptura' (change)="onChange($event);" [checked]="filterA.value">En captura &nbsp;</mat-checkbox>
@@ -23,12 +50,6 @@
         <mat-checkbox id='ck-Aceptado' (change)="onChange($event);" [checked]="filterD.value">Aceptado &nbsp;
         </mat-checkbox>
       </mat-grid-tile>
-      <!--<mat-grid-tile>
-        <mat-slide-toggle [(ngModel)]="careerVisualizationMode" (change)="onChangeVisualMode()">
-          <p *ngIf="careerVisualizationMode">Modo Global</p>
-          <p *ngIf="!careerVisualizationMode">Asignadas</p>
-        </mat-slide-toggle>
-      </mat-grid-tile>-->
       <mat-grid-tile><button (click)="exportAsXLSX()" mat-button>
           <app-excel-template></app-excel-template>Descargar Excel
         </button>
@@ -42,8 +63,15 @@
 
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
+        <!-- Check Column -->
+        <ng-container matColumnDef="check">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+            <td mat-cell *matCellDef="let row; let i = index">
+                <mat-checkbox [(ngModel)] = "tableCheck[i]" [checked]="tableCheck[i]"> &nbsp;</mat-checkbox>
+            </td>
+        </ng-container>
 
-        <!-- Color Column -->
+        <!-- Control Number Column -->
         <ng-container matColumnDef="controlNumber">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Número de Control </th>
           <td mat-cell *matCellDef="let row"> {{row.controlNumber}} </td>
@@ -83,7 +111,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" (click)="changeCheck(i)">
         </tr>
 
       </table>

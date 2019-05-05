@@ -16,13 +16,22 @@ import { ExcelService } from './../../services/excel.service';
 // Models
 import { Alumno } from './../../models/alumno';
 
+export interface PeriodoMes {
+  value: string;
+  viewValue: string;
+}
+export interface PeriodoYear {
+  value: number;
+  viewValue: number;
+}
+
 @Component({
   selector: 'app-detalle-alumno-jefe',
   templateUrl: './detalle-alumno-jefe.component.html',
   styleUrls: ['./detalle-alumno-jefe.component.css']
 })
 export class DetalleAlumnoJefeComponent implements OnInit {
-  displayedColumns: string[] = [ 'controlNumber', 'completeName', 'career', 'statusInscripcion', 'actions'];
+  displayedColumns: string[] = [ 'check', 'controlNumber', 'completeName', 'career', 'statusInscripcion', 'actions'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -39,12 +48,34 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   currentUser: string; // Stores JUST the username
   currentUserToLoadCareer: any; // Stores WHOLE current user data
   // Mecanisms
-  careerVisualizationMode: boolean;
+  isGlobalModeEnabled: boolean;
   // Table
   currentTable: Array<Object>;
+  currentPeriodTable: Array<Object>;
   globalTable: Array<Object>;
   asignedTable: Array<Object>;
   exportableTable: Array<Object>;
+  // Interface data
+  mesPeriodos: PeriodoMes[] = [
+    { value: 'Enero-Junio', viewValue: 'Enero-Junio' },
+    { value: 'Agosto-Diciembre', viewValue: 'Agosto-Diciembre' }
+  ];
+  yearPeriodos: PeriodoYear[] = [
+    { value: 2010, viewValue: 2010 },
+    { value: 2011, viewValue: 2011 },
+    { value: 2012, viewValue: 2012 },
+    { value: 2013, viewValue: 2013 },
+    { value: 2014, viewValue: 2014 },
+    { value: 2015, viewValue: 2015 },
+    { value: 2016, viewValue: 2016 },
+    { value: 2017, viewValue: 2017 },
+    { value: 2018, viewValue: 2018 },
+    { value: 2019, viewValue: 2019 }
+  ];
+  // NgVariables from components
+  currentPeriodMonth = 'Enero-Junio';
+  currentPeriodYear;
+  tableCheck: Array<boolean>;
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService,
     private usuarioService: UsuarioService, private loginService: LoginService,
@@ -54,7 +85,9 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     this.filterC = { 'value': false, 'filter': 'Validado' };
     this.filterD = { 'value': false, 'filter': 'Aceptado' };
 
-    this.careerVisualizationMode = false;
+    this.isGlobalModeEnabled = false;
+    this.currentPeriodYear = (new Date()).getFullYear();
+    this.tableCheck = [];
   }
 
   ngOnInit() {
@@ -99,6 +132,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   that evaluate each element from the global dataSource.
   */
   onChange(event) {
+    for (let i = 0; i < this.tableCheck.length; i++) {this.tableCheck[i] = false;}
     if (event.source.id === 'ck-EnCaptura') { this.filterA.value = event.checked; }
     if (event.source.id === 'ck-Enviado') { this.filterB.value = event.checked; }
     if (event.source.id === 'ck-Validado') { this.filterC.value = event.checked; }
@@ -112,6 +146,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   they are restarted.
   */
   applyFilterOfCheck(filterValue) {
+    this.dataSource = new MatTableDataSource(this.currentPeriodTable);
     if (!this.filterA.value) { this.filterA.filter = ''; }
     if (!this.filterB.value) { this.filterB.filter = ''; }
     if (!this.filterC.value) { this.filterC.filter = ''; }
@@ -130,8 +165,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
       return this.customPredicateEvaluation(data);
     });
     // Adjust Table data according to VisualizationMode
-    // this.changeMatTableContent();
-    this.dataSource.filter = filterValue;
+    this.dataSource.filter = 'true';
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -154,21 +188,43 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     if (result) { this.currentTable.push(data); }
     return result;
   }
-  /*CalledBy(applyFilterOfCheck)
-    Methods that update MatTableData
-  */
-  changeMatTableContent() {
-    this.dataSource = new MatTableDataSource(this.globalTable);
-  }
+
   /*UsedBy not Called(applyFilterOfCheck)
-    Changes predicate for MatTableData
-  */
+    Changes predicate for MatTableData*/
   defaultPredicateEvaluation(data, filter) {
     const result = (data.controlNumber.includes(filter) ||
       data.lastNameFather.includes(filter) ||
       data.lastNameMother.includes(filter) ||
       data.career.includes(filter)
     );
+    return result;
+  }
+  /*CalledBy(Changing Period Select. Year and Cicle)*/
+  onChangePeriod(filterValue) {
+    // Clean check content and dataSource init
+    this.isGlobalModeEnabled = false;
+    this.filterA = { 'value': false, 'filter': 'En captura' };
+    this.filterB = { 'value': false, 'filter': 'Enviado' };
+    this.filterC = { 'value': false, 'filter': 'Validado' };
+    this.filterD = { 'value': false, 'filter': 'Aceptado' };
+    this.dataSource = new MatTableDataSource(this.globalTable);
+    // Segment that validates element by element (Called after this.dataSource.filter)
+    this.currentPeriodTable = [];
+    this.dataSource.filterPredicate = ((data: any, filter: string) => {
+      return this.customPredicateEvaluationPeriod(data);
+    });
+    // Adjust Table data according to VisualizationMode
+    this.dataSource.filter = filterValue;
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  customPredicateEvaluationPeriod(data) {
+    const result = (data.alumno_periodo[0].añoPeriodo === this.currentPeriodYear
+      && data.alumno_periodo[0].periodo === this.currentPeriodMonth);
+    if (result) { this.currentPeriodTable.push(data); }
     return result;
   }
 
@@ -193,7 +249,9 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     the asigned careers, while MODO GLOBAL request every Alumno
   */
   doRefreshTable() {
-    this.getGlobalTableData();
+    this.changeToGlobalMode('');
+    // this.dataSource = new MatTableDataSource(this.currentPeriodTable); TO UNCOMMENT
+    // this.getGlobalTableData();
   }
   /* CalledBy(doRefreshTable)
     Method that makes a POST request to https://app-apipruebas.herokuapp.com/alumnos
@@ -229,11 +287,15 @@ export class DetalleAlumnoJefeComponent implements OnInit {
         console.log(this.alumnos);
 
         this.asignedTable = this.alumnos;
+        this.globalTable = this.alumnos;
         this.dataSource = new MatTableDataSource(this.alumnos);
+        this.tableCheck = new Array(this.dataSource.data.length);
+        for (let i = 0; i < this.tableCheck.length; i++) { this.tableCheck[i] = false; }
         this.currentTable = this.exportableTable = this.alumnos; // FEAT
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.forceFilter(res);
       });
   }
 
@@ -257,5 +319,56 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   */
   exportAsXLSX() {
     this.excelService.exportAsExcelFile(this.exportableTable, 'sample');
+  }
+  /*CalledBy(Clicking one row)
+  Changes the value from the global array tableCheck that stores y a row is clicked*/
+  changeCheck(index) {
+    this.tableCheck[index] = !this.tableCheck[index];
+  }
+  /*CalledBy(getAsignedTableData) Initially forces to start with period mode filtering*/
+  forceFilter(filterValue) {
+    // Clean check content and dataSource init
+    this.filterA = { 'value': false, 'filter': 'En captura' };
+    this.filterB = { 'value': false, 'filter': 'Enviado' };
+    this.filterC = { 'value': false, 'filter': 'Validado' };
+    this.filterD = { 'value': false, 'filter': 'Aceptado' };
+    this.dataSource = new MatTableDataSource(this.globalTable);
+    // Segment that validates element by element (Called after this.dataSource.filter)
+    this.currentPeriodTable = [];
+    this.dataSource.filterPredicate = ((data: any, filter: string) => {
+      return this.customPredicateEvaluationPeriod(data);
+    });
+    // Adjust Table data according to VisualizationMode
+    this.dataSource.filter = filterValue;
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+  /*CalledBy() */
+  changeToGlobalMode(filter) {
+    if (this.isGlobalModeEnabled) {
+      this.getGlobalTableData();
+      this.forceGlobalFilter(filter);
+    } else {
+      this.onChangePeriod(filter + '5');
+    }
+  }
+  /* */
+  forceGlobalFilter(filter) {
+    // Clean check content and dataSource init
+    this.filterA = { 'value': false, 'filter': 'En captura' };
+    this.filterB = { 'value': false, 'filter': 'Enviado' };
+    this.filterC = { 'value': false, 'filter': 'Validado' };
+    this.filterD = { 'value': false, 'filter': 'Aceptado' };
+
+    this.dataSource.filterPredicate = ((data: any, filt: string) => {
+      return this.customGlobalFilter(data);
+    });
+    this.dataSource.filter = filter;
+  }
+
+  customGlobalFilter(data) {
+    return true;
   }
 }
