@@ -146,7 +146,11 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   they are restarted.
   */
   applyFilterOfCheck(filterValue) {
-    this.dataSource = new MatTableDataSource(this.currentPeriodTable);
+    if (this.isGlobalModeEnabled) {
+      this.dataSource = new MatTableDataSource(this.globalTable);
+    } else {
+      this.dataSource = new MatTableDataSource(this.currentPeriodTable);
+    }
     if (!this.filterA.value) { this.filterA.filter = ''; }
     if (!this.filterB.value) { this.filterB.filter = ''; }
     if (!this.filterC.value) { this.filterC.filter = ''; }
@@ -215,10 +219,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     });
     // Adjust Table data according to VisualizationMode
     this.dataSource.filter = filterValue;
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    this.dataSource.paginator.firstPage();
   }
 
   customPredicateEvaluationPeriod(data) {
@@ -341,7 +342,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     // Adjust Table data according to VisualizationMode
     this.dataSource.filter = filterValue;
 
-    if (this.dataSource.paginator) {
+    if (this. dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
