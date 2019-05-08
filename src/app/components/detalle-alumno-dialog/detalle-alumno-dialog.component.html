@@ -391,6 +391,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonCertificado].status == 'En proceso'">{{dataSource.data[acordeonCertificado].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonCertificado].status == 'Rechazado'">{{dataSource.data[acordeonCertificado].status}}</mat-chip>
                 <mat-chip style="background-color: darkgreen;" selected *ngIf="dataSource.data[acordeonCertificado].status == 'Aceptado'" >{{dataSource.data[acordeonCertificado].status}}</mat-chip>
+                <mat-chip style="background-color: black;" selected *ngIf="dataSource.data[acordeonCertificado].status == 'Validado'" >{{dataSource.data[acordeonCertificado].status}}</mat-chip>
               </mat-chip-list>
               
               <div class="container">
@@ -404,9 +405,16 @@
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="certificado"></pdf-viewer>
             <h4>Status del documento</h4>
-            <mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential!=='chief'">
               <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[0]" name="status">
                 <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                  {{formulario.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential=='chief'">
+              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[0]" name="status">
+                <mat-option *ngFor="let formulario of formulariosFull" [value]="formulario.value">
                   {{formulario.viewValue}}
                 </mat-option>
               </mat-select>
@@ -433,6 +441,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonActa].status == 'En proceso'">{{dataSource.data[acordeonActa].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonActa].status == 'Rechazado'">{{dataSource.data[acordeonActa].status}}</mat-chip>
                 <mat-chip style="background-color: darkgreen;" selected *ngIf="dataSource.data[acordeonActa].status == 'Aceptado'">{{dataSource.data[acordeonActa].status}}</mat-chip>
+                <mat-chip style="background-color: black;" selected *ngIf="dataSource.data[acordeonActa].status == 'Validado'">{{dataSource.data[acordeonActa].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="container">
@@ -447,9 +456,16 @@
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="acta"></pdf-viewer>
             <h4>Status del documento</h4>
-            <mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential!=='chief'">
               <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[1]" name="status">
                 <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                  {{formulario.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential=='chief'">
+              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[1]" name="status">
+                <mat-option *ngFor="let formulario of formulariosFull" [value]="formulario.value">
                   {{formulario.viewValue}}
                 </mat-option>
               </mat-select>
@@ -475,6 +491,7 @@
                 <mat-chip style="background-color: #f7db13" selected *ngIf="dataSource.data[acordeonCURP].status == 'En proceso'">{{dataSource.data[acordeonCURP].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Rechazado'">{{dataSource.data[acordeonCURP].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Aceptado'">{{dataSource.data[acordeonCURP].status}}</mat-chip>
+                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Validado'">{{dataSource.data[acordeonCURP].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="container">
@@ -489,9 +506,16 @@
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="curp"></pdf-viewer>
             <h4>Status del documento</h4>
-            <mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential!=='chief'">
               <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[2]" name="status">
                 <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                  {{formulario.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential=='chief'">
+              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[2]" name="status">
+                <mat-option *ngFor="let formulario of formulariosFull" [value]="formulario.value">
                   {{formulario.viewValue}}
                 </mat-option>
               </mat-select>
@@ -517,6 +541,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonPago].status == 'En proceso'">{{dataSource.data[acordeonPago].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonPago].status == 'Rechazado'">{{dataSource.data[acordeonPago].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonPago].status == 'Aceptado'">{{dataSource.data[acordeonPago].status}}</mat-chip>
+                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonPago].status == 'Validado'">{{dataSource.data[acordeonPago].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="container">
@@ -530,9 +555,16 @@
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="comprobante"></pdf-viewer>
             <h4>Status del documento</h4>
-            <mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential!=='chief'">
               <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[3]" name="status">
                 <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                  {{formulario.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential=='chief'">
+              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[3]" name="status">
+                <mat-option *ngFor="let formulario of formulariosFull" [value]="formulario.value">
                   {{formulario.viewValue}}
                 </mat-option>
               </mat-select>
@@ -558,6 +590,7 @@
                <mat-chip style="background-color: #f7db13" selected *ngIf="dataSource.data[acordeonClinicos].status == 'En proceso'">{{dataSource.data[acordeonClinicos].status}}</mat-chip>
                <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonClinicos].status == 'Rechazado'">{{dataSource.data[acordeonClinicos].status}}</mat-chip>
                <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonClinicos].status == 'Aceptado'">{{dataSource.data[acordeonClinicos].status}}</mat-chip>
+               <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonClinicos].status == 'Validado'">{{dataSource.data[acordeonClinicos].status}}</mat-chip>
              </mat-chip-list>
             <div class="container">
               RESULTADO DE ANÁLISIS CLÍNICOS
@@ -570,9 +603,16 @@
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="clinicos"></pdf-viewer>
             <h4>Status del documento</h4>
-            <mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential!=='chief'">
               <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[4]" name="status">
                 <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                  {{formulario.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential=='chief'">
+              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[4]" name="status">
+                <mat-option *ngFor="let formulario of formulariosFull" [value]="formulario.value">
                   {{formulario.viewValue}}
                 </mat-option>
               </mat-select>
@@ -598,6 +638,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonNSS].status == 'En proceso'">{{dataSource.data[acordeonNSS].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonNSS].status == 'Rechazado'">{{dataSource.data[acordeonNSS].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonNSS].status == 'Aceptado'">{{dataSource.data[acordeonNSS].status}}</mat-chip>
+                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonNSS].status == 'Validado'">{{dataSource.data[acordeonNSS].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="container">
@@ -611,9 +652,16 @@
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="nss"></pdf-viewer>
             <h4>Status del documento</h4>
-            <mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential!=='chief'">
               <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[5]" name="status">
                 <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                  {{formulario.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential=='chief'">
+              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[5]" name="status">
+                <mat-option *ngFor="let formulario of formulariosFull" [value]="formulario.value">
                   {{formulario.viewValue}}
                 </mat-option>
               </mat-select>
@@ -640,6 +688,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonFoto].status == 'En proceso'">{{dataSource.data[acordeonFoto].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonFoto].status == 'Rechazado'">{{dataSource.data[acordeonFoto].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonFoto].status == 'Aceptado'">{{dataSource.data[acordeonFoto].status}}</mat-chip>
+                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonFoto].status == 'Validado'">{{dataSource.data[acordeonFoto].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="container">
@@ -651,9 +700,16 @@
           <ng-template matExpansionPanelContent>
             <img [src]="foto">
             <h4>Status del documento</h4>
-            <mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential!=='chief'">
               <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[6]" name="status">
                 <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                  {{formulario.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential=='chief'">
+              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[6]" name="status">
+                <mat-option *ngFor="let formulario of formulariosFull" [value]="formulario.value">
                   {{formulario.viewValue}}
                 </mat-option>
               </mat-select>
@@ -679,6 +735,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonFormulario].status == 'En proceso'">{{dataSource.data[acordeonFormulario].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonFormulario].status == 'Rechazado'">{{dataSource.data[acordeonFormulario].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonFormulario].status == 'Aceptado'">{{dataSource.data[acordeonFormulario].status}}</mat-chip>
+                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonFormulario].status == 'Validado'">{{dataSource.data[acordeonFormulario].status}}</mat-chip>
               </mat-chip-list>
               <div class="container">
                 FORMULARIO
@@ -691,9 +748,16 @@
           <ng-template matExpansionPanelContent>
             <pdf-viewer [src]="formulario"></pdf-viewer>
             <h4>Status del documento</h4>
-            <mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential!=='chief'">
               <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[7]" name="status">
                 <mat-option *ngFor="let formulario of formularios" [value]="formulario.value">
+                  {{formulario.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="currentUser[0].credential=='chief'">
+              <mat-select placeholder="Seleccione el status del documento" [(ngModel)]="allDocumentStatus[7]" name="status">
+                <mat-option *ngFor="let formulario of formulariosFull" [value]="formulario.value">
                   {{formulario.viewValue}}
                 </mat-option>
               </mat-select>
@@ -734,6 +798,7 @@
                   <mat-chip style="background-color: #f7db13" selected *ngIf="row.status == 'En proceso'">{{row.status}}</mat-chip>
                   <mat-chip style="background-color: red;" selected *ngIf="row.status == 'Rechazado'">{{row.status}}</mat-chip>
                   <mat-chip selected *ngIf="row.status == 'Aceptado'" style="background-color:darkgreen;">{{row.status}}</mat-chip>
+                  <mat-chip selected *ngIf="row.status == 'Validado'" style="background-color:black;">{{row.status}}</mat-chip>
                 </mat-chip-list>
               </td>
             </ng-container>

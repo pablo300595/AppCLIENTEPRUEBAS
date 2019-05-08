@@ -383,4 +383,10 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   customGlobalFilter(data) {
     return true;
   }
+  /*CalledBy(Clicking Validar Seleccion)
+  It will update each selected row by a check, if all documents are validated a request will be made*/
+  validateSelectedRows() {
+    console.log('');
+    // this.alumnoService.putStatusAlumnoByCtrl();
+  }
 }

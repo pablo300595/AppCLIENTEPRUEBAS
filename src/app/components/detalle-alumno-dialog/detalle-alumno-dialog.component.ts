@@ -101,6 +101,12 @@ export class DetalleAlumnoDialogComponent {
         { value: 'En proceso', viewValue: 'En proceso' },
         { value: 'Rechazado', viewValue: 'Rechazado' }
     ];
+    formulariosFull: StatusDocumento[] = [
+        { value: 'Aceptado', viewValue: 'Aceptado' },
+        { value: 'En proceso', viewValue: 'En proceso' },
+        { value: 'Rechazado', viewValue: 'Rechazado' },
+        { value: 'Validado', viewValue: 'Validado' }
+    ];
 
     // Services variables
     alumno: any;
@@ -171,7 +177,7 @@ export class DetalleAlumnoDialogComponent {
         this.awaitForValidationData();
         });
     }
-    /* CalledBy (awaitForAlumnoData)
+    /* CalledBy (awaitForAlumnoData, checkIfAllDocumentsValidated)
     Method that makes a GET request to https://app-apipruebas.herokuapp.com/alumnos/documentation/:id
     then delivers all documentation into a global variable documentation. The object retrieved
     is used to generate information in allDocumentStatus and allDocumentObservations*/
@@ -356,6 +362,29 @@ export class DetalleAlumnoDialogComponent {
         this.secretariaMovementsService.registerSecretaryMovement(movement).subscribe();
         this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.selectedNoCtrl, this.dataFormulario).subscribe(res => {
             this.messagesService.success('¡Estatus de documento actualizado exitosamente!');
+            this.checkIfAllDocumentsValidated();
         });
+    }
+    /*CalledBy (validateForm)
+    Checks if all documents are validated*/
+    checkIfAllDocumentsValidated() {
+        setTimeout( () => {
+            this.awaitForValidationData();
+            setTimeout(() => {
+                let validatedDocsQty = 0;
+                for (let i = 0; i < this.documentation.length; i++) {
+                    if (this.documentation[i].status === 'Validado') {
+                        validatedDocsQty++;
+                    }
+                }
+                if (validatedDocsQty === 8) {
+                    console.log('Validados todos');
+                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Aceptado'}, this.selectedNoCtrl).subscribe(
+                        res => this.messagesService.success('¡Todos los documentos han sido validados!')
+                    );
+                }
+            }, 500);
+        }, 500);
+        console.log('hi');
     }
 }

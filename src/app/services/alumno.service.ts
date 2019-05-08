@@ -57,6 +57,10 @@ export class AlumnoService {
     return this.http.put(this.URL + `/status/${id}`, alumno);
   }
 
+  putStatusAlumnoByCtrl(alumno: any , id) {
+    return this.http.put(this.URL + `/status/ctrl/${id}`, alumno);
+  }
+
   putAlumnoByCtrl(alumno: Alumno , id) {
     return this.http.put(this.URL + `/ctrl/${id}`, alumno);
   }
