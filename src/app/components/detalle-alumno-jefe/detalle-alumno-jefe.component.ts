@@ -13,8 +13,10 @@ import { AlumnoService } from './../../services/alumno.service';
 import { UsuarioService } from './../../services/usuario.service';
 import { LoginService } from './../../services/login.service';
 import { ExcelService } from './../../services/excel.service';
+import { MessagesService } from './../../services/messages.service';
 // Models
 import { Alumno } from './../../models/alumno';
+import { Observable } from 'rxjs';
 
 export interface PeriodoMes {
   value: string;
@@ -31,6 +33,16 @@ export interface PeriodoYear {
   styleUrls: ['./detalle-alumno-jefe.component.css']
 })
 export class DetalleAlumnoJefeComponent implements OnInit {
+  // RJX
+  public responseData1: any;
+  public responseData2: any;
+  public responseData3: any;
+  public responseData4: any;
+  public responseData5: any;
+  public responseData6: any;
+  public responseData7: any;
+  public responseData8: any;
+  // TABLE DATA
   displayedColumns: string[] = [ 'check', 'controlNumber', 'completeName', 'career', 'statusInscripcion', 'actions'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -77,10 +89,12 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   currentPeriodMonth = 'Enero-Junio';
   currentPeriodYear;
   tableCheck: Array<boolean>;
+  tableCheckGlobal: Array<any>;
+  globalComment = '';
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService,
     private usuarioService: UsuarioService, private loginService: LoginService,
-    private excelService: ExcelService) {
+    private excelService: ExcelService, private messagesService: MessagesService) {
     this.filterA = { 'value': false, 'filter': 'En captura' };
     this.filterB = { 'value': false, 'filter': 'Enviado' };
     this.filterC = { 'value': false, 'filter': 'Validado' };
@@ -89,6 +103,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     this.isGlobalModeEnabled = false;
     this.currentPeriodYear = (new Date()).getFullYear();
     this.tableCheck = [];
+    this.tableCheckGlobal = [];
   }
 
   ngOnInit() {
@@ -118,6 +133,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     the global predicate. Then it filt
   */
   applyFilter(filterValue: string) {
+    this.resetCheckGlobalArray();
     this.currentSearchBarTable = [];
     this.dataSource.filterPredicate = ((data: any, filter: string) => {
       return this.defaultPredicateEvaluation(data, filter);
@@ -140,7 +156,8 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   that evaluate each element from the global dataSource.
   */
   onChange(event) {
-    for (let i = 0; i < this.tableCheck.length; i++) {this.tableCheck[i] = false;}
+    this.resetCheckGlobalArray();
+    for (let i = 0; i < this.tableCheck.length; i++) { this.tableCheck[i] = false; }
     if (event.source.id === 'ck-EnCaptura') { this.filterA.value = event.checked; }
     if (event.source.id === 'ck-Enviado') { this.filterB.value = event.checked; }
     if (event.source.id === 'ck-Validado') { this.filterC.value = event.checked; }
@@ -217,6 +234,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   /*CalledBy(Changing Period Select. Year and Cicle)*/
   onChangePeriod(filterValue) {
     // Clean check content and dataSource init
+    this.resetCheckGlobalArray();
     this.isGlobalModeEnabled = false;
     this.filterA = { 'value': false, 'filter': 'En captura' };
     this.filterB = { 'value': false, 'filter': 'Enviado' };
@@ -235,7 +253,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   }
 
   customPredicateEvaluationPeriod(data) {
-    const result = (data.alumno_periodo[0].añoPeriodo === this.currentPeriodYear
+    const result = (data.alumno_periodo[0].yearPeriodo === this.currentPeriodYear
       && data.alumno_periodo[0].periodo === this.currentPeriodMonth);
     if (result) { this.currentPeriodTable.push(data); }
     return result;
@@ -301,6 +319,8 @@ export class DetalleAlumnoJefeComponent implements OnInit {
         this.globalTable = this.alumnos;
         this.dataSource = new MatTableDataSource(this.alumnos);
         this.tableCheck = new Array(this.dataSource.data.length);
+        this.tableCheckGlobal = new Array(this.dataSource.data.length);
+        this.generateCheckArray();
         for (let i = 0; i < this.tableCheck.length; i++) { this.tableCheck[i] = false; }
         this.currentTable = this.alumnos; // FEAT
 
@@ -333,8 +353,14 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   }
   /*CalledBy(Clicking one row)
   Changes the value from the global array tableCheck that stores y a row is clicked*/
-  changeCheck(index) {
+  changeCheck(index, row) {
     this.tableCheck[index] = !this.tableCheck[index];
+    for (let i = 0; i < this.tableCheckGlobal.length; i++) {
+      if (row._id === this.tableCheckGlobal[i].id) {
+        this.tableCheckGlobal[i].checkValue = !this.tableCheckGlobal[i].checkValue;
+      }
+    }
+    console.log(row);
   }
   /*CalledBy(getAsignedTableData) Initially forces to start with period mode filtering*/
   forceFilter(filterValue) {
@@ -354,11 +380,12 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     this.exportableTable = this.currentPeriodTable;
 
     // if (this. dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    this.dataSource.paginator.firstPage();
     // }
   }
   /*CalledBy() */
   changeToGlobalMode(filter) {
+    this.resetCheckGlobalArray(); // NEW
     if (this.isGlobalModeEnabled) {
       this.getGlobalTableData();
       this.forceGlobalFilter(filter);
@@ -386,7 +413,68 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   /*CalledBy(Clicking Validar Seleccion)
   It will update each selected row by a check, if all documents are validated a request will be made*/
   validateSelectedRows() {
-    console.log('');
-    // this.alumnoService.putStatusAlumnoByCtrl();
+    const globalTableAny: any = this.globalTable;
+
+    for (let i = 0; i < this.tableCheckGlobal.length ; i++) {
+      if (this.tableCheckGlobal[i].checkValue) {
+        for (let j = 0; j < globalTableAny.length; j++) {
+          if (this.tableCheckGlobal[i].id === globalTableAny[j]._id) {
+            this.validateEachStudentDocument(globalTableAny[j].controlNumber);
+          }
+        }
+        this.alumnoService.putStatusAlumno({statusInscripcion: 'Aceptado'}, this.tableCheckGlobal[i].id).subscribe();
+      }
+    }
+  }
+
+  validateEachStudentDocument(id) {
+    const docA = {documentName: 'ACTA', status: 'Validado', observacion: this.globalComment};
+    const docB = {documentName: 'CURP', status: 'Validado', observacion: this.globalComment};
+    const docC = {documentName: 'NSS', status: 'Validado', observacion: this.globalComment};
+    const docD = {documentName: 'FORMULARIO', status: 'Validado', observacion: this.globalComment};
+    const docE = {documentName: 'FOTO', status: 'Validado', observacion: this.globalComment};
+    const docF = {documentName: 'CLINICOS', status: 'Validado', observacion: this.globalComment};
+    const docG = {documentName: 'COMPROBANTE', status: 'Validado', observacion: this.globalComment};
+    const docH = {documentName: 'CERTIFICADO', status: 'Validado', observacion: this.globalComment};
+    this.alumnoService.requestDataFromMultipleSources(id,
+      docA, docB, docC, docD, docE, docF, docG, docH
+    ).subscribe(responseList => {
+      this.responseData1 = responseList[0];
+      this.responseData2 = responseList[1];
+      this.responseData3 = responseList[3];
+      this.responseData4 = responseList[4];
+      this.responseData5 = responseList[5];
+      this.responseData6 = responseList[6];
+      this.responseData7 = responseList[7];
+      this.responseData8 = responseList[8];
+    });
+  }
+
+  generateCheckArray() {
+    const globalTableAny: any = this.globalTable;
+    for (let i = 0; i < globalTableAny.length; i++) {
+      this.tableCheckGlobal[i] = {pos: i, checkValue: false, id: globalTableAny[i]._id};
+    }
+  }
+
+  resetCheckGlobalArray() {
+    for (let i = 0; i < this.tableCheckGlobal.length; i++) {
+      this.tableCheckGlobal[i].checkValue = false;
+    }
+    for (let i = 0; i < this.tableCheck.length; i++) {
+      this.tableCheck[i] = false;
+    }
+  }
+
+  markAllCurrentChecks() {
+    console.log();
+    for (let i = 0; i < this.tableCheckGlobal.length; i++) {
+      for (let j = 0; j < this.exportableTable.length; j++) {
+        if (this.tableCheckGlobal[i].checkValue &&
+          this.tableCheckGlobal[i].id === this.exportableTable) {
+
+        }
+      }
+    }
   }
 }

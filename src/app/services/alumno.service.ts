@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Alumno } from './../models/alumno';
+import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
+import { forkJoin } from 'rxjs';  // RxJS 6 syntax
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +84,17 @@ export class AlumnoService {
     return this.http.get(this.URL + `/documentation/${_id}`);
   }
 
-
+  public requestDataFromMultipleSources(ctrlNumber, docA, docB, docC,docD, docE, docF, docG, docH): Observable<any[]> {
+    const response1 = this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, docA);
+    const response2 = this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, docB);
+    const response3 = this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, docC);
+    const response4 = this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, docD);
+    const response5 = this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, docE);
+    const response6 = this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, docF);
+    const response7 = this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, docG);
+    const response8 = this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, docH);
+    // Observable.forkJoin (RxJS 5) changes to just forkJoin() in RxJS 6
+    return forkJoin([response1, response2, response3, response4, response5, response6, response7, response8]);
+  }
 }
 
