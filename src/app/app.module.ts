@@ -66,6 +66,7 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import {MatNativeDateModule} from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
@@ -175,7 +176,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatIconModule,
     MatCardModule,
     MatExpansionModule,
-    PdfViewerModule
+    PdfViewerModule,
+    MatSlideToggleModule
   ],
   entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent,
     MatConfirmDialogComponent, ModalViewComponent,ValidarDocumentosModalComponent,

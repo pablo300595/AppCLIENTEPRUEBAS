@@ -115,7 +115,7 @@ export class TemplateLinkDownloadsComponent implements OnInit {
 /*
   downloadPDF() {
     console.log('PDF');
-    const doc = new jsPDF();
+    /*const doc = new jsPDF();
 
     // Cuadro 1
     doc.setDrawColor(0);
@@ -303,6 +303,7 @@ export class TemplateLinkDownloadsComponent implements OnInit {
     doc.setFontType('normal');
     doc.text(this.fieldWhichDisability, 80, 245);
     doc.save('FORMULARIO.pdf');
+    */
   }
 */
 }

@@ -11,11 +11,14 @@ import { DetalleAlumnoService } from './../../services/detalle-alumno.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { AlumnoService } from './../../services/alumno.service';
+import { PeriodoService } from './../../services/periodo.service';
 import { UsuarioService } from './../../services/usuario.service';
 import { LoginService } from './../../services/login.service';
 import { ExcelService } from './../../services/excel.service';
 // Models
+import { Periodo } from './../../models/periodo';
 import { Alumno } from './../../models/alumno';
+
 
 @Component({
   selector: 'app-gestionar-periodos',
@@ -23,38 +26,38 @@ import { Alumno } from './../../models/alumno';
   styleUrls: ['./gestionar-periodos.component.css']
 })
 export class GestionarPeriodosComponent implements OnInit {
-
-  displayedColumns: string[] = ['controlNumber', 'Name', 'career', 'actions'];
+  displayedColumns: string[] = ['periodo','yearPeriodo', 'fechaApertura', 'fechaCierre', 'activo', 'actions' ];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  checked = false;
+  // Filters
+  filterA: any;
+  filterB: any;
+  filterC: any;
+  filterD: any;
 
-    checked = false;
-  
-    // Filters
-    filterA: any;
-    filterB: any;
-    filterC: any;
-    filterD: any;
-  
-    alumno: Alumno;
-    alumnos: any;
-  
-    selectedNoCtrl: string;
-    currentUser: string; // Stores JUST the username
-    currentUserToLoadCareer: any; // Stores WHOLE current user data
-  
-    // Mecanisms
-    careerVisualizationMode: boolean;
-  
-    // Table
-    currentTable: Array<Object>;
-    globalTable: Array<Object>;
-    asignedTable: Array<Object>;
-    exportableTable: Array<Object>;
+  alumno: Alumno;
+  alumnos: any;
 
-  constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
+  periodo: Periodo;
+  periodos: any;
+  period: any;
+  idPeriodo: any;
+
+  selectedNoCtrl: string;
+  currentUser: string; // Stores JUST the username
+  currentUserToLoadCareer: any; // Stores WHOLE current user data
+  // Mecanisms
+  careerVisualizationMode: boolean;
+  // Table
+  currentTable: Array<Object>;
+  globalTable: Array<Object>;
+  asignedTable: Array<Object>;
+  exportableTable: Array<Object>;
+
+  constructor(private periodoService: PeriodoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService,
     private usuarioService: UsuarioService, private loginService: LoginService,
     private excelService: ExcelService) {
@@ -69,15 +72,29 @@ export class GestionarPeriodosComponent implements OnInit {
 
   ngOnInit() {
     // this.detalleAlumnoService.currentRowCtrlNumber.subscribe(res => this.selectedNoCtrl = res); // Gets control number of selected row
+    /*
     this.loginService.currentUser.subscribe(res => this.currentUser = res); // Gets current username loged
     this.usuarioService.getUsuario(this.currentUser).subscribe(res => this.currentUserToLoadCareer = res);
 
     setTimeout(() => {
       this.getAsignedTableData(this.currentUserToLoadCareer);
-    }, 500);
+    }, 500);*/
+    console.log('');
+    this.periodoService.getPeriodos()
+      .subscribe(res => {
+        this.periodoService.periodos = res as Periodo[];
+        this.periodos = res;
+        console.log(this.periodos);
+
+        this.dataSource = new MatTableDataSource(this.periodos);
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
   }
 
-  refreshTableAlumnosData() {
+  /*
+  refreshTablePeriodosData() {
     this.alumnoService.getAlumnosByCareer(this.currentUserToLoadCareer)
       .subscribe(res => {
         this.alumnoService.alumnos = res as Alumno[];
@@ -90,6 +107,7 @@ export class GestionarPeriodosComponent implements OnInit {
         this.dataSource.sort = this.sort;
       });
   }
+  */
   /* CalledBy (Writing in search bar)
     Method that check if the actual text provided by search bar matches
     the global predicate. Then it filt
@@ -109,14 +127,16 @@ export class GestionarPeriodosComponent implements OnInit {
   After clicked check changes the global value variable. Then calls a method
   that evaluate each element from the global dataSource.
   */
+/*
   onChange(event) {
-    if (event.source.id === 'ck-EnCaptura') { this.filterA.value = event.checked; }
+    if (event.source.idd === 'ck-EnCaptura') { this.filterA.value = event.checked; }
     if (event.source.id === 'ck-Enviado') { this.filterB.value = event.checked; }
     if (event.source.id === 'ck-Validado') { this.filterC.value = event.checked; }
     if (event.source.id === 'ck-Aceptado') { this.filterD.value = event.checked; }
 
     this.applyFilterOfCheck(event);
-  }
+  }*/
+
   /* CalledBy (onChange) checkbox click
   Adjust the global variables to evaluate each element of the current table.
   The properties of the filters are modified to achieve this and in the end
@@ -222,15 +242,15 @@ export class GestionarPeriodosComponent implements OnInit {
     where an array composed by Students and its documents is retrieved. Finally Global values are updated with this
   */
   getGlobalTableData() {
-    this.alumnoService.getAlumnos()
+    this.periodoService.getPeriodos()
       .subscribe(res => {
-        this.alumnoService.alumnos = res as Alumno[];
-        this.alumnos = res;
-        console.log(this.alumnos);
+        this.periodoService.periodos = res as Periodo[];
+        this.periodos = res;
+        console.log(this.periodos);
 
-        this.globalTable = this.alumnos;
-        this.dataSource = new MatTableDataSource(this.alumnos);
-        this.currentTable = this.exportableTable = this.alumnos; // FEAT
+        this.globalTable = this.periodos;
+        this.dataSource = new MatTableDataSource(this.periodos);
+        this.currentTable = this.exportableTable = this.periodos; // FEAT
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -242,23 +262,25 @@ export class GestionarPeriodosComponent implements OnInit {
     Then it makes a POST request to https://app-apipruebas.herokuapp.com/alumnos/career
     where an array composed by Students and its documents is retrieved. Finally Global values are updated with this
   */
-  getAsignedTableData(careers) {
-    console.log('DATA');
-    this.alumnoService.getAlumnosByCareer(careers)
-      .subscribe(res => {
-        this.alumnoService.alumnos = res as Alumno[];
-        this.alumnos = res;
-        console.log(this.alumnos);
 
-        this.asignedTable = this.alumnos;
-        this.dataSource = new MatTableDataSource(this.alumnos);
-        this.currentTable = this.exportableTable = this.alumnos; // FEAT
+  getAsignedTableData(periodos) {
+    console.log('DATA');
+    this.periodoService.getPeriodosByPeriodo(periodos)
+      .subscribe(res => {
+        this.periodoService.periodos = res as Periodo[];
+        this.periodos = res;
+        console.log(this.periodos);
+
+        this.asignedTable = this.periodos;
+        this.dataSource = new MatTableDataSource(this.periodos);
+        this.currentTable = this.exportableTable = this.periodos; // FEAT
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
   }
 
+  /*
   onDelete(controlNumber) {
     this.dialogService.openConfirmDialog('¿Estás seguro de eliminar este alumno?')
       .afterClosed().subscribe(res => {
@@ -269,11 +291,74 @@ export class GestionarPeriodosComponent implements OnInit {
           this.notificationService.warn('! Deleted successfully');
         }
       });
-  }
+  }*/
   /* CalledBy(Clicking button "Descargar Excel")
     Generates XLSX File using the current data provided by dataSource.data
   */
   exportAsXLSX() {
     this.excelService.exportAsExcelFile(this.exportableTable, 'sample');
   }
+
+  addPeriodo() {
+    let lastActivePeriod;
+    let newPeriod;
+    // this.periodos;
+    for (let i = 0; i < this.periodos.length; i++) {
+      if (i === this.periodos.length - 1) {
+        lastActivePeriod = this.periodos[i].periodo;
+      }
+    }
+
+    if(lastActivePeriod === 'Enero-Junio') {
+      newPeriod = 'Agosto-Diciembre';
+    } else {
+      newPeriod = 'Enero-Junio';
+    }
+
+    const currentDate = new Date();
+
+    for (let i = 0; i < this.periodos.length; i++) {
+      if(this.periodos[i].activo == true) {
+        this.notificationService.success('Hay un periodo activo, no es posible abrir uno nuevo');
+        return;
+      }
+    }
+
+
+    this.period = {
+      periodo : newPeriod,
+      yearPeriodo  : currentDate.getFullYear(),
+      fechaApertura : new Date(),
+      // fechaCierre : new Date(),
+      activo : true
+    };
+    console.log('');
+    this.periodoService.postPeriodo(this.period).subscribe(res =>{
+        console.log('Periodo registrado correctamente');
+    });
+
+  }
+
+  updatePeriodo(_id) {
+    this.period = {
+      periodo : this.periodo.periodo,
+      yearPeriodo  : this.periodo.yearPeriodo,
+      fechaApertura : this.periodo.fechaApertura,
+      fechaCierre : new Date(),
+      activo : false
+    };
+    console.log('');
+    this.periodoService.putPeriodo(this.period, _id).subscribe(res =>{
+      console.log('Periodo actualizado correctamente');
+    });
+  }
+
+  /*
+  onChange(periodo){
+    this.updatePeriodo(periodo);
+    console.log('');
+  }*/
+
+
 }
+
