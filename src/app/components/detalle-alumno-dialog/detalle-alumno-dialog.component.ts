@@ -387,4 +387,9 @@ export class DetalleAlumnoDialogComponent {
         }, 500);
         console.log('hi');
     }
+
+    closeDialog(): void {
+        this.dialogRef.close();
+    }
+
 }

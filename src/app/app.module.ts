@@ -90,6 +90,7 @@ import { EditModalComponent } from './components/edit-modal/edit-modal.component
 import { ExcelTemplateComponent } from './components/subcomponents/excel-template/excel-template.component';
 import { SecretariaMovementsComponent } from './components/secretaria-movements/secretaria-movements.component';
 import { DetalleAlumnoJefeComponent } from './components/detalle-alumno-jefe/detalle-alumno-jefe.component';
+import { GestionarPeriodosComponent } from './components/gestionar-periodos/gestionar-periodos.component';
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -104,7 +105,8 @@ const appRoutes: Routes = [
   {path: 'resumen', component: ResumenComponent},
   {path: 'validarDocumentos', component: ValidarDocumentosComponent},
   {path: 'secretariaMovements', component: SecretariaMovementsComponent},
-  {path: 'detalleAlumnoJefe', component: DetalleAlumnoJefeComponent}
+  {path: 'detalleAlumnoJefe', component: DetalleAlumnoJefeComponent},
+  {path: 'gestionarPeriodos', component: GestionarPeriodosComponent}
 ];
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -146,7 +148,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     EditModalComponent,
     ExcelTemplateComponent,
     SecretariaMovementsComponent,
-    DetalleAlumnoJefeComponent
+    DetalleAlumnoJefeComponent,
+    GestionarPeriodosComponent
     ],
 
   imports: [
