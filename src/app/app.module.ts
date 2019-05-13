@@ -88,8 +88,12 @@ import { ValidarDocumentosComponent } from './components/validar-documentos/vali
 import { ValidarDocumentosModalComponent} from './components/validar-documentos/validar-documentos.component';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { ExcelTemplateComponent } from './components/subcomponents/excel-template/excel-template.component';
+<<<<<<< HEAD
 import { SecretariaMovementsComponent } from './components/secretaria-movements/secretaria-movements.component';
 import { DetalleAlumnoJefeComponent } from './components/detalle-alumno-jefe/detalle-alumno-jefe.component';
+=======
+import { GestionarPeriodosComponent } from './components/gestionar-periodos/gestionar-periodos.component';
+>>>>>>> cd4f688c9d7b39090743488a46ec94feb029e044
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -103,8 +107,12 @@ const appRoutes: Routes = [
   {path: 'contrato', component: ContratoComponent},
   {path: 'resumen', component: ResumenComponent},
   {path: 'validarDocumentos', component: ValidarDocumentosComponent},
+<<<<<<< HEAD
   {path: 'secretariaMovements', component: SecretariaMovementsComponent},
   {path: 'detalleAlumnoJefe', component: DetalleAlumnoJefeComponent}
+=======
+  {path: 'gestionarPeriodos', component: GestionarPeriodosComponent}
+>>>>>>> cd4f688c9d7b39090743488a46ec94feb029e044
 ];
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -145,8 +153,12 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ValidarDocumentosModalComponent,
     EditModalComponent,
     ExcelTemplateComponent,
+<<<<<<< HEAD
     SecretariaMovementsComponent,
     DetalleAlumnoJefeComponent
+=======
+    GestionarPeriodosComponent
+>>>>>>> cd4f688c9d7b39090743488a46ec94feb029e044
     ],
 
   imports: [

@@ -18,39 +18,41 @@ import { ExcelService } from './../../services/excel.service';
 import { Alumno } from './../../models/alumno';
 
 @Component({
-  selector: 'app-detalle-alumno',
-  templateUrl: './detalle-alumno.component.html',
-  styleUrls: ['./detalle-alumno.component.css']
+  selector: 'app-gestionar-periodos',
+  templateUrl: './gestionar-periodos.component.html',
+  styleUrls: ['./gestionar-periodos.component.css']
 })
+export class GestionarPeriodosComponent implements OnInit {
 
-export class DetalleAlumnoComponent implements OnInit {
-  displayedColumns: string[] = [ 'controlNumber', 'completeName', 'career', 'statusInscripcion', 'actions'];
+  displayedColumns: string[] = ['controlNumber', 'Name', 'career', 'actions'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  // Filters
-  filterA: any;
-  filterB: any;
-  filterC: any;
-  filterD: any;
-
-  alumno: Alumno;
-  alumnos: any;
-
-  selectedNoCtrl: string;
-  currentUser: string; // Stores JUST the username
-  currentUserToLoadCareer: any; // Stores WHOLE current user data
-
-  // Mecanisms
-  careerVisualizationMode: boolean;
-
-  // Table
-  currentTable: Array<Object>;
-  globalTable: Array<Object>;
-  asignedTable: Array<Object>;
-  exportableTable: Array<Object>;
+    checked = false;
+  
+    // Filters
+    filterA: any;
+    filterB: any;
+    filterC: any;
+    filterD: any;
+  
+    alumno: Alumno;
+    alumnos: any;
+  
+    selectedNoCtrl: string;
+    currentUser: string; // Stores JUST the username
+    currentUserToLoadCareer: any; // Stores WHOLE current user data
+  
+    // Mecanisms
+    careerVisualizationMode: boolean;
+  
+    // Table
+    currentTable: Array<Object>;
+    globalTable: Array<Object>;
+    asignedTable: Array<Object>;
+    exportableTable: Array<Object>;
 
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService,
@@ -191,10 +193,7 @@ export class DetalleAlumnoComponent implements OnInit {
   onChangeVisualMode() {
     this.doRefreshTable();
   }
-  /*CalledBy (Clicking group icon button in row item action)
-  Allows to configure the modal window configuration and calls a detalleAlumnoService in order to
-  send the control number by a service variable.
-  */
+
   async preUpdate(ctrlNumber) {
     console.log('DETALLE NUMERO DE CONTROL: ' + ctrlNumber);
     this.detalleAlumnoService.changeAlumnoToUpdate(ctrlNumber);

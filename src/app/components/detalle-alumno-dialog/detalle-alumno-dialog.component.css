@@ -44,7 +44,28 @@ float: center;
 text-align:center
 }
 
-.menu {text-align: right;}
+.menu {text-align: center }
+
+.margen{
+margin-left:10px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.full-width {
+  width: 50%;
+}
+
+.box{
+  margin: 0 auto;
+  width: 200px;
+}
+
+td {
+  padding-right: 8px;
+}
 
 #button {
 position: relative;
@@ -54,5 +75,12 @@ float: right;
 
 .example-button-row button,
 .example-button-row a {
+<<<<<<< HEAD
 margin-right: 8px;
 }
+=======
+  margin-right: 8px;
+}
+
+.right{float: right;}
+>>>>>>> cd4f688c9d7b39090743488a46ec94feb029e044

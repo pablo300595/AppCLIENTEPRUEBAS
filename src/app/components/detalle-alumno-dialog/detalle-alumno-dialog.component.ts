@@ -387,4 +387,5 @@ export class DetalleAlumnoDialogComponent {
         }, 500);
         console.log('hi');
     }
+
 }
