@@ -91,6 +91,7 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   tableCheck: Array<boolean>;
   tableCheckGlobal: Array<any>;
   globalComment = '';
+  globalCheckbox = false;
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService,
     private usuarioService: UsuarioService, private loginService: LoginService,
@@ -422,7 +423,9 @@ export class DetalleAlumnoJefeComponent implements OnInit {
             this.validateEachStudentDocument(globalTableAny[j].controlNumber);
           }
         }
-        this.alumnoService.putStatusAlumno({statusInscripcion: 'Aceptado'}, this.tableCheckGlobal[i].id).subscribe();
+        this.alumnoService.putStatusAlumno({statusInscripcion: 'Aceptado'}, this.tableCheckGlobal[i].id).subscribe(
+          res => this.messagesService.success('Validación realizada correctamente')
+        );
       }
     }
   }
@@ -467,14 +470,25 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   }
 
   markAllCurrentChecks() {
-    console.log();
+    for (let i = 0; i < this.tableCheckGlobal.length; i++) {
+      this.tableCheckGlobal[i].checkValue = false;
+      this.tableCheck[i] = false;
+    }
+
+    const exportableTableAny: any = this.exportableTable;
     for (let i = 0; i < this.tableCheckGlobal.length; i++) {
       for (let j = 0; j < this.exportableTable.length; j++) {
-        if (this.tableCheckGlobal[i].checkValue &&
-          this.tableCheckGlobal[i].id === this.exportableTable) {
-
+        if (this.tableCheckGlobal[i].id === exportableTableAny[j]._id) {
+          this.tableCheckGlobal[i].checkValue = true;
         }
       }
     }
+
+    for (let i = 0; i < this.tableCheckGlobal.length; i++) {
+      if (this.tableCheckGlobal[i].checkValue) {
+        this.tableCheck[i] = !this.globalCheckbox;
+      }
+    }
+
   }
 }
