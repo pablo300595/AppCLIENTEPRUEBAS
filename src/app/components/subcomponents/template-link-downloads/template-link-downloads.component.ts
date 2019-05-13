@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AlumnoService} from './../../../services/alumno.service';
 import { LoginService } from './../../../services/login.service';
 import { Alumno } from './../../../models/alumno';
-//import * as jsPDF from 'jspdf';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-template-link-downloads',
@@ -112,10 +112,10 @@ export class TemplateLinkDownloadsComponent implements OnInit {
     this.refComprobante = document.getElementById('refCOMPROBANTE');
     this.refComprobante.href = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/COMPROBANTE.pdf`;
   }
-/*
+
   downloadPDF() {
     console.log('PDF');
-    /*const doc = new jsPDF();
+    const doc = new jsPDF();
 
     // Cuadro 1
     doc.setDrawColor(0);
@@ -303,7 +303,6 @@ export class TemplateLinkDownloadsComponent implements OnInit {
     doc.setFontType('normal');
     doc.text(this.fieldWhichDisability, 80, 245);
     doc.save('FORMULARIO.pdf');
-    */
   }
-*/
+
 }

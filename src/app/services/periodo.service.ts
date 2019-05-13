@@ -13,8 +13,8 @@ export class PeriodoService {
   periodos: Periodo[];
 
 
-  //readonly URL = 'https://app-apipruebas.herokuapp.com/periodo';
-  readonly URL = 'http://localhost:3001/periodo';
+  readonly URL = 'https://app-apipruebas.herokuapp.com/periodo';
+  // readonly URL = 'http://localhost:3001/periodo';
 
 
   constructor(private http: HttpClient) {
