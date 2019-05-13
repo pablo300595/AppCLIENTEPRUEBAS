@@ -66,6 +66,7 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import {MatNativeDateModule} from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
@@ -90,6 +91,7 @@ import { EditModalComponent } from './components/edit-modal/edit-modal.component
 import { ExcelTemplateComponent } from './components/subcomponents/excel-template/excel-template.component';
 import { SecretariaMovementsComponent } from './components/secretaria-movements/secretaria-movements.component';
 import { DetalleAlumnoJefeComponent } from './components/detalle-alumno-jefe/detalle-alumno-jefe.component';
+import { GestionarPeriodosComponent } from './components/gestionar-periodos/gestionar-periodos.component';
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -104,7 +106,8 @@ const appRoutes: Routes = [
   {path: 'resumen', component: ResumenComponent},
   {path: 'validarDocumentos', component: ValidarDocumentosComponent},
   {path: 'secretariaMovements', component: SecretariaMovementsComponent},
-  {path: 'detalleAlumnoJefe', component: DetalleAlumnoJefeComponent}
+  {path: 'detalleAlumnoJefe', component: DetalleAlumnoJefeComponent},
+  {path: 'gestionarPeriodos', component: GestionarPeriodosComponent}
 ];
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -146,7 +149,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     EditModalComponent,
     ExcelTemplateComponent,
     SecretariaMovementsComponent,
-    DetalleAlumnoJefeComponent
+    DetalleAlumnoJefeComponent,
+    GestionarPeriodosComponent
     ],
 
   imports: [
@@ -172,7 +176,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatIconModule,
     MatCardModule,
     MatExpansionModule,
-    PdfViewerModule
+    PdfViewerModule,
+    MatSlideToggleModule
   ],
   entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent,
     MatConfirmDialogComponent, ModalViewComponent,ValidarDocumentosModalComponent,
