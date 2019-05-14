@@ -309,7 +309,7 @@ export class GestionarPeriodosComponent implements OnInit {
       }
     }
 
-    if(lastActivePeriod === 'Enero-Junio') {
+    if (lastActivePeriod === 'Enero-Junio') {
       newPeriod = 'Agosto-Diciembre';
     } else {
       newPeriod = 'Enero-Junio';
@@ -318,7 +318,7 @@ export class GestionarPeriodosComponent implements OnInit {
     const currentDate = new Date();
 
     for (let i = 0; i < this.periodos.length; i++) {
-      if(this.periodos[i].activo == true) {
+      if(this.periodos[i].activo === true) {
         this.notificationService.success('Hay un periodo activo, no es posible abrir uno nuevo');
         return;
       }
