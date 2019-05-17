@@ -1,5 +1,13 @@
+<div class="right">
+  <button mat-icon-button (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<h2 style="text-align:center;">Detalle Alumno</h2>
+
 <mat-dialog-content class="mat-typography">
-  <h2 style="text-align:center;">Detalle Alumno</h2>
+
   <mat-tab-group (selectedTabChange)="doRefreshTable()">
     <mat-tab label="Detalle Alumno">
       <br>
@@ -394,7 +402,7 @@
                 <mat-chip style="background-color: black;" selected *ngIf="dataSource.data[acordeonCertificado].status == 'Validado'">{{dataSource.data[acordeonCertificado].status}}</mat-chip>
               </mat-chip-list>
 
-              <div class="container">
+              <div class="">
                 CERTIFICADO DE BACHILLERATO O EQUIVALENTE
               </div>
             </mat-panel-title>

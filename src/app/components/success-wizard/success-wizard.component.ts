@@ -62,6 +62,8 @@ export class SuccessWizardComponent implements OnInit {
   refNSS: any;
   refCertificado: any;
   srcFoto: any;
+  // service
+  currentAlumnoData: any;
 
   constructor(private alumnoService: AlumnoService, private usuarioService: UsuarioService,
     private loginService: LoginService, private cargaDocumentosService: CargaDocumentosService,
@@ -135,6 +137,9 @@ export class SuccessWizardComponent implements OnInit {
   }
 
   awaitForValidationData() {
+    this.alumnoService.getAlumnoByCtrl(this.currentUser).subscribe(res => {
+      this.currentAlumnoData = res;
+    });
     this.alumnoService.getAlumnoDocumentation(this.currentUser).subscribe(res => {
       this.documentation = res as Object[];
       this.dataSource = new MatTableDataSource(this.documentation);

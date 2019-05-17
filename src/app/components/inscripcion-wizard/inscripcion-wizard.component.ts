@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlumnoService} from './../../services/alumno.service';
 import { WizardService } from './../../services/wizard.service';
 import { MessagesService } from './../../services/messages.service';
@@ -6,6 +7,7 @@ import { LoginService } from './../../services/login.service';
 import { FormularioRegistroService } from './../../services/formulario-registro.service';
 import { ContratoService } from './../../services/contrato.service';
 import { CargaDocumentosService } from './../../services/carga-documentos.service';
+import { PeriodoService } from './../../services/periodo.service';
 import { Alumno } from './../../models/alumno';
 import { TemplateWizardComponent } from './../subcomponents/template-wizard/template-wizard.component';
 import { ResumenComponent } from '../resumen/resumen.component';
@@ -27,6 +29,7 @@ export class InscripcionWizardComponent implements OnInit {
   // Services variables
   alumnoToUpdate: Alumno;
   idAlumnoLoged: String;
+  currentPeriods: any;
 
   firstTryGivenValues: boolean;
   alumnoStatus: String;
@@ -34,7 +37,8 @@ export class InscripcionWizardComponent implements OnInit {
 
   constructor(private alumnoService: AlumnoService, private loginService: LoginService, private wizardService: WizardService,
     private formularioRegistroService: FormularioRegistroService, private messagesService: MessagesService,
-    private contratoService: ContratoService, private cargaDocumentosService: CargaDocumentosService) { 
+    private contratoService: ContratoService, private cargaDocumentosService: CargaDocumentosService,
+    private periodoService: PeriodoService, private router: Router) {
       this.initServices();
     }
 
@@ -59,6 +63,7 @@ export class InscripcionWizardComponent implements OnInit {
         this.alumnoStatus = (newres).toString();
       }
     );
+    this.periodoService.getPeriodos().subscribe(res => this.currentPeriods = res);
   }
 
   updateAlumno() {
@@ -153,14 +158,19 @@ export class InscripcionWizardComponent implements OnInit {
     let alumno = new Alumno();
     alumno = {statusInscripcion: 'Enviado'};
     this.alumnoService.putStatusAlumno(alumno, this.idAlumnoLoged).subscribe(
-      res => console.log('Status de alumno ha cambiado a enviado')
+      res => this.messagesService.success('Status de alumno ha cambiado a enviado')
     );
     this.asignPeriod();
     this.resetSteps();
+    this.router.navigateByUrl('/');
   }
 
   asignPeriod() {
-
+    for (let i = 0; i < this.currentPeriods.length; i++) {
+      if (this.currentPeriods[i].activo) {
+        this.alumnoService.updateAlumnoPeriodById(this.idAlumnoLoged, {periodo: this.currentPeriods[i]._id}).subscribe();
+      }
+    }
   }
 
 }

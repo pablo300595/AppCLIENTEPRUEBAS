@@ -79,3 +79,22 @@ float: right;
 }
 
 .right{float: right;}
+
+
+.margen{
+  margin-left:10px;
+  width: 100%;
+}
+
+.full-width {
+  width: 50%;
+}
+
+.box{
+  margin: 0 auto;
+  width: 200px;
+}
+
+td {
+  padding-right: 8px;
+}

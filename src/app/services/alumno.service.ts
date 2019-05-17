@@ -16,7 +16,7 @@ export class AlumnoService {
   statusInscripcion: String = 'No status';
 
   readonly URL = 'https://app-apipruebas.herokuapp.com/alumnos';
-  // readonly URL = 'http://localhost:3001/alumnos';
+  // readonly URL = 'http://localhost:3000/alumnos';
 
   constructor(private http: HttpClient) {
     this.selectedAlumno = new Alumno();
@@ -45,6 +45,10 @@ export class AlumnoService {
 
   getAlumnoById(id) {
     return this.http.get(this.URL + '/id/' + id);
+  }
+
+  getAlumnoByCtrl(id) {
+    return this.http.get(this.URL + '/ctrl/' + id);
   }
 
   getAlumnoStatusInscripcion(idAlumno) {
@@ -78,6 +82,10 @@ export class AlumnoService {
 
   updateAlumnoDocumentationByCtrlNumber(ctrlNumber, documentation: Object) {
     return this.http.put(this.URL + `/documentation/ctrl/${ctrlNumber}`, documentation);
+  }
+
+  updateAlumnoPeriodById(id, period) {
+    return this.http.put(this.URL + `/periodo/${id}`, period);
   }
 
   getAlumnoDocumentation(_id) {

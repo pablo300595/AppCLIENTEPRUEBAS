@@ -2,10 +2,10 @@
 <div class="row">
   <div class="col-3"></div>
   <div class="col-6">
-    <mat-card class="example-card">
+    <mat-card class="example-card" *ngIf = "currentAlumnoData.statusInscripcion === 'Enviado'">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Proceso completado</mat-card-title>
+        <mat-card-title>Expediente enviado</mat-card-title>
         <mat-card-subtitle>Leer con atención</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
@@ -15,6 +15,28 @@
           Debe estar al pendiente de la retroalimentación proporcionada en el sitio.
         </p>
       </mat-card-content>
+      <mat-card-footer>
+        <mat-chip-list>
+          <mat-chip style="background-color: #f7db13;" selected>{{currentAlumnoData.statusInscripcion}}</mat-chip>
+        </mat-chip-list>
+      </mat-card-footer>
+    </mat-card>
+    <mat-card class="example-card" *ngIf = "currentAlumnoData.statusInscripcion !== 'Enviado'">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Expediente aceptado</mat-card-title>
+        <mat-card-subtitle>Leer con atención</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          El proceso de registro ha sido completado exitosamente.
+        </p>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-chip-list>
+          <mat-chip style="background-color: #f7db13;" selected>{{currentAlumnoData.statusInscripcion}}</mat-chip>
+        </mat-chip-list>
+      </mat-card-footer>
     </mat-card>
   </div>
   <div class="col-3"></div>
@@ -26,9 +48,16 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>NSS</mat-card-title>
-        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+        <mat-card-subtitle>{{documentation[0].observacion}}</mat-card-subtitle>
+        
       </mat-card-header>
       <mat-card-content>
+          <dropzone *ngIf="documentation[0].status=='Rechazado' || documentation[0].status=='En proceso'" id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+          (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"
+          [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+          <mat-chip-list>
+            <mat-chip style="background-color: #f7db13;" selected>{{documentation[0].status}}</mat-chip>
+          </mat-chip-list>
         <label id="link" name="lblNSS"><a id="refNSS" target="_self" download="NSS.pdf" (click)="loadLink()">Enlace de
             documento</a></label>
       </mat-card-content>
@@ -39,10 +68,16 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>CURP</mat-card-title>
-        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+        <mat-card-subtitle>{{documentation[1].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <label id="link" name="lblCURP"><a id="refCURP" target="_self" download="CURP.pdf" (click)="loadLink()">Enlace
+          <dropzone *ngIf="documentation[1].status=='Rechazado' || documentation[1].status=='En proceso'" id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+          (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"
+          [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+          <mat-chip-list>
+              <mat-chip style="background-color: #f7db13;" selected>{{documentation[0].status}}</mat-chip>
+            </mat-chip-list>
+          <label id="link" name="lblCURP"><a id="refCURP" target="_self" download="CURP.pdf" (click)="loadLink()">Enlace
             de
             documento</a></label>
       </mat-card-content>
@@ -53,10 +88,16 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>ACTA</mat-card-title>
-        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+        <mat-card-subtitle>{{documentation[2].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <label id="link" name="lblACTA"><a id="refACTA" target="_self" download="ACTA.pdf" (click)="loadLink()">Enlace
+          <dropzone *ngIf="documentation[2].status=='Rechazado' || documentation[2].status=='En proceso'" id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+          (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"
+          [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+          <mat-chip-list>
+              <mat-chip style="background-color: #f7db13;" selected>{{documentation[0].status}}</mat-chip>
+          </mat-chip-list>
+          <label id="link" name="lblACTA"><a id="refACTA" target="_self" download="ACTA.pdf" (click)="loadLink()">Enlace
             de
             documento</a></label>
       </mat-card-content>
@@ -67,10 +108,16 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>CLINICOS</mat-card-title>
-        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+        <mat-card-subtitle>{{documentation[3].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <label id="link" name="lblCLINICOS"><a id="refCLINICOS" target="_self" download="CLINICOS.pdf" (click)="loadLink()">Enlace
+          <dropzone *ngIf="documentation[3].status=='Rechazado' || documentation[3].status=='En proceso'" id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+          (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"
+          [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+          <mat-chip-list>
+            <mat-chip style="background-color: #f7db13;" selected>{{documentation[0].status}}</mat-chip>
+          </mat-chip-list>
+          <label id="link" name="lblCLINICOS"><a id="refCLINICOS" target="_self" download="CLINICOS.pdf" (click)="loadLink()">Enlace
             de
             documento</a></label>
       </mat-card-content>
@@ -84,10 +131,16 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>CERTIFICADO</mat-card-title>
-        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+        <mat-card-subtitle>{{documentation[4].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <label id="link" name="lblCERTIFICADO"><a id="refCERTIFICADO" target="_self" download="CERTIFICADO.pdf" (click)="loadLink()">Enlace
+          <dropzone *ngIf="documentation[4].status=='Rechazado' || documentation[4].status=='En proceso'" id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+          (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"
+          [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+          <mat-chip-list>
+            <mat-chip style="background-color: #f7db13;" selected>{{documentation[0].status}}</mat-chip>
+          </mat-chip-list>
+          <label id="link" name="lblCERTIFICADO"><a id="refCERTIFICADO" target="_self" download="CERTIFICADO.pdf" (click)="loadLink()">Enlace
             de
             documento</a></label>
       </mat-card-content>
@@ -98,68 +151,60 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>COMPROBANTE</mat-card-title>
-        <mat-card-subtitle>Descarga de documento</mat-card-subtitle>
+        <mat-card-subtitle>{{documentation[5].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <label id="link" name="lblCOMPROBANTE"><a id="refCOMPROBANTE" target="_self" download="COMPROBANTE.pdf" (click)="loadLink()">Enlace
+          <dropzone *ngIf="documentation[5].status=='Rechazado' || documentation[5].status=='En proceso'" id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+          (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"
+          [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+          <mat-chip-list>
+            <mat-chip style="background-color: #f7db13;" selected>{{documentation[0].status}}</mat-chip>
+          </mat-chip-list>
+          <label id="link" name="lblCOMPROBANTE"><a id="refCOMPROBANTE" target="_self" download="COMPROBANTE.pdf" (click)="loadLink()">Enlace
             de
             documento</a></label>
       </mat-card-content>
     </mat-card>
   </div>
-  <div class="col-3"></div>
-  <div class="col-3"></div>
-</div>
-<br>
-<div class="row">
-  <div class="col 8">
-    <div class="container">
-      <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
-
-          <!-- ID Column -->
-          <ng-container matColumnDef="documentName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Documento </th>
-            <td mat-cell *matCellDef="let row"> {{row.documentName}} </td>
-          </ng-container>
-
-          <!-- Progress Column -->
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
-            <td mat-cell *matCellDef="let row">
-              <mat-chip-list>
-                <mat-chip style="background-color: rgb(219, 219, 62);" selected *ngIf="row.status == 'En proceso'">{{row.status}}</mat-chip>
-                <mat-chip style="background-color: red;" selected *ngIf="row.status == 'Rechazado'">{{row.status}}</mat-chip>
-                <mat-chip selected *ngIf="row.status == 'Aceptado'" style="background-color:darkgreen;">{{row.status}}</mat-chip>
-              </mat-chip-list>
-            </td>
-          </ng-container>
-
-
-          <!-- Color Column -->
-          <ng-container matColumnDef="observacion">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> observacion </th>
-            <td mat-cell *matCellDef="let row"> {{row.observacion}} </td>
-          </ng-container>
-
-          <!-- Color Column -->
-          <ng-container matColumnDef="acciones">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
-            <td mat-cell *matCellDef="let row">
-              <dropzone *ngIf="row.status==='En proceso'" id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-                (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"
-                [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
-              <p>--------------------------------------------------------------</p>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-          </tr>
-        </table>
-
-        <mat-paginator [pageSizeOptions]="[10, 10, 25, 100]"></mat-paginator>
-      </div>
-    </div>
+  <div class="col-3">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>FORMULARIO</mat-card-title>
+        <mat-card-subtitle>{{documentation[6].observacion}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+          <dropzone *ngIf="documentation[6].status=='Rechazado' || documentation[6].status=='En proceso'" id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+          (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"
+          [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+          <mat-chip-list>
+            <mat-chip style="background-color: #f7db13;" selected>{{documentation[0].status}}</mat-chip>
+          </mat-chip-list>
+          <label id="link" name="lblCOMPROBANTE"><a id="refCOMPROBANTE" target="_self" download="COMPROBANTE.pdf" (click)="loadLink()">Enlace
+            de
+            documento</a></label>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-3">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>FOTO</mat-card-title>
+        <mat-card-subtitle>{{documentation[7].observacion}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+          <dropzone *ngIf="documentation[7].status=='Rechazado' || documentation[7].status=='En proceso'" id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+          (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"
+          [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+          <mat-chip-list>
+              <mat-chip style="background-color: #f7db13;" selected>{{documentation[0].status}}</mat-chip>
+            </mat-chip-list>
+          <label id="link" name="lblCOMPROBANTE"><a id="refCOMPROBANTE" target="_self" download="COMPROBANTE.pdf" (click)="loadLink()">Enlace
+            de
+            documento</a></label>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
+<br>

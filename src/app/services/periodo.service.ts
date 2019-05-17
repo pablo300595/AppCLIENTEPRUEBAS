@@ -14,7 +14,7 @@ export class PeriodoService {
 
 
   readonly URL = 'https://app-apipruebas.herokuapp.com/periodo';
-  // readonly URL = 'http://localhost:3001/periodo';
+  // readonly URL = 'http://localhost:3000/periodo';
 
 
   constructor(private http: HttpClient) {

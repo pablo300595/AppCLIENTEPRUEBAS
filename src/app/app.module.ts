@@ -180,7 +180,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatSlideToggleModule
   ],
   entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent,
-    MatConfirmDialogComponent, ModalViewComponent,ValidarDocumentosModalComponent,
+    MatConfirmDialogComponent, ModalViewComponent, ValidarDocumentosModalComponent,
     EditModalComponent],
   providers: [MenuService, AlumnoService, LoginService, FileService,
     WizardService, FormularioRegistroService, DropzoneTemplatesService,
