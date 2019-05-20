@@ -84,7 +84,7 @@ export class GestionarPeriodosComponent implements OnInit {
     });
   }
 
-  updatePeriodo(row) {
+  updatePeriodo(row,i) {
     this.dialogService.openConfirmDialog('¿Estás seguro de cerrar este Periodo?')
       .afterClosed().subscribe(res => {
         if (res) {
@@ -101,6 +101,8 @@ export class GestionarPeriodosComponent implements OnInit {
             this.refreshDataSource();
             this.notificationService.success('Periodo se ha cerrado correctamente');
           });
+        }else{
+          this.periodos[i].activo = true;
         }
       });
   }
