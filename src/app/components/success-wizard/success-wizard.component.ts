@@ -142,9 +142,6 @@ export class SuccessWizardComponent implements OnInit {
     });
     this.alumnoService.getAlumnoDocumentation(this.currentUser).subscribe(res => {
       this.documentation = res as Object[];
-      this.dataSource = new MatTableDataSource(this.documentation);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
     });
   }
 
