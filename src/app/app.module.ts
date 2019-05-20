@@ -92,6 +92,7 @@ import { ExcelTemplateComponent } from './components/subcomponents/excel-templat
 import { SecretariaMovementsComponent } from './components/secretaria-movements/secretaria-movements.component';
 import { DetalleAlumnoJefeComponent } from './components/detalle-alumno-jefe/detalle-alumno-jefe.component';
 import { GestionarPeriodosComponent } from './components/gestionar-periodos/gestionar-periodos.component';
+import { DownloadTemplateComponent } from './components/subcomponents/download-template/download-template.component';
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -150,7 +151,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ExcelTemplateComponent,
     SecretariaMovementsComponent,
     DetalleAlumnoJefeComponent,
-    GestionarPeriodosComponent
+    GestionarPeriodosComponent,
+    DownloadTemplateComponent
     ],
 
   imports: [

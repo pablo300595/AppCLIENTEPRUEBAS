@@ -15,8 +15,8 @@ export class AlumnoService {
   sesionType: String = 'guest';
   statusInscripcion: String = 'No status';
 
-  readonly URL = 'https://app-apipruebas.herokuapp.com/alumnos';
-  // readonly URL = 'http://localhost:3000/alumnos';
+  // readonly URL = 'https://app-apipruebas.herokuapp.com/alumnos';
+  readonly URL = 'http://localhost:3000/alumnos';
 
   constructor(private http: HttpClient) {
     this.selectedAlumno = new Alumno();

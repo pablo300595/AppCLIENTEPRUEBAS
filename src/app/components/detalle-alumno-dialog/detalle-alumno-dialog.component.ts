@@ -372,15 +372,25 @@ export class DetalleAlumnoDialogComponent {
             this.awaitForValidationData();
             setTimeout(() => {
                 let validatedDocsQty = 0;
+                let aceptedDocsQty = 0;
                 for (let i = 0; i < this.documentation.length; i++) {
                     if (this.documentation[i].status === 'Validado') {
                         validatedDocsQty++;
+                    }
+                    if (this.documentation[i].status === 'Aceptado') {
+                        aceptedDocsQty++;
                     }
                 }
                 if (validatedDocsQty === 8) {
                     console.log('Validados todos');
                     this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Aceptado'}, this.selectedNoCtrl).subscribe(
                         res => this.messagesService.success('¡Todos los documentos han sido validados!')
+                    );
+                }
+                if (aceptedDocsQty === 8) {
+                    console.log('Aceptados todos');
+                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Revisado'}, this.selectedNoCtrl).subscribe(
+                        res => this.messagesService.success('¡Todos los documentos han sido revisados!')
                     );
                 }
             }, 500);
