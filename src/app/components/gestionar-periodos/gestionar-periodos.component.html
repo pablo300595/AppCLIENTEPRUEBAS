@@ -51,7 +51,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
   
             <td mat-cell *matCellDef="let row; let i = index" >
-            <mat-slide-toggle [(ngModel)] = "periodos[i].activo" [disabled]="!periodos[i].activo" (change)="updatePeriodo(row)"></mat-slide-toggle>
+            <mat-slide-toggle [(ngModel)] = "periodos[i].activo" [disabled]="!periodos[i].activo" (change)="updatePeriodo(row,i)"></mat-slide-toggle>
              
             <!--<button mat-icon-button>
               <mat-icon class="tamaño">update</mat-icon>

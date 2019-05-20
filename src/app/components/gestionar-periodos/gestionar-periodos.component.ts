@@ -20,7 +20,7 @@ import { Periodo } from './../../models/periodo';
   styleUrls: ['./gestionar-periodos.component.css']
 })
 export class GestionarPeriodosComponent implements OnInit {
-  displayedColumns: string[] = ['periodo', 'yearPeriodo', 'fechaApertura', 'fechaCierre', 'activo', 'actions' ];
+  displayedColumns: string[] = ['periodo', 'yearPeriodo', 'fechaApertura', 'fechaCierre', 'activo', 'actions'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -68,15 +68,15 @@ export class GestionarPeriodosComponent implements OnInit {
     }
     let currentYear = this.periodos[0].yearPeriodo;
     if (this.periodos[0].periodo === 'Agosto-Diciembre') {
-      currentYear ++;
+      currentYear++;
     }
 
     this.period = {
-      periodo : newPeriod,
-      yearPeriodo  : currentYear,
-      fechaApertura : new Date(),
+      periodo: newPeriod,
+      yearPeriodo: currentYear,
+      fechaApertura: new Date(),
       // fechaCierre : new Date(),
-      activo : true
+      activo: true
     };
     this.periodoService.postPeriodo(this.period).subscribe(res => {
       this.refreshDataSource();
@@ -84,20 +84,29 @@ export class GestionarPeriodosComponent implements OnInit {
     });
   }
 
-  updatePeriodo(row) {
-    const customPeriod: Periodo = {
-      periodo : row.periodo,
-      yearPeriodo  : row.yearPeriodo,
-      fechaApertura : row.fechaApertura,
-      fechaCierre : new Date(),
-      activo : false
-    };
-    console.log('');
-    this.periodoService.putPeriodo(customPeriod, row._id).subscribe(res => {
-      this.refreshDataSource();
-      this.notificationService.success('Periodo actualizado correctamente');
-    });
+  updatePeriodo(row,i) {
+    this.dialogService.openConfirmDialog('¿Estás seguro de cerrar este Periodo?')
+      .afterClosed().subscribe(res => {
+        if (res) {
+          const customPeriod: Periodo = {
+            periodo: row.periodo,
+            yearPeriodo: row.yearPeriodo,
+            fechaApertura: row.fechaApertura,
+            fechaCierre: new Date(),
+            activo: false
+          };
+        
+          console.log('');
+          this.periodoService.putPeriodo(customPeriod, row._id).subscribe(res => {
+            this.refreshDataSource();
+            this.notificationService.success('Periodo se ha cerrado correctamente');
+          });
+        }else{
+          this.periodos[i].activo = true;
+        }
+      });
   }
+
 
   reverseDataSource() {
     const temporalDataSource = new Array(this.dataSource.data.length);
