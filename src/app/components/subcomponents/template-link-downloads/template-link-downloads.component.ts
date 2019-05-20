@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AlumnoService} from './../../../services/alumno.service';
 import { LoginService } from './../../../services/login.service';
 import { Alumno } from './../../../models/alumno';
-import * as jsPDF from 'jspdf';
+//import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-template-link-downloads',
@@ -114,6 +114,7 @@ export class TemplateLinkDownloadsComponent implements OnInit {
   }
 
   downloadPDF() {
+    /*
     console.log('PDF');
     const doc = new jsPDF();
 
@@ -303,6 +304,7 @@ export class TemplateLinkDownloadsComponent implements OnInit {
     doc.setFontType('normal');
     doc.text(this.fieldWhichDisability, 80, 245);
     doc.save('FORMULARIO.pdf');
+    */
   }
 
 }
