@@ -30,9 +30,11 @@ export class GestionarPeriodosComponent implements OnInit {
   periodos: any;
   period: any;
   idPeriodo: any;
+  date: any;
 
   constructor(private periodoService: PeriodoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
-    private dialogService: DialogService, private notificationService: NotificationService) {
+    private dialogService: DialogService, private notificationService: NotificationService,
+    public datepipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -43,7 +45,13 @@ export class GestionarPeriodosComponent implements OnInit {
     credential:'secretary',user:'secreA',pass:'1234'}).
     Then it makes a POST request to https://app-apipruebas.herokuapp.com/alumnos/career
     where an array composed by Students and its documents is retrieved. Finally Global values are updated with this*/
-  addPeriodo() {
+
+    myFunction(){
+      this.date = new Date();
+      let latest_date = this.datepipe.transform(this.date, 'yyyy-MM-dd');
+     }
+
+    addPeriodo() {
     let lastActivePeriod;
     let newPeriod;
     for (let i = 0; i < this.periodos.length; i++) {

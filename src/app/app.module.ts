@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 // componentes
 import { AppComponent } from './app.component';
@@ -185,7 +186,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatConfirmDialogComponent, ModalViewComponent, ValidarDocumentosModalComponent,
     EditModalComponent],
   providers: [MenuService, AlumnoService, LoginService, FileService,
-    WizardService, FormularioRegistroService, DropzoneTemplatesService,
+    WizardService, FormularioRegistroService, DropzoneTemplatesService, DatePipe,
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG
