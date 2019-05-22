@@ -161,6 +161,7 @@ export class InscripcionWizardComponent implements OnInit {
       res => this.messagesService.success('Status de alumno ha cambiado a enviado')
     );
     this.asignPeriod();
+    this.alumnoService.initAlumnoDocumentation(this.idAlumnoLoged).subscribe();
     this.resetSteps();
     this.router.navigateByUrl('/');
   }

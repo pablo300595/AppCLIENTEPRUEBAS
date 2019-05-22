@@ -146,9 +146,9 @@ export class SuccessWizardComponent implements OnInit {
   }
 
   loadLink() {
-    /*this.refFoto = document.getElementById('refFOTO');
+    this.refFoto = document.getElementById('refFOTO');
     this.refFoto.src = `https://novaresidencia.000webhostapp.com/${this.currentUser}/documentos/FOTO.png`;
-    */
+
     this.refCurp = document.getElementById('refCURP');
     this.refCurp.href = `https://novaresidencia.000webhostapp.com/${this.currentUser}/documentos/CURP.pdf`;
 

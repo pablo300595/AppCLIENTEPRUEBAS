@@ -15,8 +15,8 @@ export class AlumnoService {
   sesionType: String = 'guest';
   statusInscripcion: String = 'No status';
 
-  readonly URL = 'https://app-apipruebas.herokuapp.com/alumnos';
-  // readonly URL = 'http://localhost:3000/alumnos';
+  // readonly URL = 'https://app-apipruebas.herokuapp.com/alumnos';
+  readonly URL = 'http://localhost:3000/alumnos';
 
   constructor(private http: HttpClient) {
     this.selectedAlumno = new Alumno();
@@ -90,6 +90,10 @@ export class AlumnoService {
 
   getAlumnoDocumentation(_id) {
     return this.http.get(this.URL + `/documentation/${_id}`);
+  }
+
+  initAlumnoDocumentation(_id) {
+    return this.http.put(this.URL + `/documentation/init/${_id}`, _id);
   }
 
   public requestDataFromMultipleSources(ctrlNumber, docA, docB, docC,docD, docE, docF, docG, docH): Observable<any[]> {

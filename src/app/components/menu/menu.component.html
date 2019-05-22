@@ -38,10 +38,10 @@
           </a>
         </li>
 
-        <li class="nav-item active" *ngIf="sessionType!= 'guest'">
-            <a class="nav-link" [routerLink]="['/perfil']"> {{sendUser}}
-              <span class="sr-only">(current)</span>
-            </a>
+        <li class="nav-item active" >
+          <a class="nav-link" [routerLink]="['/wizard']" *ngIf="sessionType=='guest'">Perfil
+            <span class="sr-only">(current)</span>
+          </a>
         </li>
 
       </ul>
