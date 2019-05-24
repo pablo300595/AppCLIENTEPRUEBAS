@@ -22,10 +22,6 @@ import { DropzoneComponent , DropzoneDirective,
 export class SuccessWizardComponent implements OnInit {
   // Variables for MatTable Content
   documentation: any;
-  displayedColumns: string[] = ['documentName', 'status', 'observacion', 'acciones'];
-  dataSource: MatTableDataSource<any>;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
   // Service variables
   currentUser: any;
   // Dropzone conf
@@ -36,22 +32,8 @@ export class SuccessWizardComponent implements OnInit {
   public config4: DropzoneConfigInterface;
   public config5: DropzoneConfigInterface;
   public config6: DropzoneConfigInterface;
+  public config7: DropzoneConfigInterface;
   @ViewChild(DropzoneComponent) dropzoneComponent?: DropzoneComponent;
-  dropzoneFileNameCERTIFICADO: any;
-  dropzoneFileNameACTA: any;
-  dropzoneFileNameCURP: any;
-  dropzoneFileNameCOMPROBANTE: any;
-  dropzoneFileNameANALISIS: any;
-  dropzoneFileNamePhoto: any;
-  dropzoneFileNameNSS: any;
-
-  file1: boolean;
-  file2: boolean;
-  file3: boolean;
-  file4: boolean;
-  file5: boolean;
-  file6: boolean;
-  file7: boolean;
 
   // Download variables
   refCurp: any;
@@ -61,6 +43,7 @@ export class SuccessWizardComponent implements OnInit {
   refFoto: any;
   refNSS: any;
   refCertificado: any;
+  refFormulario: any;
   srcFoto: any;
   // service
   currentAlumnoData: any;
@@ -74,65 +57,105 @@ export class SuccessWizardComponent implements OnInit {
     this.awaitForValidationData();
     this.config = {
       clickable: true, maxFiles: 2,
-      params: {'usuario': this.currentUser, 'filename': 'CERTIFICADO.pdf', 'isImage': false},
-      accept: (file, done) => {this.dropzoneFileNameCERTIFICADO = file.name; this.file1 = true;
-        this.cargaDocumentosService.changeFile1(true); done(); },
+      params: {'usuario': this.currentUser, 'filename': 'NSS.pdf', 'isImage': false},
+      accept: (file, done) => {
+        // this.dropzoneFileNameNSS = file.name; this.file1 = true;
+        // this.cargaDocumentosService.changeFile1(true);
+        done();
+      },
       autoReset: 1,
-      errorReset: 1
+      errorReset: 1,
+      acceptedFiles: '.pdf'
     };
     this.config1 = {
       clickable: true, maxFiles: 2,
-      params: {'usuario': this.currentUser, 'filename': 'ACTA.pdf', 'isImage': false},
-      accept: (file, done) => {this.dropzoneFileNameACTA = file.name; this.file2 = true;
-        this.cargaDocumentosService.changeFile2(true); done(); },
+      params: {'usuario': this.currentUser, 'filename': 'CURP.pdf', 'isImage': false},
+      accept: (file, done) => {
+        // this.dropzoneFileNameACTA = file.name; this.file2 = true;
+        // this.cargaDocumentosService.changeFile2(true); 
+        done();
+      },
       autoReset: 1,
-      errorReset: 1
+      errorReset: 1,
+      acceptedFiles: '.pdf'
     };
 
     this.config2 = {
       clickable: true, maxFiles: 2,
-      params: {'usuario': this.currentUser, 'filename': 'CURP.pdf', 'isImage': false},
-      accept: (file, done) => {this.dropzoneFileNameCURP = file.name; this.file3 = true;
-        this.cargaDocumentosService.changeFile3(true); done(); },
+      params: {'usuario': this.currentUser, 'filename': 'ACTA.pdf', 'isImage': false},
+      accept: (file, done) => {
+        // this.dropzoneFileNameCURP = file.name; this.file3 = true;
+        // this.cargaDocumentosService.changeFile3(true); 
+        done();
+      },
       autoReset: 1,
-      errorReset: 1
+      errorReset: 1,
+      acceptedFiles: '.pdf'
     };
 
     this.config3 = {
       clickable: true, maxFiles: 2,
-      params: {'usuario': this.currentUser, 'filename': 'COMPROBANTE.pdf', 'isImage': false},
-      accept: (file, done) => {this.dropzoneFileNameCOMPROBANTE = file.name; this.file4 = true;
-        this.cargaDocumentosService.changeFile4(true); done(); },
+      params: {'usuario': this.currentUser, 'filename': 'CLINICOS.pdf', 'isImage': false},
+      accept: (file, done) => {
+        // this.dropzoneFileNameCOMPROBANTE = file.name; this.file4 = true;
+        // this.cargaDocumentosService.changeFile4(true); 
+        done();
+      },
       autoReset: 1,
-      errorReset: 1
+      errorReset: 1,
+      acceptedFiles: '.pdf'
     };
 
     this.config4 = {
       clickable: true, maxFiles: 2,
-      params: {'usuario': this.currentUser, 'filename': 'CLINICOS.pdf', 'isImage': false},
-      accept: (file, done) => {this.dropzoneFileNameANALISIS = file.name; this.file5 = true;
-        this.cargaDocumentosService.changeFile5(true); done(); },
+      params: {'usuario': this.currentUser, 'filename': 'CERTIFICADO.pdf', 'isImage': false},
+      accept: (file, done) => {
+        // this.dropzoneFileNameANALISIS = file.name; this.file5 = true;
+        // this.cargaDocumentosService.changeFile5(true); 
+        done();
+      },
       autoReset: 1,
-      errorReset: 1
+      errorReset: 1,
+      acceptedFiles: '.pdf'
     };
 
     this.config5 = {
       clickable: true, maxFiles: 2,
-      params: {'usuario': this.currentUser, 'filename': 'FOTO', 'isImage': true},
-      accept: (file, done) => {this.dropzoneFileNamePhoto = file.name; this.file6 = true;
-        this.cargaDocumentosService.changeFile6(true); done(); },
+      params: {'usuario': this.currentUser, 'filename': 'COMPROBANTE.pdf', 'isImage': false},
+      accept: (file, done) => {
+        // this.dropzoneFileNamePhoto = file.name; this.file6 = true;
+        // this.cargaDocumentosService.changeFile6(true); 
+        done();
+      },
       autoReset: 1,
       errorReset: 1,
-      acceptedFiles: '.png,.jpg'
+      acceptedFiles: '.pdf'
     };
 
     this.config6 = {
       clickable: true, maxFiles: 2,
-      params: {'usuario': this.currentUser, 'filename': 'NSS.pdf', 'isImage': false},
-      accept: (file, done) => {this.dropzoneFileNameNSS = file.name; this.file7 = true;
-        this.cargaDocumentosService.changeFile7(true); done(); },
+      params: {'usuario': this.currentUser, 'filename': 'FORMULARIO.pdf', 'isImage': false},
+      accept: (file, done) => {
+        // this.dropzoneFileNameNSS = file.name; this.file7 = true;
+        // this.cargaDocumentosService.changeFile7(true);
+        done();
+      },
       autoReset: 1,
-      errorReset: 1
+      errorReset: 1,
+      acceptedFiles: '.pdf'
+    };
+
+    this.config7 = {
+      clickable: true, maxFiles: 2,
+      params: {'usuario': this.currentUser, 'filename': 'FOTO.png', 'isImage': true},
+      accept: (file, done) => {
+        // this.dropzoneFileNameNSS = file.name; this.file7 = true;
+        // this.cargaDocumentosService.changeFile7(true);
+        done();
+      },
+      autoReset: 1,
+      errorReset: 1,
+      acceptedFiles: '.png,.jpg'
     };
   }
 
@@ -142,6 +165,7 @@ export class SuccessWizardComponent implements OnInit {
     });
     this.alumnoService.getAlumnoDocumentation(this.currentUser).subscribe(res => {
       this.documentation = res as Object[];
+      this.sortDocumentation();
     });
   }
 
@@ -167,6 +191,18 @@ export class SuccessWizardComponent implements OnInit {
     this.refComprobante = document.getElementById('refCOMPROBANTE');
     this.refComprobante.href = `https://novaresidencia.000webhostapp.com/${this.currentUser}/documentos/COMPROBANTE.pdf`;
 
+    this.refFormulario = document.getElementById('refFORMULARIO');
+    this.refFormulario.href = `https://novaresidencia.000webhostapp.com/${this.currentUser}/documentos/FORMULARIO.pdf`;
+  }
+
+  onErrorCommon(args: any) {
+    this.resetDropzoneUploads();
+    if (args[1] === `You can't upload files of this type.`) {
+      this.messagesService.warning(`¡Error no se pueden subir archivos con esa extensión!\n
+      Las extensiones permitidas son .pdf`);
+    } else {
+      this.messagesService.warning('¡Error no se pueden subir archivos tan pesados!\nEl límite es 3MB');
+    }
   }
 
   public resetDropzoneUploads(): void {
@@ -175,5 +211,40 @@ export class SuccessWizardComponent implements OnInit {
 
   public onUploadSuccess(args: any): void {
     this.messagesService.success('Archivo cargado');
+    this.loadLink();
+  }
+
+  sortDocumentation() {
+    const sortedDocumentation = new Array(this.documentation.length);
+    for (let i = 0; i < sortedDocumentation.length; i++) {
+      for (let j = 0; j < this.documentation.length; j++) {
+        if (i === 0 && this.documentation[j].documentName === 'NSS') {
+          sortedDocumentation[i] = this.documentation[j]; break;
+        }
+        if (i === 1 && this.documentation[j].documentName === 'CURP') {
+          sortedDocumentation[i] = this.documentation[j]; break;
+        }
+        if (i === 2 && this.documentation[j].documentName === 'ACTA') {
+          sortedDocumentation[i] = this.documentation[j]; break;
+        }
+        if (i === 3 && this.documentation[j].documentName === 'CLINICOS') {
+          sortedDocumentation[i] = this.documentation[j]; break;
+        }
+        if (i === 4 && this.documentation[j].documentName === 'CERTIFICADO') {
+          sortedDocumentation[i] = this.documentation[j]; break;
+        }
+        if (i === 5 && this.documentation[j].documentName === 'COMPROBANTE') {
+          sortedDocumentation[i] = this.documentation[j]; break;
+        }
+        if (i === 6 && this.documentation[j].documentName === 'FORMULARIO') {
+          sortedDocumentation[i] = this.documentation[j]; break;
+        }
+        if (i === 7 && this.documentation[j].documentName === 'FOTO') {
+          sortedDocumentation[i] = this.documentation[j]; break;
+        }
+      }
+    }
+    this.documentation = sortedDocumentation;
+    console.log('');
   }
 }

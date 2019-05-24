@@ -440,7 +440,7 @@
             
             <div class="right">
               <div class="example-button-row">
-                <button mat-raised-button [disabled]="allDocumentObservations[0].length===0" (click)="validateForm('CERTIFICADO')"
+                <button mat-raised-button [disabled]="allDocumentObservations[0].length===0 && allDocumentStatus[0] === 'Rechazado'" (click)="validateForm('CERTIFICADO')"
                   color="primary">Guardar</button>
               </div>
             </div>
@@ -503,7 +503,7 @@
 
             <div class="right">
               <div class="example-button-row">
-                <button mat-raised-button [disabled]="allDocumentObservations[1].length===0" (click)="validateForm('ACTA')"
+                <button mat-raised-button [disabled]="allDocumentObservations[1].length===0 && allDocumentStatus[1] === 'Rechazado'" (click)="validateForm('ACTA')"
                   color="primary">Guardar</button>
               </div>
             </div>
@@ -565,7 +565,7 @@
             </table>
             <div class="right">
               <div class="example-button-row">
-                <button mat-raised-button [disabled]="allDocumentObservations[2].length===0" (click)="validateForm('CURP')"
+                <button mat-raised-button [disabled]="allDocumentObservations[2].length===0 && allDocumentStatus[2] === 'Rechazado'" (click)="validateForm('CURP')"
                   color="primary">Guardar</button>
               </div>
             </div>
@@ -625,7 +625,7 @@
             </table>
             <div class="right">
               <div class="example-button-row">
-                <button mat-raised-button [disabled]="allDocumentObservations[3].length===0" (click)="validateForm('COMPROBANTE')"
+                <button mat-raised-button [disabled]="allDocumentObservations[3].length===0 && allDocumentStatus[3] === 'Rechazado'" (click)="validateForm('COMPROBANTE')"
                   color="primary">Guardar</button>
               </div>
             </div>
@@ -685,7 +685,7 @@
             </table>
             <div class="right">
               <div class="example-button-row">
-                <button mat-raised-button [disabled]="allDocumentObservations[4].length===0" (click)="validateForm('CLINICOS')"
+                <button mat-raised-button [disabled]="allDocumentObservations[4].length===0 && allDocumentStatus[4] === 'Rechazado'" (click)="validateForm('CLINICOS')"
                   color="primary">Guardar</button>
               </div>
             </div>
@@ -747,7 +747,7 @@
 
             <div class="right">
               <div class="example-button-row">
-                <button mat-raised-button [disabled]="allDocumentObservations[5].length===0" (click)="validateForm('NSS')"
+                <button mat-raised-button [disabled]="allDocumentObservations[5].length===0 && allDocumentStatus[5] === 'Rechazado'" (click)="validateForm('NSS')"
                   color="primary">Guardar</button>
               </div>
             </div>
@@ -808,7 +808,7 @@
 
             <div class="right">
               <div class="example-button-row">
-                <button mat-raised-button [disabled]="allDocumentObservations[6].length===0" (click)="validateForm('FOTO')"
+                <button mat-raised-button [disabled]="allDocumentObservations[6].length===0 && allDocumentStatus[6] === 'Rechazado'" (click)="validateForm('FOTO')"
                   color="primary">Guardar</button>
               </div>
             </div>
@@ -868,7 +868,7 @@
             </table>
             <div class="right">
               <div class="example-button-row">
-                <button mat-raised-button [disabled]="allDocumentObservations[7].length===0" (click)="validateForm('FORMULARIO')"
+                <button mat-raised-button [disabled]="allDocumentObservations[7].length===0 && allDocumentStatus[7] === 'Rechazado'" (click)="validateForm('FORMULARIO')"
                   color="primary">Guardar</button>
               </div>
             </div>

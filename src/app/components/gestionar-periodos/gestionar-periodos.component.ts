@@ -13,7 +13,6 @@ import { PeriodoService } from './../../services/periodo.service';
 import { Periodo } from './../../models/periodo';
 
 
-
 @Component({
   selector: 'app-gestionar-periodos',
   templateUrl: './gestionar-periodos.component.html',
@@ -30,9 +29,13 @@ export class GestionarPeriodosComponent implements OnInit {
   periodos: any;
   period: any;
   idPeriodo: any;
+  dataSourceDateConvertion: Array <String>;
+  dataSourceDateCierreConvertion: Array <String>;
 
   constructor(private periodoService: PeriodoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService) {
+            this.dataSourceDateConvertion = [];
+      this.dataSourceDateCierreConvertion = [];
   }
 
   ngOnInit() {
@@ -84,7 +87,7 @@ export class GestionarPeriodosComponent implements OnInit {
     });
   }
 
-  updatePeriodo(row,i) {
+  updatePeriodo(row, i) {
     this.dialogService.openConfirmDialog('¿Estás seguro de cerrar este Periodo?')
       .afterClosed().subscribe(res => {
         if (res) {
@@ -95,13 +98,13 @@ export class GestionarPeriodosComponent implements OnInit {
             fechaCierre: new Date(),
             activo: false
           };
-        
+
           console.log('');
           this.periodoService.putPeriodo(customPeriod, row._id).subscribe(res => {
             this.refreshDataSource();
             this.notificationService.success('Periodo se ha cerrado correctamente');
           });
-        }else{
+        } else {
           this.periodos[i].activo = true;
         }
       });
@@ -129,8 +132,33 @@ export class GestionarPeriodosComponent implements OnInit {
         this.reverseDataSource();
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.transformAperturaDate();
+        this.transformCierreDate();
       });
   }
 
-}
+  transformAperturaDate() {
+    this.dataSourceDateConvertion = new Array(this.dataSource.data.length);
+    for (let i = 0; i < this.dataSource.data.length; i++) {
+      this.dataSourceDateConvertion[i] = this.dataSource.data[i].fechaApertura.substring(0, 4) + '/' +
+      this.dataSource.data[i].fechaApertura.substring(5, 7) + '/' + this.dataSource.data[i].fechaApertura.substring(8, 10)
+      + ' ' + this.dataSource.data[i].fechaApertura.substring(11, 16);
+    }
+    console.log('');
+  }
 
+  transformCierreDate() {
+    this.dataSourceDateCierreConvertion = new Array(this.dataSource.data.length);
+    for (let i = 0; i < this.dataSource.data.length; i++) {
+      if (this.dataSource.data[i].fechaCierre === undefined) {
+        this.dataSourceDateCierreConvertion[i] = '';
+      } else {
+        this.dataSourceDateCierreConvertion[i] = this.dataSource.data[i].fechaCierre.substring(0, 4) + '/' +
+        this.dataSource.data[i].fechaCierre.substring(5, 7) + '/' + this.dataSource.data[i].fechaCierre.substring(8, 10)
+        + ' ' + this.dataSource.data[i].fechaCierre.substring(11, 16);
+      }
+    }
+    console.log('');
+  }
+
+}
