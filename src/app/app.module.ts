@@ -94,6 +94,10 @@ import { SecretariaMovementsComponent } from './components/secretaria-movements/
 import { DetalleAlumnoJefeComponent } from './components/detalle-alumno-jefe/detalle-alumno-jefe.component';
 import { GestionarPeriodosComponent } from './components/gestionar-periodos/gestionar-periodos.component';
 
+import {MatPaginatorIntl } from '@angular/material';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
   {path: 'cargaDocumentos', component: CargaDocumentosComponent},
@@ -183,7 +187,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent,
     MatConfirmDialogComponent, ModalViewComponent, ValidarDocumentosModalComponent,
     EditModalComponent],
-  providers: [MenuService, AlumnoService, LoginService, FileService,
+  providers: [ {provide: MatPaginatorIntl, useClass: GestionarPeriodosComponent},
+               {provide: MatPaginatorIntl, useClass: DetalleAlumnoComponent},
+               {provide: MatPaginatorIntl, useClass: SecretariaMovementsComponent},
+               {provide: MatPaginatorIntl, useClass: DetalleAlumnoJefeComponent},
+               {provide: MatPaginatorIntl, useClass: DetalleAlumnoDialogComponent} ,MenuService, AlumnoService, LoginService, FileService,
     WizardService, FormularioRegistroService, DropzoneTemplatesService, DatePipe,
     {
       provide: DROPZONE_CONFIG,
