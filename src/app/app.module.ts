@@ -93,6 +93,7 @@ import { SecretariaMovementsComponent } from './components/secretaria-movements/
 import { DetalleAlumnoJefeComponent } from './components/detalle-alumno-jefe/detalle-alumno-jefe.component';
 import { GestionarPeriodosComponent } from './components/gestionar-periodos/gestionar-periodos.component';
 import { DownloadTemplateComponent } from './components/subcomponents/download-template/download-template.component';
+import { RolesCarrerasComponent } from './components/roles-carreras/roles-carreras.component';
 
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
@@ -108,7 +109,8 @@ const appRoutes: Routes = [
   {path: 'validarDocumentos', component: ValidarDocumentosComponent},
   {path: 'secretariaMovements', component: SecretariaMovementsComponent},
   {path: 'detalleAlumnoJefe', component: DetalleAlumnoJefeComponent},
-  {path: 'gestionarPeriodos', component: GestionarPeriodosComponent}
+  {path: 'gestionarPeriodos', component: GestionarPeriodosComponent},
+  {path: 'gestionarRoles', component: RolesCarrerasComponent}
 ];
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -152,7 +154,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     SecretariaMovementsComponent,
     DetalleAlumnoJefeComponent,
     GestionarPeriodosComponent,
-    DownloadTemplateComponent
+    DownloadTemplateComponent,
+    RolesCarrerasComponent
     ],
 
   imports: [
