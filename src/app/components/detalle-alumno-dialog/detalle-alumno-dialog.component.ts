@@ -17,7 +17,6 @@ import { LoginService } from './../../services/login.service';
 // Models
 import { Alumno } from './../../models/alumno';
 
-import {MatPaginatorIntl} from '@angular/material';
 
 export interface StatusDocumento {
     value: string;
@@ -30,7 +29,7 @@ export interface StatusDocumento {
     styleUrls: ['./detalle-alumno-dialog.component.css']
 })
 
-export class DetalleAlumnoDialogComponent extends MatPaginatorIntl{
+export class DetalleAlumnoDialogComponent {
     // Position of dataSource.data in order to deliver the status
     acordeonFoto = 2;
     acordeonNSS = 1;
@@ -86,25 +85,6 @@ export class DetalleAlumnoDialogComponent extends MatPaginatorIntl{
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-
-    itemsPerPageLabel = 'Artículos por página:';
-    nextPageLabel     = 'Siguiente página';
-    previousPageLabel = 'Pagina anterior';
-  
-    getRangeLabel = function (page, pageSize, length) {
-      if (length === 0 || pageSize === 0) {
-        return '0 od ' + length;
-      }
-      length = Math.max(length, 0);
-      const startIndex = page * pageSize;
-      // If the start index exceeds the list length, do not try and fix the end index to the end.
-      const endIndex = startIndex < length ?
-        Math.min(startIndex + pageSize, length) :
-        startIndex + pageSize;
-      return startIndex + 1 + ' - ' + endIndex + ' od ' + length;
-    };
-
-
     // Values for document validation
     dataFormulario: any;
     status = 'En proceso';
@@ -149,7 +129,7 @@ export class DetalleAlumnoDialogComponent extends MatPaginatorIntl{
         private usuarioService: UsuarioService,
         private loginService: LoginService) {
 
-            super();
+          
 
         this.awaitForAlumnoData();
     }

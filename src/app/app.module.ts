@@ -96,6 +96,7 @@ import { GestionarPeriodosComponent } from './components/gestionar-periodos/gest
 
 import {MatPaginatorIntl } from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ModalNotificationComponent } from './components/modal-notification/modal-notification.component';
 
 
 const appRoutes: Routes = [
@@ -155,7 +156,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ExcelTemplateComponent,
     SecretariaMovementsComponent,
     DetalleAlumnoJefeComponent,
-    GestionarPeriodosComponent
+    GestionarPeriodosComponent,
+    ModalNotificationComponent
     ],
 
   imports: [
@@ -185,13 +187,13 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatSlideToggleModule
   ],
   entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent,
-    MatConfirmDialogComponent, ModalViewComponent, ValidarDocumentosModalComponent,
+    MatConfirmDialogComponent,ModalNotificationComponent, ModalViewComponent, ValidarDocumentosModalComponent,
     EditModalComponent],
   providers: [ {provide: MatPaginatorIntl, useClass: GestionarPeriodosComponent},
                {provide: MatPaginatorIntl, useClass: DetalleAlumnoComponent},
                {provide: MatPaginatorIntl, useClass: SecretariaMovementsComponent},
                {provide: MatPaginatorIntl, useClass: DetalleAlumnoJefeComponent},
-               {provide: MatPaginatorIntl, useClass: DetalleAlumnoDialogComponent} ,MenuService, AlumnoService, LoginService, FileService,
+               MenuService, AlumnoService, LoginService, FileService,
     WizardService, FormularioRegistroService, DropzoneTemplatesService, DatePipe,
     {
       provide: DROPZONE_CONFIG,
