@@ -38,9 +38,9 @@
           <div class="form-row">
             <div class="form-group col-xs-6 col-md-4">
               <label for="txtLugarNacimiento">NÚMERO DE CONTROL</label>
-              <input type="text" class="form-control" id="txtNC" placeholder="Número de Control"
+              <input type="number" class="form-control" id="txtNC" placeholder="Número de Control"
                 [(ngModel)]="fieldControlNumber" name="fieldNumeroControl" (change)='evaluateIfallFieldsAreValid()'>
-              <p id="msgError" *ngIf="(fieldControlNumber < 0 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldControlNumber == null && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
 
             <div class="form-group col-xs-6 col-md-4">
@@ -83,7 +83,7 @@
               <label for="txtNSS">NSS(NÚMERO DE SEGURO SOCIAL)</label>
               <input type="number" class="form-control" id="txtNSS" placeholder="NSS(NÚMERO DE SEGURO SOCIAL)"
                 [(ngModel)]="fieldNSS" name="fieldNSS" (change)='evaluateIfallFieldsAreValid()'>
-              <p id="msgError" *ngIf="(fieldNSS < 0 && firstTryGivenValues)">*Campo obligatorio</p>
+              <p id="msgError" *ngIf="(fieldNSS == null && firstTryGivenValues)">*Campo obligatorio</p>
             </div>
           </div>
         </div>
@@ -162,13 +162,13 @@
                 <label for="txtCodigoPostal">CÓDIGO POSTAL</label>
                 <input type="number" class="form-control" id="txtCodigoPostal" placeholder="CÓDIGO POSTAL" [(ngModel)]="fieldPostalCode"
                   name="fieldPostalCode" (change)='evaluateIfallFieldsAreValid()'>
-                <p id="msgError" *ngIf="(fieldPostalCode < 0  && firstTryGivenValues)">*Campo obligatorio</p>
+                <p id="msgError" *ngIf="(fieldPostalCode == null  && firstTryGivenValues)">*Campo obligatorio</p>
               </div>
               <div class="form-group col-md-6">
                 <label for="txtTelefono">TELÉFONO</label>
                 <input type="number" class="form-control" id="txtTelefono" placeholder="TELÉFONO" [(ngModel)]="fieldPhone"
                   name="fieldPhone" (change)='evaluateIfallFieldsAreValid()'>
-                <p id="msgError" *ngIf="(fieldPhone > 0 && firstTryGivenValues)">*Campo obligatorio</p>
+                <p id="msgError" *ngIf="(fieldPhone == null && firstTryGivenValues)">*Campo obligatorio</p>
               </div>
             </div>
           </div>
@@ -191,6 +191,7 @@
                 <label for="txtCualEtnia">¿CUÁL?</label>
                 <input type="text" class="form-control" id="txtCualEtnia" placeholder="Introducir ETNIA" [(ngModel)]="fieldOtherEtnia"
                   name="fieldOtherEtnia" (change)='evaluateIfallFieldsAreValid()'>
+                  <p id="msgError" *ngIf="(fieldEtnia == 'SI' && fieldOtherEtnia.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
               </div>
             </div>
 
@@ -209,7 +210,8 @@
                 <label for="txtDiscapacidad">¿CUÁL?</label>
                 <input type="text" class="form-control" id="txtDiscapacidad" placeholder="Introducir DISCAPACIDAD"
                   [(ngModel)]="fieldWhichDisability" name="fieldWhichDisability" (change)='evaluateIfallFieldsAreValid()'>
-              </div>
+                <p id="msgError" *ngIf="(fieldDisability == 'SI' && fieldWhichDisability.length < 1 && firstTryGivenValues)">*Campo obligatorio</p>
+                </div>
             </div>
 
           </div>
@@ -258,6 +260,8 @@
                 <label for="txtPromedio">PROMEDIO</label>
                 <input type="number" class="form-control" id="txtPromedio" placeholder="PROMEDIO" [(ngModel)]="fieldAverage"
                   name="fieldAverage" min="1" max="100" value="1" (change)='evaluateIfallFieldsAreValid()'>
+                  <p id="msgError" *ngIf="(fieldAverage == null)">*Campo obligatorio</p>
+                  <p id="msgError" *ngIf="((fieldAverage > 100 || fieldAverage < 0) && firstTryGivenValues)">*El valor debe estar entre 0 y 100</p>
               </div>
             </div>
 

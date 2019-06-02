@@ -113,18 +113,25 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   }
 
   evaluateIfallFieldsAreValid() {
-    this.allFieldsAreValid =  (this.fieldLastNameFather.length > 1 &&
-      this.fieldLastNameMother.length > 1 && this.fieldFirstName.length > 1 &&
-      this.fieldControlNumber.length > 1 && this.fieldPlaceBirth.length > 1  && this.fieldEmail.length > 1 &&
-      this.fieldCURP.length > 1 && this.fieldStreet.length > 1 &&
-      this.fieldColony.length > 1 && this.fieldCity.length > 1 &&
-      this.fieldNameSchool.length > 1 && this.fieldAverage > 0 &&
-      this.fieldPostalCode != null && this.fieldPostalCode > 0 &&
-      this.fieldAverage <= 100 && this.fieldAverage != null &&
-      this.fieldPhone > 0 && this.fieldPhone != null &&
-      this.fieldControlNumber.length > 1);
+    this.allFieldsAreValid =  (this.fieldLastNameFather.length > 1 && this.fieldFirstName.length > 1 &&
+      this.fieldControlNumber != null && this.fieldPlaceBirth.length > 1  && this.fieldEmail.length > 1 &&
+      this.fieldCURP.length > 1 && this.fieldNSS != null && this.fieldStreet.length > 1 &&
+      this.fieldColony.length > 1 && this.fieldCity.length > 1 && this.fieldPostalCode != null &&
+      this.fieldPhone != null && this.fieldAverage > 0 && this.fieldNameSchool != null &&
+      this.fieldAverage <= 100 && this.fieldAverage != null && this.fieldNameSchool.length > 1 &&
+      this.fieldPhone != null);
 
     if (this.allFieldsAreValid) {
+      if ((this.fieldEtnia === 'SI')) {
+        this.allFieldsAreValid = this.allFieldsAreValid && this.fieldOtherEtnia.length > 1;
+      }
+      if ((this.fieldDisability === 'SI')) {
+        this.allFieldsAreValid = this.allFieldsAreValid && this.fieldWhichDisability.length > 1;
+      }
+      if (!this.allFieldsAreValid) {
+        return;
+      }
+
       this.formularioRegistroService.changeallFieldsAreValid(true);
       this.alumno = {
         lastNameFather: this.fieldLastNameFather,
