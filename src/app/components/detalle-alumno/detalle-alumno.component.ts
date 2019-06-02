@@ -17,18 +17,38 @@ import { ExcelService } from './../../services/excel.service';
 // Models
 import { Alumno } from './../../models/alumno';
 
+import {MatPaginatorIntl} from '@angular/material';
+
 @Component({
   selector: 'app-detalle-alumno',
   templateUrl: './detalle-alumno.component.html',
   styleUrls: ['./detalle-alumno.component.css']
 })
 
-export class DetalleAlumnoComponent implements OnInit {
+export class DetalleAlumnoComponent extends MatPaginatorIntl implements OnInit {
   displayedColumns: string[] = [ 'controlNumber', 'completeName', 'career', 'statusInscripcion', 'actions'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  itemsPerPageLabel = 'Artículos por página:';
+  nextPageLabel     = 'Siguiente página';
+  previousPageLabel = 'Pagina anterior';
+
+  getRangeLabel = function (page, pageSize, length) {
+    if (length === 0 || pageSize === 0) {
+      return '0 od ' + length;
+    }
+    length = Math.max(length, 0);
+    const startIndex = page * pageSize;
+    // If the start index exceeds the list length, do not try and fix the end index to the end.
+    const endIndex = startIndex < length ?
+      Math.min(startIndex + pageSize, length) :
+      startIndex + pageSize;
+    return startIndex + 1 + ' - ' + endIndex + ' od ' + length;
+  };
+
 
   // Filters
   filterA: any;
@@ -56,6 +76,7 @@ export class DetalleAlumnoComponent implements OnInit {
     private dialogService: DialogService, private notificationService: NotificationService,
     private usuarioService: UsuarioService, private loginService: LoginService,
     private excelService: ExcelService) {
+      super();
 
     this.filterA = { 'value': false, 'filter': 'En captura' };
     this.filterB = { 'value': false, 'filter': 'Enviado' };
@@ -63,6 +84,8 @@ export class DetalleAlumnoComponent implements OnInit {
     this.filterD = { 'value': false, 'filter': 'Aceptado' };
 
     this.careerVisualizationMode = false;
+
+    
   }
 
   ngOnInit() {

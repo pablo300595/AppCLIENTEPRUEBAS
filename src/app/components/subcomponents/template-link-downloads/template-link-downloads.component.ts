@@ -48,6 +48,7 @@ export class TemplateLinkDownloadsComponent implements OnInit {
   refFoto: any;
   refNSS: any;
   refCertificado: any;
+  refContrato: any;
 
   srcFoto: any;
 
@@ -111,6 +112,11 @@ export class TemplateLinkDownloadsComponent implements OnInit {
 
     this.refComprobante = document.getElementById('refCOMPROBANTE');
     this.refComprobante.href = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/COMPROBANTE.pdf`;
+    
+    this.refContrato = document.getElementById('refCONTRATO');
+    this.refContrato.href = 'https://residenciainscripciones.000webhostapp.com/CONTRATO.pdf';
+
+
   }
 
   downloadPDF() {

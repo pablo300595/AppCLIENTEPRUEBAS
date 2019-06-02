@@ -18,6 +18,9 @@ import { MessagesService } from './../../services/messages.service';
 import { Alumno } from './../../models/alumno';
 import { Observable } from 'rxjs';
 
+
+import {MatPaginatorIntl} from '@angular/material';
+
 export interface PeriodoMes {
   value: string;
   viewValue: string;
@@ -32,7 +35,7 @@ export interface PeriodoYear {
   templateUrl: './detalle-alumno-jefe.component.html',
   styleUrls: ['./detalle-alumno-jefe.component.css']
 })
-export class DetalleAlumnoJefeComponent implements OnInit {
+export class DetalleAlumnoJefeComponent extends MatPaginatorIntl implements OnInit {
   // RJX
   public responseData1: any;
   public responseData2: any;
@@ -47,6 +50,25 @@ export class DetalleAlumnoJefeComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  itemsPerPageLabel = 'Artículos por página:';
+  nextPageLabel     = 'Siguiente página';
+  previousPageLabel = 'Pagina anterior';
+
+  getRangeLabel = function (page, pageSize, length) {
+    if (length === 0 || pageSize === 0) {
+      return '0 od ' + length;
+    }
+    length = Math.max(length, 0);
+    const startIndex = page * pageSize;
+    // If the start index exceeds the list length, do not try and fix the end index to the end.
+    const endIndex = startIndex < length ?
+      Math.min(startIndex + pageSize, length) :
+      startIndex + pageSize;
+    return startIndex + 1 + ' - ' + endIndex + ' od ' + length;
+  };
+
+
   // Filters
   filterA: any;
   filterB: any;
@@ -96,6 +118,9 @@ export class DetalleAlumnoJefeComponent implements OnInit {
     private dialogService: DialogService, private notificationService: NotificationService,
     private usuarioService: UsuarioService, private loginService: LoginService,
     private excelService: ExcelService, private messagesService: MessagesService) {
+      
+      super();
+
     this.filterA = { 'value': false, 'filter': 'En captura' };
     this.filterB = { 'value': false, 'filter': 'Enviado' };
     this.filterC = { 'value': false, 'filter': 'Validado' };

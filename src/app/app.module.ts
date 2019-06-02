@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 // componentes
 import { AppComponent } from './app.component';
@@ -95,6 +96,11 @@ import { GestionarPeriodosComponent } from './components/gestionar-periodos/gest
 import { DownloadTemplateComponent } from './components/subcomponents/download-template/download-template.component';
 import { RolesCarrerasComponent } from './components/roles-carreras/roles-carreras.component';
 
+import {MatPaginatorIntl } from '@angular/material';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { ModalNotificationComponent } from './components/modal-notification/modal-notification.component';
+
+
 const appRoutes: Routes = [
   {path: 'formularioDatos', component: FormularioRegistroAlumnoComponent},
   {path: 'cargaDocumentos', component: CargaDocumentosComponent},
@@ -155,7 +161,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DetalleAlumnoJefeComponent,
     GestionarPeriodosComponent,
     DownloadTemplateComponent,
-    RolesCarrerasComponent
+    RolesCarrerasComponent,
+    ModalNotificationComponent
     ],
 
   imports: [
@@ -185,10 +192,14 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatSlideToggleModule
   ],
   entryComponents: [DetalleAlumnoComponent, DetalleAlumnoDialogComponent,
-    MatConfirmDialogComponent, ModalViewComponent, ValidarDocumentosModalComponent,
+    MatConfirmDialogComponent,ModalNotificationComponent, ModalViewComponent, ValidarDocumentosModalComponent,
     EditModalComponent],
-  providers: [MenuService, AlumnoService, LoginService, FileService,
-    WizardService, FormularioRegistroService, DropzoneTemplatesService,
+  providers: [ {provide: MatPaginatorIntl, useClass: GestionarPeriodosComponent},
+               {provide: MatPaginatorIntl, useClass: DetalleAlumnoComponent},
+               {provide: MatPaginatorIntl, useClass: SecretariaMovementsComponent},
+               {provide: MatPaginatorIntl, useClass: DetalleAlumnoJefeComponent},
+               MenuService, AlumnoService, LoginService, FileService,
+    WizardService, FormularioRegistroService, DropzoneTemplatesService, DatePipe,
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG

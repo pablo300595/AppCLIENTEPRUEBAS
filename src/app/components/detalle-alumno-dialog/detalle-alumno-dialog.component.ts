@@ -17,6 +17,7 @@ import { LoginService } from './../../services/login.service';
 // Models
 import { Alumno } from './../../models/alumno';
 
+
 export interface StatusDocumento {
     value: string;
     viewValue: string;
@@ -83,6 +84,7 @@ export class DetalleAlumnoDialogComponent {
     dataSource: MatTableDataSource<any>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
+
     // Values for document validation
     dataFormulario: any;
     status = 'En proceso';
@@ -126,6 +128,9 @@ export class DetalleAlumnoDialogComponent {
         private secretariaMovementsService: SecretariaMovementsService,
         private usuarioService: UsuarioService,
         private loginService: LoginService) {
+
+          
+
         this.awaitForAlumnoData();
     }
 

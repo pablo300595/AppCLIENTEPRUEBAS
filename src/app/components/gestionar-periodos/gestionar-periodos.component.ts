@@ -12,18 +12,16 @@ import { PeriodoService } from './../../services/periodo.service';
 // Models
 import { Periodo } from './../../models/periodo';
 
+import {MatPaginatorIntl} from '@angular/material';
 
 @Component({
   selector: 'app-gestionar-periodos',
   templateUrl: './gestionar-periodos.component.html',
   styleUrls: ['./gestionar-periodos.component.css']
 })
-export class GestionarPeriodosComponent implements OnInit {
+export class GestionarPeriodosComponent extends MatPaginatorIntl implements OnInit {
   displayedColumns: string[] = ['periodo', 'yearPeriodo', 'fechaApertura', 'fechaCierre', 'activo', 'actions'];
   dataSource: MatTableDataSource<any>;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
 
   periodo: Periodo;
   periodos: any;
@@ -32,9 +30,30 @@ export class GestionarPeriodosComponent implements OnInit {
   dataSourceDateConvertion: Array <String>;
   dataSourceDateCierreConvertion: Array <String>;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  itemsPerPageLabel = 'Artículos por página:';
+  nextPageLabel     = 'Siguiente página';
+  previousPageLabel = 'Pagina anterior';
+
+  getRangeLabel = function (page, pageSize, length) {
+    if (length === 0 || pageSize === 0) {
+      return '0 od ' + length;
+    }
+    length = Math.max(length, 0);
+    const startIndex = page * pageSize;
+    // If the start index exceeds the list length, do not try and fix the end index to the end.
+    const endIndex = startIndex < length ?
+      Math.min(startIndex + pageSize, length) :
+      startIndex + pageSize;
+    return startIndex + 1 + ' - ' + endIndex + ' od ' + length;
+  };
+
   constructor(private periodoService: PeriodoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService) {
-            this.dataSourceDateConvertion = [];
+      super();
+      this.dataSourceDateConvertion = [];
       this.dataSourceDateCierreConvertion = [];
   }
 
@@ -46,7 +65,8 @@ export class GestionarPeriodosComponent implements OnInit {
     credential:'secretary',user:'secreA',pass:'1234'}).
     Then it makes a POST request to https://app-apipruebas.herokuapp.com/alumnos/career
     where an array composed by Students and its documents is retrieved. Finally Global values are updated with this*/
-  addPeriodo() {
+
+    addPeriodo() {
     let lastActivePeriod;
     let newPeriod;
     for (let i = 0; i < this.periodos.length; i++) {

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlumnoService} from './../../services/alumno.service';
+import { AlumnoService } from './../../services/alumno.service';
 import { WizardService } from './../../services/wizard.service';
 import { MessagesService } from './../../services/messages.service';
 import { LoginService } from './../../services/login.service';
@@ -12,6 +12,8 @@ import { Alumno } from './../../models/alumno';
 import { TemplateWizardComponent } from './../subcomponents/template-wizard/template-wizard.component';
 import { ResumenComponent } from '../resumen/resumen.component';
 import { TemplateLinkDownloadsComponent } from '../subcomponents/template-link-downloads/template-link-downloads.component';
+import { DialogService } from 'src/app/services/dialog.service';
+
 
 @Component({
   selector: 'app-inscripcion-wizard',
@@ -38,9 +40,10 @@ export class InscripcionWizardComponent implements OnInit {
   constructor(private alumnoService: AlumnoService, private loginService: LoginService, private wizardService: WizardService,
     private formularioRegistroService: FormularioRegistroService, private messagesService: MessagesService,
     private contratoService: ContratoService, private cargaDocumentosService: CargaDocumentosService,
-    private periodoService: PeriodoService, private router: Router) {
-      this.initServices();
-    }
+    private periodoService: PeriodoService, private router: Router,
+    private dialogService: DialogService) {
+    this.initServices();
+  }
 
   ngOnInit() {
 
@@ -73,10 +76,10 @@ export class InscripcionWizardComponent implements OnInit {
       return;
     }
     this.alumnoService.putAlumno(this.alumnoToUpdate, this.idAlumnoLoged)
-        .subscribe();
-        this.messagesService.success('¡Alumno actualizado con exito!');
-        this.wizardService.changeStepOneStatus(true);
-        this.formularioRegistroService.changefirstTryGivenValues(false);
+      .subscribe();
+    this.messagesService.success('¡Alumno actualizado con exito!');
+    this.wizardService.changeStepOneStatus(true);
+    this.formularioRegistroService.changefirstTryGivenValues(false);
   }
 
   checkStepTwo() {
@@ -155,6 +158,7 @@ export class InscripcionWizardComponent implements OnInit {
   }
 
   finishSteps() {
+<<<<<<< HEAD
     let alumno = new Alumno();
     alumno = {statusInscripcion: 'Enviado'};
     this.alumnoService.putStatusAlumno(alumno, this.idAlumnoLoged).subscribe(
@@ -171,7 +175,30 @@ export class InscripcionWizardComponent implements OnInit {
       if (this.currentPeriods[i].activo) {
         this.alumnoService.updateAlumnoPeriodById(this.idAlumnoLoged, {periodo: this.currentPeriods[i]._id}).subscribe();
       }
+=======
+    this.dialogService.openNotificationDialog('Una vez terminado el proceso, debes entrar al sistema constantemente para la validación de documentos.')
+      .afterClosed().subscribe(res => {
+        if (res) {
+          let alumno = new Alumno();
+          alumno = { statusInscripcion: 'Enviado' };
+          this.alumnoService.putStatusAlumno(alumno, this.idAlumnoLoged).subscribe(
+            res => this.messagesService.success('Status de alumno ha cambiado a enviado')
+          );
+          this.asignPeriod();
+          this.resetSteps();
+          this.router.navigateByUrl('/');
+        }
+        
+      });
+>>>>>>> 0a1407adb5c5e79809e78c51979a2ad20565c1d2
     }
-  }
 
-}
+        asignPeriod() {
+          for (let i = 0; i < this.currentPeriods.length; i++) {
+            if (this.currentPeriods[i].activo) {
+              this.alumnoService.updateAlumnoPeriodById(this.idAlumnoLoged, { periodo: this.currentPeriods[i]._id }).subscribe();
+            }
+          }
+        }
+
+      }
