@@ -158,25 +158,8 @@ export class InscripcionWizardComponent implements OnInit {
   }
 
   finishSteps() {
-<<<<<<< HEAD
-    let alumno = new Alumno();
-    alumno = {statusInscripcion: 'Enviado'};
-    this.alumnoService.putStatusAlumno(alumno, this.idAlumnoLoged).subscribe(
-      res => this.messagesService.success('Status de alumno ha cambiado a enviado')
-    );
-    this.asignPeriod();
-    this.alumnoService.initAlumnoDocumentation(this.idAlumnoLoged).subscribe();
-    this.resetSteps();
-    this.router.navigateByUrl('/');
-  }
-
-  asignPeriod() {
-    for (let i = 0; i < this.currentPeriods.length; i++) {
-      if (this.currentPeriods[i].activo) {
-        this.alumnoService.updateAlumnoPeriodById(this.idAlumnoLoged, {periodo: this.currentPeriods[i]._id}).subscribe();
-      }
-=======
-    this.dialogService.openNotificationDialog('Una vez terminado el proceso, debes entrar al sistema constantemente para la validación de documentos.')
+    this.dialogService.openNotificationDialog
+      ('Una vez terminado el proceso, debes entrar al sistema constantemente para la validación de documentos.')
       .afterClosed().subscribe(res => {
         if (res) {
           let alumno = new Alumno();
@@ -188,17 +171,15 @@ export class InscripcionWizardComponent implements OnInit {
           this.resetSteps();
           this.router.navigateByUrl('/');
         }
-        
       });
->>>>>>> 0a1407adb5c5e79809e78c51979a2ad20565c1d2
-    }
+  }
 
-        asignPeriod() {
-          for (let i = 0; i < this.currentPeriods.length; i++) {
-            if (this.currentPeriods[i].activo) {
-              this.alumnoService.updateAlumnoPeriodById(this.idAlumnoLoged, { periodo: this.currentPeriods[i]._id }).subscribe();
-            }
-          }
-        }
-
+  asignPeriod() {
+    for (let i = 0; i < this.currentPeriods.length; i++) {
+      if (this.currentPeriods[i].activo) {
+        this.alumnoService.updateAlumnoPeriodById(this.idAlumnoLoged, { periodo: this.currentPeriods[i]._id }).subscribe();
       }
+    }
+  }
+
+}
