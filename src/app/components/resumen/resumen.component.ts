@@ -22,6 +22,7 @@ export class ResumenComponent implements OnInit {
   curp: string;
   foto: string;
   nss: string;
+  formulario: string;
 
   alumnos: any;
 
@@ -110,7 +111,8 @@ export class ResumenComponent implements OnInit {
       this.curp  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/CURP.pdf`;
       this.foto  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FOTO.png`;
       this.nss  = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/NSS.pdf`;
-
+      this.formulario = `https://novaresidencia.000webhostapp.com/${this.alumno.controlNumber}/documentos/FORMULARIO.pdf`;
+      
     });
   }
 
