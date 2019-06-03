@@ -1,6 +1,6 @@
 <mat-dialog-content class="mat-typography">
 
-<div class='login-block'>
+  <div class='login-block'>
     <div class="container">
       <div class='login-block'>
         <div class="container">
@@ -29,7 +29,8 @@
 
                       <div>
                         <label for="txtNombre"><b>Nombre:</b>&nbsp;</label>
-                        <label type="text" id="txtNombre" name="fieldFirstName">{{fieldLastNameFather}} {{fieldLastNameMother}} {{fieldFirstName}}</label>
+                        <label type="text" id="txtNombre" name="fieldFirstName">{{fieldLastNameFather}}
+                          {{fieldLastNameMother}} {{fieldFirstName}}</label>
                       </div>
 
                       <div>
@@ -173,125 +174,128 @@
             </mat-tab>
 
             <mat-tab label="Documentos">
-                <mat-accordion>
-                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          CERTIFICADO DE BACHILLERATO O EQUIVALENTE
-                        </mat-panel-title>
-                        <mat-panel-description>
+              <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      CERTIFICADO DE BACHILLERATO O EQUIVALENTE
+                    </mat-panel-title>
+                    <mat-panel-description>
 
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                      <ng-template matExpansionPanelContent>
-                        <pdf-viewer [src]="certificado"></pdf-viewer>
-                      </ng-template>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <ng-template matExpansionPanelContent>
+                    <pdf-viewer [src]="certificado"></pdf-viewer>
+                  </ng-template>
 
-                    </mat-expansion-panel>
+                </mat-expansion-panel>
 
-                    <mat-expansion-panel>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          ACTA DE NACIMIENTO
-                        </mat-panel-title>
-                        <mat-panel-description>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      ACTA DE NACIMIENTO
+                    </mat-panel-title>
+                    <mat-panel-description>
 
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                      <ng-template matExpansionPanelContent>
-                        <pdf-viewer [src]="acta"></pdf-viewer>
-                      </ng-template>
-                    </mat-expansion-panel>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <ng-template matExpansionPanelContent>
+                    <pdf-viewer [src]="acta"></pdf-viewer>
+                  </ng-template>
+                </mat-expansion-panel>
 
-                    <mat-expansion-panel [expanded]='false'>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          CURP
-                        </mat-panel-title>
-                        <mat-panel-description>
+                <mat-expansion-panel [expanded]='false'>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      CURP
+                    </mat-panel-title>
+                    <mat-panel-description>
 
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                      <ng-template matExpansionPanelContent>
-                        <pdf-viewer [src]="curp"></pdf-viewer>
-                      </ng-template>
-                    </mat-expansion-panel>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <ng-template matExpansionPanelContent>
+                    <pdf-viewer [src]="curp"></pdf-viewer>
+                  </ng-template>
+                </mat-expansion-panel>
 
-                    <mat-expansion-panel>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN
-                        </mat-panel-title>
-                        <mat-panel-description>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN
+                    </mat-panel-title>
+                    <mat-panel-description>
 
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                      <ng-template matExpansionPanelContent>
-                        <pdf-viewer [src]="comprobante"></pdf-viewer>
-                      </ng-template>
-                    </mat-expansion-panel>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <ng-template matExpansionPanelContent>
+                    <pdf-viewer [src]="comprobante"></pdf-viewer>
+                  </ng-template>
+                </mat-expansion-panel>
 
-                    <mat-expansion-panel>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          RESULTADO DE ANÁLISIS CLÍNICOS
-                        </mat-panel-title>
-                        <mat-panel-description>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      RESULTADO DE ANÁLISIS CLÍNICOS
+                    </mat-panel-title>
+                    <mat-panel-description>
 
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                      <ng-template matExpansionPanelContent>
-                        <pdf-viewer [src]="clinicos"></pdf-viewer>
-                      </ng-template>
-                    </mat-expansion-panel>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <ng-template matExpansionPanelContent>
+                    <pdf-viewer [src]="clinicos"></pdf-viewer>
+                  </ng-template>
+                </mat-expansion-panel>
 
-                    <mat-expansion-panel>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          NÚMERO DE SEGURO SOCIAL
-                        </mat-panel-title>
-                        <mat-panel-description>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      NÚMERO DE SEGURO SOCIAL
+                    </mat-panel-title>
+                    <mat-panel-description>
 
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                      <ng-template matExpansionPanelContent>
-                        <pdf-viewer [src]="nss"></pdf-viewer>
-                      </ng-template>
-                    </mat-expansion-panel>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <ng-template matExpansionPanelContent>
+                    <pdf-viewer [src]="nss"></pdf-viewer>
+                  </ng-template>
+                </mat-expansion-panel>
 
-                    <mat-expansion-panel>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          FOTOGRAFÍA
-                        </mat-panel-title>
-                        <mat-panel-description>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      FOTOGRAFÍA
+                    </mat-panel-title>
+                    <mat-panel-description>
 
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                      <ng-template matExpansionPanelContent>
-                        <pdf-viewer [src]="foto"></pdf-viewer>
-                      </ng-template>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <ng-template matExpansionPanelContent>
+                    <img [src]="foto">
+                  </ng-template>
 
-                    </mat-expansion-panel>
+                </mat-expansion-panel>
 
-                    <mat-expansion-panel>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          FORMULARIO
-                        </mat-panel-title>
-                        <mat-panel-description>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      FORMULARIO
+                    </mat-panel-title>
+                    <mat-panel-description>
 
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                    </mat-expansion-panel>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <ng-template matExpansionPanelContent>
+                    <pdf-viewer [src]="formulario"></pdf-viewer>
+                  </ng-template>
+                </mat-expansion-panel>
 
 
-                  </mat-accordion>
+              </mat-accordion>
 
             </mat-tab>
           </mat-tab-group>
         </div>
       </div>
     </div>
-</div>
+  </div>
 </mat-dialog-content>

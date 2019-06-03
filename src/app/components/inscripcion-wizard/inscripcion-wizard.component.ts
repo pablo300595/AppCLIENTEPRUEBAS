@@ -13,7 +13,7 @@ import { TemplateWizardComponent } from './../subcomponents/template-wizard/temp
 import { ResumenComponent } from '../resumen/resumen.component';
 import { TemplateLinkDownloadsComponent } from '../subcomponents/template-link-downloads/template-link-downloads.component';
 import { DialogService } from 'src/app/services/dialog.service';
-
+import { ContratoComponent } from '../contrato/contrato.component';
 
 @Component({
   selector: 'app-inscripcion-wizard',
@@ -23,6 +23,7 @@ import { DialogService } from 'src/app/services/dialog.service';
 export class InscripcionWizardComponent implements OnInit {
   @ViewChild(ResumenComponent) resumen: ResumenComponent;
   @ViewChild(TemplateLinkDownloadsComponent) links: TemplateLinkDownloadsComponent;
+  @ViewChild(ContratoComponent) contrato: ContratoComponent;
 
   stepOneCompleted: boolean;
   stepTwoCompleted: boolean;
@@ -85,6 +86,7 @@ export class InscripcionWizardComponent implements OnInit {
   checkStepTwo() {
     if (this.stepTwoCompleted) {
       this.messagesService.success('¡Documentos cargados de forma correcta!');
+      this.contrato.loadAlumnoData();
     } else {
       this.messagesService.warning(`¡Hay documentos pendientes por cargar! Favor de revisar que todos los documentos
       tengan el icono de cargado`);
