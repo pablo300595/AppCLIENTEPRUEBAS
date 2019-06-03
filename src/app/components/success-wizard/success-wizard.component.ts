@@ -59,8 +59,12 @@ export class SuccessWizardComponent implements OnInit {
       clickable: true, maxFiles: 2,
       params: {'usuario': this.currentUser, 'filename': 'NSS.pdf', 'isImage': false},
       accept: (file, done) => {
-        // this.dropzoneFileNameNSS = file.name; this.file1 = true;
-        // this.cargaDocumentosService.changeFile1(true);
+        const dataFormulario = {
+          'documentName': 'NSS',
+          'status': 'En captura',
+          'observacion': '#Corrección de archivo'
+        };
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
         done();
       },
       autoReset: 1,
@@ -71,8 +75,12 @@ export class SuccessWizardComponent implements OnInit {
       clickable: true, maxFiles: 2,
       params: {'usuario': this.currentUser, 'filename': 'CURP.pdf', 'isImage': false},
       accept: (file, done) => {
-        // this.dropzoneFileNameACTA = file.name; this.file2 = true;
-        // this.cargaDocumentosService.changeFile2(true); 
+        const dataFormulario = {
+          'documentName': 'CURP',
+          'status': 'En captura',
+          'observacion': '#Corrección de archivo'
+        };
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
         done();
       },
       autoReset: 1,
@@ -84,8 +92,12 @@ export class SuccessWizardComponent implements OnInit {
       clickable: true, maxFiles: 2,
       params: {'usuario': this.currentUser, 'filename': 'ACTA.pdf', 'isImage': false},
       accept: (file, done) => {
-        // this.dropzoneFileNameCURP = file.name; this.file3 = true;
-        // this.cargaDocumentosService.changeFile3(true); 
+        const dataFormulario = {
+          'documentName': 'ACTA',
+          'status': 'En captura',
+          'observacion': '#Corrección de archivo'
+        };
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
         done();
       },
       autoReset: 1,
@@ -97,8 +109,12 @@ export class SuccessWizardComponent implements OnInit {
       clickable: true, maxFiles: 2,
       params: {'usuario': this.currentUser, 'filename': 'CLINICOS.pdf', 'isImage': false},
       accept: (file, done) => {
-        // this.dropzoneFileNameCOMPROBANTE = file.name; this.file4 = true;
-        // this.cargaDocumentosService.changeFile4(true); 
+        const dataFormulario = {
+          'documentName': 'CLINICOS',
+          'status': 'En captura',
+          'observacion': '#Corrección de archivo'
+        };
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
         done();
       },
       autoReset: 1,
@@ -110,8 +126,12 @@ export class SuccessWizardComponent implements OnInit {
       clickable: true, maxFiles: 2,
       params: {'usuario': this.currentUser, 'filename': 'CERTIFICADO.pdf', 'isImage': false},
       accept: (file, done) => {
-        // this.dropzoneFileNameANALISIS = file.name; this.file5 = true;
-        // this.cargaDocumentosService.changeFile5(true); 
+        const dataFormulario = {
+          'documentName': 'CERTIFICADO',
+          'status': 'En captura',
+          'observacion': '#Corrección de archivo'
+        };
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
         done();
       },
       autoReset: 1,
@@ -123,8 +143,12 @@ export class SuccessWizardComponent implements OnInit {
       clickable: true, maxFiles: 2,
       params: {'usuario': this.currentUser, 'filename': 'COMPROBANTE.pdf', 'isImage': false},
       accept: (file, done) => {
-        // this.dropzoneFileNamePhoto = file.name; this.file6 = true;
-        // this.cargaDocumentosService.changeFile6(true); 
+        const dataFormulario = {
+          'documentName': 'COMPROBANTE',
+          'status': 'En captura',
+          'observacion': '#Corrección de archivo'
+        };
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
         done();
       },
       autoReset: 1,
@@ -136,8 +160,12 @@ export class SuccessWizardComponent implements OnInit {
       clickable: true, maxFiles: 2,
       params: {'usuario': this.currentUser, 'filename': 'FORMULARIO.pdf', 'isImage': false},
       accept: (file, done) => {
-        // this.dropzoneFileNameNSS = file.name; this.file7 = true;
-        // this.cargaDocumentosService.changeFile7(true);
+        const dataFormulario = {
+          'documentName': 'FORMULARIO',
+          'status': 'En captura',
+          'observacion': '#Corrección de archivo'
+        };
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
         done();
       },
       autoReset: 1,
@@ -149,8 +177,12 @@ export class SuccessWizardComponent implements OnInit {
       clickable: true, maxFiles: 2,
       params: {'usuario': this.currentUser, 'filename': 'FOTO.png', 'isImage': true},
       accept: (file, done) => {
-        // this.dropzoneFileNameNSS = file.name; this.file7 = true;
-        // this.cargaDocumentosService.changeFile7(true);
+        const dataFormulario = {
+          'documentName': 'FOTO',
+          'status': 'En captura',
+          'observacion': '#Corrección de archivo'
+        };
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
         done();
       },
       autoReset: 1,

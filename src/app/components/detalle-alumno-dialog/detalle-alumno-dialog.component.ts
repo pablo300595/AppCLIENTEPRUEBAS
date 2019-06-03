@@ -128,9 +128,6 @@ export class DetalleAlumnoDialogComponent {
         private secretariaMovementsService: SecretariaMovementsService,
         private usuarioService: UsuarioService,
         private loginService: LoginService) {
-
-          
-
         this.awaitForAlumnoData();
     }
 

@@ -77,11 +77,11 @@
         
       </mat-card-header>
       <mat-card-content>
-        <dropzone *ngIf="documentation[0].status=='Rechazado' || documentation[0].status=='En proceso'" id="dz0"
+        <dropzone *ngIf="documentation[0].status=='Rechazado' || documentation[0].status=='En captura'" id="dz0"
           [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'" (error)="onErrorCommon($event)"
           (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"></dropzone>
         <mat-chip-list>
-          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[0].status == 'En proceso'">{{documentation[0].status}}</mat-chip>
+          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[0].status == 'En captura'">{{documentation[0].status}}</mat-chip>
           <mat-chip style="background-color: red;" selected *ngIf="documentation[0].status == 'Rechazado'">{{documentation[0].status}}</mat-chip>
           <mat-chip style="background-color: darkgreen;" selected *ngIf="documentation[0].status == 'Aceptado'">{{documentation[0].status}}</mat-chip>
           <mat-chip style="background-color: black;" selected *ngIf="documentation[0].status == 'Validado'">{{documentation[0].status}}</mat-chip>
@@ -100,11 +100,11 @@
         <mat-card-subtitle>{{documentation[1].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <dropzone *ngIf="documentation[1].status=='Rechazado' || documentation[1].status=='En proceso'" id="dz1"
+        <dropzone *ngIf="documentation[1].status=='Rechazado' || documentation[1].status=='En captura'" id="dz1"
           [config]="config1" [message]="'Haga click o arrastre archivos aquí para subirlos'" (error)="onErrorCommon($event)"
           (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"></dropzone>
         <mat-chip-list>
-          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[1].status == 'En proceso'">{{documentation[1].status}}</mat-chip>
+          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[1].status == 'En captura'">{{documentation[1].status}}</mat-chip>
           <mat-chip style="background-color: red;" selected *ngIf="documentation[1].status == 'Rechazado'">{{documentation[1].status}}</mat-chip>
           <mat-chip style="background-color: darkgreen;" selected *ngIf="documentation[1].status == 'Aceptado'">{{documentation[1].status}}</mat-chip>
           <mat-chip style="background-color: black;" selected *ngIf="documentation[1].status == 'Validado'">{{documentation[1].status}}</mat-chip>
@@ -122,11 +122,11 @@
         <mat-card-subtitle>{{documentation[2].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <dropzone *ngIf="documentation[2].status=='Rechazado' || documentation[2].status=='En proceso'" id="dz2"
+        <dropzone *ngIf="documentation[2].status=='Rechazado' || documentation[2].status=='En captura'" id="dz2"
           [config]="config2" [message]="'Haga click o arrastre archivos aquí para subirlos'" (error)="onErrorCommon($event)"
           (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"></dropzone>
         <mat-chip-list>
-          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[2].status == 'En proceso'">{{documentation[2].status}}</mat-chip>
+          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[2].status == 'En captura'">{{documentation[2].status}}</mat-chip>
           <mat-chip style="background-color: red;" selected *ngIf="documentation[2].status == 'Rechazado'">{{documentation[2].status}}</mat-chip>
           <mat-chip style="background-color: darkgreen;" selected *ngIf="documentation[2].status == 'Aceptado'">{{documentation[2].status}}</mat-chip>
           <mat-chip style="background-color: black;" selected *ngIf="documentation[2].status == 'Validado'">{{documentation[2].status}}</mat-chip>
@@ -144,11 +144,11 @@
         <mat-card-subtitle>{{documentation[3].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <dropzone *ngIf="documentation[3].status=='Rechazado' || documentation[3].status=='En proceso'" id="dz3"
+        <dropzone *ngIf="documentation[3].status=='Rechazado' || documentation[3].status=='En captura'" id="dz3"
           [config]="config3" [message]="'Haga click o arrastre archivos aquí para subirlos'" (error)="onErrorCommon($event)"
           (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"></dropzone>
         <mat-chip-list>
-          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[3].status == 'En proceso'">{{documentation[3].status}}</mat-chip>
+          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[3].status == 'En captura'">{{documentation[3].status}}</mat-chip>
           <mat-chip style="background-color: red;" selected *ngIf="documentation[3].status == 'Rechazado'">{{documentation[3].status}}</mat-chip>
           <mat-chip style="background-color: darkgreen;" selected *ngIf="documentation[3].status == 'Aceptado'">{{documentation[3].status}}</mat-chip>
           <mat-chip style="background-color: black;" selected *ngIf="documentation[3].status == 'Validado'">{{documentation[3].status}}</mat-chip>
@@ -169,11 +169,11 @@
         <mat-card-subtitle>{{documentation[4].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <dropzone *ngIf="documentation[4].status=='Rechazado' || documentation[4].status=='En proceso'" id="dz4"
+        <dropzone *ngIf="documentation[4].status=='Rechazado' || documentation[4].status=='En captura'" id="dz4"
           [config]="config4" [message]="'Haga click o arrastre archivos aquí para subirlos'" (error)="onErrorCommon($event)"
           (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"></dropzone>
         <mat-chip-list>
-          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[4].status == 'En proceso'">{{documentation[4].status}}</mat-chip>
+          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[4].status == 'En captura'">{{documentation[4].status}}</mat-chip>
           <mat-chip style="background-color: red;" selected *ngIf="documentation[4].status == 'Rechazado'">{{documentation[4].status}}</mat-chip>
           <mat-chip style="background-color: darkgreen;" selected *ngIf="documentation[4].status == 'Aceptado'">{{documentation[4].status}}</mat-chip>
           <mat-chip style="background-color: black;" selected *ngIf="documentation[4].status == 'Validado'">{{documentation[4].status}}</mat-chip>
@@ -191,11 +191,11 @@
         <mat-card-subtitle>{{documentation[5].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <dropzone *ngIf="documentation[5].status=='Rechazado' || documentation[5].status=='En proceso'" id="dz5"
+        <dropzone *ngIf="documentation[5].status=='Rechazado' || documentation[5].status=='En captura'" id="dz5"
           [config]="config5" [message]="'Haga click o arrastre archivos aquí para subirlos'" (error)="onErrorCommon($event)"
           (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"></dropzone>
         <mat-chip-list>
-          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[5].status == 'En proceso'">{{documentation[5].status}}</mat-chip>
+          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[5].status == 'En captura'">{{documentation[5].status}}</mat-chip>
           <mat-chip style="background-color: red;" selected *ngIf="documentation[5].status == 'Rechazado'">{{documentation[5].status}}</mat-chip>
           <mat-chip style="background-color: darkgreen;" selected *ngIf="documentation[5].status == 'Aceptado'">{{documentation[5].status}}</mat-chip>
           <mat-chip style="background-color: black;" selected *ngIf="documentation[5].status == 'Validado'">{{documentation[5].status}}</mat-chip>
@@ -213,11 +213,11 @@
         <mat-card-subtitle>{{documentation[6].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <dropzone *ngIf="documentation[6].status=='Rechazado' || documentation[6].status=='En proceso'" id="dz6"
+        <dropzone *ngIf="documentation[6].status=='Rechazado' || documentation[6].status=='En captura'" id="dz6"
           [config]="config6" [message]="'Haga click o arrastre archivos aquí para subirlos'" (error)="onErrorCommon($event)"
           (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"></dropzone>
         <mat-chip-list>
-          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[6].status == 'En proceso'">{{documentation[6].status}}</mat-chip>
+          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[6].status == 'En captura'">{{documentation[6].status}}</mat-chip>
           <mat-chip style="background-color: red;" selected *ngIf="documentation[6].status == 'Rechazado'">{{documentation[6].status}}</mat-chip>
           <mat-chip style="background-color: darkgreen;" selected *ngIf="documentation[6].status == 'Aceptado'">{{documentation[6].status}}</mat-chip>
           <mat-chip style="background-color: black;" selected *ngIf="documentation[6].status == 'Validado'">{{documentation[6].status}}</mat-chip>
@@ -235,11 +235,11 @@
         <mat-card-subtitle>{{documentation[7].observacion}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <dropzone *ngIf="documentation[7].status=='Rechazado' || documentation[7].status=='En proceso'" id="dz7"
+        <dropzone *ngIf="documentation[7].status=='Rechazado' || documentation[7].status=='En captura'" id="dz7"
           [config]="config7" [message]="'Haga click o arrastre archivos aquí para subirlos'" (error)="onErrorCommon($event)"
           (success)="onUploadSuccess($event)" matTooltip="Reemplazar Archivo"></dropzone>
         <mat-chip-list>
-          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[7].status == 'En proceso'">{{documentation[7].status}}</mat-chip>
+          <mat-chip style="background-color: #f7db13;" selected *ngIf="documentation[7].status == 'En captura'">{{documentation[7].status}}</mat-chip>
           <mat-chip style="background-color: red;" selected *ngIf="documentation[7].status == 'Rechazado'">{{documentation[7].status}}</mat-chip>
           <mat-chip style="background-color: darkgreen;" selected *ngIf="documentation[7].status == 'Aceptado'">{{documentation[7].status}}</mat-chip>
           <mat-chip style="background-color: black;" selected *ngIf="documentation[7].status == 'Validado'">{{documentation[7].status}}</mat-chip>
