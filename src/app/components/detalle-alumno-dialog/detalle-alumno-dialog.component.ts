@@ -99,7 +99,7 @@ export class DetalleAlumnoDialogComponent {
 
     documentToAnalize: string;
     formularios: StatusDocumento[] = [
-        { value: 'Aceptado', viewValue: 'Aceptado' },
+        { value: 'Validado', viewValue: 'Validado' },
         { value: 'En proceso', viewValue: 'En proceso' },
         { value: 'Rechazado', viewValue: 'Rechazado' }
     ];
@@ -385,13 +385,13 @@ export class DetalleAlumnoDialogComponent {
                 }
                 if (validatedDocsQty === 8) {
                     console.log('Validados todos');
-                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Aceptado'}, this.selectedNoCtrl).subscribe(
+                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Validado'}, this.selectedNoCtrl).subscribe(
                         res => this.messagesService.success('¡Todos los documentos han sido validados!')
                     );
                 }
                 if (aceptedDocsQty === 8) {
                     console.log('Aceptados todos');
-                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Validado'}, this.selectedNoCtrl).subscribe(
+                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Aceptado'}, this.selectedNoCtrl).subscribe(
                         res => this.messagesService.success('¡Todos los documentos han sido Validados!')
                     );
                 }
