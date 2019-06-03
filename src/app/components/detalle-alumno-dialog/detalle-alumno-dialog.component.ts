@@ -391,8 +391,8 @@ export class DetalleAlumnoDialogComponent {
                 }
                 if (aceptedDocsQty === 8) {
                     console.log('Aceptados todos');
-                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Revisado'}, this.selectedNoCtrl).subscribe(
-                        res => this.messagesService.success('¡Todos los documentos han sido revisados!')
+                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Validado'}, this.selectedNoCtrl).subscribe(
+                        res => this.messagesService.success('¡Todos los documentos han sido Validados!')
                     );
                 }
             }, 500);

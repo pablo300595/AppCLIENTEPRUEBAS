@@ -64,7 +64,9 @@ export class SuccessWizardComponent implements OnInit {
           'status': 'En captura',
           'observacion': '#Corrección de archivo'
         };
-        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe(res => {
+          this.awaitForValidationData();
+        });
         done();
       },
       autoReset: 1,
@@ -80,7 +82,9 @@ export class SuccessWizardComponent implements OnInit {
           'status': 'En captura',
           'observacion': '#Corrección de archivo'
         };
-        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe(res => {
+          this.awaitForValidationData();
+        });
         done();
       },
       autoReset: 1,
@@ -97,7 +101,9 @@ export class SuccessWizardComponent implements OnInit {
           'status': 'En captura',
           'observacion': '#Corrección de archivo'
         };
-        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe(res => {
+          this.awaitForValidationData();
+        });
         done();
       },
       autoReset: 1,
@@ -114,7 +120,9 @@ export class SuccessWizardComponent implements OnInit {
           'status': 'En captura',
           'observacion': '#Corrección de archivo'
         };
-        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe(res => {
+          this.awaitForValidationData();
+        });
         done();
       },
       autoReset: 1,
@@ -131,7 +139,9 @@ export class SuccessWizardComponent implements OnInit {
           'status': 'En captura',
           'observacion': '#Corrección de archivo'
         };
-        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe(res => {
+          this.awaitForValidationData();
+        });
         done();
       },
       autoReset: 1,
@@ -148,7 +158,9 @@ export class SuccessWizardComponent implements OnInit {
           'status': 'En captura',
           'observacion': '#Corrección de archivo'
         };
-        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe(res => {
+          this.awaitForValidationData();
+        });
         done();
       },
       autoReset: 1,
@@ -165,7 +177,9 @@ export class SuccessWizardComponent implements OnInit {
           'status': 'En captura',
           'observacion': '#Corrección de archivo'
         };
-        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe(res => {
+          this.awaitForValidationData();
+        });
         done();
       },
       autoReset: 1,
@@ -182,7 +196,9 @@ export class SuccessWizardComponent implements OnInit {
           'status': 'En captura',
           'observacion': '#Corrección de archivo'
         };
-        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe();
+        this.alumnoService.updateAlumnoDocumentationByCtrlNumber(this.currentUser, dataFormulario).subscribe(res => {
+          this.awaitForValidationData();
+        });
         done();
       },
       autoReset: 1,

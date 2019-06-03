@@ -17,7 +17,10 @@
       </mat-card-content>
       <mat-card-footer>
         <mat-chip-list>
-          <mat-chip style="background-color: #f7db13;" selected>{{currentAlumnoData.statusInscripcion}}</mat-chip>
+          <mat-chip style="background-color: #f7db13;" selected *ngIf="currentAlumnoData.statusInscripcion == 'En captura'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
+          <mat-chip style="background-color: red;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Enviado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
+          <mat-chip style="background-color: darkgreen;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Validado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
+          <mat-chip style="background-color: black;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Aceptado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
         </mat-chip-list>
       </mat-card-footer>
     </mat-card>
@@ -36,20 +39,20 @@
         <mat-chip-list>
           <mat-chip style="background-color: #f7db13;" selected *ngIf="currentAlumnoData.statusInscripcion == 'En captura'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
           <mat-chip style="background-color: red;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Enviado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
-          <mat-chip style="background-color: darkgreen;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Revisado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
+          <mat-chip style="background-color: darkgreen;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Validado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
           <mat-chip style="background-color: black;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Aceptado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
         </mat-chip-list>
       </mat-card-footer>
     </mat-card>
-    <mat-card class="example-card" *ngIf="currentAlumnoData.statusInscripcion === 'Revisado'">
+    <mat-card class="example-card" *ngIf="currentAlumnoData.statusInscripcion === 'Validado'">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Expediente revisado</mat-card-title>
+        <mat-card-title>Expediente validado</mat-card-title>
         <mat-card-subtitle>Leer con atención</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p>
-          La documentación enviada ha sido revisada por las autoridades correspondientes. Sin embargo,
+          La documentación enviada ha sido validada por las autoridades correspondientes. Sin embargo,
           aún es necesario que sean aceptados por el jefe del departamente de servicios escolares. Por favor
           mantenerse al pendiente.
         </p>
@@ -58,7 +61,7 @@
         <mat-chip-list>
           <mat-chip style="background-color: #f7db13;" selected *ngIf="currentAlumnoData.statusInscripcion == 'En captura'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
           <mat-chip style="background-color: red;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Enviado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
-          <mat-chip style="background-color: darkgreen;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Revisado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
+          <mat-chip style="background-color: darkgreen;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Validado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
           <mat-chip style="background-color: black;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Aceptado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
         </mat-chip-list>
       </mat-card-footer>
