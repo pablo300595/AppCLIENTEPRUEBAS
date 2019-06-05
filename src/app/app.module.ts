@@ -116,7 +116,8 @@ const appRoutes: Routes = [
   {path: 'secretariaMovements', component: SecretariaMovementsComponent},
   {path: 'detalleAlumnoJefe', component: DetalleAlumnoJefeComponent},
   {path: 'gestionarPeriodos', component: GestionarPeriodosComponent},
-  {path: 'gestionarRoles', component: RolesCarrerasComponent}
+  {path: 'gestionarRoles', component: RolesCarrerasComponent},
+  {path: 'pdfTemplate', component: TemplateLinkDownloadsComponent}
 ];
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {

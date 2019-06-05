@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { AlumnoService} from './../../../services/alumno.service';
+import { AlumnoService } from './../../../services/alumno.service';
 import { LoginService } from './../../../services/login.service';
 import { Alumno } from './../../../models/alumno';
-//import * as jsPDF from 'jspdf';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-template-link-downloads',
@@ -63,34 +63,34 @@ export class TemplateLinkDownloadsComponent implements OnInit {
 
   loadLink() {
     this.alumnoService.getAlumnoById(this.idAlumnoLoged)
-    .subscribe(res => {
-      this.alumno = res as Alumno;
+      .subscribe(res => {
+        this.alumno = res as Alumno;
 
-      this.fieldLastNameFather = this.alumno.lastNameFather;
-      this.fieldLastNameMother = this.alumno.lastNameMother;
-      this.fieldFirstName = this.alumno.firstName;
-      this.fieldPlaceBirth = this.alumno.placeBirth;
-      this.fieldDateBirth = this.alumno.dateBirth;
-      this.fieldStatusCivil = this.alumno.statusCivil;
-      this.fieldEmail = this.alumno.email;
-      this.fieldCURP = this.alumno.curp;
-      this.fieldNSS = this.alumno.nss;
-      this.fieldStreet = this.alumno.street;
-      this.fieldColony = this.alumno.colony;
-      this.fieldCity = this.alumno.city;
-      this.fieldState = this.alumno.state;
-      this.fieldPostalCode = this.alumno.postalCode;
-      this.fieldPhone = this.alumno.phone;
-      this.fieldEtnia = this.alumno.etnia;
-      this.fieldOtherEtnia = this.alumno.otherEtnia;
-      this.fieldDisability = this.alumno.disability;
-      this.fieldWhichDisability = this.alumno.whichDisability;
-      this.fieldSchool = this.alumno.school;
-      this.fieldOtherSchool = this.alumno.otherSchool;
-      this.fieldNameSchool = this.alumno.nameSchool;
-      this.fieldAverage = this.alumno.average;
-      this.fieldCareer = this.alumno.career;
-    });
+        this.fieldLastNameFather = this.alumno.lastNameFather;
+        this.fieldLastNameMother = this.alumno.lastNameMother;
+        this.fieldFirstName = this.alumno.firstName;
+        this.fieldPlaceBirth = this.alumno.placeBirth;
+        this.fieldDateBirth = this.alumno.dateBirth;
+        this.fieldStatusCivil = this.alumno.statusCivil;
+        this.fieldEmail = this.alumno.email;
+        this.fieldCURP = this.alumno.curp;
+        this.fieldNSS = this.alumno.nss;
+        this.fieldStreet = this.alumno.street;
+        this.fieldColony = this.alumno.colony;
+        this.fieldCity = this.alumno.city;
+        this.fieldState = this.alumno.state;
+        this.fieldPostalCode = this.alumno.postalCode;
+        this.fieldPhone = this.alumno.phone;
+        this.fieldEtnia = this.alumno.etnia;
+        this.fieldOtherEtnia = this.alumno.otherEtnia;
+        this.fieldDisability = this.alumno.disability;
+        this.fieldWhichDisability = this.alumno.whichDisability;
+        this.fieldSchool = this.alumno.school;
+        this.fieldOtherSchool = this.alumno.otherSchool;
+        this.fieldNameSchool = this.alumno.nameSchool;
+        this.fieldAverage = this.alumno.average;
+        this.fieldCareer = this.alumno.career;
+      });
 
     this.refFoto = document.getElementById('refFOTO');
     this.refFoto.src = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/FOTO.png`;
@@ -113,14 +113,41 @@ export class TemplateLinkDownloadsComponent implements OnInit {
     this.refComprobante = document.getElementById('refCOMPROBANTE');
     this.refComprobante.href = `https://novaresidencia.000webhostapp.com/${this.usuarioLoged}/documentos/COMPROBANTE.pdf`;
 
-    this.refContrato = document.getElementById('refCONTRATO');
-    this.refContrato.href = 'https://residenciainscripciones.000webhostapp.com/CONTRATO.pdf';
+    // this.refContrato = document.getElementById('refCONTRATO');
+    // this.refContrato.href = 'https://residenciainscripciones.000webhostapp.com/CONTRATO.pdf';
+  }
 
+  generateContract() {
+    /*const doc = new jsPDF();
+    const img = new Image();
+    img.src = 'https://residenciainscripciones.000webhostapp.com/CONTRATO.jpg';
+    doc.addImage(img, 'png', 10, 78, 12, 15);
+    doc.save('CONTRATO.pdf');*/
+    const img = new Image();
+    img.src = 'https://novaresidencia.000webhostapp.com/imagenes/CONTRATO.jpg';
+    const doc = new jsPDF();
 
+    doc.addImage(img, 'jpg', 0, 0, 200, 295);
+
+    doc.setFontSize(10);
+    doc.setFontType('bold');
+    doc.text('Jose Pablo Valenzuela Miramontes', 116, 257);
+
+    doc.setFontSize(8);
+    doc.setFontType('bold');
+    doc.text('3', 129, 45);
+
+    doc.setFontSize(8);
+    doc.setFontType('bold');
+    doc.text('Junio', 149, 45);
+
+    doc.setFontSize(8);
+    doc.setFontType('bold');
+    doc.text('2019', 174, 45);
+    doc.save('CONTRATO.pdf');
   }
 
   downloadPDF() {
-    /*
     console.log('PDF');
     const doc = new jsPDF();
 
@@ -254,7 +281,7 @@ export class TemplateLinkDownloadsComponent implements OnInit {
     doc.setFontType('bold');
     doc.text('Escuela de procedencia: ', 15, 190);
     doc.setFontType('normal');
-    doc.text(this.fieldSchool + ': ' + this.fieldNameSchool , 80, 190);
+    doc.text(this.fieldSchool + ': ' + this.fieldNameSchool, 80, 190);
 
     doc.setFontType('bold');
     doc.text('Otra: ', 15, 195);
@@ -310,7 +337,7 @@ export class TemplateLinkDownloadsComponent implements OnInit {
     doc.setFontType('normal');
     doc.text(this.fieldWhichDisability, 80, 245);
     doc.save('FORMULARIO.pdf');
-*/
+
   }
 
 }
