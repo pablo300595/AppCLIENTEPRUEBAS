@@ -94,95 +94,104 @@ export class InscripcionWizardComponent implements OnInit {
   }
 
   checkStepThree() {
-    if (this.stepThreeCompleted) {
-      this.messagesService.success('¡Contrato ha sido aceptado!');
-      this.resumen.initResumen();
-    } else {
-      this.messagesService.warning('¡Los términos y condiciones deben ser aceptados antes de poder continuar!');
-    }
-  }
-
-  checkStepFour() {
-    this.stepFourCompleted = true;
-    this.links.loadLink();
-    this.messagesService.success('¡Resumen observado!');
-  }
-
-  resetSteps() {
-    this.wizardService.changeStepOneStatus(false);
-    /* STEP 1*/
-    this.formularioRegistroService.changefieldAverage(70);
-    this.formularioRegistroService.changefieldCareer('Ingeniería en Sistemas Computacionales');
-    this.formularioRegistroService.changefieldCity('');
-    this.formularioRegistroService.changefieldColony('');
-    this.formularioRegistroService.changefieldCURP('');
-    this.formularioRegistroService.changefieldDateBirth('');
-    this.formularioRegistroService.changefieldDisability('NO');
-    this.formularioRegistroService.changefieldEmail('');
-    this.formularioRegistroService.changefieldFirstName('');
-    this.formularioRegistroService.changefieldLastNameFather('');
-    this.formularioRegistroService.changefieldLastNameMother('');
-    this.formularioRegistroService.changefieldNameSchool('');
-    this.formularioRegistroService.changefieldNSS(1234);
-    this.formularioRegistroService.changefieldOtherEtnia('');
-    this.formularioRegistroService.changefieldOtherSchool('');
-    this.formularioRegistroService.changefieldPhone(311123456);
-    this.formularioRegistroService.changefieldPlaceBirth('');
-    this.formularioRegistroService.changefieldPostalCode(63000);
-    this.formularioRegistroService.changefieldSchool('CETIS');
-    this.formularioRegistroService.changefieldState('Nayarit');
-    this.formularioRegistroService.changefieldStatusCivil('Soltero/a');
-    this.formularioRegistroService.changefieldStreet('');
-    this.formularioRegistroService.changefieldWhichDisability('');
-    this.formularioRegistroService.changefieldControlNumber('');
-    this.formularioRegistroService.changeallFieldsAreValid(false);
-    this.wizardService.changeStepTwoStatus(false);
-    /* STEP 2*/
-    this.cargaDocumentosService.changeFile1(false);
-    this.cargaDocumentosService.changeFile2(false);
-    this.cargaDocumentosService.changeFile3(false);
-    this.cargaDocumentosService.changeFile4(false);
-    this.cargaDocumentosService.changeFile5(false);
-    this.cargaDocumentosService.changeFile6(false);
-    this.cargaDocumentosService.changeFile7(false);
-    this.cargaDocumentosService.changeStringFile1('');
-    this.cargaDocumentosService.changeStringFile2('');
-    this.cargaDocumentosService.changeStringFile3('');
-    this.cargaDocumentosService.changeStringFile4('');
-    this.cargaDocumentosService.changeStringFile5('');
-    this.cargaDocumentosService.changeStringFile6('');
-    this.cargaDocumentosService.changeStringFile7('');
-    /* STEP 3 */
-    this.wizardService.changeStepThreeStatus(false);
-    this.contratoService.changeAcceptedTerms(false);
-
-    this.wizardService.changeStepFourStatus(false);
-  }
-
-  finishSteps() {
     this.dialogService.openNotificationDialog
-      ('Una vez terminado el proceso, debes entrar al sistema constantemente para la validación de documentos.')
+      ('Recuerda, debes descargar el "Contrato" y "Formulario", mismos que tienes que entregar en Servicios Escolares.')
       .afterClosed().subscribe(res => {
         if (res) {
-          let alumno = new Alumno();
-          alumno = { statusInscripcion: 'Enviado' };
-          this.alumnoService.putStatusAlumno(alumno, this.idAlumnoLoged).subscribe(
-            res => this.messagesService.success('Status de alumno ha cambiado a enviado')
-          );
-          this.asignPeriod();
-          this.alumnoService.initAlumnoDocumentation(this.idAlumnoLoged).subscribe();
-          this.resetSteps();
-          this.router.navigateByUrl('/');
+          if (this.stepThreeCompleted) {
+            this.messagesService.success('¡Contrato ha sido aceptado!');
+            this.resumen.initResumen();
+          }
+        
+           else {
+            this.messagesService.warning('¡Los términos y condiciones deben ser aceptados antes de poder continuar!');
+          }
         }
       });
-  }
-
-  asignPeriod() {
-    for (let i = 0; i < this.currentPeriods.length; i++) {
-      if (this.currentPeriods[i].activo) {
-        this.alumnoService.updateAlumnoPeriodById(this.idAlumnoLoged, { periodo: this.currentPeriods[i]._id }).subscribe();
-      }
     }
-  }
+        
 
-}
+        checkStepFour() {
+          this.stepFourCompleted = true;
+          this.links.loadLink();
+          this.messagesService.success('¡Resumen observado!');
+        }
+
+        resetSteps() {
+          this.wizardService.changeStepOneStatus(false);
+          /* STEP 1*/
+          this.formularioRegistroService.changefieldAverage(70);
+          this.formularioRegistroService.changefieldCareer('Ingeniería en Sistemas Computacionales');
+          this.formularioRegistroService.changefieldCity('');
+          this.formularioRegistroService.changefieldColony('');
+          this.formularioRegistroService.changefieldCURP('');
+          this.formularioRegistroService.changefieldDateBirth('');
+          this.formularioRegistroService.changefieldDisability('NO');
+          this.formularioRegistroService.changefieldEmail('');
+          this.formularioRegistroService.changefieldFirstName('');
+          this.formularioRegistroService.changefieldLastNameFather('');
+          this.formularioRegistroService.changefieldLastNameMother('');
+          this.formularioRegistroService.changefieldNameSchool('');
+          this.formularioRegistroService.changefieldNSS(1234);
+          this.formularioRegistroService.changefieldOtherEtnia('');
+          this.formularioRegistroService.changefieldOtherSchool('');
+          this.formularioRegistroService.changefieldPhone(311123456);
+          this.formularioRegistroService.changefieldPlaceBirth('');
+          this.formularioRegistroService.changefieldPostalCode(63000);
+          this.formularioRegistroService.changefieldSchool('CETIS');
+          this.formularioRegistroService.changefieldState('Nayarit');
+          this.formularioRegistroService.changefieldStatusCivil('Soltero/a');
+          this.formularioRegistroService.changefieldStreet('');
+          this.formularioRegistroService.changefieldWhichDisability('');
+          this.formularioRegistroService.changefieldControlNumber('');
+          this.formularioRegistroService.changeallFieldsAreValid(false);
+          this.wizardService.changeStepTwoStatus(false);
+          /* STEP 2*/
+          this.cargaDocumentosService.changeFile1(false);
+          this.cargaDocumentosService.changeFile2(false);
+          this.cargaDocumentosService.changeFile3(false);
+          this.cargaDocumentosService.changeFile4(false);
+          this.cargaDocumentosService.changeFile5(false);
+          this.cargaDocumentosService.changeFile6(false);
+          this.cargaDocumentosService.changeFile7(false);
+          this.cargaDocumentosService.changeStringFile1('');
+          this.cargaDocumentosService.changeStringFile2('');
+          this.cargaDocumentosService.changeStringFile3('');
+          this.cargaDocumentosService.changeStringFile4('');
+          this.cargaDocumentosService.changeStringFile5('');
+          this.cargaDocumentosService.changeStringFile6('');
+          this.cargaDocumentosService.changeStringFile7('');
+          /* STEP 3 */
+          this.wizardService.changeStepThreeStatus(false);
+          this.contratoService.changeAcceptedTerms(false);
+
+          this.wizardService.changeStepFourStatus(false);
+        }
+
+        finishSteps() {
+          this.dialogService.openNotificationDialog
+            ('Una vez terminado el proceso, debes entrar al sistema constantemente hasta que tus documentos se encuentren "validados" y tu status sea "aceptado".')
+            .afterClosed().subscribe(res => {
+              if (res) {
+                let alumno = new Alumno();
+                alumno = { statusInscripcion: 'Enviado' };
+                this.alumnoService.putStatusAlumno(alumno, this.idAlumnoLoged).subscribe(
+                  res => this.messagesService.success('Status de alumno ha cambiado a enviado')
+                );
+                this.asignPeriod();
+                this.alumnoService.initAlumnoDocumentation(this.idAlumnoLoged).subscribe();
+                this.resetSteps();
+                this.router.navigateByUrl('/');
+              }
+            });
+        }
+
+        asignPeriod() {
+          for (let i = 0; i < this.currentPeriods.length; i++) {
+            if (this.currentPeriods[i].activo) {
+              this.alumnoService.updateAlumnoPeriodById(this.idAlumnoLoged, { periodo: this.currentPeriods[i]._id }).subscribe();
+            }
+          }
+        }
+
+      }

@@ -3,7 +3,7 @@
 
     <div class="row justify-content-center align-items-center">
       <div class="col-md-4 login-sec">
-          <h2 class="text-center">Solicitud de Documentos</h2>
+        <h2 class="text-center">Solicitud de Documentos</h2>
       </div>
     </div>
     <!--Fila 1: Certificado Bachillerato y Acta de nacimiento-->
@@ -12,17 +12,19 @@
       <div class='col-md-6'>
         <div class='card'>
           <div class='card-header'>
-            <label for="lblCertificado"><b>CERTIFICADO DE BACHILLERATO O EQUIVALENTE</b></label>
+            <label for="lblCertificado"><b>CURP</b></label>
+            <p>
+              Descarga tu CURP de la página : https//www.gob.mx/curp.
+            </p>
           </div>
           <div class='card-body'>
-              <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCERTIFICADO}}</label>
-              <app-template-incorrect *ngIf='!file1'></app-template-incorrect>
-              <app-template-correct *ngIf='file1'></app-template-correct>
-              <dropzone id="dz0"[config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-              (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
-              [matTooltipDisabled]="this.dropzoneFileNameCERTIFICADO==''"></dropzone>
-              <app-pdf-template-certificado *ngIf='file1'></app-pdf-template-certificado>
+            <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCURP}}</label>
+            <app-template-incorrect *ngIf='!file3'></app-template-incorrect>
+            <app-template-correct *ngIf='file3'></app-template-correct>
+            <dropzone id="dz2" [config]="config2" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)" (click)="dropzoneClicked()"
+              matTooltip="Reemplazar Archivo" [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
+            <app-pdf-template-curp *ngIf='file3'></app-pdf-template-curp>
           </div>
         </div>
       </div>
@@ -31,15 +33,17 @@
         <div class='card'>
           <div class='card-header'>
             <label for="lblCertificado"><b>ACTA DE NACIMIENTO</b></label>
+            <p>
+              Expedida máximo dos años anteriores a la fecha.
+            </p>
           </div>
           <div class='card-body'>
             <label><b>Nombre original de archivo: </b>{{dropzoneFileNameACTA}}</label>
             <app-template-incorrect *ngIf='!file2'></app-template-incorrect>
             <app-template-correct *ngIf='file2'></app-template-correct>
             <dropzone id="dz1" [config]="config1" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-            (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-            (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
-            [matTooltipDisabled]="this.dropzoneFileNameACTA==''"></dropzone>
+              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)" (click)="dropzoneClicked()"
+              matTooltip="Reemplazar Archivo" [matTooltipDisabled]="this.dropzoneFileNameACTA==''"></dropzone>
             <app-pdf-template-acta *ngIf='file2'></app-pdf-template-acta>
           </div>
         </div>
@@ -51,17 +55,19 @@
       <div class='col-md-6'>
         <div class='card'>
           <div class='card-header'>
-              <label for="lblCertificado"><b>CURP</b></label>
+            <label for="lblCertificado"><b>RESULTADO DE ANÁLISIS CLÍNICOS</b></label>
+            <p style="text-align: justify;">
+              Biometría Hemática, coproparasitoscópico, examen general de orina, RH y tipo de sangre.
+            </p>
           </div>
           <div class='card-body'>
-            <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCURP}}</label>
-            <app-template-incorrect *ngIf='!file3'></app-template-incorrect>
-            <app-template-correct *ngIf='file3'></app-template-correct>
-            <dropzone id="dz2" [config]="config2" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-            (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-            (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
-            [matTooltipDisabled]="this.dropzoneFileNameCURP==''"></dropzone>
-            <app-pdf-template-curp *ngIf='file3'></app-pdf-template-curp>
+            <label><b>Nombre original de archivo: </b>{{dropzoneFileNameANALISIS}}</label>
+            <app-template-incorrect *ngIf='!file5'></app-template-incorrect>
+            <app-template-correct *ngIf='file5'></app-template-correct>
+            <dropzone id="dz4" [config]="config4" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)" (click)="dropzoneClicked()"
+              matTooltip="Reemplazar Archivo" [matTooltipDisabled]="this.dropzoneFileNameANALISIS==''"></dropzone>
+            <app-pdf-template-clinicos *ngIf='file5'></app-pdf-template-clinicos>
           </div>
         </div>
       </div>
@@ -70,16 +76,18 @@
         <div class='card'>
           <div class='card-header'>
             <label for="lblCertificado"><b>COPIA DEL COMPROBANTE DE PAGO DE INSCRIPCIÓN</b></label>
+            <p style="text-align: justify;">
+              Copia del recibo de pago bancario sellado por el departamento de Recursos Financieros.
+            </p>
           </div>
           <div class='card-body'>
             <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCOMPROBANTE}}</label>
             <app-template-incorrect *ngIf='!file4'></app-template-incorrect>
             <app-template-correct *ngIf='file4'></app-template-correct>
             <dropzone id="dz3" [config]="config3" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-              (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
-              [matTooltipDisabled]="this.dropzoneFileNameCOMPROBANTE==''"></dropzone>
-              <app-pdf-template-comprobante *ngIf='file4'></app-pdf-template-comprobante>
+              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)" (click)="dropzoneClicked()"
+              matTooltip="Reemplazar Archivo" [matTooltipDisabled]="this.dropzoneFileNameCOMPROBANTE==''"></dropzone>
+            <app-pdf-template-comprobante *ngIf='file4'></app-pdf-template-comprobante>
           </div>
         </div>
       </div>
@@ -90,17 +98,19 @@
       <div class='col-md-6'>
         <div class='card'>
           <div class='card-header'>
-            <label for="lblCertificado"><b>RESULTADO DE ANÁLISIS CLÍNICOS</b></label>
+            <label for="lblCertificado"><b>NÚMERO DE SEGURO SOCIAL</b></label>
+            <p style="text-align: justify;">
+              Descarga tu número de seguro social en la página oficial del https://www.gob.mx/afiliatealimss.
+            </p>
           </div>
           <div class='card-body'>
-            <label><b>Nombre original de archivo: </b>{{dropzoneFileNameANALISIS}}</label>
-            <app-template-incorrect *ngIf='!file5'></app-template-incorrect>
-            <app-template-correct *ngIf='file5'></app-template-correct>
-            <dropzone id="dz4" [config]="config4" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-              (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
-              [matTooltipDisabled]="this.dropzoneFileNameANALISIS==''"></dropzone>
-              <app-pdf-template-clinicos *ngIf='file5'></app-pdf-template-clinicos>
+            <label><b>Nombre original de archivo: </b>{{dropzoneFileNameNSS}}</label>
+            <app-template-incorrect *ngIf='!file7'></app-template-incorrect>
+            <app-template-correct *ngIf='file7'></app-template-correct>
+            <dropzone id="dz6" [config]="config6" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)" (click)="dropzoneClicked()"
+              matTooltip="Reemplazar Archivo" [matTooltipDisabled]="this.dropzoneFileNameNSS==''"></dropzone>
+            <app-pdf-template-nss *ngIf='file7'></app-pdf-template-nss>
           </div>
         </div>
       </div>
@@ -114,38 +124,47 @@
             <label><b>Nombre original de archivo: </b>{{dropzoneFileNamePhoto}}</label>
             <app-template-incorrect *ngIf='!file6'></app-template-incorrect>
             <app-template-correct *ngIf='file6'></app-template-correct>
-            <dropzone id="dz5"[config]="config5" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-              (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-              (dragEnter)="onDragEnd($event)" (error)="onError($event)"
-              (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
-              [matTooltipDisabled]="this.dropzoneFileNamePhoto==''"></dropzone>
-              <app-pdf-template-photo *ngIf="file6 && ((dropzoneFilePhotoNewNameExtension.substring(dropzoneFilePhotoNewNameExtension.length-3))==='png')"></app-pdf-template-photo>
-              <app-pdf-template-photo-jpg *ngIf="file6 && ((dropzoneFilePhotoNewNameExtension.substring(dropzoneFilePhotoNewNameExtension.length-3))==='jpg')"></app-pdf-template-photo-jpg>
-              <div *ngIf='file6' style="text-align:center;"><hr><p><b>Nombre nuevo: {{dropzoneFilePhotoNewNameExtension}}</b></p><hr></div>
+            <dropzone id="dz5" [config]="config5" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (success)="onUploadSuccess($event)" (drop)="onDrop($event)" (dragEnter)="onDragEnd($event)" (error)="onError($event)"
+              (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo" [matTooltipDisabled]="this.dropzoneFileNamePhoto==''"></dropzone>
+            <app-pdf-template-photo *ngIf="file6 && ((dropzoneFilePhotoNewNameExtension.substring(dropzoneFilePhotoNewNameExtension.length-3))==='png')"></app-pdf-template-photo>
+            <app-pdf-template-photo-jpg *ngIf="file6 && ((dropzoneFilePhotoNewNameExtension.substring(dropzoneFilePhotoNewNameExtension.length-3))==='jpg')"></app-pdf-template-photo-jpg>
+            <div *ngIf='file6' style="text-align:center;">
+              <hr>
+              <p><b>Nombre nuevo: {{dropzoneFilePhotoNewNameExtension}}</b></p>
+              <hr>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
     <!--Fila 4: NSS--><br>
     <div class='row'>
       <!--Columna 1: NSS-->
       <div class='col-md-6'>
+
           <div class='card'>
-            <div class='card-header'>
-              <label for="lblCertificado"><b>NSS</b></label>
+              <div class='card-header'>
+                <label for="lblCertificado"><b>CERTIFICADO DE BACHILLERATO O EQUIVALENTE</b></label>
+                <p style="text-align: justify;">
+                  Nota.- Alumnos egresados de Instituciones Privadas y de la Universidad Autónoma de Nayarit, deben
+                  legalizar su
+                  certificado en la Dirección de Profesiones de la SEMSSICyT.
+                </p>
+              </div>
+              <div class='card-body'>
+                <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCERTIFICADO}}</label>
+                <app-template-incorrect *ngIf='!file1'></app-template-incorrect>
+                <app-template-correct *ngIf='file1'></app-template-correct>
+                <dropzone id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+                  (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)" (click)="dropzoneClicked()"
+                  matTooltip="Reemplazar Archivo" [matTooltipDisabled]="this.dropzoneFileNameCERTIFICADO==''"></dropzone>
+                <app-pdf-template-certificado *ngIf='file1'></app-pdf-template-certificado>
+              </div>
             </div>
-            <div class='card-body'>
-              <label><b>Nombre original de archivo: </b>{{dropzoneFileNameNSS}}</label>
-              <app-template-incorrect *ngIf='!file7'></app-template-incorrect>
-              <app-template-correct *ngIf='file7'></app-template-correct>
-              <dropzone id="dz6" [config]="config6" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-                (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)"
-                (click)="dropzoneClicked()" matTooltip="Reemplazar Archivo"
-                [matTooltipDisabled]="this.dropzoneFileNameNSS==''"></dropzone>
-                <app-pdf-template-nss *ngIf='file7'></app-pdf-template-nss>
-            </div>
-          </div>
-        </div>
+    
+      </div>
     </div>
     <br>
   </div>
