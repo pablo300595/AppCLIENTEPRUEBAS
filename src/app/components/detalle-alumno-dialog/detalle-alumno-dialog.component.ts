@@ -68,6 +68,7 @@ export class DetalleAlumnoDialogComponent {
     fieldCareer: String = '';
     fieldDocuments: String[] = [];
     statusInscripcion: String;
+    fieldPeriodo: String;
     // Link document variables
     acta: string;
     certificado: string;

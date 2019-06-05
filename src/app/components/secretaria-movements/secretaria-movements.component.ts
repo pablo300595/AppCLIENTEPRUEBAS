@@ -22,6 +22,8 @@ export class SecretariaMovementsComponent extends MatPaginatorIntl implements On
   itemsPerPageLabel = 'Artículos por página:';
   nextPageLabel     = 'Siguiente página';
   previousPageLabel = 'Pagina anterior';
+  dataSourceDateConvertion: Array <String>;
+  dataSourceDateCierreConvertion: Array <String>;
 
   getRangeLabel = function (page, pageSize, length) {
     if (length === 0 || pageSize === 0) {
@@ -39,7 +41,10 @@ export class SecretariaMovementsComponent extends MatPaginatorIntl implements On
 
 
 
-  constructor(private secretariaMovementsService: SecretariaMovementsService) { super(); }
+  constructor(private secretariaMovementsService: SecretariaMovementsService) { super();
+    this.dataSourceDateConvertion = [];
+    this.dataSourceDateCierreConvertion = []; 
+  }
 
   ngOnInit() {
     this.loadLogTransactions();
@@ -51,7 +56,18 @@ export class SecretariaMovementsComponent extends MatPaginatorIntl implements On
       this.dataSource = new MatTableDataSource(res as any);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.transformAperturaDate();
     });
+  }
+
+  transformAperturaDate() {
+    this.dataSourceDateConvertion = new Array(this.dataSource.data.length);
+    for (let i = 0; i < this.dataSource.data.length; i++) {
+      this.dataSourceDateConvertion[i] = this.dataSource.data[i].dateModificationServer.substring(0, 4) + '/' +
+      this.dataSource.data[i].dateModificationServer.substring(5, 7) + '/' + this.dataSource.data[i].dateModificationServer.substring(8, 10)
+      + ' ' + this.dataSource.data[i].dateModificationServer.substring(11, 16);
+    }
+    console.log('');
   }
 
 }

@@ -14,6 +14,7 @@ import { ResumenComponent } from '../resumen/resumen.component';
 import { TemplateLinkDownloadsComponent } from '../subcomponents/template-link-downloads/template-link-downloads.component';
 import { DialogService } from 'src/app/services/dialog.service';
 import { ContratoComponent } from '../contrato/contrato.component';
+import { FormularioRegistroAlumnoComponent } from '../formulario-registro-alumno/formulario-registro-alumno.component';
 
 @Component({
   selector: 'app-inscripcion-wizard',
@@ -24,6 +25,7 @@ export class InscripcionWizardComponent implements OnInit {
   @ViewChild(ResumenComponent) resumen: ResumenComponent;
   @ViewChild(TemplateLinkDownloadsComponent) links: TemplateLinkDownloadsComponent;
   @ViewChild(ContratoComponent) contrato: ContratoComponent;
+  @ViewChild(FormularioRegistroAlumnoComponent) formulario: FormularioRegistroAlumnoComponent;
 
   stepOneCompleted: boolean;
   stepTwoCompleted: boolean;
@@ -81,6 +83,7 @@ export class InscripcionWizardComponent implements OnInit {
     this.messagesService.success('¡Alumno actualizado con exito!');
     this.wizardService.changeStepOneStatus(true);
     this.formularioRegistroService.changefirstTryGivenValues(false);
+    this.formulario.downloadPDF();
   }
 
   checkStepTwo() {

@@ -118,11 +118,8 @@ export class TemplateLinkDownloadsComponent implements OnInit {
   }
 
   generateContract() {
-    /*const doc = new jsPDF();
-    const img = new Image();
-    img.src = 'https://residenciainscripciones.000webhostapp.com/CONTRATO.jpg';
-    doc.addImage(img, 'png', 10, 78, 12, 15);
-    doc.save('CONTRATO.pdf');*/
+    const currentDate = new Date();
+
     const img = new Image();
     img.src = 'https://novaresidencia.000webhostapp.com/imagenes/CONTRATO.jpg';
     const doc = new jsPDF();
@@ -131,19 +128,59 @@ export class TemplateLinkDownloadsComponent implements OnInit {
 
     doc.setFontSize(10);
     doc.setFontType('bold');
-    doc.text('Jose Pablo Valenzuela Miramontes', 116, 257);
+    doc.text(`${this.fieldFirstName} ${this.fieldLastNameFather} ${this.fieldLastNameMother}`, 116, 257);
 
     doc.setFontSize(8);
     doc.setFontType('bold');
-    doc.text('3', 129, 45);
+    doc.text(currentDate.getDate() + '', 129, 45);
 
     doc.setFontSize(8);
     doc.setFontType('bold');
-    doc.text('Junio', 149, 45);
+    const currentMonth = currentDate.getMonth();
+    let newMonth;
+    switch (currentMonth) {
+      case 0: {
+        newMonth = 'Enero'; break;
+      }
+      case 1: {
+        newMonth = 'Febrero'; break;
+      }
+      case 2: {
+        newMonth = 'Marzo'; break;
+      }
+      case 3: {
+        newMonth = 'Abril'; break;
+      }
+      case 4: {
+        newMonth = 'Mayo'; break;
+      }
+      case 5: {
+        newMonth = 'Junio'; break;
+      }
+      case 6: {
+        newMonth = 'Julio'; break;
+      }
+      case 7: {
+        newMonth = 'Agosto'; break;
+      }
+      case 8: {
+        newMonth = 'Septiembre'; break;
+      }
+      case 9: {
+        newMonth = 'Octubre'; break;
+      }
+      case 10: {
+        newMonth = 'Noviembre'; break;
+      }
+      case 11: {
+        newMonth = 'Diciembre'; break;
+      }
+    }
+    doc.text(newMonth, 149, 45);
 
     doc.setFontSize(8);
     doc.setFontType('bold');
-    doc.text('2019', 174, 45);
+    doc.text(currentDate.getFullYear() + '', 174, 45);
     doc.save('CONTRATO.pdf');
   }
 
@@ -337,7 +374,6 @@ export class TemplateLinkDownloadsComponent implements OnInit {
     doc.setFontType('normal');
     doc.text(this.fieldWhichDisability, 80, 245);
     doc.save('FORMULARIO.pdf');
-
   }
 
 }

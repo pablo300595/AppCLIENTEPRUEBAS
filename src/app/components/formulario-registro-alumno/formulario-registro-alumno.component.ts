@@ -6,6 +6,7 @@ import { FormularioRegistroService } from './../../services/formulario-registro.
 import { Alumno } from './../../models/alumno';
 import { NgForm} from '@angular/forms';
 import { stringify } from '@angular/core/src/render3/util';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-formulario-registro-alumno',
@@ -49,6 +50,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   alumnos: any;
 
   idAlumnoLoged: String;
+  usuarioLoged: String;
   statusInscripcionAlumno: string;
 
   // Flags
@@ -67,6 +69,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   }
 
   initServices() {
+    this.loginService.currentUser.subscribe(user => this.usuarioLoged = user);
     this.loginService.currentIdAlumnoSource.subscribe(id => this.idAlumnoLoged = id);
     this.getAlumnoStatus();
     this.wizardService.currentStepOne.subscribe(status => this.allFieldsAreValid = status);
@@ -182,6 +185,208 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
 
     finalDate = numericYear + '-' + curp.substring(2, 4) + '-' + curp.substring(4, 6);
     return finalDate;
+  }
+
+  downloadPDF() {
+    console.log('PDF');
+    const doc = new jsPDF();
+
+    // Cuadro 1
+    doc.setDrawColor(0);
+    doc.setFillColor(0, 0, 0);
+    doc.rect(10, 65, 190, 10, 'f');
+
+    doc.setDrawColor(0);
+    doc.setFillColor(230, 230, 230);
+    doc.rect(10, 75, 190, 45, 'f');
+
+    doc.setFontSize(18);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('arial');
+    doc.setFontType('bold');
+    doc.text(15, 72, 'Datos Generales');
+
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('times');
+
+    doc.setFontType('bold');
+    doc.text('Nombre: ', 15, 80);
+    doc.setFontType('normal');
+    doc.text(this.fieldLastNameFather + ' ' + this.fieldLastNameMother + ' ' + this.fieldFirstName, 80, 80);
+
+    doc.setFontType('bold');
+    doc.text('Lugar de nacimiento: ', 15, 85);
+    doc.setFontType('normal');
+    doc.text(this.fieldPlaceBirth, 80, 85);
+
+    doc.setFontType('bold');
+    doc.text('Fecha de nacimiento: ', 15, 90);
+    doc.setFontType('normal');
+    doc.text(this.fieldDateBirth, 80, 90);
+
+    doc.setFontType('bold');
+    doc.text('Estado Civil: ', 15, 95);
+    doc.setFontType('normal');
+    doc.text(this.fieldStatusCivil, 80, 95);
+
+    doc.setFontType('bold');
+    doc.text('Correo Electrónico: ', 15, 100);
+    doc.setFontType('normal');
+    doc.text(this.fieldEmail, 80, 100);
+
+    doc.setFontType('bold');
+    doc.text('CURP: ', 15, 105);
+    doc.setFontType('normal');
+    doc.text(this.fieldCURP, 80, 105);
+
+    doc.setFontType('bold');
+    doc.text('NSS: ', 15, 110);
+    doc.setFontType('normal');
+    doc.text(this.fieldNSS + '', 80, 110);
+
+    doc.setFontType('bold');
+    doc.text('Número de control: ', 15, 115);
+    doc.setFontType('normal');
+    doc.text('13400501', 80, 115);
+
+    // Cuadro 2
+    doc.setDrawColor(0);
+    doc.setFillColor(0, 0, 0);
+    doc.rect(10, 125, 190, 10, 'f');
+
+    doc.setDrawColor(0);
+    doc.setFillColor(230, 230, 230);
+    doc.rect(10, 135, 190, 35, 'f');
+
+    doc.setFontSize(18);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('arial');
+    doc.setFontType('bold');
+    doc.text(15, 132, 'Dirección');
+
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('times');
+
+    doc.setFontType('bold');
+    doc.text('Calle: ', 15, 140);
+    doc.setFontType('normal');
+    doc.text(this.fieldStreet, 80, 140);
+
+    doc.setFontType('bold');
+    doc.text('Colonia: ', 15, 145);
+    doc.setFontType('normal');
+    doc.text(this.fieldColony, 80, 145);
+
+    doc.setFontType('bold');
+    doc.text('Ciudad: ', 15, 150);
+    doc.setFontType('normal');
+    doc.text(this.fieldCity, 80, 150);
+
+    doc.setFontType('bold');
+    doc.text('Estado: ', 15, 155);
+    doc.setFontType('normal');
+    doc.text(this.fieldState, 80, 155);
+
+    doc.setFontType('bold');
+    doc.text('Código Postal: ', 15, 160);
+    doc.setFontType('normal');
+    doc.text(this.fieldPostalCode + '', 80, 160);
+
+    doc.setFontType('bold');
+    doc.text('Teléfono: ', 15, 165);
+    doc.setFontType('normal');
+    doc.text(this.fieldPhone + '', 80, 165);
+
+    // Cuadro 3
+    doc.setDrawColor(0);
+    doc.setFillColor(0, 0, 0);
+    doc.rect(10, 175, 190, 10, 'f');
+
+    doc.setDrawColor(0);
+    doc.setFillColor(230, 230, 230);
+    doc.rect(10, 185, 190, 25, 'f');
+
+    doc.setFontSize(18);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('arial');
+    doc.setFontType('bold');
+    doc.text(15, 182, 'Datos académicos');
+
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('times');
+
+    doc.setFontType('bold');
+    doc.text('Escuela de procedencia: ', 15, 190);
+    doc.setFontType('normal');
+    doc.text(this.fieldSchool + ': ' + this.fieldNameSchool, 80, 190);
+
+    doc.setFontType('bold');
+    doc.text('Otra: ', 15, 195);
+    doc.setFontType('normal');
+    doc.text(this.fieldOtherSchool, 80, 195);
+
+    doc.setFontType('bold');
+    doc.text('Promedio: ', 15, 200);
+    doc.setFontType('normal');
+    doc.text(this.fieldAverage + '', 80, 200);
+
+    doc.setFontType('bold');
+    doc.text('Carrera a cursar: ', 15, 205);
+    doc.setFontType('normal');
+    doc.text(this.fieldCareer, 80, 205);
+
+    // Cuadro 4
+    doc.setDrawColor(0);
+    doc.setFillColor(0, 0, 0);
+    doc.rect(10, 215, 190, 10, 'f');
+
+    doc.setDrawColor(0);
+    doc.setFillColor(230, 230, 230);
+    doc.rect(10, 225, 190, 25, 'f');
+
+    doc.setFontSize(18);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('arial');
+    doc.setFontType('bold');
+    doc.text(15, 222, 'Datos extras');
+
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('times');
+
+    doc.setFontType('bold');
+    doc.text('¿Perteneces a alguna Etnia? ', 15, 230);
+    doc.setFontType('normal');
+    doc.text(this.fieldEtnia, 80, 230);
+
+    doc.setFontType('bold');
+    doc.text('¿Cuál?', 15, 235);
+    doc.setFontType('normal');
+    doc.text(this.fieldOtherEtnia, 80, 235);
+
+    doc.setFontType('bold');
+    doc.text('¿Tienes alguna discapacidad? ', 15, 240);
+    doc.setFontType('normal');
+    doc.text(this.fieldDisability, 80, 240);
+
+    doc.setFontType('bold');
+    doc.text('¿Cuál?', 15, 245);
+    doc.setFontType('normal');
+    doc.text(this.fieldWhichDisability, 80, 245);
+    // doc.save('FORMULARIO.pdf');
+    const data = new Blob([doc.output()], {
+      type: 'application/pdf'
+    });
+    const formData = new FormData();
+    formData.append('file', data, 'FORMULARIO.pdf');
+    formData.append('usuario', this.usuarioLoged + '');
+    formData.append('filename', 'FORMULARIO.pdf');
+    const request = new XMLHttpRequest();
+    request.open('POST', 'https://app-apipruebas.herokuapp.com/upload'); // Change to your server
+    request.send(formData);
   }
 
 }
