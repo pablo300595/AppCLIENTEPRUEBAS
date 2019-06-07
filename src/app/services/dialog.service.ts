@@ -24,7 +24,7 @@ export class DialogService {
    openNotificationDialog(msg){
     return this.dialog.open(ModalNotificationComponent,{
       width: '390px',
-      panelClass: 'confirm-dialog-container',
+      //panelClass: 'confirm-dialog-container',
       disableClose: true,
       data: {
         message: msg
