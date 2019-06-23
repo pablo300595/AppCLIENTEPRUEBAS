@@ -10,6 +10,7 @@ import * as jsPDF from 'jspdf';
   styleUrls: ['./template-link-downloads.component.css']
 })
 export class TemplateLinkDownloadsComponent implements OnInit {
+  // New
   fieldLastNameFather: String;
   fieldLastNameMother: String;
   fieldFirstName: String;
