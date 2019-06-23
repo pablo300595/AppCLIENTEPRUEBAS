@@ -190,7 +190,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
   downloadPDF() {
     console.log('PDF');
     const doc = new jsPDF();
-
+    const font = doc.getFontList();
     // Cuadro 1
     doc.setDrawColor(0);
     doc.setFillColor(0, 0, 0);
@@ -202,13 +202,13 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
 
     doc.setFontSize(18);
     doc.setTextColor(255, 255, 255);
-    doc.setFont('arial');
+    doc.setFont('Times');
     doc.setFontType('bold');
     doc.text(15, 72, 'Datos Generales');
 
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    doc.setFont('times');
+    doc.setFont('Times');
 
     doc.setFontType('bold');
     doc.text('Nombre: ', 15, 80);
@@ -261,13 +261,13 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
 
     doc.setFontSize(18);
     doc.setTextColor(255, 255, 255);
-    doc.setFont('arial');
+    doc.setFont('Times');
     doc.setFontType('bold');
     doc.text(15, 132, 'Dirección');
 
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    doc.setFont('times');
+    doc.setFont('Times');
 
     doc.setFontType('bold');
     doc.text('Calle: ', 15, 140);
@@ -310,13 +310,13 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
 
     doc.setFontSize(18);
     doc.setTextColor(255, 255, 255);
-    doc.setFont('arial');
+    doc.setFont('Times');
     doc.setFontType('bold');
     doc.text(15, 182, 'Datos académicos');
 
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    doc.setFont('times');
+    doc.setFont('Times');
 
     doc.setFontType('bold');
     doc.text('Escuela de procedencia: ', 15, 190);
@@ -349,13 +349,13 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
 
     doc.setFontSize(18);
     doc.setTextColor(255, 255, 255);
-    doc.setFont('arial');
+    doc.setFont('Times');
     doc.setFontType('bold');
     doc.text(15, 222, 'Datos extras');
 
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    doc.setFont('times');
+    doc.setFont('Times');
 
     doc.setFontType('bold');
     doc.text('¿Perteneces a alguna Etnia? ', 15, 230);

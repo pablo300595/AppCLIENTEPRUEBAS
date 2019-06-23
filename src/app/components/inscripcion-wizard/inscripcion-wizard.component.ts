@@ -97,12 +97,18 @@ export class InscripcionWizardComponent implements OnInit {
   }
 
   checkStepThree() {
-    if (this.stepThreeCompleted) {
-      this.messagesService.success('¡Contrato ha sido aceptado!');
-      this.resumen.initResumen();
-    } else {
-      this.messagesService.warning('¡Los términos y condiciones deben ser aceptados antes de poder continuar!');
-    }
+    this.dialogService.openNotificationDialog
+      ('Recuerda, debes descargar el "Contrato" y "Formulario", mismos que tienes que entregar en Servicios Escolares.')
+      .afterClosed().subscribe(res => {
+        if (res) {
+          if (this.stepThreeCompleted) {
+            this.messagesService.success('¡Contrato ha sido aceptado!');
+            this.resumen.initResumen();
+          } else {
+            this.messagesService.warning('¡Los términos y condiciones deben ser aceptados antes de poder continuar!');
+          }
+        }
+      });
   }
 
   checkStepFour() {
@@ -164,7 +170,8 @@ export class InscripcionWizardComponent implements OnInit {
 
   finishSteps() {
     this.dialogService.openNotificationDialog
-      ('Una vez terminado el proceso, debes entrar al sistema constantemente para la validación de documentos.')
+      (`Una vez terminado el proceso, debes entrar al sistema constantemente hasta que tus documentos se encuentren
+       "validados" y tu status sea "aceptado".`)
       .afterClosed().subscribe(res => {
         if (res) {
           let alumno = new Alumno();

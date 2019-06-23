@@ -32,24 +32,6 @@ export class DetalleAlumnoComponent extends MatPaginatorIntl implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  itemsPerPageLabel = 'Artículos por página:';
-  nextPageLabel     = 'Siguiente página';
-  previousPageLabel = 'Pagina anterior';
-
-  getRangeLabel = function (page, pageSize, length) {
-    if (length === 0 || pageSize === 0) {
-      return '0 od ' + length;
-    }
-    length = Math.max(length, 0);
-    const startIndex = page * pageSize;
-    // If the start index exceeds the list length, do not try and fix the end index to the end.
-    const endIndex = startIndex < length ?
-      Math.min(startIndex + pageSize, length) :
-      startIndex + pageSize;
-    return startIndex + 1 + ' - ' + endIndex + ' od ' + length;
-  };
-
-
   // Filters
   filterA: any;
   filterB: any;
@@ -72,6 +54,23 @@ export class DetalleAlumnoComponent extends MatPaginatorIntl implements OnInit {
   asignedTable: Array<Object>;
   exportableTable: Array<Object>;
 
+  itemsPerPageLabel = 'Artículos por página:';
+  nextPageLabel     = 'Siguiente página';
+  previousPageLabel = 'Pagina anterior';
+
+  getRangeLabel = function (page, pageSize, length) {
+    if (length === 0 || pageSize === 0) {
+      return '0 de ' + length;
+    }
+    length = Math.max(length, 0);
+    const startIndex = page * pageSize;
+    // If the start index exceeds the list length, do not try and fix the end index to the end.
+    const endIndex = startIndex < length ?
+      Math.min(startIndex + pageSize, length) :
+      startIndex + pageSize;
+    return startIndex + 1 + ' - ' + endIndex + ' de ' + length;
+  };
+
   constructor(private alumnoService: AlumnoService, public dialog: MatDialog, private detalleAlumnoService: DetalleAlumnoService,
     private dialogService: DialogService, private notificationService: NotificationService,
     private usuarioService: UsuarioService, private loginService: LoginService,
@@ -84,8 +83,6 @@ export class DetalleAlumnoComponent extends MatPaginatorIntl implements OnInit {
     this.filterD = { 'value': false, 'filter': 'Aceptado' };
 
     this.careerVisualizationMode = false;
-
-    
   }
 
   ngOnInit() {

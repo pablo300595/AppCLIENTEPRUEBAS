@@ -1,4 +1,8 @@
-
 .centrar {
     text-align: center
 }
+
+.right{
+    float: right;
+}
+  

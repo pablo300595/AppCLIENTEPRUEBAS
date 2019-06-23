@@ -1,9 +1,20 @@
+<div class="right">
+  <button mat-icon-button (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+<br><br><br>
 <div>
   <div class="content-container">
-    <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
-    <span class="content-span full-width">{{data.message}}</span>
+    <!--<mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>-->
+
+    <div style="text-align: justify;">
+      <span class="">{{data.message}}</span>
+    </div>
   </div>
+  <br>
   <div class="centrar">
-  <button mat-raised-button id="yes-button"  [mat-dialog-close]="true">Aceptar</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">Aceptar</button>
   </div>
+  <br>
 </div>
