@@ -144,26 +144,26 @@
       <!--Columna 1: NSS-->
       <div class='col-md-6'>
 
-          <div class='card'>
-              <div class='card-header'>
-                <label for="lblCertificado"><b>CERTIFICADO DE BACHILLERATO O EQUIVALENTE</b></label>
-                <p style="text-align: justify;">
-                  Nota.- Alumnos egresados de Instituciones Privadas y de la Universidad Autónoma de Nayarit, deben
-                  legalizar su
-                  certificado en la Dirección de Profesiones de la SEMSSICyT.
-                </p>
-              </div>
-              <div class='card-body'>
-                <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCERTIFICADO}}</label>
-                <app-template-incorrect *ngIf='!file1'></app-template-incorrect>
-                <app-template-correct *ngIf='file1'></app-template-correct>
-                <dropzone id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
-                  (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)" (click)="dropzoneClicked()"
-                  matTooltip="Reemplazar Archivo" [matTooltipDisabled]="this.dropzoneFileNameCERTIFICADO==''"></dropzone>
-                <app-pdf-template-certificado *ngIf='file1'></app-pdf-template-certificado>
-              </div>
-            </div>
-    
+        <div class='card'>
+          <div class='card-header'>
+            <label for="lblCertificado"><b>CERTIFICADO DE BACHILLERATO O EQUIVALENTE</b></label>
+            <p style="text-align: justify;">
+              Nota.- Alumnos egresados de Instituciones Privadas y de la Universidad Autónoma de Nayarit, deben
+              legalizar su
+              certificado en la Dirección de Profesiones de la SEMSSICyT.
+            </p>
+          </div>
+          <div class='card-body'>
+            <label><b>Nombre original de archivo: </b>{{dropzoneFileNameCERTIFICADO}}</label>
+            <app-template-incorrect *ngIf='!file1'></app-template-incorrect>
+            <app-template-correct *ngIf='file1'></app-template-correct>
+            <dropzone id="dz0" [config]="config" [message]="'Haga click o arrastre archivos aquí para subirlos'"
+              (error)="onErrorCommon($event)" (success)="onUploadSuccess($event)" (drop)="onDrop($event)" (click)="dropzoneClicked()"
+              matTooltip="Reemplazar Archivo" [matTooltipDisabled]="this.dropzoneFileNameCERTIFICADO==''"></dropzone>
+            <app-pdf-template-certificado *ngIf='file1'></app-pdf-template-certificado>
+          </div>
+        </div>
+
       </div>
     </div>
     <br>

@@ -68,6 +68,7 @@ export class DetalleAlumnoDialogComponent {
     fieldCareer: String = '';
     fieldDocuments: String[] = [];
     statusInscripcion: String;
+    fieldPeriodo: String;
     // Link document variables
     acta: string;
     certificado: string;
@@ -99,7 +100,7 @@ export class DetalleAlumnoDialogComponent {
 
     documentToAnalize: string;
     formularios: StatusDocumento[] = [
-        { value: 'Aceptado', viewValue: 'Aceptado' },
+        { value: 'Validado', viewValue: 'Validado' },
         { value: 'En proceso', viewValue: 'En proceso' },
         { value: 'Rechazado', viewValue: 'Rechazado' }
     ];
@@ -118,6 +119,8 @@ export class DetalleAlumnoDialogComponent {
     currentUser: any;
     allDocumentStatus = ['', '', '', '', '', '', '', ''];
     allDocumentObservations = ['', '', '', '', '', '', '', ''];
+
+    currentAlumnoData: any;
 
     constructor(
         public dialogRef: MatDialogRef<DetalleAlumnoDialogComponent>,
@@ -184,7 +187,12 @@ export class DetalleAlumnoDialogComponent {
     then delivers all documentation into a global variable documentation. The object retrieved
     is used to generate information in allDocumentStatus and allDocumentObservations*/
     awaitForValidationData() {
+        this.alumnoService.getAlumnoByCtrl(this.selectedNoCtrl).subscribe(res => {
+            this.currentAlumnoData = res;
+          });
+
         this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {
+           
             this.documentation = res as Object[];
             this.dataSource = new MatTableDataSource(this.documentation);
             this.adjustAccordionPosition();
@@ -385,14 +393,14 @@ export class DetalleAlumnoDialogComponent {
                 }
                 if (validatedDocsQty === 8) {
                     console.log('Validados todos');
-                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Aceptado'}, this.selectedNoCtrl).subscribe(
+                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Validado'}, this.selectedNoCtrl).subscribe(
                         res => this.messagesService.success('¡Todos los documentos han sido validados!')
                     );
                 }
                 if (aceptedDocsQty === 8) {
                     console.log('Aceptados todos');
-                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Revisado'}, this.selectedNoCtrl).subscribe(
-                        res => this.messagesService.success('¡Todos los documentos han sido revisados!')
+                    this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Aceptado'}, this.selectedNoCtrl).subscribe(
+                        res => this.messagesService.success('¡Todos los documentos han sido Validados!')
                     );
                 }
             }, 500);
@@ -403,5 +411,7 @@ export class DetalleAlumnoDialogComponent {
     closeDialog(): void {
         this.dialogRef.close();
     }
+
+    
 
 }

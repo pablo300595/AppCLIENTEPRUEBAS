@@ -57,7 +57,7 @@ export class DetalleAlumnoJefeComponent extends MatPaginatorIntl implements OnIn
 
   getRangeLabel = function (page, pageSize, length) {
     if (length === 0 || pageSize === 0) {
-      return '0 od ' + length;
+      return '0 de ' + length;
     }
     length = Math.max(length, 0);
     const startIndex = page * pageSize;
@@ -65,7 +65,7 @@ export class DetalleAlumnoJefeComponent extends MatPaginatorIntl implements OnIn
     const endIndex = startIndex < length ?
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
-    return startIndex + 1 + ' - ' + endIndex + ' od ' + length;
+    return startIndex + 1 + ' - ' + endIndex + ' de ' + length;
   };
 
 
@@ -456,14 +456,14 @@ export class DetalleAlumnoJefeComponent extends MatPaginatorIntl implements OnIn
   }
 
   validateEachStudentDocument(id) {
-    const docA = {documentName: 'ACTA', status: 'Validado', observacion: this.globalComment};
-    const docB = {documentName: 'CURP', status: 'Validado', observacion: this.globalComment};
-    const docC = {documentName: 'NSS', status: 'Validado', observacion: this.globalComment};
-    const docD = {documentName: 'FORMULARIO', status: 'Validado', observacion: this.globalComment};
-    const docE = {documentName: 'FOTO', status: 'Validado', observacion: this.globalComment};
-    const docF = {documentName: 'CLINICOS', status: 'Validado', observacion: this.globalComment};
-    const docG = {documentName: 'COMPROBANTE', status: 'Validado', observacion: this.globalComment};
-    const docH = {documentName: 'CERTIFICADO', status: 'Validado', observacion: this.globalComment};
+    const docA = {documentName: 'ACTA', status: 'Aceptado', observacion: this.globalComment};
+    const docB = {documentName: 'CURP', status: 'Aceptado', observacion: this.globalComment};
+    const docC = {documentName: 'NSS', status: 'Aceptado', observacion: this.globalComment};
+    const docD = {documentName: 'FORMULARIO', status: 'Aceptado', observacion: this.globalComment};
+    const docE = {documentName: 'FOTO', status: 'Aceptado', observacion: this.globalComment};
+    const docF = {documentName: 'CLINICOS', status: 'Aceptado', observacion: this.globalComment};
+    const docG = {documentName: 'COMPROBANTE', status: 'Aceptado', observacion: this.globalComment};
+    const docH = {documentName: 'CERTIFICADO', status: 'Aceptado', observacion: this.globalComment};
     this.alumnoService.requestDataFromMultipleSources(id,
       docA, docB, docC, docD, docE, docF, docG, docH
     ).subscribe(responseList => {
