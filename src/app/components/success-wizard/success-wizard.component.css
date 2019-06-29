@@ -63,3 +63,7 @@ mat-chip {
     width: 100%;
     text-align: center;
 }
+
+.centrar {
+    text-align: center
+}

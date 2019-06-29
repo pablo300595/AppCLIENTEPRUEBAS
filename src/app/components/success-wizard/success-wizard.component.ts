@@ -45,6 +45,7 @@ export class SuccessWizardComponent implements OnInit {
   refCertificado: any;
   refFormulario: any;
   srcFoto: any;
+  refContrato : any;
   // service
   currentAlumnoData: any;
 
@@ -241,6 +242,10 @@ export class SuccessWizardComponent implements OnInit {
 
     this.refFormulario = document.getElementById('refFORMULARIO');
     this.refFormulario.href = `https://novaresidencia.000webhostapp.com/${this.currentUser}/documentos/FORMULARIO.pdf`;
+  
+    this.refContrato = document.getElementById('refCONTRATO');
+    this.refContrato.href = 'https://novaresidencia.000webhostapp.com/imagenes/CONTRATO.jpg';
+
   }
 
   onErrorCommon(args: any) {

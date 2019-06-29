@@ -120,6 +120,8 @@ export class DetalleAlumnoDialogComponent {
     allDocumentStatus = ['', '', '', '', '', '', '', ''];
     allDocumentObservations = ['', '', '', '', '', '', '', ''];
 
+    currentAlumnoData: any;
+
     constructor(
         public dialogRef: MatDialogRef<DetalleAlumnoDialogComponent>,
         private alumnoService: AlumnoService,
@@ -185,7 +187,12 @@ export class DetalleAlumnoDialogComponent {
     then delivers all documentation into a global variable documentation. The object retrieved
     is used to generate information in allDocumentStatus and allDocumentObservations*/
     awaitForValidationData() {
+        this.alumnoService.getAlumnoByCtrl(this.selectedNoCtrl).subscribe(res => {
+            this.currentAlumnoData = res;
+          });
+
         this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {
+           
             this.documentation = res as Object[];
             this.dataSource = new MatTableDataSource(this.documentation);
             this.adjustAccordionPosition();
@@ -404,5 +411,7 @@ export class DetalleAlumnoDialogComponent {
     closeDialog(): void {
         this.dialogRef.close();
     }
+
+    
 
 }

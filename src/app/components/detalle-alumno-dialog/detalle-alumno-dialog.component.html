@@ -302,7 +302,15 @@
                 <b>DATOS GENERALES</b>
               </p>
 
-
+              <div>
+                <mat-chip-list>
+                  <mat-chip style="background-color: #f7db13;" selected *ngIf="currentAlumnoData.statusInscripcion == 'En captura'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
+                  <mat-chip style="background-color: red;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Enviado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
+                  <mat-chip style="background-color: darkgreen;" selected *ngIf="currentAlumnoData.statusInscripcion == 'Validado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
+                  <mat-chip style="background-color: rgb(3, 1, 121);" selected *ngIf="currentAlumnoData.statusInscripcion == 'Aceptado'">{{currentAlumnoData.statusInscripcion}}</mat-chip>
+                </mat-chip-list>
+              </div>
+              <br>
               <div>
                 <label for="txtNombre"><b>Nombre:</b>&nbsp;</label>
                 <label type="text" id="txtNombre" name="fieldFirstName">{{fieldLastNameFather}} {{fieldLastNameMother}}
@@ -344,6 +352,7 @@
               </div>
             </div>
             <div class="form-group col-md-6">
+              <br><br><br><br>
               <p>
                 <b>DIRECCIÓN</b>
               </p>
@@ -382,6 +391,7 @@
                   <label for="txtPeriodo"><b>Periodo:</b>&nbsp;</label>
                   <label type="text" name="fieldPeriodo">{{alumno[0].alumno_periodo[0].periodo}} {{alumno[0].alumno_periodo[0].yearPeriodo}}</label>
                 </div>
+                
               </div>
             </div>
           </div>
@@ -398,7 +408,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonCertificado].status == 'En captura'">{{dataSource.data[acordeonCertificado].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonCertificado].status == 'Rechazado'">{{dataSource.data[acordeonCertificado].status}}</mat-chip>
                 <mat-chip style="background-color: darkgreen;" selected *ngIf="dataSource.data[acordeonCertificado].status == 'Validado'">{{dataSource.data[acordeonCertificado].status}}</mat-chip>
-                <mat-chip style="background-color: black;" selected *ngIf="dataSource.data[acordeonCertificado].status == 'Aceptado'">{{dataSource.data[acordeonCertificado].status}}</mat-chip>
+                <mat-chip style="background-color: rgb(3, 1, 121);" selected *ngIf="dataSource.data[acordeonCertificado].status == 'Aceptado'">{{dataSource.data[acordeonCertificado].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="">
@@ -460,7 +470,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonActa].status == 'En captura'">{{dataSource.data[acordeonActa].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonActa].status == 'Rechazado'">{{dataSource.data[acordeonActa].status}}</mat-chip>
                 <mat-chip style="background-color: darkgreen;" selected *ngIf="dataSource.data[acordeonActa].status == 'Validado'">{{dataSource.data[acordeonActa].status}}</mat-chip>
-                <mat-chip style="background-color: black;" selected *ngIf="dataSource.data[acordeonActa].status == 'Aceptado'">{{dataSource.data[acordeonActa].status}}</mat-chip>
+                <mat-chip style="background-color: rgb(3, 1, 121);" selected *ngIf="dataSource.data[acordeonActa].status == 'Aceptado'">{{dataSource.data[acordeonActa].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="">
@@ -522,7 +532,7 @@
                 <mat-chip style="background-color: #f7db13" selected *ngIf="dataSource.data[acordeonCURP].status == 'En captura'">{{dataSource.data[acordeonCURP].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Rechazado'">{{dataSource.data[acordeonCURP].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Validado'">{{dataSource.data[acordeonCURP].status}}</mat-chip>
-                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonCURP].status == 'Aceptado'">{{dataSource.data[acordeonCURP].status}}</mat-chip>
+                <mat-chip style="background-color:rgb(3, 1, 121);" selected *ngIf="dataSource.data[acordeonCURP].status == 'Aceptado'">{{dataSource.data[acordeonCURP].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="">
@@ -584,7 +594,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonPago].status == 'En captura'">{{dataSource.data[acordeonPago].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonPago].status == 'Rechazado'">{{dataSource.data[acordeonPago].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonPago].status == 'Validado'">{{dataSource.data[acordeonPago].status}}</mat-chip>
-                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonPago].status == 'Aceptado'">{{dataSource.data[acordeonPago].status}}</mat-chip>
+                <mat-chip style="background-color:rgb(3, 1, 121);" selected *ngIf="dataSource.data[acordeonPago].status == 'Aceptado'">{{dataSource.data[acordeonPago].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="">
@@ -644,7 +654,7 @@
                 <mat-chip style="background-color: #f7db13" selected *ngIf="dataSource.data[acordeonClinicos].status == 'En captura'">{{dataSource.data[acordeonClinicos].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonClinicos].status == 'Rechazado'">{{dataSource.data[acordeonClinicos].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonClinicos].status == 'Validado'">{{dataSource.data[acordeonClinicos].status}}</mat-chip>
-                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonClinicos].status == 'Aceptado'">{{dataSource.data[acordeonClinicos].status}}</mat-chip>
+                <mat-chip style="background-color:rgb(3, 1, 121);" selected *ngIf="dataSource.data[acordeonClinicos].status == 'Aceptado'">{{dataSource.data[acordeonClinicos].status}}</mat-chip>
               </mat-chip-list>
               <div class="">
                 &nbsp;&nbsp;&nbsp; RESULTADO DE ANÁLISIS CLÍNICOS
@@ -704,7 +714,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonNSS].status == 'En captura'">{{dataSource.data[acordeonNSS].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonNSS].status == 'Rechazado'">{{dataSource.data[acordeonNSS].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonNSS].status == 'Validado'">{{dataSource.data[acordeonNSS].status}}</mat-chip>
-                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonNSS].status == 'Aceptado'">{{dataSource.data[acordeonNSS].status}}</mat-chip>
+                <mat-chip style="background-color:rgb(3, 1, 121);" selected *ngIf="dataSource.data[acordeonNSS].status == 'Aceptado'">{{dataSource.data[acordeonNSS].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="">
@@ -767,7 +777,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonFoto].status == 'En captura'">{{dataSource.data[acordeonFoto].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonFoto].status == 'Rechazado'">{{dataSource.data[acordeonFoto].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonFoto].status == 'Validado'">{{dataSource.data[acordeonFoto].status}}</mat-chip>
-                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonFoto].status == 'Aceptado'">{{dataSource.data[acordeonFoto].status}}</mat-chip>
+                <mat-chip style="background-color:rgb(3, 1, 121);" selected *ngIf="dataSource.data[acordeonFoto].status == 'Aceptado'">{{dataSource.data[acordeonFoto].status}}</mat-chip>
               </mat-chip-list>
 
               <div class="">
@@ -777,7 +787,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
-            <img [src]="foto">
+            <img [src]="foto" style="max-width: 250px; max-height: 250px">
             <br><br>
             <table class="example-full-width" cellspacing="0">
               <tr>
@@ -827,7 +837,7 @@
                 <mat-chip style="background-color: #f7db13;" selected *ngIf="dataSource.data[acordeonFormulario].status == 'En captura'">{{dataSource.data[acordeonFormulario].status}}</mat-chip>
                 <mat-chip style="background-color: red;" selected *ngIf="dataSource.data[acordeonFormulario].status == 'Rechazado'">{{dataSource.data[acordeonFormulario].status}}</mat-chip>
                 <mat-chip style="background-color:darkgreen;" selected *ngIf="dataSource.data[acordeonFormulario].status == 'Validado'">{{dataSource.data[acordeonFormulario].status}}</mat-chip>
-                <mat-chip style="background-color:black;" selected *ngIf="dataSource.data[acordeonFormulario].status == 'Aceptado'">{{dataSource.data[acordeonFormulario].status}}</mat-chip>
+                <mat-chip style="background-color:rgb(3, 1, 121);" selected *ngIf="dataSource.data[acordeonFormulario].status == 'Aceptado'">{{dataSource.data[acordeonFormulario].status}}</mat-chip>
               </mat-chip-list>
               <div class="">
                 &nbsp;&nbsp;&nbsp; FORMULARIO
@@ -901,7 +911,7 @@
                   <mat-chip style="background-color: #f7db13" selected *ngIf="row.status == 'En captura'">{{row.status}}</mat-chip>
                   <mat-chip style="background-color: red;" selected *ngIf="row.status == 'Rechazado'">{{row.status}}</mat-chip>
                   <mat-chip selected *ngIf="row.status == 'Validado'" style="background-color:darkgreen;">{{row.status}}</mat-chip>
-                  <mat-chip selected *ngIf="row.status == 'Aceptado'" style="background-color:black;">{{row.status}}</mat-chip>
+                  <mat-chip selected *ngIf="row.status == 'Aceptado'" style="background-color:rgb(3, 1, 121);">{{row.status}}</mat-chip>
                 </mat-chip-list>
               </td>
             </ng-container>

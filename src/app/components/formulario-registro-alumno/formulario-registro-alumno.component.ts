@@ -6,7 +6,7 @@ import { FormularioRegistroService } from './../../services/formulario-registro.
 import { Alumno } from './../../models/alumno';
 import { NgForm} from '@angular/forms';
 import { stringify } from '@angular/core/src/render3/util';
-import * as jsPDF from 'jspdf';
+//import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-formulario-registro-alumno',
@@ -189,6 +189,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
 
   downloadPDF() {
     console.log('PDF');
+    /*
     const doc = new jsPDF();
     const font = doc.getFontList();
     // Cuadro 1
@@ -387,6 +388,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     const request = new XMLHttpRequest();
     request.open('POST', 'https://app-apipruebas.herokuapp.com/upload'); // Change to your server
     request.send(formData);
+    */
   }
 
 }
