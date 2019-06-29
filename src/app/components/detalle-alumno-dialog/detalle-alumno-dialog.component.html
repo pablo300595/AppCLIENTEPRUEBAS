@@ -444,7 +444,7 @@
             
             <div class="right">
               <div class="example-button-row">
-                <button mat-raised-button [disabled]="allDocumentObservations[0].length===0 && allDocumentStatus[0] === 'Rechazado'" (click)="validateForm('CERTIFICADO')"
+                <button mat-raised-button [disabled]="(allDocumentObservations[0].length===0 && allDocumentStatus[0] === 'Rechazado')" (click)="validateForm('CERTIFICADO')"
                   color="primary">Guardar</button>
               </div>
             </div>
