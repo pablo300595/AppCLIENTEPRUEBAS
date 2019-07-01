@@ -192,7 +192,6 @@ export class DetalleAlumnoDialogComponent {
           });
 
         this.alumnoService.getAlumnoDocumentation(this.selectedNoCtrl).subscribe(res => {
-           
             this.documentation = res as Object[];
             this.dataSource = new MatTableDataSource(this.documentation);
             this.adjustAccordionPosition();

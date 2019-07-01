@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AlumnoService } from './../../../services/alumno.service';
 import { LoginService } from './../../../services/login.service';
 import { Alumno } from './../../../models/alumno';
-//import * as jsPDF from 'jspdf';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-template-link-downloads',
@@ -123,7 +123,7 @@ export class TemplateLinkDownloadsComponent implements OnInit {
 
     const img = new Image();
     img.src = 'https://novaresidencia.000webhostapp.com/imagenes/CONTRATO.jpg';
-    /*
+
     const doc = new jsPDF();
 
     doc.addImage(img, 'jpg', 0, 0, 200, 295);
@@ -376,7 +376,6 @@ export class TemplateLinkDownloadsComponent implements OnInit {
     doc.setFontType('normal');
     doc.text(this.fieldWhichDisability, 80, 245);
     doc.save('FORMULARIO.pdf');
-    */
   }
 
 }

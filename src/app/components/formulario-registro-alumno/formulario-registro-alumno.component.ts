@@ -6,7 +6,7 @@ import { FormularioRegistroService } from './../../services/formulario-registro.
 import { Alumno } from './../../models/alumno';
 import { NgForm} from '@angular/forms';
 import { stringify } from '@angular/core/src/render3/util';
-//import * as jsPDF from 'jspdf';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-formulario-registro-alumno',
@@ -189,7 +189,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
 
   downloadPDF() {
     console.log('PDF');
-    /*
+    
     const doc = new jsPDF();
     const font = doc.getFontList();
     // Cuadro 1
@@ -232,7 +232,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     doc.text(this.fieldStatusCivil, 80, 95);
 
     doc.setFontType('bold');
-    doc.text('Correo Electrónico: ', 15, 100);
+    doc.text('Correo Electronico: ', 15, 100);
     doc.setFontType('normal');
     doc.text(this.fieldEmail, 80, 100);
 
@@ -247,7 +247,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     doc.text(this.fieldNSS + '', 80, 110);
 
     doc.setFontType('bold');
-    doc.text('Número de control: ', 15, 115);
+    doc.text('Numero de control: ', 15, 115);
     doc.setFontType('normal');
     doc.text('13400501', 80, 115);
 
@@ -264,7 +264,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     doc.setTextColor(255, 255, 255);
     doc.setFont('Times');
     doc.setFontType('bold');
-    doc.text(15, 132, 'Dirección');
+    doc.text(15, 132, 'Direccn');
 
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
@@ -291,12 +291,12 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     doc.text(this.fieldState, 80, 155);
 
     doc.setFontType('bold');
-    doc.text('Código Postal: ', 15, 160);
+    doc.text('Codigo Postal: ', 15, 160);
     doc.setFontType('normal');
     doc.text(this.fieldPostalCode + '', 80, 160);
 
     doc.setFontType('bold');
-    doc.text('Teléfono: ', 15, 165);
+    doc.text('Telefono: ', 15, 165);
     doc.setFontType('normal');
     doc.text(this.fieldPhone + '', 80, 165);
 
@@ -313,7 +313,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     doc.setTextColor(255, 255, 255);
     doc.setFont('Times');
     doc.setFontType('bold');
-    doc.text(15, 182, 'Datos académicos');
+    doc.text(15, 182, 'Datos academicos');
 
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
@@ -364,7 +364,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     doc.text(this.fieldEtnia, 80, 230);
 
     doc.setFontType('bold');
-    doc.text('¿Cuál?', 15, 235);
+    doc.text('¿Cual?', 15, 235);
     doc.setFontType('normal');
     doc.text(this.fieldOtherEtnia, 80, 235);
 
@@ -374,11 +374,12 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     doc.text(this.fieldDisability, 80, 240);
 
     doc.setFontType('bold');
-    doc.text('¿Cuál?', 15, 245);
+    doc.text('¿Cual?', 15, 245);
     doc.setFontType('normal');
     doc.text(this.fieldWhichDisability, 80, 245);
+    // SAVING
     // doc.save('FORMULARIO.pdf');
-    const data = new Blob([doc.output()], {
+    const data = new Blob(['\ufeff', doc.output()], {
       type: 'application/pdf'
     });
     const formData = new FormData();
@@ -388,7 +389,6 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     const request = new XMLHttpRequest();
     request.open('POST', 'https://app-apipruebas.herokuapp.com/upload'); // Change to your server
     request.send(formData);
-    */
   }
 
 }
