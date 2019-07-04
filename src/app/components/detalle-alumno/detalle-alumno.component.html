@@ -54,16 +54,27 @@
         <!-- StatusInscription Column -->
         <ng-container matColumnDef="statusInscripcion">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Estátus </th>
-          <td mat-cell *matCellDef="let row"> {{row.statusInscripcion}} </td>
+          <td mat-cell *matCellDef="let row">
+              <mat-chip-list>
+                  <mat-chip style="background-color: #f7db13;" selected *ngIf="row.statusInscripcion == 'En captura'">{{row.statusInscripcion}}</mat-chip>
+                  <mat-chip style="background-color: red;" selected *ngIf="row.statusInscripcion == 'Enviado'">{{row.statusInscripcion}}</mat-chip>
+                  <mat-chip style="background-color: darkgreen;" selected *ngIf="row.statusInscripcion == 'Validado'">{{row.statusInscripcion}}</mat-chip>
+                  <mat-chip style="background-color: rgb(3, 1, 121);" selected *ngIf="row.statusInscripcion == 'Aceptado'">{{row.statusInscripcion}}</mat-chip>
+              </mat-chip-list>
+          </td>
+
         </ng-container>
 
         <!-- Actions Column -->
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
 
-          <mat-cell *matCellDef="let row">
+          <mat-cell *matCellDef="let row; let i = index">
               <button mat-icon-button (click)="preUpdate(row.controlNumber)"><mat-icon>group</mat-icon></button>
               <button mat-icon-button color="warn" (click)="onDelete(row.controlNumber)" ><mat-icon>delete</mat-icon></button>
+              <p>
+                <span matBadge="{{fileCounterArray[i]}}" matBadgeOverlap="false"> </span>
+              </p>              
           </mat-cell>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -449,7 +449,10 @@ export class DetalleAlumnoJefeComponent extends MatPaginatorIntl implements OnIn
           }
         }
         this.alumnoService.putStatusAlumno({statusInscripcion: 'Aceptado'}, this.tableCheckGlobal[i].id).subscribe(
-          res => this.messagesService.success('Validación realizada correctamente')
+          res => {
+            this.messagesService.success('Validación realizada correctamente');
+            setTimeout(() => this.doRefreshTable(), 500);
+          }
         );
       }
     }

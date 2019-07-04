@@ -101,12 +101,10 @@ export class DetalleAlumnoDialogComponent {
     documentToAnalize: string;
     formularios: StatusDocumento[] = [
         { value: 'Validado', viewValue: 'Validado' },
-        { value: 'En proceso', viewValue: 'En proceso' },
         { value: 'Rechazado', viewValue: 'Rechazado' }
     ];
     formulariosFull: StatusDocumento[] = [
         { value: 'Aceptado', viewValue: 'Aceptado' },
-        { value: 'En proceso', viewValue: 'En proceso' },
         { value: 'Rechazado', viewValue: 'Rechazado' },
         { value: 'Validado', viewValue: 'Validado' }
     ];
@@ -402,6 +400,15 @@ export class DetalleAlumnoDialogComponent {
                         res => this.messagesService.success('¡Todos los documentos han sido Validados!')
                     );
                 }
+                if (aceptedDocsQty < validatedDocsQty ) {
+                    if (this.currentAlumnoData.statusInscripcion === 'Validado') {
+                        this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Enviado'}, this.selectedNoCtrl).subscribe();
+                    }
+                } else {
+                    if (this.currentAlumnoData.statusInscripcion === 'Aceptado') {
+                        this.alumnoService.putStatusAlumnoByCtrl({statusInscripcion: 'Enviado'}, this.selectedNoCtrl).subscribe();
+                    }
+                }
             }, 500);
         }, 500);
         console.log('hi');
@@ -410,7 +417,5 @@ export class DetalleAlumnoDialogComponent {
     closeDialog(): void {
         this.dialogRef.close();
     }
-
-    
 
 }

@@ -57,6 +57,8 @@ export class DetalleAlumnoComponent extends MatPaginatorIntl implements OnInit {
   itemsPerPageLabel = 'Artículos por página:';
   nextPageLabel     = 'Siguiente página';
   previousPageLabel = 'Pagina anterior';
+  mod = [6, 3, 2, 1, 6];
+  fileCounterArray: Array<any>;
 
   getRangeLabel = function (page, pageSize, length) {
     if (length === 0 || pageSize === 0) {
@@ -106,6 +108,7 @@ export class DetalleAlumnoComponent extends MatPaginatorIntl implements OnInit {
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.countFilesFromViewData();
       });
   }
   /* CalledBy (Writing in search bar)
@@ -255,6 +258,7 @@ export class DetalleAlumnoComponent extends MatPaginatorIntl implements OnInit {
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.countFilesFromViewData();
       });
   }
   /* CalledBy(ngOnInit, doRefreshTable)
@@ -277,6 +281,7 @@ export class DetalleAlumnoComponent extends MatPaginatorIntl implements OnInit {
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.countFilesFromViewData(); // NEW
       });
   }
 
@@ -296,5 +301,19 @@ export class DetalleAlumnoComponent extends MatPaginatorIntl implements OnInit {
   */
   exportAsXLSX() {
     this.excelService.exportAsExcelFile(this.exportableTable, 'sample');
+  }
+
+  countFilesFromViewData() {
+    this.fileCounterArray = new Array(this.dataSource.data.length);
+    let fileQty = 0;
+    for (let i = 0; i < this.dataSource.data.length; i++) {
+      for (let j = 0; j < this.dataSource.data[i].documents.length; j++) {
+        if (this.dataSource.data[i].documents[j].status === 'Rechazado' || this.dataSource.data[i].documents[j].status === 'En captura') {
+          fileQty++;
+        }
+      }
+      this.fileCounterArray[i] = fileQty;
+      fileQty = 0;
+    }
   }
 }

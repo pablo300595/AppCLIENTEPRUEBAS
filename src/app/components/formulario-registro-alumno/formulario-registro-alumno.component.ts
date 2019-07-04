@@ -264,7 +264,7 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     doc.setTextColor(255, 255, 255);
     doc.setFont('Times');
     doc.setFontType('bold');
-    doc.text(15, 132, 'Direccn');
+    doc.text(15, 132, 'Direccion');
 
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
@@ -359,22 +359,22 @@ export class FormularioRegistroAlumnoComponent implements OnInit {
     doc.setFont('Times');
 
     doc.setFontType('bold');
-    doc.text('¿Perteneces a alguna Etnia? ', 15, 230);
+    doc.text('Perteneces a alguna Etnia? ', 15, 230);
     doc.setFontType('normal');
     doc.text(this.fieldEtnia, 80, 230);
 
     doc.setFontType('bold');
-    doc.text('¿Cual?', 15, 235);
+    doc.text('Cual?', 15, 235);
     doc.setFontType('normal');
     doc.text(this.fieldOtherEtnia, 80, 235);
 
     doc.setFontType('bold');
-    doc.text('¿Tienes alguna discapacidad? ', 15, 240);
+    doc.text('Tienes alguna discapacidad? ', 15, 240);
     doc.setFontType('normal');
     doc.text(this.fieldDisability, 80, 240);
 
     doc.setFontType('bold');
-    doc.text('¿Cual?', 15, 245);
+    doc.text('Cual?', 15, 245);
     doc.setFontType('normal');
     doc.text(this.fieldWhichDisability, 80, 245);
     // SAVING

@@ -23,7 +23,7 @@ export class RolesCarrerasComponent implements OnInit {
   secretaries: any[];
   radioSelected: any;
   constructor(private messagesService: MessagesService, private secretariaService: SecretariaService,
-    private usuarioService: UsuarioService, private loginService: LoginService) { 
+    private usuarioService: UsuarioService, private loginService: LoginService) {
 
     }
 
@@ -33,32 +33,32 @@ export class RolesCarrerasComponent implements OnInit {
       {index: 1, secreName: 'Sofia Estrella',  _id: '5ced07121c9d440000db48ca', asignation: []}
     ];
     this.testData = [
-      {pos: 0, career: 'Ingeniería en Sistemas Computacionales', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 0, career: 'Ingenieria en Sistemas Computacionales', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 1, career: 'Maestría en Ciencias en Alimentos', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 1, career: 'Maestria en Ciencias en Alimentos', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 2, career: 'Ingeniería Bioquímica', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 2, career: 'Ingenieria Bioquimica', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
       {pos: 3, career: 'Arquitectura', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 4, career: 'Ingeniería Civil', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 4, career: 'Ingenieria Civil', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 5, career: 'Ingeniería Eléctrica', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 5, career: 'Ingenieria Electrica', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 6, career: 'Ingeniería en Gestión Empresarial', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 6, career: 'Ingenieria en Gestion Empresarial', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 7, career: 'Ingeniería Industrial', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 7, career: 'Ingenieria Industrial', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 8, career: 'Ingeniería Mecatrónica', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 8, career: 'Ingenieria Mecatronica', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 9, career: 'Ingeniería Química', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 9, career: 'Ingenieria Quimica', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 10, career: 'Ingeniería en Tecnología de la Información y Comunicaciones',
+      {pos: 10, career: 'Ingenieria en Tecnologia de la Informacion y Comunicaciones',
       _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 11, career: 'Licenciatura en Administración', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 11, career: 'Licenciatura en Administracion', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
-      {pos: 12, career: 'Maestría en Tecnologías de la Información', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
+      {pos: 12, career: 'Maestria en Tecnologias de la Informacion', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''},
       {pos: 13, career: 'Doctorado en Ciencias en Alimentos', _id: ['5cba1f8a2ebc2b0017e1b6ce', '5ced07121c9d440000db48ca'],
       selectedId: ''}

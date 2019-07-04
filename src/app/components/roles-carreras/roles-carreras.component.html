@@ -11,7 +11,7 @@
               <p class="font-weight-bold">{{test.career}}</p>
               <mat-radio-group aria-label="Select an option" (change)="createAsignation(test, $event)">
                 <mat-radio-button [value]="i" *ngFor="let secretary of secretaries; let i=index">
-                  {{secretary.secreName}}
+                  Secre {{i}}
                 </mat-radio-button>
                 <br>
               </mat-radio-group>
