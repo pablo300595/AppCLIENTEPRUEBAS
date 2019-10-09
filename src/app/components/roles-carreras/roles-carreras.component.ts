@@ -57,7 +57,8 @@ export class RolesCarrerasComponent implements OnInit {
     console.log(newArray);
   }
 
-  updateCareerAsignation(_id) {
+  updateCareerAsignation() {
+    let _id = '5cba1f8a2ebc2b0017e1b6ce';
     const newCareer = [];
     this.secretariaService.updateSecretariaCareer(newCareer, _id).subscribe( res => {
       this.messagesService.success('¡Asignación de carreras actualizada!');
