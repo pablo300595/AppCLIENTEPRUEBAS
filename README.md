@@ -12,4 +12,4 @@ En el transcurso de la semana la descripción de actualizará para que pueda con
 1) wget https://downloads.mongodb.com/compass/mongodb-compass_1.14.1_amd64.deb &nbsp;
 2) sudo dpkg -i mongodb-compass_1.14.1_amd64.deb &nbsp;
 3) mongodb-compass &nbsp;
-Credenciales: &nbsp;
+4) Credenciales: &nbsp;
